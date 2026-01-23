@@ -1,0 +1,47 @@
+[
+  {
+    "id": "cafe-01",
+    "title": "Cafe-01",
+    "tags": ["Cafe", "Simple"],
+    "industry": "Cafe",
+    "tone": "Simple",
+    "thumb": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400&h=300&fit=crop",
+    "preview_path": "/templates/cafe-01/index.html"
+  },
+  {
+    "id": "cafe-02",
+    "title": "Cafe-02",
+    "tags": ["Cafe", "Luxury"],
+    "industry": "Cafe",
+    "tone": "Luxury",
+    "thumb": "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400&h=300&fit=crop",
+    "preview_path": "/templates/cafe-02/index.html"
+  },
+  {
+    "id": "cafe-03",
+    "title": "Cafe-03",
+    "tags": ["Cafe", "Pop"],
+    "industry": "Cafe",
+    "tone": "Pop",
+    "thumb": "https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400&h=300&fit=crop",
+    "preview_path": "/templates/cafe-03/index.html"
+  },
+  {
+    "id": "cafe-04",
+    "title": "Cafe-04",
+    "tags": ["Cafe", "Natural"],
+    "industry": "Cafe",
+    "tone": "Natural",
+    "thumb": "https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=400&h=300&fit=crop",
+    "preview_path": "/templates/cafe-04/index.html"
+  },
+  {
+    "id": "cafe-05",
+    "title": "Cafe-05",
+    "tags": ["Cafe", "Modern"],
+    "industry": "Cafe",
+    "tone": "Modern",
+    "thumb": "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=400&h=300&fit=crop",
+    "preview_path": "/templates/cafe-05/index.html"
+  }
+]

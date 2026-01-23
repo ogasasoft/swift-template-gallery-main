@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CUBE Coffee - Modern Minimalist Cafe</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --black: #0a0a0a;
+      --gray-dark: #1a1a1a;
+      --gray: #333333;
+      --gray-light: #888888;
+      --white: #ffffff;
+      --accent: #ff4d4d;
+    }
+
+    body {
+      font-family: 'Space Grotesk', sans-serif;
+      background-color: var(--black);
+      color: var(--white);
+      line-height: 1.6;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 1.5rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 100;
+      mix-blend-mode: difference;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: 4px;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 2.5rem;
+    }
+
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: opacity 0.3s;
+    }
+
+    nav a:hover {
+      opacity: 0.6;
+    }
+
+    /* Hero */
+    .hero {
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: url('https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=1920') center/cover;
+      filter: grayscale(100%) contrast(1.1);
+      opacity: 0.4;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 8rem;
+      font-weight: 300;
+      letter-spacing: 20px;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1rem;
+      letter-spacing: 8px;
+      color: var(--gray-light);
+      text-transform: uppercase;
+    }
+
+    .scroll-indicator {
+      position: absolute;
+      bottom: 3rem;
+      left: 50%;
+      transform: translateX(-50%);
+      font-size: 0.75rem;
+      letter-spacing: 3px;
+      color: var(--gray-light);
+      animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+      0%, 100% { transform: translateX(-50%) translateY(0); }
+      50% { transform: translateX(-50%) translateY(10px); }
+    }
+
+    /* Section */
+    section {
+      padding: 8rem 10%;
+    }
+
+    .section-title {
+      font-size: 0.75rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--gray-light);
+      margin-bottom: 3rem;
+    }
+
+    /* About */
+    .about {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 6rem;
+      align-items: center;
+    }
+
+    .about-text h2 {
+      font-size: 3rem;
+      font-weight: 400;
+      margin-bottom: 2rem;
+      line-height: 1.3;
+    }
+
+    .about-text p {
+      color: var(--gray-light);
+      font-weight: 300;
+      line-height: 1.9;
+    }
+
+    .about-image {
+      position: relative;
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+      filter: grayscale(100%);
+      transition: filter 0.5s;
+    }
+
+    .about-image:hover img {
+      filter: grayscale(0%);
+    }
+
+    .about-image::after {
+      content: '';
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      width: 100%;
+      height: 100%;
+      border: 1px solid var(--gray);
+      z-index: -1;
+    }
+
+    /* Menu */
+    .menu {
+      background: var(--gray-dark);
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 0;
+    }
+
+    .menu-item {
+      padding: 3rem;
+      border: 1px solid var(--gray);
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      transition: background 0.3s;
+    }
+
+    .menu-item:hover {
+      background: var(--black);
+    }
+
+    .menu-item h3 {
+      font-size: 1.2rem;
+      font-weight: 400;
+      margin-bottom: 0.5rem;
+    }
+
+    .menu-item p {
+      font-size: 0.85rem;
+      color: var(--gray-light);
+      font-weight: 300;
+    }
+
+    .menu-item .price {
+      font-size: 1.1rem;
+      color: var(--accent);
+    }
+
+    /* Stats */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      text-align: center;
+      border-top: 1px solid var(--gray);
+      border-bottom: 1px solid var(--gray);
+      padding: 4rem 0;
+      margin: 4rem 0;
+    }
+
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 300;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      color: var(--gray-light);
+      text-transform: uppercase;
+    }
+
+    /* Contact */
+    .contact {
+      text-align: center;
+    }
+
+    .contact h2 {
+      font-size: 3rem;
+      font-weight: 300;
+      margin-bottom: 3rem;
+    }
+
+    .contact-details {
+      display: flex;
+      justify-content: center;
+      gap: 5rem;
+    }
+
+    .contact-item {
+      text-align: left;
+    }
+
+    .contact-item h4 {
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      color: var(--gray-light);
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .contact-item p {
+      font-size: 1.1rem;
+      font-weight: 300;
+    }
+
+    /* Footer */
+    footer {
+      padding: 3rem 10%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px solid var(--gray);
+      font-size: 0.8rem;
+      color: var(--gray-light);
+    }
+
+    .social-links {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .social-links a {
+      color: var(--gray-light);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .social-links a:hover {
+      color: var(--white);
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 4rem; letter-spacing: 10px; }
+      .about { grid-template-columns: 1fr; }
+      .menu-grid { grid-template-columns: 1fr; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .contact-details { flex-direction: column; gap: 2rem; align-items: center; }
+      nav ul { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">CUBE</div>
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <h1>CUBE</h1>
+      <p>Coffee Redefined</p>
+    </div>
+    <div class="scroll-indicator">Scroll</div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="about-text">
+      <span class="section-title">About Us</span>
+      <h2>Where architecture meets coffee culture</h2>
+      <p>
+        CUBE is not just a cafe. It's a statement. Born from the intersection of minimalist design and specialty coffee, we've created a space that challenges conventional thinking about what a coffee shop should be.
+      </p>
+    </div>
+    <div class="about-image">
+      <img src="https://images.unsplash.com/photo-1453614512568-c4024d13c247?w=600" alt="Modern cafe interior">
+    </div>
+  </section>
+
+  <section class="menu" id="menu">
+    <span class="section-title">Our Selection</span>
+    <div class="menu-grid">
+      <div class="menu-item">
+        <div>
+          <h3>Espresso</h3>
+          <p>Double shot, bold and pure</p>
+        </div>
+        <span class="price">¥400</span>
+      </div>
+      <div class="menu-item">
+        <div>
+          <h3>Flat White</h3>
+          <p>Velvety microfoam perfection</p>
+        </div>
+        <span class="price">¥550</span>
+      </div>
+      <div class="menu-item">
+        <div>
+          <h3>Pour Over</h3>
+          <p>Single origin, hand crafted</p>
+        </div>
+        <span class="price">¥650</span>
+      </div>
+      <div class="menu-item">
+        <div>
+          <h3>Cold Brew</h3>
+          <p>18-hour slow extraction</p>
+        </div>
+        <span class="price">¥580</span>
+      </div>
+      <div class="menu-item">
+        <div>
+          <h3>Matcha</h3>
+          <p>Ceremonial grade, whisked</p>
+        </div>
+        <span class="price">¥600</span>
+      </div>
+      <div class="menu-item">
+        <div>
+          <h3>Signature Blend</h3>
+          <p>House roasted, exclusive</p>
+        </div>
+        <span class="price">¥700</span>
+      </div>
+    </div>
+
+    <div class="stats">
+      <div>
+        <div class="stat-number">47</div>
+        <div class="stat-label">Origin Countries</div>
+      </div>
+      <div>
+        <div class="stat-number">12K</div>
+        <div class="stat-label">Cups Daily</div>
+      </div>
+      <div>
+        <div class="stat-number">8</div>
+        <div class="stat-label">Expert Baristas</div>
+      </div>
+      <div>
+        <div class="stat-number">2019</div>
+        <div class="stat-label">Established</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <span class="section-title">Find Us</span>
+    <h2>Experience the difference</h2>
+    <div class="contact-details">
+      <div class="contact-item">
+        <h4>Location</h4>
+        <p>Tokyo, Chiyoda-ku<br>Marunouchi 1-1-1</p>
+      </div>
+      <div class="contact-item">
+        <h4>Hours</h4>
+        <p>Mon-Fri: 7:00 - 20:00<br>Sat-Sun: 9:00 - 18:00</p>
+      </div>
+      <div class="contact-item">
+        <h4>Contact</h4>
+        <p>hello@cube.coffee<br>03-6666-7777</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2024 CUBE Coffee. All rights reserved.</p>
+    <div class="social-links">
+      <a href="#">Instagram</a>
+      <a href="#">Twitter</a>
+      <a href="#">Facebook</a>
+    </div>
+  </footer>
+</body>
+</html>
