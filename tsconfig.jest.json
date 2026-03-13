@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.app.json",
+  "compilerOptions": {
+    "types": ["@testing-library/jest-dom", "@jest/globals"],
+    "jsx": "react-jsx"
+  },
+  "include": [
+    "jest.setup.ts",
+    "src/**/*.test.ts",
+    "src/**/*.test.tsx"
+  ]
+}

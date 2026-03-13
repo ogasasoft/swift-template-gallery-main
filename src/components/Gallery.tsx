@@ -1,69 +1,57 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import templates from "@/lib/templates.json";
 import TemplateCard from "./TemplateCard";
 import GalleryFilters from "./GalleryFilters";
 import PreviewModal from "./PreviewModal";
 
-const Gallery = () => {
-  const [selectedIndustry, setSelectedIndustry] = useState<string>("All");
-  const [selectedTone, setSelectedTone] = useState<string>("All");
-  const [sortBy, setSortBy] = useState<string>("newest");
-  const [previewTemplate, setPreviewTemplate] = useState<typeof templates[0] | null>(null);
-
-  const industries = ["All", ...Array.from(new Set(templates.map(t => t.industry)))];
-  const tones = ["All", ...Array.from(new Set(templates.map(t => t.tone)))];
-
+export default function Gallery() {
+  const [selectedTemplate, setSelectedTemplate] = useState<string | null>(null);
+  const [filters, setFilters] = useState({
+    category: 'all',
+    search: ''
+  });
+  
   const filteredTemplates = templates.filter(template => {
-    if (selectedIndustry !== "All" && template.industry !== selectedIndustry) return false;
-    if (selectedTone !== "All" && template.tone !== selectedTone) return false;
-    return true;
+    const matchesCategory = filters.category === 'all' || template.category === filters.category;
+    const matchesSearch = template.name.toLowerCase().includes(filters.search.toLowerCase());
+    return matchesCategory && matchesSearch;
   });
 
   return (
-    <section id="gallery" className="py-24 bg-secondary/30">
-      <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center text-foreground mb-4">
-          Template Gallery
-        </h2>
-        <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">
-          Browse our collection of professionally designed templates
-        </p>
-
-        <GalleryFilters
-          industries={industries}
-          tones={tones}
-          selectedIndustry={selectedIndustry}
-          selectedTone={selectedTone}
-          sortBy={sortBy}
-          onIndustryChange={setSelectedIndustry}
-          onToneChange={setSelectedTone}
-          onSortChange={setSortBy}
-        />
-
-        <div className="flex gap-6 overflow-x-auto pb-4 snap-x snap-mandatory scrollbar-thin scrollbar-thumb-muted-foreground/30 scrollbar-track-transparent">
-          {filteredTemplates.map((template) => (
-            <div key={template.id} className="flex-shrink-0 w-[calc(33.333%-1rem)] min-w-[300px] snap-start">
-              <TemplateCard
-                template={template}
-                onPreview={() => setPreviewTemplate(template)}
-              />
-            </div>
-          ))}
-        </div>
-
-        {filteredTemplates.length === 0 && (
-          <div className="text-center py-16">
-            <p className="text-muted-foreground text-lg">No templates found with the selected filters.</p>
-          </div>
-        )}
+    <section className="container mx-auto px-4 py-12">
+      <div className="text-center mb-8">
+        <h1 className="text-4xl font-bold mb-4">Template Gallery</h1>
+        <p className="text-lg text-muted-foreground">Browse our collection of templates</p>
       </div>
 
-      <PreviewModal
-        template={previewTemplate}
-        onClose={() => setPreviewTemplate(null)}
+      {selectedTemplate && (
+        <PreviewModal 
+          templateId={selectedTemplate}
+          onClose={() => setSelectedTemplate(null)}
+        />
+      )}
+
+      <GalleryFilters 
+        filters={filters}
+        setFilters={setFilters}
+        totalTemplates={templates.length}
       />
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+        {filteredTemplates.length === 0 ? (
+          <p className="text-center text-muted-foreground">
+            No templates found matching your criteria
+          </p>
+        ) : (
+          filteredTemplates.map((template) => (
+            <TemplateCard
+              key={template.id}
+              template={template}
+              onClick={() => setSelectedTemplate(template.id)}
+            />
+          ))
+        )}
+      </div>
     </section>
   );
-};
-
-export default Gallery;
+}

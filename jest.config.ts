@@ -1,12 +1,25 @@
-export default {
+import type { Config } from 'jest';
+
+const config: Config = {
+  preset: 'ts-jest',
   testEnvironment: 'jsdom',
+  roots: ['<rootDir>/src'],
+  testMatch: ['**/__tests__/**/*.test.ts?(x)', '**/?(*.)+(spec|test).ts?(x)'],
+  collectCoverageFrom: [
+    'src/**/*.{ts,tsx}',
+    '!src/**/*.d.ts',
+    '!src/main.tsx',
+  ],
+  setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
+  transform: {
+    '^.+\\.(ts|tsx)$': 'ts-jest',
+  },
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'jsx', 'json', 'node'],
   moduleNameMapper: {
     '^@/(.*)$': '<rootDir>/src/$1',
   },
-  setupFilesAfterEnv: ['<rootDir>/jest.setup.ts'],
-  transform: {
-    '^.+\\.tsx?$': 'ts-jest',
-  },
+  testTimeout: 10000,
+  verbose: true,
   globals: {
     'ts-jest': {
       tsconfig: {
@@ -15,3 +28,5 @@ export default {
     },
   },
 };
+
+export default config;
