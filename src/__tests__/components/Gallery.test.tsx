@@ -16,8 +16,7 @@ jest.mock('@/lib/templates.json', () => ({
   ],
 }));
 
-// テストユーティリティ: BrowserRouter を使ってレンダリング
-const renderWithRouter = (ui: any) => {
+const renderWithRouter = (ui: React.ReactElement) => {
   return render(<BrowserRouter>{ui}</BrowserRouter>);
 };
 
@@ -29,7 +28,6 @@ describe('Gallery Component', () => {
 
   it('should display template cards when templates exist', () => {
     renderWithRouter(<Gallery />);
-    // テンプレートカードが存在するか確認（h3タグで検索）
     const templateTitles = screen.getAllByText('Test Template');
     expect(templateTitles.length).toBeGreaterThan(0);
   });

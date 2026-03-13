@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import templates from "@/lib/templates.json";
 import TemplateCard from "./TemplateCard";
 import GalleryFilters from "./GalleryFilters";

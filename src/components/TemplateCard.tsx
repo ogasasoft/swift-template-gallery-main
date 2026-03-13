@@ -1,4 +1,3 @@
-import Image from "next/image";
 import { Eye, Download } from "lucide-react";
 
 interface Template {
