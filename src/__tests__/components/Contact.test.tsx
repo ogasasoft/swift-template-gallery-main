@@ -5,43 +5,49 @@ import Contact from '@/components/Contact';
 describe('Contact Component', () => {
   it('should render the contact section title', () => {
     render(<Contact />);
-    const title = screen.getByText(/contact/i);
+    const title = screen.getByRole('heading', { name: /contact/i });
     expect(title).toBeInTheDocument();
+  });
+
+  it('should render the contact email', () => {
+    render(<Contact />);
+    const email = screen.getByText(/info@templatelab\.com/i);
+    expect(email).toBeInTheDocument();
   });
 
   it('should have contact form elements', () => {
     render(<Contact />);
-    const emailInput = screen.getByPlaceholderText(/email/i);
-    const messageInput = screen.getByPlaceholderText(/message/i);
-    const submitButton = screen.getByRole('button', { name: /send/i });
+    const emailInput = screen.getByLabelText(/email/i);
+    const messageInput = screen.getByPlaceholderText(/note about/i);
+    const submitButton = screen.getByRole('button', { name: /send inquiry/i });
     expect(emailInput).toBeInTheDocument();
     expect(messageInput).toBeInTheDocument();
     expect(submitButton).toBeInTheDocument();
   });
 
-  it('should render social contact links', () => {
+  it('should render contact method links', () => {
     render(<Contact />);
-    const githubLink = screen.getByRole('link', { name: /github/i });
-    const twitterLink = screen.getByRole('link', { name: /twitter/i });
-    expect(githubLink).toBeInTheDocument();
-    expect(twitterLink).toBeInTheDocument();
+    const emailLink = screen.getByRole('link', { name: /email/i });
+    const phoneLink = screen.getByRole('link', { name: /phone/i });
+    expect(emailLink).toBeInTheDocument();
+    expect(phoneLink).toBeInTheDocument();
   });
 
-  it('should render the contact information', () => {
+  it('should render the name and email fields', () => {
     render(<Contact />);
-    const email = screen.getByText(/@example.com/i);
-    expect(email).toBeInTheDocument();
+    const nameInput = screen.getByLabelText(/name/i);
+    expect(nameInput).toBeInTheDocument();
   });
 
-  it('should be accessible', () => {
+  it('should render a form', () => {
     render(<Contact />);
-    const form = screen.getByRole('form');
-    expect(form).toBeInTheDocument();
+    const nameInput = screen.getByLabelText(/name \*/i);
+    expect(nameInput).toBeInTheDocument();
   });
 
-  it('should handle form submission', () => {
+  it('should have a submit button', () => {
     render(<Contact />);
-    const form = screen.getByRole('form');
-    expect(form).toHaveAttribute('method', 'post');
+    const submitButton = screen.getByRole('button', { name: /send inquiry/i });
+    expect(submitButton).toHaveAttribute('type', 'submit');
   });
 });

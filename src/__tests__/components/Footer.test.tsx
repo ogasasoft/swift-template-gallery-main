@@ -5,26 +5,20 @@ import Footer from '@/components/Footer';
 describe('Footer Component', () => {
   it('should render the copyright text', () => {
     render(<Footer />);
-    const copyright = screen.getByText(/copyright/i);
+    const copyright = screen.getByText(/© 2024 TemplateLab/i);
     expect(copyright).toBeInTheDocument();
   });
 
-  it('should have a link to home', () => {
+  it('should have a link to Terms of Service', () => {
     render(<Footer />);
-    const homeLink = screen.getByRole('link', { name: /home/i });
-    expect(homeLink).toBeInTheDocument();
+    const tosLink = screen.getByRole('link', { name: /terms of service/i });
+    expect(tosLink).toBeInTheDocument();
   });
 
-  it('should have a link to templates', () => {
+  it('should have a link to Privacy Policy', () => {
     render(<Footer />);
-    const templatesLink = screen.getByRole('link', { name: /templates/i });
-    expect(templatesLink).toBeInTheDocument();
-  });
-
-  it('should render social links', () => {
-    render(<Footer />);
-    const githubLink = screen.getByRole('link', { name: /github/i });
-    expect(githubLink).toBeInTheDocument();
+    const privacyLink = screen.getByRole('link', { name: /privacy policy/i });
+    expect(privacyLink).toBeInTheDocument();
   });
 
   it('should render correctly', () => {

@@ -9,9 +9,9 @@ const Pricing = () => {
   };
 
   return (
-    <section id="pricing" className="py-24 bg-background">
+    <section id="pricing" aria-labelledby="pricing-heading" className="py-24 bg-background">
       <div className="container mx-auto px-4">
-        <h2 className="text-4xl font-bold text-center text-foreground mb-4">
+        <h2 id="pricing-heading" className="text-4xl font-bold text-center text-foreground mb-4">
           Pricing
         </h2>
         <p className="text-center text-muted-foreground mb-12 max-w-2xl mx-auto">

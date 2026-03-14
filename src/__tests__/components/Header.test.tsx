@@ -5,26 +5,32 @@ import Header from '@/components/Header';
 describe('Header Component', () => {
   it('should render the navigation links', () => {
     render(<Header />);
-    const logo = screen.getByText('Swift Gallery');
+    const logo = screen.getByText('TemplateLab');
     expect(logo).toBeInTheDocument();
   });
 
-  it('should have the home link', () => {
+  it('should have the gallery link', () => {
     render(<Header />);
-    const homeLink = screen.getByRole('link', { name: /home/i });
-    expect(homeLink).toBeInTheDocument();
+    const galleryLink = screen.getByRole('button', { name: /gallery/i });
+    expect(galleryLink).toBeInTheDocument();
   });
 
-  it('should have the templates link', () => {
+  it('should have the pricing link', () => {
     render(<Header />);
-    const templatesLink = screen.getByRole('link', { name: /templates/i });
-    expect(templatesLink).toBeInTheDocument();
+    const pricingLink = screen.getByRole('button', { name: /pricing/i });
+    expect(pricingLink).toBeInTheDocument();
   });
 
-  it('should have a call-to-action button', () => {
+  it('should have a contact link', () => {
     render(<Header />);
-    const ctaButton = screen.getByRole('button', { name: /explore/i });
-    expect(ctaButton).toBeInTheDocument();
+    const contactLink = screen.getByRole('button', { name: /contact/i });
+    expect(contactLink).toBeInTheDocument();
+  });
+
+  it('should have an inquiry button', () => {
+    render(<Header />);
+    const inquiryButton = screen.getByRole('button', { name: /inquiry/i });
+    expect(inquiryButton).toBeInTheDocument();
   });
 
   it('should render correctly on mobile', () => {

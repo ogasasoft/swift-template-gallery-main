@@ -18,6 +18,13 @@ const config: Config = {
   },
   testTimeout: 10000,
   verbose: true,
+  globals: {
+    'ts-jest': {
+      tsconfig: {
+        jsx: 'react-jsx',
+      },
+    },
+  },
 
 };
 

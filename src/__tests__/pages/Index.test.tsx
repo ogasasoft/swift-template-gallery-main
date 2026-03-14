@@ -2,16 +2,18 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import Index from '@/pages/Index';
 
+jest.mock('@/components/Gallery', () => () => <div data-testid="gallery-mock">Gallery</div>);
+
 describe('Index Page', () => {
-  it('should render the homepage content', () => {
+  it('should render the site brand', () => {
     render(<Index />);
-    const title = screen.getByText(/swift template gallery/i);
-    expect(title).toBeInTheDocument();
+    const titles = screen.getAllByText(/templatelab/i);
+    expect(titles.length).toBeGreaterThan(0);
   });
 
   it('should have a hero section', () => {
     render(<Index />);
-    const hero = screen.getByRole('heading', { name: /discover/i });
+    const hero = screen.getByRole('heading', { name: /see it/i });
     expect(hero).toBeInTheDocument();
   });
 
@@ -21,21 +23,21 @@ describe('Index Page', () => {
     expect(button).toBeInTheDocument();
   });
 
-  it('should render features section', () => {
+  it('should render pricing section', () => {
     render(<Index />);
-    const features = screen.getByText(/features/i);
-    expect(features).toBeInTheDocument();
+    const pricing = screen.getAllByText(/pricing/i);
+    expect(pricing.length).toBeGreaterThan(0);
   });
 
-  it('should have proper metadata', () => {
+  it('should have proper heading structure', () => {
     render(<Index />);
-    const meta = screen.getByRole('heading', { level: 1 });
-    expect(meta.tagName).toBe('H1');
+    const h1 = screen.getByRole('heading', { level: 1 });
+    expect(h1.tagName).toBe('H1');
   });
 
   it('should be accessible', () => {
     render(<Index />);
-    const page = screen.getByRole('main');
-    expect(page).toBeInTheDocument();
+    const header = screen.getByRole('banner');
+    expect(header).toBeInTheDocument();
   });
 });

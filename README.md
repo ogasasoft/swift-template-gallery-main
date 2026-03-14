@@ -54,11 +54,25 @@ npm run start
 swift-template-gallery-main/
 ├── src/
 │   ├── __tests__/          # Test suites
+│   │   ├── components/     # Component tests
+│   │   └── pages/          # Page tests
 │   ├── components/         # React components
+│   │   ├── ui/             # shadcn-ui components
+│   │   ├── Header.tsx      # Navigation header
+│   │   ├── Footer.tsx      # Footer component
+│   │   ├── Hero.tsx        # Hero section
+│   │   ├── Gallery.tsx     # Template gallery
+│   │   ├── GalleryFilters.tsx  # Gallery filtering
+│   │   ├── TemplateCard.tsx  # Individual template card
+│   │   ├── PreviewModal.tsx  # Template preview modal
+│   │   ├── NavLink.tsx     # Navigation link component
+│   │   ├── Pricing.tsx     # Pricing section
+│   │   └── Contact.tsx     # Contact form section
 │   ├── lib/               # Utility functions
-│   ├── types/             # TypeScript definitions
-│   └── app/               # Next.js App Router
-├── dist/                  # Generated templates
+│   ├── hooks/             # Custom React hooks
+│   └── pages/             # Page components
+│       ├── Index.tsx      # Home page
+│       └── NotFound.tsx   # 404 page
 ├── public/                # Static assets
 ├── jest.config.ts         # Jest configuration
 ├── tsconfig.json          # TypeScript configuration
@@ -72,11 +86,12 @@ swift-template-gallery-main/
 # Development
 npm run dev              # Start development server with hot reload
 npm run build            # Build for production
-npm run start            # Start production server
+npm run preview          # Preview production build locally
 
 # Quality
 npm test                 # Run all tests
-npm test -- --coverage   # Run tests with coverage
+npm run test:coverage    # Run tests with coverage report
+npm run test:watch       # Run tests in watch mode
 npm run typecheck        # TypeScript type checking
 npm run lint             # ESLint check
 
@@ -87,7 +102,7 @@ npm run lint:fix         # Fix linting issues automatically
 
 ## 🎯 Technology Stack
 
-- **Framework**: Next.js 14 (App Router)
+- **Framework**: React 18 + React Router v6
 - **Language**: TypeScript 5
 - **Styling**: Tailwind CSS + shadcn-ui
 - **Testing**: Jest + React Testing Library
@@ -109,13 +124,13 @@ Run the test suite:
 npm test
 
 # Run tests in watch mode
-npm test -- --watch
+npm run test:watch
 
 # Run tests with coverage report
-npm test -- --coverage
+npm run test:coverage
 
 # Run specific test file
-npm test -- components/Gallery.test.tsx
+npm test -- --testPathPattern=Gallery.test.tsx
 ```
 
 ## 🤝 Contributing
@@ -149,4 +164,4 @@ For support, email support@example.com or open an issue in our GitHub repository
 
 ---
 
-Built with ❤️ using Next.js, TypeScript, and shadcn-ui
+Built with ❤️ using React, TypeScript, Vite, and shadcn-ui

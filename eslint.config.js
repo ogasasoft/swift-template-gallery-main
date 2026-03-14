@@ -12,6 +12,9 @@ export default tseslint.config(
     languageOptions: {
       ecmaVersion: 2020,
       globals: globals.browser,
+      parserOptions: {
+        projectService: false,
+      },
     },
     plugins: {
       "react-hooks": reactHooks,
@@ -28,6 +31,14 @@ export default tseslint.config(
       "@typescript-eslint/no-explicit-any": "warn",
       "@typescript-eslint/no-non-null-assertion": "warn",
       "@typescript-eslint/no-empty-object-type": "warn",
+    },
+  },
+  {
+    files: ["**/*.test.tsx", "**/*.test.ts"],
+    settings: {
+      jest: {
+        tsconfigPath: '<rootDir>/tsconfig.json',
+      },
     },
   },
 );

@@ -9,25 +9,22 @@ describe('Pricing Component', () => {
     expect(title).toBeInTheDocument();
   });
 
-  it('should render pricing cards', () => {
+  it('should render pricing table', () => {
     render(<Pricing />);
-    const cardElements = screen.getAllByRole('article');
-    expect(cardElements.length).toBeGreaterThan(0);
+    const table = screen.getByRole('table');
+    expect(table).toBeInTheDocument();
   });
 
-  it('should display pricing tiers', () => {
+  it('should display pricing items', () => {
     render(<Pricing />);
-    const tiers = ['Free', 'Pro', 'Enterprise'];
-    tiers.forEach((tier) => {
-      const tierElement = screen.getByText(tier);
-      expect(tierElement).toBeInTheDocument();
-    });
+    const items = screen.getAllByText(/Base template setup|Extra images|Text replacement|Extra page/i);
+    expect(items.length).toBeGreaterThan(0);
   });
 
-  it('should have pricing features list', () => {
+  it('should display pricing prices', () => {
     render(<Pricing />);
-    const featureList = screen.getAllByRole('listitem');
-    expect(featureList.length).toBeGreaterThan(0);
+    const prices = screen.getAllByText(/¥50,000|¥3,000|¥2,000|¥15,000/i);
+    expect(prices.length).toBeGreaterThan(0);
   });
 
   it('should have CTA buttons for each tier', () => {
