@@ -3,18 +3,16 @@ import { describe, it, expect } from '@jest/globals';
 import Gallery from '@/components/Gallery';
 import { BrowserRouter } from 'react-router-dom';
 
-// Mock the template data
-jest.mock('@/lib/templates.json', () => ({
-  default: [
-    {
-      id: 'template-1',
-      name: 'Test Template',
-      category: 'lifestyle',
-      image: '/templates/visual-stanza-folio/template.jpg',
-      description: 'A test template for gallery',
-    },
-  ],
-}));
+// Mock the templates.json to return a simple test template
+jest.mock('@/lib/templates.json', () => [
+  {
+    id: 'template-1',
+    name: 'Test Template',
+    category: 'lifestyle',
+    image: '/templates/visual-stanza-folio/template.jpg',
+    description: 'A test template for gallery',
+  },
+]);
 
 const renderWithRouter = (ui: React.ReactElement) => {
   return render(<BrowserRouter>{ui}</BrowserRouter>);

@@ -1,5 +1,3 @@
-import type { Config } from 'jest';
-
 const config: Config = {
   preset: 'ts-jest',
   testEnvironment: 'jsdom',
@@ -20,13 +18,7 @@ const config: Config = {
   },
   testTimeout: 10000,
   verbose: true,
-  globals: {
-    'ts-jest': {
-      tsconfig: {
-        jsx: 'react-jsx',
-      },
-    },
-  },
+
 };
 
 export default config;
