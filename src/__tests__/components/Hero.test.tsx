@@ -21,9 +21,9 @@ describe("Hero Component", () => {
     render(<Hero />);
     const button = screen.getByRole("button", { name: /view gallery/i });
     expect(button).toBeInTheDocument();
-    expect(button).toHaveClass("text-lg");
+    expect(button).toHaveClass("h-11");
     expect(button).toHaveClass("px-8");
-    expect(button).toHaveClass("py-6");
+    expect(button).toHaveClass("rounded-md");
   });
 
   it("should have proper heading styling", () => {
