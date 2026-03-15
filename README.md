@@ -14,6 +14,7 @@ A modern template gallery for developers to discover and preview reusable React 
 - 💻 **Live Preview**: See templates rendered in real-time
 - 📋 **Code Export**: Copy code directly to clipboard
 - 📱 **Responsive**: Mobile-first design
+- 🌙 **Dark Mode**: Automatic system preference detection with manual toggle
 
 ## 🚀 Quick Start
 
@@ -58,7 +59,7 @@ swift-template-gallery-main/
 │   │   └── pages/          # Page tests
 │   ├── components/         # React components
 │   │   ├── ui/             # shadcn-ui components
-│   │   ├── Header.tsx      # Navigation header
+│   │   ├── Header.tsx      # Navigation header with theme toggle
 │   │   ├── Footer.tsx      # Footer component
 │   │   ├── Hero.tsx        # Hero section
 │   │   ├── Gallery.tsx     # Template gallery
@@ -70,9 +71,11 @@ swift-template-gallery-main/
 │   │   └── Contact.tsx     # Contact form section
 │   ├── lib/               # Utility functions
 │   ├── hooks/             # Custom React hooks
-│   └── pages/             # Page components
-│       ├── Index.tsx      # Home page
-│       └── NotFound.tsx   # 404 page
+│   ├── pages/             # Page components
+│   │   ├── Index.tsx      # Home page
+│   │   └── NotFound.tsx   # 404 page
+│   └── providers/         # Context providers
+│       └── theme-provider.tsx  # Theme provider for dark mode
 ├── public/                # Static assets
 ├── jest.config.ts         # Jest configuration
 ├── tsconfig.json          # TypeScript configuration
@@ -155,7 +158,7 @@ For support, email support@example.com or open an issue in our GitHub repository
 
 ## 📈 Roadmap
 
-- [ ] Add dark mode support
+- [x] Add dark mode support ✅
 - [ ] Template categorization with tags
 - [ ] User ratings and reviews
 - [ ] Template download functionality
