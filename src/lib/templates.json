@@ -2,46 +2,101 @@
   {
     "id": "cafe-01",
     "title": "Cafe-01",
-    "tags": ["Cafe", "Simple"],
+    "tags": ["Cafe", "Simple", "Minimal", "Light"],
     "industry": "Cafe",
     "tone": "Simple",
+    "style": "Minimal",
     "thumb": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400&h=300&fit=crop",
     "preview_path": "/templates/cafe-01/index.html"
   },
   {
     "id": "cafe-02",
     "title": "Cafe-02",
-    "tags": ["Cafe", "Luxury"],
+    "tags": ["Cafe", "Luxury", "Elegant", "Premium"],
     "industry": "Cafe",
     "tone": "Luxury",
+    "style": "Elegant",
     "thumb": "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400&h=300&fit=crop",
     "preview_path": "/templates/cafe-02/index.html"
   },
   {
     "id": "cafe-03",
     "title": "Cafe-03",
-    "tags": ["Cafe", "Pop"],
+    "tags": ["Cafe", "Pop", "Colorful", "Fun"],
     "industry": "Cafe",
     "tone": "Pop",
+    "style": "Colorful",
     "thumb": "https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400&h=300&fit=crop",
     "preview_path": "/templates/cafe-03/index.html"
   },
   {
     "id": "cafe-04",
     "title": "Cafe-04",
-    "tags": ["Cafe", "Natural"],
+    "tags": ["Cafe", "Natural", "Organic", "Earthy"],
     "industry": "Cafe",
     "tone": "Natural",
+    "style": "Organic",
     "thumb": "https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=400&h=300&fit=crop",
     "preview_path": "/templates/cafe-04/index.html"
   },
   {
     "id": "cafe-05",
     "title": "Cafe-05",
-    "tags": ["Cafe", "Modern"],
+    "tags": ["Cafe", "Modern", "Clean", "Professional"],
     "industry": "Cafe",
     "tone": "Modern",
+    "style": "Clean",
     "thumb": "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=400&h=300&fit=crop",
     "preview_path": "/templates/cafe-05/index.html"
+  },
+  {
+    "id": "restaurant-01",
+    "title": "Restaurant-01",
+    "tags": ["Restaurant", "Elegant", "Sophisticated", "Classic"],
+    "industry": "Restaurant",
+    "tone": "Sophisticated",
+    "style": "Elegant",
+    "thumb": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&h=300&fit=crop",
+    "preview_path": "/templates/restaurant-01/index.html"
+  },
+  {
+    "id": "restaurant-02",
+    "title": "Restaurant-02",
+    "tags": ["Restaurant", "Casual", "Warm", "Friendly"],
+    "industry": "Restaurant",
+    "tone": "Casual",
+    "style": "Warm",
+    "thumb": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&h=300&fit=crop",
+    "preview_path": "/templates/restaurant-02/index.html"
+  },
+  {
+    "id": "fashion-01",
+    "title": "Fashion-01",
+    "tags": ["Fashion", "Minimal", "Chic", "Premium"],
+    "industry": "Fashion",
+    "tone": "Luxury",
+    "style": "Minimal",
+    "thumb": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop",
+    "preview_path": "/templates/fashion-01/index.html"
+  },
+  {
+    "id": "fashion-02",
+    "title": "Fashion-02",
+    "tags": ["Fashion", "Pop", "Colorful", "Bold"],
+    "industry": "Fashion",
+    "tone": "Pop",
+    "style": "Colorful",
+    "thumb": "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=400&h=300&fit=crop",
+    "preview_path": "/templates/fashion-02/index.html"
+  },
+  {
+    "id": "tech-01",
+    "title": "Tech-01",
+    "tags": ["Tech", "Modern", "Clean", "Professional"],
+    "industry": "Tech",
+    "tone": "Modern",
+    "style": "Clean",
+    "thumb": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=400&h=300&fit=crop",
+    "preview_path": "/templates/tech-01/index.html"
   }
 ]

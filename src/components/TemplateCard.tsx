@@ -1,24 +1,27 @@
-import { Eye, Download } from "lucide-react";
-
-interface Template {
-  id: string;
-  title: string;
-  industry: string;
-  thumb: string;
-}
+import { Eye, Download, Info } from "lucide-react";
+import { Link } from "react-router-dom";
+import { Badge } from "@/components/ui/badge";
+import type { Template } from "@/lib/types";
 
 interface TemplateCardProps {
   template: Template;
   onClick: () => void;
+  onTagClick?: (tag: string) => void;
+  selectedTags?: string[];
 }
 
-export default function TemplateCard({ template, onClick }: TemplateCardProps) {
+export default function TemplateCard({
+  template,
+  onClick,
+  onTagClick,
+  selectedTags = [],
+}: TemplateCardProps) {
   return (
     <div
       onClick={onClick}
-      className="group relative overflow-hidden rounded-lg border bg-white transition-all hover:shadow-lg"
+      className="group relative overflow-hidden rounded-lg border bg-card transition-all hover:shadow-lg cursor-pointer"
     >
-      <div className="aspect-video w-full bg-gray-100">
+      <div className="aspect-video w-full bg-muted">
         <img
           src={template.thumb}
           alt={template.title}
@@ -27,24 +30,50 @@ export default function TemplateCard({ template, onClick }: TemplateCardProps) {
       </div>
 
       <div className="p-4">
-        <div className="mb-2">
-          <span className="inline-block rounded-full bg-blue-100 px-2 py-1 text-xs font-medium text-blue-800">
-            {template.industry}
-          </span>
+        <h3 className="mb-2 text-lg font-semibold">{template.title}</h3>
+
+        <div className="flex flex-wrap gap-1 mb-3">
+          {template.tags.map((tag) => (
+            <Badge
+              key={tag}
+              variant={selectedTags.includes(tag) ? "default" : "secondary"}
+              className="text-xs cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors"
+              onClick={(e) => {
+                e.stopPropagation();
+                onTagClick?.(tag);
+              }}
+            >
+              {tag}
+            </Badge>
+          ))}
         </div>
 
-        <h3 className="mb-1 text-lg font-semibold">{template.title}</h3>
-
-        <div className="flex items-center justify-between">
-          <div className="flex gap-2">
-            <button className="flex items-center gap-1 rounded-md bg-gray-100 px-3 py-1.5 text-sm font-medium hover:bg-gray-200">
-              <Eye className="h-4 w-4" />
-              View
-            </button>
-            <button className="flex items-center gap-1 rounded-md bg-gray-100 px-3 py-1.5 text-sm font-medium hover:bg-gray-200">
-              <Download className="h-4 w-4" />
-            </button>
-          </div>
+        <div className="flex items-center gap-2">
+          <button
+            className="flex items-center gap-1 rounded-md bg-muted px-3 py-1.5 text-sm font-medium hover:bg-muted/80 transition-colors"
+            onClick={(e) => {
+              e.stopPropagation();
+              onClick();
+            }}
+          >
+            <Eye className="h-4 w-4" />
+            プレビュー
+          </button>
+          <Link
+            to={`/templates/${template.id}`}
+            className="flex items-center gap-1 rounded-md bg-muted px-3 py-1.5 text-sm font-medium hover:bg-muted/80 transition-colors"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <Info className="h-4 w-4" />
+            詳細
+          </Link>
+          <button
+            className="flex items-center gap-1 rounded-md bg-muted px-3 py-1.5 text-sm font-medium hover:bg-muted/80 transition-colors"
+            onClick={(e) => e.stopPropagation()}
+            aria-label="ダウンロード"
+          >
+            <Download className="h-4 w-4" />
+          </button>
         </div>
       </div>
     </div>
