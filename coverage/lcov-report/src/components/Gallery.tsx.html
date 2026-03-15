@@ -120,26 +120,58 @@
 <a name='L55'></a><a href='#L55'>55</a>
 <a name='L56'></a><a href='#L56'>56</a>
 <a name='L57'></a><a href='#L57'>57</a>
-<a name='L58'></a><a href='#L58'>58</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a>
+<a name='L60'></a><a href='#L60'>60</a>
+<a name='L61'></a><a href='#L61'>61</a>
+<a name='L62'></a><a href='#L62'>62</a>
+<a name='L63'></a><a href='#L63'>63</a>
+<a name='L64'></a><a href='#L64'>64</a>
+<a name='L65'></a><a href='#L65'>65</a>
+<a name='L66'></a><a href='#L66'>66</a>
+<a name='L67'></a><a href='#L67'>67</a>
+<a name='L68'></a><a href='#L68'>68</a>
+<a name='L69'></a><a href='#L69'>69</a>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -183,16 +215,30 @@ import TemplateCard from "./TemplateCard";
 import GalleryFilters from "./GalleryFilters";
 import PreviewModal from "./PreviewModal";
 &nbsp;
+interface Template {
+  id: string;
+  title: string;
+  industry: string;
+  thumb: string;
+  preview_path: string;
+  [key: string]: unknown;
+}
+&nbsp;
 export default function Gallery() {
-  const [selectedTemplate, setSelectedTemplate] = useState&lt;string | null&gt;(null);
+  const [selectedTemplate, setSelectedTemplate] = useState&lt;Template | null&gt;(
+    null,
+  );
   const [filters, setFilters] = useState({
-    category: 'all',
-    search: ''
+    category: "all",
+    search: "",
   });
-  
-  const filteredTemplates = templates.filter(template =&gt; {
-    const matchesCategory = filters.category === 'all' || <span class="branch-1 cbranch-no" title="branch not covered" >template.category === filters.category;</span>
-    const matchesSearch = template.name.toLowerCase().includes(filters.search.toLowerCase());
+&nbsp;
+  const filteredTemplates = (templates as Template[]).filter((template) =&gt; {
+    const matchesCategory =
+      filters.category === "all" || <span class="branch-1 cbranch-no" title="branch not covered" >template.industry === filters.category;</span>
+    const matchesSearch = template.title
+      .toLowerCase()
+      .includes(filters.search.toLowerCase());
     return matchesCategory &amp;&amp; matchesSearch;
   });
 &nbsp;
@@ -200,17 +246,19 @@ export default function Gallery() {
     &lt;section className="container mx-auto px-4 py-12"&gt;
       &lt;div className="text-center mb-8"&gt;
         &lt;h1 className="text-4xl font-bold mb-4"&gt;Template Gallery&lt;/h1&gt;
-        &lt;p className="text-lg text-muted-foreground"&gt;Browse our collection of templates&lt;/p&gt;
+        &lt;p className="text-lg text-muted-foreground"&gt;
+          Browse our collection of templates
+        &lt;/p&gt;
       &lt;/div&gt;
 &nbsp;
       {selectedTemplate &amp;&amp; (
-<span class="branch-1 cbranch-no" title="branch not covered" >        &lt;PreviewModal </span>
-          templateId={selectedTemplate}
+<span class="branch-1 cbranch-no" title="branch not covered" >        &lt;PreviewModal</span>
+          template={selectedTemplate}
           onClose={<span class="fstat-no" title="function not covered" >() =</span>&gt; <span class="cstat-no" title="statement not covered" >setSelectedTemplate(null)}</span>
         /&gt;
       )}
 &nbsp;
-      &lt;GalleryFilters 
+      &lt;GalleryFilters
         filters={filters}
         setFilters={setFilters}
         totalTemplates={templates.length}
@@ -226,7 +274,7 @@ export default function Gallery() {
             &lt;TemplateCard
               key={template.id}
               template={template}
-              onClick={<span class="fstat-no" title="function not covered" >() =</span>&gt; <span class="cstat-no" title="statement not covered" >setSelectedTemplate(template.id)}</span>
+              onClick={<span class="fstat-no" title="function not covered" >() =</span>&gt; <span class="cstat-no" title="statement not covered" >setSelectedTemplate(template)}</span>
             /&gt;
           ))
         )}
@@ -241,7 +289,7 @@ export default function Gallery() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-03-14T18:48:07.545Z
+                at 2026-03-15T11:09:22.909Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
