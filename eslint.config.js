@@ -22,22 +22,33 @@ export default tseslint.config(
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
-      "react-refresh/only-export-components": ["warn", { allowConstantExport: true }],
-      "@typescript-eslint/no-unused-vars": ["warn", {
-        argsIgnorePattern: "^_",
-        varsIgnorePattern: "^_"
-      }],
+      "react-refresh/only-export-components": [
+        "warn",
+        { allowConstantExport: true },
+      ],
+      "@typescript-eslint/no-unused-vars": [
+        "warn",
+        {
+          argsIgnorePattern: "^_",
+          varsIgnorePattern: "^_",
+        },
+      ],
       "@typescript-eslint/explicit-function-return-type": "off",
       "@typescript-eslint/no-explicit-any": "warn",
       "@typescript-eslint/no-non-null-assertion": "warn",
       "@typescript-eslint/no-empty-object-type": "warn",
+    },
+    settings: {
+      reactRefresh: {
+        skipLibraryCheck: true,
+      },
     },
   },
   {
     files: ["**/*.test.tsx", "**/*.test.ts"],
     settings: {
       jest: {
-        tsconfigPath: '<rootDir>/tsconfig.json',
+        tsconfigPath: "<rootDir>/tsconfig.json",
       },
     },
   },
