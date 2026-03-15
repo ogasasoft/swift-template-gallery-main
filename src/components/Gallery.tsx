@@ -4,16 +4,30 @@ import TemplateCard from "./TemplateCard";
 import GalleryFilters from "./GalleryFilters";
 import PreviewModal from "./PreviewModal";
 
+interface Template {
+  id: string;
+  title: string;
+  industry: string;
+  thumb: string;
+  preview_path: string;
+  [key: string]: unknown;
+}
+
 export default function Gallery() {
-  const [selectedTemplate, setSelectedTemplate] = useState<string | null>(null);
+  const [selectedTemplate, setSelectedTemplate] = useState<Template | null>(
+    null,
+  );
   const [filters, setFilters] = useState({
-    category: 'all',
-    search: ''
+    category: "all",
+    search: "",
   });
-  
-  const filteredTemplates = templates.filter(template => {
-    const matchesCategory = filters.category === 'all' || template.category === filters.category;
-    const matchesSearch = template.name.toLowerCase().includes(filters.search.toLowerCase());
+
+  const filteredTemplates = (templates as Template[]).filter((template) => {
+    const matchesCategory =
+      filters.category === "all" || template.industry === filters.category;
+    const matchesSearch = template.title
+      .toLowerCase()
+      .includes(filters.search.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 
@@ -21,17 +35,19 @@ export default function Gallery() {
     <section className="container mx-auto px-4 py-12">
       <div className="text-center mb-8">
         <h1 className="text-4xl font-bold mb-4">Template Gallery</h1>
-        <p className="text-lg text-muted-foreground">Browse our collection of templates</p>
+        <p className="text-lg text-muted-foreground">
+          Browse our collection of templates
+        </p>
       </div>
 
       {selectedTemplate && (
-        <PreviewModal 
-          templateId={selectedTemplate}
+        <PreviewModal
+          template={selectedTemplate}
           onClose={() => setSelectedTemplate(null)}
         />
       )}
 
-      <GalleryFilters 
+      <GalleryFilters
         filters={filters}
         setFilters={setFilters}
         totalTemplates={templates.length}
@@ -47,7 +63,7 @@ export default function Gallery() {
             <TemplateCard
               key={template.id}
               template={template}
-              onClick={() => setSelectedTemplate(template.id)}
+              onClick={() => setSelectedTemplate(template)}
             />
           ))
         )}

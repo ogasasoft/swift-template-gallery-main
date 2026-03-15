@@ -1,12 +1,18 @@
 {
   "extends": "./tsconfig.app.json",
   "compilerOptions": {
-    "types": ["@testing-library/jest-dom", "@jest/globals"],
-    "jsx": "react-jsx"
+    "moduleResolution": "node",
+    "module": "CommonJS",
+    "allowImportingTsExtensions": false,
+    "resolveJsonModule": true,
+    "esModuleInterop": true,
+    "types": ["jest", "@testing-library/jest-dom"],
+    "jsx": "react-jsx",
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+    }
   },
-  "include": [
-    "jest.setup.ts",
-    "src/**/*.test.ts",
-    "src/**/*.test.tsx"
-  ]
+  "include": ["jest.setup.ts", "src/**/*.ts", "src/**/*.tsx"],
+  "exclude": ["src/main.tsx"]
 }
