@@ -1,5 +1,5 @@
-import { render, screen } from "@testing-library/react";
-import "@testing-library/jest-dom";
+import React from "react";
+import { render, screen, fireEvent } from "@testing-library/react";
 import Hero from "@/components/Hero";
 
 describe("Hero Component", () => {
@@ -33,5 +33,33 @@ describe("Hero Component", () => {
     expect(heading).toHaveClass("text-5xl");
     expect(heading).toHaveClass("md:text-6xl");
     expect(heading).toHaveClass("font-bold");
+  });
+
+  it("should call scrollIntoView when View Gallery button is clicked", () => {
+    const mockElement = { scrollIntoView: jest.fn() };
+    jest
+      .spyOn(document, "getElementById")
+      .mockReturnValue(mockElement as unknown as HTMLElement);
+
+    render(<Hero />);
+    fireEvent.click(screen.getByRole("button", { name: /view gallery/i }));
+
+    expect(document.getElementById).toHaveBeenCalledWith("gallery");
+    expect(mockElement.scrollIntoView).toHaveBeenCalledWith({
+      behavior: "smooth",
+    });
+
+    jest.restoreAllMocks();
+  });
+
+  it("should not throw when gallery element does not exist", () => {
+    jest.spyOn(document, "getElementById").mockReturnValue(null);
+
+    render(<Hero />);
+    expect(() =>
+      fireEvent.click(screen.getByRole("button", { name: /view gallery/i })),
+    ).not.toThrow();
+
+    jest.restoreAllMocks();
   });
 });

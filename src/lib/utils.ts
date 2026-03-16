@@ -35,7 +35,7 @@ export const buttonVariants = cva(
   },
 );
 
-export type ButtonProps = {
+export type ButtonVariantProps = {
   variant?: VariantProps<typeof buttonVariants>["variant"];
   size?: VariantProps<typeof buttonVariants>["size"];
   asChild?: boolean;

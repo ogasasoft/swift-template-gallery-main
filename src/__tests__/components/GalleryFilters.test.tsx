@@ -165,4 +165,72 @@ describe("GalleryFilters Component", () => {
     );
     expect(screen.getByText("選択中:")).toBeInTheDocument();
   });
+
+  it("should remove tone filter chip when clicked", () => {
+    const setFilters = jest.fn();
+    render(
+      <GalleryFilters
+        {...defaultProps}
+        setFilters={setFilters}
+        filters={{ ...defaultFilters, tone: ["Luxury", "Simple"] }}
+      />,
+    );
+    const luxuryBadge = screen.getByText("トーン: Luxury");
+    fireEvent.click(luxuryBadge);
+    expect(setFilters).toHaveBeenCalledWith(
+      expect.objectContaining({ tone: ["Simple"] }),
+    );
+  });
+
+  it("should remove style filter chip when clicked", () => {
+    const setFilters = jest.fn();
+    render(
+      <GalleryFilters
+        {...defaultProps}
+        setFilters={setFilters}
+        filters={{ ...defaultFilters, style: ["Minimal", "Elegant"] }}
+      />,
+    );
+    const minimalBadge = screen.getByText("スタイル: Minimal");
+    fireEvent.click(minimalBadge);
+    expect(setFilters).toHaveBeenCalledWith(
+      expect.objectContaining({ style: ["Elegant"] }),
+    );
+  });
+
+  it("should remove tag filter chip when clicked", () => {
+    const setFilters = jest.fn();
+    render(
+      <GalleryFilters
+        {...defaultProps}
+        setFilters={setFilters}
+        filters={{ ...defaultFilters, tags: ["Cafe", "Modern"] }}
+      />,
+    );
+    // "Cafe" appears as a tag chip in the active filters area
+    const tagChips = screen.getAllByText("Cafe");
+    fireEvent.click(tagChips[0]);
+    expect(setFilters).toHaveBeenCalledWith(
+      expect.objectContaining({ tags: ["Modern"] }),
+    );
+  });
+
+  it("should show all active filter types simultaneously", () => {
+    render(
+      <GalleryFilters
+        {...defaultProps}
+        filters={{
+          tags: ["Cafe"],
+          industry: ["Restaurant"],
+          tone: ["Luxury"],
+          style: ["Minimal"],
+          search: "",
+        }}
+      />,
+    );
+    expect(screen.getByText("業種: Restaurant")).toBeInTheDocument();
+    expect(screen.getByText("トーン: Luxury")).toBeInTheDocument();
+    expect(screen.getByText("スタイル: Minimal")).toBeInTheDocument();
+    expect(screen.getAllByText("Cafe").length).toBeGreaterThan(0);
+  });
 });
