@@ -1,6 +1,7 @@
 import { Eye, Download, Info } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
+import RatingStars from "./RatingStars";
 import type { Template } from "@/lib/types";
 
 interface TemplateCardProps {
@@ -31,6 +32,14 @@ export default function TemplateCard({
 
       <div className="p-4">
         <h3 className="mb-2 text-lg font-semibold">{template.title}</h3>
+
+        <div className="mb-3 flex items-center gap-2">
+          <RatingStars
+            rating={template.rating || 0}
+            count={template.reviewCount || 0}
+            size="sm"
+          />
+        </div>
 
         <div className="flex flex-wrap gap-1 mb-3">
           {template.tags.map((tag) => (
