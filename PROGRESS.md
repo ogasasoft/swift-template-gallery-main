@@ -1,23 +1,29 @@
 # 進捗記録 - swift-template-gallery-main
-## 状態: ✅ 完了
+
+## 状態: IN_PROGRESS
+
 ## 完了済み
-- [x] テストカバレッジの改善用テストファイルを作成（7ファイル）
-- [x] READMEを更新し、テスト対象のコンポーネントを一覧化
-- [x] テスト実行（48 tests passed, 0 failures）
-- [x] テストカバレッジ確認（主要コンポーネント65.71% stmt, 38.46% branch）
-- [x] lint チェック実行（0 errors, 11 warnings）
 
-## テスト結果
-全てのテストがパスしました（48 tests passed）。
-主要コンポーネントに包括的なテストが実装され、コード品質も維持されています。
+- [x] プロジェクト確認と改善点特定（ESLintエラー・警告あり）
+- [x] ESLintエラー・警告の修正完了（0 errors, 0 warnings in src/）
+  - 詳細: 以前のセッションで全て修正済み。coverage filesの警告のみ残る（無視）
 
-## 改善内容
-1. READMEにテスト対象のコンポーネント（Header, Footer, Hero, Gallery, GalleryFilters, TemplateCard, PreviewModal, NavLink, Pricing, Contact）を詳細に記載
-2. コンポーネント構造を明確化し、プロジェクト理解を助けました
-3. テストカバレッジレポートも含め、テスト戦略が文書化されました
+## 未完了
 
-## Next Steps
-次の改善案:
-- コンポーネントUIの微調整
-- ダークモードの実装
-- テンプレートの分類機能の追加
+- [ ] RatingStars テストの修正（6 failed tests）
+  - should render without count
+  - should show filled stars for rating >= star
+  - should show half star for rating 4.5
+  - should call onRatingChange when a star is clicked
+  - should render with small size
+  - should render with medium size
+  - should render with large size
+
+## 次にやること
+
+1. RatingStars テストの失敗を修正
+   - テストケースのマッチャーを調整
+   - HTML構造を確認して正しいセレクタを使用
+   - 各テストケースを個別に修正
+2. 全テスト通過を確認
+3. プロジェクトのステータスを確認
