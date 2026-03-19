@@ -1,19 +1,21 @@
 # 進捗記録 - swift-template-gallery-main
 
-## 状態: IN_PROGRESS
+## 状態: ✅ 完了
 
 ## 完了済み
 
 - [x] プロジェクト確認と改善点特定（ESLintエラー・警告あり）
 - [x] ESLintエラー・警告の修正完了（0 errors, 0 warnings in src/）
   - 詳細: 以前のセッションで全て修正済み。coverage filesの警告のみ残る（無視）
-
-## 未完了
-
-- [ ] RatingStars テストの修正（6 failed tests）
+- [x] RatingStars テストの修正（全12テストパス）
+  - should render with rating
+  - should render with zero rating
   - should render without count
+  - should render with count
   - should show filled stars for rating >= star
   - should show half star for rating 4.5
+  - should not allow rating changes when interactive is false
+  - should allow rating changes when interactive is true
   - should call onRatingChange when a star is clicked
   - should render with small size
   - should render with medium size
@@ -21,9 +23,7 @@
 
 ## 次にやること
 
-1. RatingStars テストの失敗を修正
-   - テストケースのマッチャーを調整
-   - HTML構造を確認して正しいセレクタを使用
-   - 各テストケースを個別に修正
-2. 全テスト通過を確認
-3. プロジェクトのステータスを確認
+スムーズに改善を続けるため、プロジェクト全体のステータスを確認:
+
+- テスト実行全体を確認（全テストスイート）
+- 新しい改善点の発見

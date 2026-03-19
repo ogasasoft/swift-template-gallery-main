@@ -1,0 +1,14 @@
+shadcn-uiの型定義エラーを修正せよ。
+
+TypeScriptの型エラーが多数発生している:
+
+1. テストファイル: React Testing Libraryのメソッドが型定義されていない (toBeInTheDocument, toHaveClass, toHaveAttribute, toHaveValue)
+2. Buttonコンポーネント: disabled propとtype propが存在しないとエラー
+3. 再宣言エラー: FormとnavigationMenuTriggerStyleが2箇所で再宣言されている
+
+修正方針:
+1. tsconfig.jsonのstrictモードを少し緩和しつつ、React Testing Libraryの型定義を拡張する
+2. Buttonコンポーネントの型定義にdisabled propを追加する
+3. 再宣言エラーを解決する
+
+注意: テストファイルは作成済みなのでテストの挙動は維持する必要がある

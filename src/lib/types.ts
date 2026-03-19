@@ -7,6 +7,24 @@ export interface Template {
   style: string;
   thumb: string;
   preview_path: string;
+  rating?: number;
+  reviewCount?: number;
+  description?: string;
+}
+
+export interface TemplateReview {
+  id: string;
+  templateId: string;
+  userId: string;
+  userName: string;
+  rating: number;
+  comment: string;
+  createdAt: string;
+}
+
+export interface ReviewForm {
+  rating: number;
+  comment: string;
 }
 
 export interface FilterState {
