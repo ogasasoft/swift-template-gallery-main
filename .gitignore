@@ -28,3 +28,7 @@ public/templates
 *.njsproj
 *.sln
 *.sw?
+
+# Test coverage
+coverage/
+*.lcov
