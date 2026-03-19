@@ -171,6 +171,84 @@ All commits run automated quality checks via Husky:
 - **Testing**: Jest + React Testing Library
 - **Build**: Vite
 
+## 🚀 Quick Start
+
+### Prerequisites
+
+- **Node.js** 18.0.0 or higher
+- **npm** or **yarn** package manager
+
+### Installation
+
+1. **Clone the repository**
+
+```bash
+git clone https://github.com/yourusername/swift-template-gallery.git
+cd swift-template-gallery
+```
+
+2. **Install dependencies**
+
+```bash
+npm install
+```
+
+3. **Start development server**
+
+```bash
+npm run dev
+```
+
+4. **Open in browser**
+   Navigate to [http://localhost:5173](http://localhost:5173) to view the gallery.
+
+### Development Workflow
+
+```bash
+# Development with hot reload
+npm run dev
+
+# Run tests
+npm test
+
+# Run tests in watch mode
+npm run test:watch
+
+# Type checking
+npm run typecheck
+
+# Linting
+npm run lint
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+
+# Format code with Prettier
+npm run format
+```
+
+### Project Structure Overview
+
+```
+swift-template-gallery/
+├── src/
+│   ├── components/      # React components
+│   │   ├── ui/         # shadcn-ui components
+│   │   ├── Gallery.tsx      # Main gallery component
+│   │   ├── TemplateCard.tsx # Individual template cards
+│   │   └── PreviewModal.tsx # Template preview modal
+│   ├── pages/          # Page components
+│   ├── lib/            # Utility functions
+│   └── hooks/          # Custom React hooks
+├── public/             # Static assets
+├── src/__tests__/      # Test suites
+├── jest.config.ts      # Jest configuration
+└── package.json        # Dependencies
+```
+
 ## 📚 Documentation
 
 - [Getting Started](#-quick-start) - Initial setup guide
