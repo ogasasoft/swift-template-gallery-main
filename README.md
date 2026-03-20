@@ -183,8 +183,8 @@ All commits run automated quality checks via Husky:
 1. **Clone the repository**
 
 ```bash
-git clone https://github.com/yourusername/swift-template-gallery.git
-cd swift-template-gallery
+git clone https://github.com/ogasasoft/swift-template-gallery-main.git
+cd swift-template-gallery-main
 ```
 
 2. **Install dependencies**
@@ -200,7 +200,8 @@ npm run dev
 ```
 
 4. **Open in browser**
-   Navigate to [http://localhost:5173](http://localhost:5173) to view the gallery.
+
+Navigate to [http://localhost:5173](http://localhost:5173) to view the gallery.
 
 ### Development Workflow
 
@@ -360,92 +361,69 @@ This project supports automated Docker image deployment to Amazon ECR and ECS.
 - Docker installed locally
 - GitHub Actions configured with AWS secrets
 
-### Required AWS Resources
-
-1. **ECR Repository**
-   - Repository name: `swift-template-gallery`
-   - Region: Configure in `.env.example` (default: `us-east-1`)
-
-2. **ECS Cluster**
-   - Cluster name: Configure in `.env.example`
-   - Service: Configure in `.env.example`
-
 ### Setup
 
 1. **Create ECR repository**
 
 ```bash
-aws ecr create-repository \
-  --repository-name swift-template-gallery \
-  --region us-east-1
+aws ecr create-repository --repository-name swift-template-gallery --region us-east-1
 ```
 
-2. **Get ECR login command**
+2. **Login to ECR**
 
 ```bash
 aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin <account-id>.dkr.ecr.us-east-1.amazonaws.com
 ```
 
-3. **Configure GitHub Secrets**
-   Add the following to your GitHub repository secrets:
+3. **Configure GitHub Secrets** (in repository settings)
 
 - `AWS_ACCESS_KEY_ID` - AWS access key ID
 - `AWS_SECRET_ACCESS_KEY` - AWS secret access key
-- `AWS_REGION` - AWS region (e.g., `us-east-1`)
+- `AWS_REGION` - AWS region (default: `us-east-1`)
 - `ECS_CLUSTER` - ECS cluster name
 - `ECS_SERVICE` - ECS service name
 
-### Deploy Workflow
+### Deployment
 
-The `build-and-deploy.yml` workflow runs on push to `main`:
+**Automatic (GitHub Actions):** The `build-and-deploy.yml` workflow runs on push to `main`:
 
-1. **Build Docker image** (Node 20 Alpine)
-2. **Run typecheck, lint, tests**
-3. **Upload artifact** (7-day retention)
-4. **Push to ECR** (image tag = first 7 chars of commit SHA)
-5. **Update ECS service** (force-new-deployment)
+1. Build Docker image (Node 20 Alpine)
+2. Run quality checks (typecheck, lint, tests)
+3. Push to ECR (tag = first 7 chars of commit SHA)
+4. Update ECS service (force-new-deployment)
 
-### Manual Deployment
+**Manual:**
 
 ```bash
-# 1. Build locally
+# Build and tag for ECR
 npm run build
-
-# 2. Run Docker build locally
 docker build -t swift-template-gallery:latest .
+docker tag swift-template-gallery:latest <account-id>.dkr.ecr.us-east-1.amazonaws.com/swift-template-gallery:latest
 
-# 3. Tag for ECR
-export AWS_ACCOUNT_ID=123456789012
-export AWS_REGION=us-east-1
-docker tag swift-template-gallery:latest ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/swift-template-gallery:latest
+# Push to ECR
+docker push <account-id>.dkr.ecr.us-east-1.amazonaws.com/swift-template-gallery:latest
 
-# 4. Push to ECR
-aws ecr get-login-password --region ${AWS_REGION} | docker login --username AWS --password-stdin ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com
-docker push ${AWS_ACCOUNT_ID}.dkr.ecr.${AWS_REGION}.amazonaws.com/swift-template-gallery:latest
-
-# 5. Update ECS service
+# Update ECS service
 aws ecs update-service \
-  --cluster ${ECS_CLUSTER} \
-  --service ${ECS_SERVICE} \
+  --cluster <ECS_CLUSTER> \
+  --service <ECS_SERVICE> \
   --force-new-deployment
 ```
 
-### Local ECS Preview
+**Preview locally:**
 
 ```bash
-# Run locally with Vite preview
 npm run preview
+# Visit http://localhost:5173
 ```
-
-Visit `http://localhost:5173` to see the production build preview.
 
 ## 📈 Roadmap
 
-- [x] Add dark mode support ✅
-- [x] Comprehensive test suite ✅
-- [x] Review system with sentiment analysis ✅
-- [x] TypeScript strict mode ✅
-- [x] Code quality enforcement ✅
+- ✅ Add dark mode support
+- ✅ Comprehensive test suite
+- ✅ Review system with sentiment analysis
+- ✅ TypeScript strict mode
+- ✅ Code quality enforcement
 - [ ] Template categorization with tags
 - [ ] Template download functionality
 - [ ] RESTful API for templates
