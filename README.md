@@ -254,7 +254,8 @@ swift-template-gallery/
 - [Getting Started](#-quick-start) - Initial setup guide
 - [Architecture](./ARCHITECTURE.md) - System design overview
 - [Contributing](./CONTRIBUTING.md) - How to contribute
-- [API Reference](./docs/api.md) - API documentation
+- [Changelog](./CHANGELOG.md) - Version history
+- [License](./LICENSE) - MIT License
 
 ## 🧪 Testing
 
