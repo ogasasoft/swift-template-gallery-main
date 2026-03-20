@@ -62,40 +62,47 @@ jobs:
           path: swift-template-gallery.tar.gz
           retention-days: 7
 
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Download artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: docker-image
-
-      - name: Load Docker image
-        run: docker load < swift-template-gallery.tar.gz
-
-      - name: Configure AWS credentials
-        uses: aws-actions/configure-aws-credentials@v4
-        with:
-          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          aws-region: ${{ secrets.AWS_REGION }}
-
-      - name: Login to Amazon ECR
-        id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v2
-
-      - name: Build and push image to Amazon ECR
-        run: |
-          IMAGE_TAG=$(echo ${{ github.sha }} | head -c 7)
-          docker tag swift-template-gallery:latest ${{ steps.login-ecr.outputs.registry }}/swift-template-gallery:$IMAGE_TAG
-          docker push ${{ steps.login-ecr.outputs.registry }}/swift-template-gallery:$IMAGE_TAG
-
-      - name: Update ECS service
-        run: |
-          aws ecs update-service --cluster ${{ secrets.ECS_CLUSTER }} --service ${{ secrets.ECS_SERVICE }} --force-new-deployment
+  # deploy:
+  #   name: Deploy to Amazon ECS
+  #   needs: build
+  #   runs-on: ubuntu-latest
+  #   if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+  #
+  #   steps:
+  #     - name: Checkout code
+  #       uses: actions/checkout@v4
+  #
+  #     - name: Download artifact
+  #       uses: actions/download-artifact@v4
+  #       with:
+  #         name: docker-image
+  #
+  #     - name: Load Docker image
+  #       run: docker load < swift-template-gallery.tar.gz
+  #
+  #     - name: Configure AWS credentials
+  #       uses: aws-actions/configure-aws-credentials@v4
+  #       with:
+  #         aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  #         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  #         aws-region: ${{ secrets.AWS_REGION }}
+  #
+  #     - name: Login to Amazon ECR
+  #       id: login-ecr
+  #       uses: aws-actions/amazon-ecr-login@v2
+  #
+  #     - name: Build and push image to Amazon ECR
+  #       run: |
+  #         IMAGE_TAG=$(echo ${{ github.sha }} | head -c 7)
+  #         docker tag swift-template-gallery:latest ${{ steps.login-ecr.outputs.registry }}/swift-template-gallery:$IMAGE_TAG
+  #         docker push ${{ steps.login-ecr.outputs.registry }}/swift-template-gallery:$IMAGE_TAG
+  #
+  #     - name: Update ECS service
+  #       run: |
+  #         aws ecs update-service \
+  #           --cluster ${{ secrets.ECS_CLUSTER }} \
+  #           --service ${{ secrets.ECS_SERVICE }} \
+  #           --force-new-deployment
+  #
+  # NOTE: To enable ECS deployment, configure AWS secrets and uncomment this job.
+  # See README.md "🚀 AWS & ECS Deployment" section for setup instructions.
