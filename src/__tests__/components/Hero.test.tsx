@@ -27,13 +27,18 @@ describe("Hero Component", () => {
 
   it("should have the correct min-height of viewport", () => {
     render(<Hero />);
-    const section = screen.getByRole("banner");
+    const section = screen
+      .getByText("See it. Choose it. Get it fast.")
+      .closest("section");
+    expect(section).toBeInTheDocument();
     expect(section).toHaveClass("min-h-screen");
   });
 
   it("should have flex layout for centering content", () => {
     render(<Hero />);
-    const section = screen.getByRole("banner");
+    const section = screen
+      .getByText("See it. Choose it. Get it fast.")
+      .closest("section");
     expect(section).toHaveClass("flex");
     expect(section).toHaveClass("items-center");
     expect(section).toHaveClass("justify-center");
@@ -41,8 +46,10 @@ describe("Hero Component", () => {
 
   it("should have top padding of 4rem", () => {
     render(<Hero />);
-    const section = screen.getByRole("banner");
-    expect(section).toHaveClass("pt-16");
+    const section = screen
+      .getByText("See it. Choose it. Get it fast.")
+      .closest("section");
+    expect(section).toHaveClass("pt-16"); // pt-16 is 4rem
   });
 
   it("should have container and text centering", () => {
@@ -82,7 +89,9 @@ describe("Hero Component", () => {
 
   it("should use the hero gradient from CSS variables", () => {
     render(<Hero />);
-    const section = screen.getByRole("banner");
+    const section = screen
+      .getByText("See it. Choose it. Get it fast.")
+      .closest("section");
     expect(section).toHaveStyle("background: var(--hero-gradient)");
   });
 });

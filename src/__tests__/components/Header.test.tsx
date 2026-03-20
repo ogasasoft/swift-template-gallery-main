@@ -63,7 +63,13 @@ describe("Header Component", () => {
 
   it("should have responsive layout with container and padding", () => {
     render(<Header />);
-    const container = screen.getByText("TemplateLab").closest("div");
+    // Find the div containing TemplateLab by looking for the parent div of the text element
+    const templateLab = screen.getByText("TemplateLab");
+    const header = templateLab.closest("header");
+    expect(header).toBeInTheDocument();
+    // The container is a direct child of the header
+    const container = header?.querySelector("div");
+    expect(container).toBeInTheDocument();
     expect(container).toHaveClass("container");
     expect(container).toHaveClass("mx-auto");
     expect(container).toHaveClass("px-4");
