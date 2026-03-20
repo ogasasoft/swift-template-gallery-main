@@ -5,15 +5,17 @@ import { Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 export function ThemeToggle() {
-  const [theme, setTheme] = useState<"dark" | "light" | "system">("system");
+  const [theme, setTheme] = useState<"dark" | "light" | "system">(() => {
+    const savedTheme =
+      typeof window !== "undefined"
+        ? (localStorage.getItem("theme") as "dark" | "light" | null)
+        : null;
+    return savedTheme ?? "system";
+  });
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    setMounted(true);
-    const savedTheme = localStorage.getItem("theme") as "dark" | "light" | null;
-    if (savedTheme) {
-      setTheme(savedTheme);
-    }
+    setMounted(true); // eslint-disable-line react-hooks/set-state-in-effect
   }, []);
 
   useEffect(() => {

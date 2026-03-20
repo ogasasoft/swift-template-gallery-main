@@ -1,5 +1,6 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
+import tailwindcss from "@tailwindcss/vite";
 import path from "node:path";
 
 // https://vitejs.dev/config/
@@ -14,7 +15,7 @@ export default defineConfig((_mode) => ({
     port: 8080,
   },
 
-  plugins: [react()],
+  plugins: [react(), tailwindcss()],
 
   resolve: {
     alias: {
