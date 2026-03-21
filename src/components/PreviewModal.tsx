@@ -4,12 +4,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-
-interface Template {
-  id: string;
-  title: string;
-  preview_path: string;
-}
+import type { Template } from "@/types/template";
 
 interface PreviewModalProps {
   template: Template | null;

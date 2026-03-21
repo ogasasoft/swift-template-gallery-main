@@ -1,5 +1,6 @@
 import { useState } from "react";
 import templates from "@/lib/templates.json";
+import type { Template } from "@/types/template";
 import TemplateCard from "./TemplateCard";
 import GalleryFilters from "./GalleryFilters";
 import PreviewModal from "./PreviewModal";
@@ -10,10 +11,10 @@ export default function Gallery() {
     category: 'all',
     search: ''
   });
-  
-  const filteredTemplates = templates.filter(template => {
-    const matchesCategory = filters.category === 'all' || template.category === filters.category;
-    const matchesSearch = template.name.toLowerCase().includes(filters.search.toLowerCase());
+
+  const filteredTemplates = templates.filter((template: Template) => {
+    const matchesCategory = filters.category === 'all' || template.industry === filters.category;
+    const matchesSearch = template.title.toLowerCase().includes(filters.search.toLowerCase());
     return matchesCategory && matchesSearch;
   });
 
@@ -25,13 +26,13 @@ export default function Gallery() {
       </div>
 
       {selectedTemplate && (
-        <PreviewModal 
-          templateId={selectedTemplate}
+        <PreviewModal
+          template={templates.find((t: Template) => t.id === selectedTemplate) || null}
           onClose={() => setSelectedTemplate(null)}
         />
       )}
 
-      <GalleryFilters 
+      <GalleryFilters
         filters={filters}
         setFilters={setFilters}
         totalTemplates={templates.length}

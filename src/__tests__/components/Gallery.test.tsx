@@ -7,10 +7,12 @@ import { BrowserRouter } from 'react-router-dom';
 jest.mock('@/lib/templates.json', () => [
   {
     id: 'template-1',
-    name: 'Test Template',
-    category: 'lifestyle',
-    image: '/templates/visual-stanza-folio/template.jpg',
-    description: 'A test template for gallery',
+    title: 'Test Template',
+    tags: ['Test', 'Mock'],
+    industry: 'Lifestyle',
+    tone: 'Simple',
+    thumb: '/templates/visual-stanza-folio/template.jpg',
+    preview_path: '/templates/visual-stanza-folio/index.html',
   },
 ]);
 
