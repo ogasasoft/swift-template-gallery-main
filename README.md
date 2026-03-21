@@ -5,11 +5,11 @@ A modern template gallery for developers to discover and preview reusable React 
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Node](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)
-![React](https://img.shields.io/badge/React-18.3.1-61DAFB.svg)
+![React](https://img.shields.io/badge/React-19.2.4-61DAFB.svg)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.8.3-3178C6.svg)
 ![Jest](https://img.shields.io/badge/Jest-30.2.0-9948F5.svg)
 ![ESLint](https://img.shields.io/badge/ESLint-9.32.0-4B32C3.svg)
-![Vite](https://img.shields.io/badge/Vite-5.4.19-646CFF.svg)
+![Vite](https://img.shields.io/badge/Vite-8.0.1-646CFF.svg)
 
 ## 🌟 Features
 
@@ -28,9 +28,9 @@ A modern template gallery for developers to discover and preview reusable React 
 
 ### Framework & Core
 
-- **React 18.3.1** - Latest React with concurrent features
+- **React 19.2.4** - Latest React with concurrent features
 - **TypeScript 5.8.3** - Full type safety
-- **Vite 5.4.19** - Lightning-fast build tool
+- **Vite 8.0.1** - Lightning-fast build tool
 - **React Router v6.30.1** - Client-side routing
 
 ### Styling
@@ -139,7 +139,8 @@ This project maintains enterprise-grade quality standards:
 
 - **Zero TypeScript Errors**: Strict type checking with 100% type coverage
 - **Zero ESLint Errors**: Enforced via Husky pre-commit hooks
-- **162 Tests**: Comprehensive test suite covering all components, pages, and utilities
+- **162 Tests**: Comprehensive test suite covering all components, pages, and utilities (1 skipped)
+- **Test Status**: All tests passing ✅
 - **Coverage**: 100% test coverage for critical paths
 - **Code Formatting**: Consistent style via Prettier
 
@@ -150,9 +151,9 @@ This project maintains enterprise-grade quality standards:
 npm run test:coverage
 
 # Expected output:
-# - Test Suites: 17 passed
-# - Tests: 162 passed, 1 skipped
-# - Coverage: 100% for critical paths
+# - Test Suites: 17 passed, 17 total
+# - Tests:       162 passed, 1 skipped, 163 total
+# - Coverage:    Critical paths: 100%
 ```
 
 ### Pre-commit Checks
@@ -363,4 +364,4 @@ For support, email support@example.com or open an issue in our GitHub repository
 
 ---
 
-Built with ❤️ using React 18.3.1, TypeScript 5.8.3, Vite 5.4.19, and shadcn-ui
+Built with ❤️ using React 19.2.4, TypeScript 5.8.3, Vite 8.0.1, and shadcn-ui
