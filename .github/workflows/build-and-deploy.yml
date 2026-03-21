@@ -38,20 +38,19 @@ jobs:
 
       - name: Build Docker image
         run: |
-          echo "FROM node:20-alpine as builder" > Dockerfile
-          echo "WORKDIR /app" >> Dockerfile
-          echo "COPY package*.json ./" >> Dockerfile
-          echo "RUN npm ci --only=production" >> Dockerfile
-          echo "COPY . ." >> Dockerfile
-          echo "RUN npm run build" >> Dockerfile
-          echo "FROM node:20-alpine as runner" >> Dockerfile
-          echo "WORKDIR /app" >> Dockerfile
-          echo "COPY --from=builder /app/dist ./dist" >> Dockerfile
-          echo "COPY --from=builder /app/node_modules ./node_modules" >> Dockerfile
-          echo "COPY --from=builder /app/package.json ./package.json" >> Dockerfile
-          echo "EXPOSE 5173" >> Dockerfile
-          echo "CMD [\"npm\", \"run\", \"preview\"]" >> Dockerfile
-          docker build -t swift-template-gallery:latest .
+          docker build \
+            --build-arg NODE_VERSION=20-alpine \
+            --build-arg NODE_ENV=production \
+            --target builder \
+            -t swift-template-gallery-builder \
+            -f .github/Dockerfile \
+            .
+
+          docker build \
+            --target runner \
+            -t swift-template-gallery:latest \
+            -f .github/Dockerfile \
+            .
 
       - name: Save Docker image
         run: |
