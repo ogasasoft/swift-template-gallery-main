@@ -1,4 +1,8 @@
 import '@testing-library/jest-dom';
+import { TextEncoder, TextDecoder } from 'util';
+
+// React Router v7 requires TextEncoder/TextDecoder in jsdom environment
+Object.assign(global, { TextEncoder, TextDecoder });
 
 // Mock window.matchMedia using jest.fn
 Object.defineProperty(window, 'matchMedia', {
