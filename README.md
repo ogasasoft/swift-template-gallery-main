@@ -133,6 +133,26 @@ npm run test:coverage
 npm test -- --testPathPattern=Gallery.test.tsx
 ```
 
+### Tested Components
+
+The following components are tested:
+
+#### Components
+- **Gallery**: src/components/Gallery.tsx — Template gallery with filtering and search
+- **GalleryFilters**: src/components/GalleryFilters.tsx — Category and search filters
+- **TemplateCard**: src/components/TemplateCard.tsx — Individual template card component
+- **PreviewModal**: src/components/PreviewModal.tsx — Live template preview modal
+- **Header**: src/components/Header.tsx — Navigation header
+- **Footer**: src/components/Footer.tsx — Footer component
+- **Hero**: src/components/Hero.tsx — Hero section
+- **NavLink**: src/components/NavLink.tsx — Navigation link component
+- **Pricing**: src/components/Pricing.tsx — Pricing section
+- **Contact**: src/components/Contact.tsx — Contact form section
+
+#### Pages
+- **Index**: src/pages/Index.tsx — Home page
+- **NotFound**: src/pages/NotFound.tsx — 404 page
+
 ## 🤝 Contributing
 
 Contributions are welcome! Please read our [Contributing Guide](./CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
