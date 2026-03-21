@@ -37,7 +37,7 @@ export const generateReview = (
   userName:
     overrides?.userName || `テストユーザー${Math.floor(Math.random() * 100)}`,
   rating: overrides?.rating || Math.floor(Math.random() * 5) + 1,
-  comment: overrides?.comment || `テストレビュー ${index + 1}です。`,
+  comment: overrides?.comment || `テストレビュー ${(index ?? 0) + 1}です。`,
   createdAt: overrides?.createdAt || new Date().toISOString(),
 });
 

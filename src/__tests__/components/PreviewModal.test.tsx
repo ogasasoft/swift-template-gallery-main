@@ -65,7 +65,7 @@ describe("PreviewModal Component", () => {
     });
 
     it("should not render when template is undefined", () => {
-      render(<PreviewModal template={undefined} onClose={mockOnClose} />);
+      render(<PreviewModal template={null} onClose={mockOnClose} />);
 
       expect(screen.queryByTestId("dialog")).not.toBeInTheDocument();
     });
