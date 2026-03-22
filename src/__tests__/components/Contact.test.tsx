@@ -67,7 +67,10 @@ describe('Contact Component', () => {
   it('should show error toast when submitting without required fields', () => {
     render(<Contact />);
     const submitButton = screen.getByRole('button', { name: /send inquiry/i });
-    const form = submitButton.closest('form')!;
+    const form = submitButton.closest('form');
+    if (!form) {
+      throw new Error('Form not found');
+    }
     fireEvent.submit(form);
     expect(toast.error).toHaveBeenCalledWith('Please fill in required fields');
   });

@@ -40,7 +40,10 @@ describe("TemplateCard", () => {
     );
 
     const card = container.firstChild as HTMLElement;
-    fireEvent.click(card!);
+    if (!card) {
+      throw new Error('Card not found');
+    }
+    fireEvent.click(card);
     expect(mockOnClick).toHaveBeenCalledTimes(1);
   });
 

@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">82.35% </span>
+                <span class="strong">94.11% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>14/17</span>
+                <span class='fraction'>16/17</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">90% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>5/10</span>
+                <span class='fraction'>9/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">83.33% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/6</span>
+                <span class='fraction'>5/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">82.35% </span>
+                <span class="strong">94.11% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>14/17</span>
+                <span class='fraction'>16/17</span>
             </div>
         
             
@@ -129,29 +129,29 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -168,10 +168,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -194,7 +194,7 @@ export default function Gallery() {
   });
 &nbsp;
   const filteredTemplates = templates.filter((template: Template) =&gt; {
-    const matchesCategory = filters.category === 'all' || <span class="branch-1 cbranch-no" title="branch not covered" >template.industry === filters.category;</span>
+    const matchesCategory = filters.category === 'all' || template.industry === filters.category;
     const matchesSearch = template.title.toLowerCase().includes(filters.search.toLowerCase());
     return matchesCategory &amp;&amp; matchesSearch;
   });
@@ -207,8 +207,8 @@ export default function Gallery() {
       &lt;/div&gt;
 &nbsp;
       {selectedTemplate &amp;&amp; (
-<span class="branch-1 cbranch-no" title="branch not covered" >        &lt;PreviewModal</span>
-          template={templates.find(<span class="fstat-no" title="function not covered" >(t</span>: Template) =&gt; <span class="cstat-no" title="statement not covered" >t.id === selectedTemplate)</span> || null}
+        &lt;PreviewModal
+          template={templates.find((t: Template) =&gt; t.id === selectedTemplate) || <span class="branch-1 cbranch-no" title="branch not covered" >null}</span>
           onClose={<span class="fstat-no" title="function not covered" >() =</span>&gt; <span class="cstat-no" title="statement not covered" >setSelectedTemplate(null)}</span>
         /&gt;
       )}
@@ -221,7 +221,7 @@ export default function Gallery() {
 &nbsp;
       &lt;div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8"&gt;
         {filteredTemplates.length === 0 ? (
-<span class="branch-0 cbranch-no" title="branch not covered" >          &lt;p className="text-center text-muted-foreground"&gt;</span>
+          &lt;p className="text-center text-muted-foreground"&gt;
             No templates found matching your criteria
           &lt;/p&gt;
         ) : (
@@ -229,7 +229,7 @@ export default function Gallery() {
             &lt;TemplateCard
               key={template.id}
               template={template}
-              onClick={<span class="fstat-no" title="function not covered" >() =</span>&gt; <span class="cstat-no" title="statement not covered" >setSelectedTemplate(template.id)}</span>
+              onClick={() =&gt; setSelectedTemplate(template.id)}
             /&gt;
           ))
         )}
@@ -244,7 +244,7 @@ export default function Gallery() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-03-22T05:26:05.898Z
+                at 2026-03-22T10:09:41.709Z
             </div>
         <script src="../../prettify.js"></script>
         <script>

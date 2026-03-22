@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1774157165920" clover="3.2.0">
-  <project timestamp="1774157165920" name="All files">
-    <metrics statements="1367" coveredstatements="150" conditionals="338" coveredconditionals="13" methods="290" coveredmethods="23" elements="1995" coveredelements="186" complexity="0" loc="1367" ncloc="1367" packages="6" files="65" classes="65"/>
+<coverage generated="1774174181731" clover="3.2.0">
+  <project timestamp="1774174181731" name="All files">
+    <metrics statements="1367" coveredstatements="188" conditionals="338" coveredconditionals="29" methods="290" coveredmethods="48" elements="1995" coveredelements="265" complexity="0" loc="1367" ncloc="1367" packages="6" files="65" classes="65"/>
     <package name="src">
       <metrics statements="11" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="0"/>
       <file name="App.tsx" path="/Users/amadeus/.openclaw/workspace/projects/swift-template-gallery-main/src/App.tsx">
@@ -20,9 +20,9 @@
       </file>
     </package>
     <package name="src.components">
-      <metrics statements="103" coveredstatements="68" conditionals="28" coveredconditionals="10" methods="37" coveredmethods="15"/>
+      <metrics statements="103" coveredstatements="102" conditionals="28" coveredconditionals="26" methods="37" coveredmethods="36"/>
       <file name="Contact.tsx" path="/Users/amadeus/.openclaw/workspace/projects/swift-template-gallery-main/src/components/Contact.tsx">
-        <metrics statements="30" coveredstatements="16" conditionals="4" coveredconditionals="0" methods="11" coveredmethods="3"/>
+        <metrics statements="30" coveredstatements="30" conditionals="4" coveredconditionals="4" methods="11" coveredmethods="11"/>
         <line num="1" count="2" type="stmt"/>
         <line num="2" count="2" type="stmt"/>
         <line num="3" count="2" type="stmt"/>
@@ -31,27 +31,27 @@
         <line num="6" count="2" type="stmt"/>
         <line num="7" count="2" type="stmt"/>
         <line num="9" count="2" type="stmt"/>
-        <line num="10" count="13" type="stmt"/>
-        <line num="19" count="13" type="stmt"/>
-        <line num="20" count="13" type="stmt"/>
-        <line num="21" count="0" type="stmt"/>
-        <line num="22" count="0" type="stmt"/>
-        <line num="24" count="0" type="stmt"/>
-        <line num="30" count="13" type="stmt"/>
-        <line num="31" count="13" type="stmt"/>
-        <line num="35" count="13" type="stmt"/>
-        <line num="36" count="0" type="stmt"/>
-        <line num="38" count="0" type="cond" truecount="0" falsecount="4"/>
-        <line num="39" count="0" type="stmt"/>
-        <line num="40" count="0" type="stmt"/>
-        <line num="43" count="0" type="stmt"/>
-        <line num="44" count="0" type="stmt"/>
-        <line num="53" count="13" type="stmt"/>
-        <line num="71" count="0" type="stmt"/>
-        <line num="83" count="0" type="stmt"/>
-        <line num="95" count="0" type="stmt"/>
-        <line num="105" count="0" type="stmt"/>
-        <line num="116" count="0" type="stmt"/>
+        <line num="10" count="26" type="stmt"/>
+        <line num="19" count="26" type="stmt"/>
+        <line num="20" count="18" type="stmt"/>
+        <line num="21" count="1" type="stmt"/>
+        <line num="22" count="1" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="30" count="18" type="stmt"/>
+        <line num="31" count="18" type="stmt"/>
+        <line num="35" count="26" type="stmt"/>
+        <line num="36" count="2" type="stmt"/>
+        <line num="38" count="2" type="cond" truecount="4" falsecount="0"/>
+        <line num="39" count="1" type="stmt"/>
+        <line num="40" count="1" type="stmt"/>
+        <line num="43" count="1" type="stmt"/>
+        <line num="44" count="1" type="stmt"/>
+        <line num="53" count="26" type="stmt"/>
+        <line num="71" count="2" type="stmt"/>
+        <line num="83" count="1" type="stmt"/>
+        <line num="95" count="1" type="stmt"/>
+        <line num="105" count="1" type="stmt"/>
+        <line num="116" count="1" type="stmt"/>
         <line num="161" count="2" type="stmt"/>
       </file>
       <file name="Footer.tsx" path="/Users/amadeus/.openclaw/workspace/projects/swift-template-gallery-main/src/components/Footer.tsx">
@@ -61,61 +61,61 @@
         <line num="23" count="2" type="stmt"/>
       </file>
       <file name="Gallery.tsx" path="/Users/amadeus/.openclaw/workspace/projects/swift-template-gallery-main/src/components/Gallery.tsx">
-        <metrics statements="17" coveredstatements="14" conditionals="10" coveredconditionals="5" methods="6" coveredmethods="3"/>
+        <metrics statements="17" coveredstatements="16" conditionals="10" coveredconditionals="9" methods="6" coveredmethods="5"/>
         <line num="1" count="1" type="stmt"/>
         <line num="2" count="1" type="stmt"/>
         <line num="4" count="1" type="stmt"/>
         <line num="5" count="1" type="stmt"/>
         <line num="6" count="1" type="stmt"/>
         <line num="8" count="1" type="stmt"/>
-        <line num="9" count="4" type="stmt"/>
-        <line num="10" count="4" type="stmt"/>
-        <line num="15" count="4" type="stmt"/>
-        <line num="16" count="4" type="cond" truecount="1" falsecount="1"/>
-        <line num="17" count="4" type="stmt"/>
-        <line num="18" count="4" type="cond" truecount="2" falsecount="0"/>
-        <line num="21" count="4" type="stmt"/>
-        <line num="30" count="0" type="cond" truecount="0" falsecount="2"/>
+        <line num="9" count="10" type="stmt"/>
+        <line num="10" count="10" type="stmt"/>
+        <line num="15" count="10" type="stmt"/>
+        <line num="16" count="10" type="cond" truecount="2" falsecount="0"/>
+        <line num="17" count="10" type="stmt"/>
+        <line num="18" count="10" type="cond" truecount="2" falsecount="0"/>
+        <line num="21" count="10" type="stmt"/>
+        <line num="30" count="1" type="cond" truecount="1" falsecount="1"/>
         <line num="31" count="0" type="stmt"/>
-        <line num="48" count="4" type="stmt"/>
-        <line num="51" count="0" type="stmt"/>
+        <line num="48" count="8" type="stmt"/>
+        <line num="51" count="1" type="stmt"/>
       </file>
       <file name="GalleryFilters.tsx" path="/Users/amadeus/.openclaw/workspace/projects/swift-template-gallery-main/src/components/GalleryFilters.tsx">
-        <metrics statements="8" coveredstatements="6" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="2"/>
+        <metrics statements="8" coveredstatements="8" conditionals="2" coveredconditionals="2" methods="4" coveredmethods="4"/>
         <line num="1" count="1" type="stmt"/>
         <line num="18" count="1" type="stmt"/>
-        <line num="19" count="4" type="stmt"/>
-        <line num="20" count="0" type="stmt"/>
-        <line num="23" count="4" type="stmt"/>
-        <line num="24" count="0" type="stmt"/>
-        <line num="27" count="4" type="stmt"/>
-        <line num="37" count="20" type="stmt"/>
+        <line num="19" count="10" type="stmt"/>
+        <line num="20" count="1" type="stmt"/>
+        <line num="23" count="10" type="stmt"/>
+        <line num="24" count="1" type="stmt"/>
+        <line num="27" count="10" type="stmt"/>
+        <line num="37" count="50" type="stmt"/>
       </file>
       <file name="Header.tsx" path="/Users/amadeus/.openclaw/workspace/projects/swift-template-gallery-main/src/components/Header.tsx">
-        <metrics statements="13" coveredstatements="5" conditionals="2" coveredconditionals="0" methods="7" coveredmethods="1"/>
+        <metrics statements="13" coveredstatements="13" conditionals="2" coveredconditionals="2" methods="7" coveredmethods="7"/>
         <line num="1" count="2" type="stmt"/>
         <line num="3" count="2" type="stmt"/>
-        <line num="4" count="12" type="stmt"/>
-        <line num="5" count="0" type="stmt"/>
-        <line num="6" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="7" count="0" type="stmt"/>
-        <line num="11" count="12" type="stmt"/>
-        <line num="20" count="0" type="stmt"/>
-        <line num="26" count="0" type="stmt"/>
-        <line num="32" count="0" type="stmt"/>
-        <line num="41" count="0" type="stmt"/>
-        <line num="49" count="0" type="stmt"/>
+        <line num="4" count="19" type="stmt"/>
+        <line num="5" count="6" type="stmt"/>
+        <line num="6" count="6" type="cond" truecount="2" falsecount="0"/>
+        <line num="7" count="5" type="stmt"/>
+        <line num="11" count="19" type="stmt"/>
+        <line num="20" count="2" type="stmt"/>
+        <line num="26" count="1" type="stmt"/>
+        <line num="32" count="1" type="stmt"/>
+        <line num="41" count="1" type="stmt"/>
+        <line num="49" count="1" type="stmt"/>
         <line num="58" count="2" type="stmt"/>
       </file>
       <file name="Hero.tsx" path="/Users/amadeus/.openclaw/workspace/projects/swift-template-gallery-main/src/components/Hero.tsx">
-        <metrics statements="8" coveredstatements="5" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="1"/>
+        <metrics statements="8" coveredstatements="8" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
         <line num="1" count="2" type="stmt"/>
         <line num="3" count="2" type="stmt"/>
-        <line num="4" count="10" type="stmt"/>
-        <line num="5" count="0" type="stmt"/>
-        <line num="6" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="7" count="0" type="stmt"/>
-        <line num="11" count="10" type="stmt"/>
+        <line num="4" count="12" type="stmt"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="6" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="11" count="12" type="stmt"/>
         <line num="32" count="2" type="stmt"/>
       </file>
       <file name="NavLink.tsx" path="/Users/amadeus/.openclaw/workspace/projects/swift-template-gallery-main/src/components/NavLink.tsx">
@@ -130,33 +130,33 @@
         <line num="28" count="1" type="stmt"/>
       </file>
       <file name="PreviewModal.tsx" path="/Users/amadeus/.openclaw/workspace/projects/swift-template-gallery-main/src/components/PreviewModal.tsx">
-        <metrics statements="5" coveredstatements="3" conditionals="2" coveredconditionals="0" methods="1" coveredmethods="0"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="14" count="1" type="stmt"/>
-        <line num="15" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="17" count="0" type="stmt"/>
-        <line num="37" count="1" type="stmt"/>
+        <metrics statements="5" coveredstatements="5" conditionals="2" coveredconditionals="2" methods="1" coveredmethods="1"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="14" count="2" type="stmt"/>
+        <line num="15" count="7" type="cond" truecount="2" falsecount="0"/>
+        <line num="17" count="6" type="stmt"/>
+        <line num="37" count="2" type="stmt"/>
       </file>
       <file name="Pricing.tsx" path="/Users/amadeus/.openclaw/workspace/projects/swift-template-gallery-main/src/components/Pricing.tsx">
-        <metrics statements="8" coveredstatements="5" conditionals="2" coveredconditionals="0" methods="2" coveredmethods="1"/>
+        <metrics statements="8" coveredstatements="8" conditionals="2" coveredconditionals="2" methods="2" coveredmethods="2"/>
         <line num="1" count="2" type="stmt"/>
         <line num="3" count="2" type="stmt"/>
-        <line num="4" count="12" type="stmt"/>
-        <line num="5" count="0" type="stmt"/>
-        <line num="6" count="0" type="cond" truecount="0" falsecount="2"/>
-        <line num="7" count="0" type="stmt"/>
-        <line num="11" count="12" type="stmt"/>
+        <line num="4" count="14" type="stmt"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="6" count="2" type="cond" truecount="2" falsecount="0"/>
+        <line num="7" count="1" type="stmt"/>
+        <line num="11" count="14" type="stmt"/>
         <line num="65" count="2" type="stmt"/>
       </file>
       <file name="TemplateCard.tsx" path="/Users/amadeus/.openclaw/workspace/projects/swift-template-gallery-main/src/components/TemplateCard.tsx">
         <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="9" count="1" type="stmt"/>
-        <line num="10" count="4" type="stmt"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="10" count="19" type="stmt"/>
       </file>
     </package>
     <package name="src.components.ui">
-      <metrics statements="1167" coveredstatements="61" conditionals="290" coveredconditionals="3" methods="226" coveredmethods="4"/>
+      <metrics statements="1167" coveredstatements="65" conditionals="290" coveredconditionals="3" methods="226" coveredmethods="8"/>
       <file name="accordion.tsx" path="/Users/amadeus/.openclaw/workspace/projects/swift-template-gallery-main/src/components/ui/accordion.tsx">
         <metrics statements="15" coveredstatements="0" conditionals="0" coveredconditionals="0" methods="3" coveredmethods="0"/>
         <line num="1" count="0" type="stmt"/>
@@ -312,8 +312,8 @@
         <line num="5" count="5" type="stmt"/>
         <line num="7" count="5" type="stmt"/>
         <line num="39" count="5" type="stmt"/>
-        <line num="41" count="86" type="cond" truecount="2" falsecount="0"/>
-        <line num="42" count="86" type="stmt"/>
+        <line num="41" count="149" type="cond" truecount="2" falsecount="0"/>
+        <line num="42" count="149" type="stmt"/>
         <line num="45" count="5" type="stmt"/>
         <line num="48" count="5" type="stmt"/>
       </file>
@@ -605,43 +605,43 @@
         <line num="177" count="0" type="stmt"/>
       </file>
       <file name="dialog.tsx" path="/Users/amadeus/.openclaw/workspace/projects/swift-template-gallery-main/src/components/ui/dialog.tsx">
-        <metrics statements="36" coveredstatements="30" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="0"/>
-        <line num="1" count="1" type="stmt"/>
-        <line num="2" count="1" type="stmt"/>
-        <line num="3" count="1" type="stmt"/>
-        <line num="5" count="1" type="stmt"/>
-        <line num="7" count="1" type="stmt"/>
-        <line num="9" count="1" type="stmt"/>
-        <line num="11" count="1" type="stmt"/>
-        <line num="13" count="1" type="stmt"/>
-        <line num="15" count="1" type="stmt"/>
-        <line num="19" count="0" type="stmt"/>
-        <line num="28" count="1" type="stmt"/>
-        <line num="30" count="1" type="stmt"/>
-        <line num="34" count="0" type="stmt"/>
-        <line num="52" count="1" type="stmt"/>
-        <line num="54" count="1" type="stmt"/>
-        <line num="55" count="0" type="stmt"/>
-        <line num="57" count="1" type="stmt"/>
-        <line num="59" count="1" type="stmt"/>
+        <metrics statements="36" coveredstatements="34" conditionals="0" coveredconditionals="0" methods="6" coveredmethods="4"/>
+        <line num="1" count="2" type="stmt"/>
+        <line num="2" count="2" type="stmt"/>
+        <line num="3" count="2" type="stmt"/>
+        <line num="5" count="2" type="stmt"/>
+        <line num="7" count="2" type="stmt"/>
+        <line num="9" count="2" type="stmt"/>
+        <line num="11" count="2" type="stmt"/>
+        <line num="13" count="2" type="stmt"/>
+        <line num="15" count="2" type="stmt"/>
+        <line num="19" count="12" type="stmt"/>
+        <line num="28" count="2" type="stmt"/>
+        <line num="30" count="2" type="stmt"/>
+        <line num="34" count="6" type="stmt"/>
+        <line num="52" count="2" type="stmt"/>
+        <line num="54" count="2" type="stmt"/>
+        <line num="55" count="6" type="stmt"/>
+        <line num="57" count="2" type="stmt"/>
+        <line num="59" count="2" type="stmt"/>
         <line num="60" count="0" type="stmt"/>
-        <line num="62" count="1" type="stmt"/>
-        <line num="64" count="1" type="stmt"/>
-        <line num="68" count="0" type="stmt"/>
-        <line num="74" count="1" type="stmt"/>
-        <line num="76" count="1" type="stmt"/>
+        <line num="62" count="2" type="stmt"/>
+        <line num="64" count="2" type="stmt"/>
+        <line num="68" count="6" type="stmt"/>
+        <line num="74" count="2" type="stmt"/>
+        <line num="76" count="2" type="stmt"/>
         <line num="80" count="0" type="stmt"/>
-        <line num="82" count="1" type="stmt"/>
-        <line num="85" count="1" type="stmt"/>
-        <line num="86" count="1" type="stmt"/>
-        <line num="87" count="1" type="stmt"/>
-        <line num="88" count="1" type="stmt"/>
-        <line num="89" count="1" type="stmt"/>
-        <line num="90" count="1" type="stmt"/>
-        <line num="91" count="1" type="stmt"/>
-        <line num="92" count="1" type="stmt"/>
-        <line num="93" count="1" type="stmt"/>
-        <line num="94" count="1" type="stmt"/>
+        <line num="82" count="2" type="stmt"/>
+        <line num="85" count="2" type="stmt"/>
+        <line num="86" count="2" type="stmt"/>
+        <line num="87" count="2" type="stmt"/>
+        <line num="88" count="2" type="stmt"/>
+        <line num="89" count="2" type="stmt"/>
+        <line num="90" count="2" type="stmt"/>
+        <line num="91" count="2" type="stmt"/>
+        <line num="92" count="2" type="stmt"/>
+        <line num="93" count="2" type="stmt"/>
+        <line num="94" count="2" type="stmt"/>
       </file>
       <file name="drawer.tsx" path="/Users/amadeus/.openclaw/workspace/projects/swift-template-gallery-main/src/components/ui/drawer.tsx">
         <metrics statements="37" coveredstatements="0" conditionals="1" coveredconditionals="0" methods="7" coveredmethods="0"/>
@@ -823,7 +823,7 @@
         <line num="1" count="2" type="stmt"/>
         <line num="3" count="2" type="stmt"/>
         <line num="5" count="2" type="stmt"/>
-        <line num="7" count="52" type="stmt"/>
+        <line num="7" count="104" type="stmt"/>
         <line num="20" count="2" type="stmt"/>
         <line num="22" count="2" type="stmt"/>
       </file>
@@ -835,7 +835,7 @@
         <line num="5" count="2" type="stmt"/>
         <line num="7" count="2" type="stmt"/>
         <line num="9" count="2" type="stmt"/>
-        <line num="13" count="65" type="stmt"/>
+        <line num="13" count="130" type="stmt"/>
         <line num="15" count="2" type="stmt"/>
         <line num="17" count="2" type="stmt"/>
       </file>
@@ -1377,7 +1377,7 @@
         <line num="1" count="2" type="stmt"/>
         <line num="3" count="2" type="stmt"/>
         <line num="7" count="2" type="stmt"/>
-        <line num="8" count="13" type="stmt"/>
+        <line num="8" count="26" type="stmt"/>
         <line num="19" count="2" type="stmt"/>
         <line num="21" count="2" type="stmt"/>
       </file>
@@ -1550,10 +1550,10 @@
       <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
       <file name="utils.ts" path="/Users/amadeus/.openclaw/workspace/projects/swift-template-gallery-main/src/lib/utils.ts">
         <metrics statements="4" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
-        <line num="1" count="7" type="stmt"/>
-        <line num="2" count="7" type="stmt"/>
-        <line num="4" count="7" type="stmt"/>
-        <line num="5" count="221" type="stmt"/>
+        <line num="1" count="8" type="stmt"/>
+        <line num="2" count="8" type="stmt"/>
+        <line num="4" count="8" type="stmt"/>
+        <line num="5" count="444" type="stmt"/>
       </file>
     </package>
     <package name="src.pages">
