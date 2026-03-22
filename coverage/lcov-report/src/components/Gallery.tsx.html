@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">87.5% </span>
+                <span class="strong">82.35% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>14/16</span>
+                <span class='fraction'>14/17</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">62.5% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>5/8</span>
+                <span class='fraction'>5/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">60% </span>
+                <span class="strong">50% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>3/5</span>
+                <span class='fraction'>3/6</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">87.5% </span>
+                <span class="strong">82.35% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>14/16</span>
+                <span class='fraction'>14/17</span>
             </div>
         
             
@@ -120,13 +120,15 @@
 <a name='L55'></a><a href='#L55'>55</a>
 <a name='L56'></a><a href='#L56'>56</a>
 <a name='L57'></a><a href='#L57'>57</a>
-<a name='L58'></a><a href='#L58'>58</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<a name='L58'></a><a href='#L58'>58</a>
+<a name='L59'></a><a href='#L59'>59</a></td><td class="line-coverage quiet"><span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -148,7 +150,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -179,6 +181,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import { useState } from "react";
 import templates from "@/lib/templates.json";
+import type { Template } from "@/types/template";
 import TemplateCard from "./TemplateCard";
 import GalleryFilters from "./GalleryFilters";
 import PreviewModal from "./PreviewModal";
@@ -189,10 +192,10 @@ export default function Gallery() {
     category: 'all',
     search: ''
   });
-  
-  const filteredTemplates = templates.filter(template =&gt; {
-    const matchesCategory = filters.category === 'all' || <span class="branch-1 cbranch-no" title="branch not covered" >template.category === filters.category;</span>
-    const matchesSearch = template.name.toLowerCase().includes(filters.search.toLowerCase());
+&nbsp;
+  const filteredTemplates = templates.filter((template: Template) =&gt; {
+    const matchesCategory = filters.category === 'all' || <span class="branch-1 cbranch-no" title="branch not covered" >template.industry === filters.category;</span>
+    const matchesSearch = template.title.toLowerCase().includes(filters.search.toLowerCase());
     return matchesCategory &amp;&amp; matchesSearch;
   });
 &nbsp;
@@ -204,13 +207,13 @@ export default function Gallery() {
       &lt;/div&gt;
 &nbsp;
       {selectedTemplate &amp;&amp; (
-<span class="branch-1 cbranch-no" title="branch not covered" >        &lt;PreviewModal </span>
-          templateId={selectedTemplate}
+<span class="branch-1 cbranch-no" title="branch not covered" >        &lt;PreviewModal</span>
+          template={templates.find(<span class="fstat-no" title="function not covered" >(t</span>: Template) =&gt; <span class="cstat-no" title="statement not covered" >t.id === selectedTemplate)</span> || null}
           onClose={<span class="fstat-no" title="function not covered" >() =</span>&gt; <span class="cstat-no" title="statement not covered" >setSelectedTemplate(null)}</span>
         /&gt;
       )}
 &nbsp;
-      &lt;GalleryFilters 
+      &lt;GalleryFilters
         filters={filters}
         setFilters={setFilters}
         totalTemplates={templates.length}
@@ -241,7 +244,7 @@ export default function Gallery() {
             <div class='footer quiet pad2 space-top1 center small'>
                 Code coverage generated by
                 <a href="https://istanbul.js.org/" target="_blank" rel="noopener noreferrer">istanbul</a>
-                at 2026-03-14T18:48:07.545Z
+                at 2026-03-22T05:26:05.898Z
             </div>
         <script src="../../prettify.js"></script>
         <script>
