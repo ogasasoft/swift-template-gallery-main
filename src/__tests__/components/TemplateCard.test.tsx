@@ -31,14 +31,15 @@ describe("TemplateCard", () => {
   });
 
   it("calls onClick when card is clicked", () => {
-    render(
+    mockOnClick.mockClear();
+    const { container } = render(
       <TemplateCard
         template={mockTemplate}
         onClick={mockOnClick}
       />
     );
 
-    const card = screen.getByRole("button").closest("div");
+    const card = container.firstChild as HTMLElement;
     fireEvent.click(card!);
     expect(mockOnClick).toHaveBeenCalledTimes(1);
   });

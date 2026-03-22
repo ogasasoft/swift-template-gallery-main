@@ -1,8 +1,12 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 import Pricing from '@/components/Pricing';
 
 describe('Pricing Component', () => {
+  beforeEach(() => {
+    Element.prototype.scrollIntoView = jest.fn();
+  });
+
   it('should render the pricing section title', () => {
     render(<Pricing />);
     const title = screen.getByText(/pricing/i);
@@ -39,5 +43,25 @@ describe('Pricing Component', () => {
     render(<Pricing />);
     const section = screen.getByRole('region', { name: /pricing/i });
     expect(section).toBeInTheDocument();
+  });
+
+  it('should scroll to contact section when Request a Quote button is clicked', () => {
+    const mockElement = document.createElement('div');
+    jest.spyOn(document, 'getElementById').mockReturnValue(mockElement);
+
+    render(<Pricing />);
+    const button = screen.getByRole('button', { name: /request a quote/i });
+    fireEvent.click(button);
+
+    expect(document.getElementById).toHaveBeenCalledWith('contact');
+    expect(mockElement.scrollIntoView).toHaveBeenCalledWith({ behavior: 'smooth' });
+  });
+
+  it('should handle scrollToContact when contact element does not exist', () => {
+    jest.spyOn(document, 'getElementById').mockReturnValue(null);
+
+    render(<Pricing />);
+    const button = screen.getByRole('button', { name: /request a quote/i });
+    expect(() => fireEvent.click(button)).not.toThrow();
   });
 });

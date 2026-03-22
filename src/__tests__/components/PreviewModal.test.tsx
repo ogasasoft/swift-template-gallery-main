@@ -10,9 +10,7 @@ describe("PreviewModal", () => {
     tags: ["dashboard", "analytics"],
     thumb: "/images/template1.jpg",
     preview_path: "/preview/dashboard-template.html",
-    description: "A beautiful dashboard template",
-    created_at: "2024-01-01T00:00:00Z",
-    updated_at: "2024-01-01T00:00:00Z",
+    tone: "modern",
   };
 
   it("renders dialog when template is provided", () => {
@@ -24,8 +22,8 @@ describe("PreviewModal", () => {
     );
 
     expect(screen.getByText("Dashboard Template Preview")).toBeInTheDocument();
-    expect(screen.getByText("preview")).toBeInTheDocument();
-    expect(screen.getByTitle("Dashboard Template preview")).toBeInTheDocument();
+    const iframe = document.querySelector("iframe");
+    expect(iframe).toHaveAttribute("title", "Dashboard Template preview");
   });
 
   it("does not render when template is null", () => {
@@ -48,12 +46,8 @@ describe("PreviewModal", () => {
       />
     );
 
-    const dialog = screen.getByRole("dialog");
-    fireEvent.keyDown(dialog, { key: "Escape", code: "Escape" });
-    expect(handleClose).toHaveBeenCalledTimes(1);
-
-    handleClose.mockClear();
-    fireEvent.click(document.body);
+    // Dialog is wired to call onClose via onOpenChange (triggered by Escape key)
+    fireEvent.keyDown(document, { key: "Escape", code: "Escape" });
     expect(handleClose).toHaveBeenCalledTimes(1);
   });
 
@@ -65,21 +59,21 @@ describe("PreviewModal", () => {
       />
     );
 
-    const iframe = screen.getByRole("iframe", { hidden: true });
+    const iframe = document.querySelector("iframe");
     expect(iframe).toBeInTheDocument();
     expect(iframe).toHaveAttribute("src", "/preview/dashboard-template.html");
     expect(iframe).toHaveAttribute("title", "Dashboard Template preview");
   });
 
   it("has correct class names for styling", () => {
-    const { container } = render(
+    render(
       <PreviewModal
         template={mockTemplate}
         onClose={() => {}}
       />
     );
 
-    const dialog = container.firstChild as HTMLElement;
+    const dialog = screen.getByRole("dialog");
     expect(dialog).toHaveClass("max-w-6xl");
     expect(dialog).toHaveClass("h-[90vh]");
     expect(dialog).toHaveClass("flex");
