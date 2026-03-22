@@ -139,15 +139,12 @@ The following components are tested:
 
 #### Components
 - **Gallery**: src/components/Gallery.tsx — Template gallery with filtering and search
-- **GalleryFilters**: src/components/GalleryFilters.tsx — Category and search filters
-- **TemplateCard**: src/components/TemplateCard.tsx — Individual template card component
-- **PreviewModal**: src/components/PreviewModal.tsx — Live template preview modal
+- **Pricing**: src/components/Pricing.tsx — Pricing section
+- **Contact**: src/components/Contact.tsx — Contact form section
 - **Header**: src/components/Header.tsx — Navigation header
 - **Footer**: src/components/Footer.tsx — Footer component
 - **Hero**: src/components/Hero.tsx — Hero section
 - **NavLink**: src/components/NavLink.tsx — Navigation link component
-- **Pricing**: src/components/Pricing.tsx — Pricing section
-- **Contact**: src/components/Contact.tsx — Contact form section
 
 #### Pages
 - **Index**: src/pages/Index.tsx — Home page
