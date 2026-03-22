@@ -17,7 +17,11 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import type { FilterState } from "@/lib/types";
+import { groupTagsByCategory, TAG_CATEGORY_CONFIG } from "@/lib/tagDefinitions";
+import { cn } from "@/lib/utils";
+import type { FilterState, TagCategory } from "@/lib/types";
+
+const TAG_CATEGORIES: TagCategory[] = ["industry", "tone", "style", "feature"];
 
 interface GalleryFiltersProps {
   filters: FilterState;
@@ -235,25 +239,49 @@ export default function GalleryFilters({
                   )}
                 </AccordionTrigger>
                 <AccordionContent>
-                  <ToggleGroup
-                    type="multiple"
-                    value={filters.tags}
-                    onValueChange={(values) =>
-                      setFilters({ ...filters, tags: values })
-                    }
-                    className="flex-wrap justify-start gap-2 pt-1"
-                  >
-                    {allTags.map((tag) => (
-                      <ToggleGroupItem
-                        key={tag}
-                        value={tag}
-                        size="sm"
-                        className="rounded-full px-3 py-1 text-xs h-auto data-[state=on]:bg-primary data-[state=on]:text-primary-foreground"
-                      >
-                        {tag}
-                      </ToggleGroupItem>
-                    ))}
-                  </ToggleGroup>
+                  {(() => {
+                    const grouped = groupTagsByCategory(allTags);
+                    return (
+                      <div className="space-y-3 pt-1">
+                        {TAG_CATEGORIES.map((category) => {
+                          const categoryTags = grouped[category];
+                          if (categoryTags.length === 0) return null;
+                          const { label, colorClass } =
+                            TAG_CATEGORY_CONFIG[category];
+                          return (
+                            <div key={category}>
+                              <p className="text-xs text-muted-foreground mb-1.5 font-medium">
+                                {label}
+                              </p>
+                              <ToggleGroup
+                                type="multiple"
+                                value={filters.tags}
+                                onValueChange={(values) =>
+                                  setFilters({ ...filters, tags: values })
+                                }
+                                className="flex-wrap justify-start gap-1.5"
+                              >
+                                {categoryTags.map((tag) => (
+                                  <ToggleGroupItem
+                                    key={tag}
+                                    value={tag}
+                                    size="sm"
+                                    className={cn(
+                                      "rounded-full px-3 py-1 text-xs h-auto border transition-colors",
+                                      colorClass,
+                                      "data-[state=on]:bg-primary data-[state=on]:text-primary-foreground data-[state=on]:border-primary",
+                                    )}
+                                  >
+                                    {tag}
+                                  </ToggleGroupItem>
+                                ))}
+                              </ToggleGroup>
+                            </div>
+                          );
+                        })}
+                      </div>
+                    );
+                  })()}
                 </AccordionContent>
               </AccordionItem>
             </Accordion>

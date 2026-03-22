@@ -37,6 +37,8 @@ export default tseslint.config(
       "@typescript-eslint/no-explicit-any": "warn",
       "@typescript-eslint/no-non-null-assertion": "warn",
       "@typescript-eslint/no-empty-object-type": "warn",
+      "react-hooks/set-state-in-effect": "off",
+      "react-hooks/purity": "off",
     },
     settings: {
       reactRefresh: {

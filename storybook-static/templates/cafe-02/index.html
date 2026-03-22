@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cafe Noir - Luxury Coffee Experience</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --gold: #c9a962;
+      --gold-light: #e4d5a8;
+      --black: #1a1a1a;
+      --dark: #2d2d2d;
+      --white: #fafafa;
+    }
+
+    body {
+      font-family: 'Lato', sans-serif;
+      background-color: var(--black);
+      color: var(--white);
+      line-height: 1.6;
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 1.5rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
+      z-index: 100;
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: var(--gold);
+      letter-spacing: 3px;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 2.5rem;
+    }
+
+    nav a {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--gold);
+    }
+
+    /* Hero */
+    .hero {
+      height: 100vh;
+      background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)),
+                  url('https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=1920') center/cover;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 0 5%;
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 4rem;
+      font-weight: 400;
+      letter-spacing: 8px;
+      margin-bottom: 1rem;
+    }
+
+    .hero .tagline {
+      font-size: 1.1rem;
+      letter-spacing: 4px;
+      color: var(--gold-light);
+      margin-bottom: 2.5rem;
+    }
+
+    .btn {
+      padding: 1rem 3rem;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      text-decoration: none;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      transition: all 0.3s;
+    }
+
+    .btn:hover {
+      background: var(--gold);
+      color: var(--black);
+    }
+
+    /* About */
+    .about {
+      padding: 8rem 10%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+
+    .about img {
+      width: 100%;
+      height: 500px;
+      object-fit: cover;
+    }
+
+    .about-content h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      font-weight: 400;
+      margin-bottom: 1.5rem;
+      color: var(--gold);
+    }
+
+    .about-content p {
+      color: #999;
+      font-weight: 300;
+      line-height: 2;
+    }
+
+    .divider {
+      width: 60px;
+      height: 1px;
+      background: var(--gold);
+      margin: 2rem 0;
+    }
+
+    /* Menu */
+    .menu {
+      padding: 8rem 10%;
+      background: var(--dark);
+      text-align: center;
+    }
+
+    .menu h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      margin-bottom: 3rem;
+      color: var(--gold);
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .menu-item {
+      padding: 2rem;
+      border: 1px solid #444;
+      transition: border-color 0.3s;
+    }
+
+    .menu-item:hover {
+      border-color: var(--gold);
+    }
+
+    .menu-item h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .menu-item .price {
+      color: var(--gold);
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+    }
+
+    .menu-item p {
+      color: #888;
+      font-size: 0.9rem;
+      font-weight: 300;
+    }
+
+    /* Contact */
+    .contact {
+      padding: 8rem 10%;
+      text-align: center;
+    }
+
+    .contact h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--gold);
+    }
+
+    .contact p {
+      color: #888;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Footer */
+    footer {
+      padding: 2rem;
+      text-align: center;
+      border-top: 1px solid #333;
+      color: #666;
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.5rem; }
+      .about { grid-template-columns: 1fr; }
+      .menu-grid { grid-template-columns: 1fr; }
+      nav ul { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">CAFE NOIR</div>
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <h1>CAFE NOIR</h1>
+    <p class="tagline">A Luxury Coffee Experience</p>
+    <a href="#menu" class="btn">Explore Menu</a>
+  </section>
+
+  <section class="about" id="about">
+    <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=800" alt="Coffee beans">
+    <div class="about-content">
+      <h2>Our Philosophy</h2>
+      <div class="divider"></div>
+      <p>
+        At Cafe Noir, we believe that exceptional coffee is an art form.
+        Each cup is crafted with precision, using only the finest single-origin beans
+        sourced from the world's most prestigious estates. Our master baristas bring
+        decades of expertise to every pour, creating moments of pure indulgence.
+      </p>
+    </div>
+  </section>
+
+  <section class="menu" id="menu">
+    <h2>Signature Collection</h2>
+    <div class="menu-grid">
+      <div class="menu-item">
+        <h3>Ethiopian Yirgacheffe</h3>
+        <p class="price">¥850</p>
+        <p>Delicate floral notes with hints of bergamot and honey</p>
+      </div>
+      <div class="menu-item">
+        <h3>Panama Geisha</h3>
+        <p class="price">¥1,200</p>
+        <p>Rare and exquisite with jasmine and tropical fruit essence</p>
+      </div>
+      <div class="menu-item">
+        <h3>Jamaica Blue Mountain</h3>
+        <p class="price">¥980</p>
+        <p>Smooth, balanced perfection with sweet chocolate undertones</p>
+      </div>
+      <div class="menu-item">
+        <h3>Kopi Luwak Reserve</h3>
+        <p class="price">¥2,500</p>
+        <p>The world's most exclusive coffee experience</p>
+      </div>
+      <div class="menu-item">
+        <h3>Noir Signature Blend</h3>
+        <p class="price">¥780</p>
+        <p>Our house creation, rich and velvety</p>
+      </div>
+      <div class="menu-item">
+        <h3>Affogato Royale</h3>
+        <p class="price">¥1,100</p>
+        <p>Espresso meets artisan gelato</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <h2>Visit Us</h2>
+    <div class="divider" style="margin: 1.5rem auto;"></div>
+    <p>Tokyo, Minato-ku, Roppongi 1-2-3</p>
+    <p>Open Daily: 10:00 - 22:00</p>
+    <p style="color: var(--gold); margin-top: 1rem;">03-1234-5678</p>
+  </section>
+
+  <footer>
+    <p>&copy; 2024 Cafe Noir. All rights reserved.</p>
+  </footer>
+</body>
+</html>

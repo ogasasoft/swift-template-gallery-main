@@ -1,3 +1,11 @@
+export type TagCategory = "industry" | "tone" | "style" | "feature";
+
+export interface TagDefinition {
+  id: string;
+  label: string;
+  category: TagCategory;
+}
+
 export interface Template {
   id: string;
   title: string;

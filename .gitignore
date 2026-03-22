@@ -32,3 +32,5 @@ public/templates
 # Test coverage
 coverage/
 *.lcov
+
+*storybook.log

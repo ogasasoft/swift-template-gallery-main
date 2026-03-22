@@ -134,4 +134,13 @@ describe("Gallery Component", () => {
     expect(screen.getByText(/1/)).toBeInTheDocument();
     expect(screen.getByText(/3 件のテンプレートを表示/)).toBeInTheDocument();
   });
+
+  describe("Pagination Integration", () => {
+    it("should not show pagination when templates fit on one page", () => {
+      renderWithRouter(<Gallery />);
+      expect(
+        screen.queryByRole("navigation", { name: "ページネーション" }),
+      ).not.toBeInTheDocument();
+    });
+  });
 });

@@ -1,0 +1,203 @@
+{
+  "v": 5,
+  "entries": {
+    "configure-your-project--docs": {
+      "id": "configure-your-project--docs",
+      "title": "Configure your project",
+      "name": "Docs",
+      "importPath": "./src/stories/Configure.mdx",
+      "storiesImports": [],
+      "type": "docs",
+      "tags": ["dev", "test", "unattached-mdx"]
+    },
+    "example-button--docs": {
+      "id": "example-button--docs",
+      "title": "Example/Button",
+      "name": "Docs",
+      "importPath": "./src/stories/Button.stories.ts",
+      "type": "docs",
+      "tags": ["dev", "test", "autodocs"],
+      "storiesImports": []
+    },
+    "example-button--primary": {
+      "type": "story",
+      "id": "example-button--primary",
+      "name": "Primary",
+      "title": "Example/Button",
+      "importPath": "./src/stories/Button.stories.ts",
+      "componentPath": "./src/stories/Button.tsx",
+      "tags": ["dev", "test", "autodocs"]
+    },
+    "example-button--secondary": {
+      "type": "story",
+      "id": "example-button--secondary",
+      "name": "Secondary",
+      "title": "Example/Button",
+      "importPath": "./src/stories/Button.stories.ts",
+      "componentPath": "./src/stories/Button.tsx",
+      "tags": ["dev", "test", "autodocs"]
+    },
+    "example-button--large": {
+      "type": "story",
+      "id": "example-button--large",
+      "name": "Large",
+      "title": "Example/Button",
+      "importPath": "./src/stories/Button.stories.ts",
+      "componentPath": "./src/stories/Button.tsx",
+      "tags": ["dev", "test", "autodocs"]
+    },
+    "example-button--small": {
+      "type": "story",
+      "id": "example-button--small",
+      "name": "Small",
+      "title": "Example/Button",
+      "importPath": "./src/stories/Button.stories.ts",
+      "componentPath": "./src/stories/Button.tsx",
+      "tags": ["dev", "test", "autodocs"]
+    },
+    "example-header--docs": {
+      "id": "example-header--docs",
+      "title": "Example/Header",
+      "name": "Docs",
+      "importPath": "./src/stories/Header.stories.ts",
+      "type": "docs",
+      "tags": ["dev", "test", "autodocs"],
+      "storiesImports": []
+    },
+    "example-header--logged-in": {
+      "type": "story",
+      "id": "example-header--logged-in",
+      "name": "Logged In",
+      "title": "Example/Header",
+      "importPath": "./src/stories/Header.stories.ts",
+      "componentPath": "./src/stories/Header.tsx",
+      "tags": ["dev", "test", "autodocs"]
+    },
+    "example-header--logged-out": {
+      "type": "story",
+      "id": "example-header--logged-out",
+      "name": "Logged Out",
+      "title": "Example/Header",
+      "importPath": "./src/stories/Header.stories.ts",
+      "componentPath": "./src/stories/Header.tsx",
+      "tags": ["dev", "test", "autodocs"]
+    },
+    "example-page--logged-out": {
+      "type": "story",
+      "id": "example-page--logged-out",
+      "name": "Logged Out",
+      "title": "Example/Page",
+      "importPath": "./src/stories/Page.stories.ts",
+      "componentPath": "./src/stories/Page.tsx",
+      "tags": ["dev", "test"]
+    },
+    "example-page--logged-in": {
+      "type": "story",
+      "id": "example-page--logged-in",
+      "name": "Logged In",
+      "title": "Example/Page",
+      "importPath": "./src/stories/Page.stories.ts",
+      "componentPath": "./src/stories/Page.tsx",
+      "tags": ["dev", "test", "play-fn"]
+    },
+    "components-pagination--docs": {
+      "id": "components-pagination--docs",
+      "title": "Components/Pagination",
+      "name": "Docs",
+      "importPath": "./src/stories/Pagination.stories.tsx",
+      "type": "docs",
+      "tags": ["dev", "test", "autodocs"],
+      "storiesImports": []
+    },
+    "components-pagination--default": {
+      "type": "story",
+      "id": "components-pagination--default",
+      "name": "Default",
+      "title": "Components/Pagination",
+      "importPath": "./src/stories/Pagination.stories.tsx",
+      "componentPath": "./src/components/Pagination.tsx",
+      "tags": ["dev", "test", "autodocs"]
+    },
+    "components-pagination--page-1-of-5": {
+      "type": "story",
+      "id": "components-pagination--page-1-of-5",
+      "name": "1/5ページ（先頭）",
+      "title": "Components/Pagination",
+      "importPath": "./src/stories/Pagination.stories.tsx",
+      "componentPath": "./src/components/Pagination.tsx",
+      "tags": ["dev", "test", "autodocs"]
+    },
+    "components-pagination--page-3-of-5": {
+      "type": "story",
+      "id": "components-pagination--page-3-of-5",
+      "name": "3/5ページ（中間）",
+      "title": "Components/Pagination",
+      "importPath": "./src/stories/Pagination.stories.tsx",
+      "componentPath": "./src/components/Pagination.tsx",
+      "tags": ["dev", "test", "autodocs"]
+    },
+    "components-pagination--page-5-of-5": {
+      "type": "story",
+      "id": "components-pagination--page-5-of-5",
+      "name": "5/5ページ（末尾）",
+      "title": "Components/Pagination",
+      "importPath": "./src/stories/Pagination.stories.tsx",
+      "componentPath": "./src/components/Pagination.tsx",
+      "tags": ["dev", "test", "autodocs"]
+    },
+    "components-pagination--seven-pages": {
+      "type": "story",
+      "id": "components-pagination--seven-pages",
+      "name": "全7ページ（省略なし上限）",
+      "title": "Components/Pagination",
+      "importPath": "./src/stories/Pagination.stories.tsx",
+      "componentPath": "./src/components/Pagination.tsx",
+      "tags": ["dev", "test", "autodocs"]
+    },
+    "components-pagination--ten-pages-near-start": {
+      "type": "story",
+      "id": "components-pagination--ten-pages-near-start",
+      "name": "10ページ / 先頭付近（2ページ目）",
+      "title": "Components/Pagination",
+      "importPath": "./src/stories/Pagination.stories.tsx",
+      "componentPath": "./src/components/Pagination.tsx",
+      "tags": ["dev", "test", "autodocs"]
+    },
+    "components-pagination--ten-pages-middle": {
+      "type": "story",
+      "id": "components-pagination--ten-pages-middle",
+      "name": "10ページ / 中間（5ページ目）",
+      "title": "Components/Pagination",
+      "importPath": "./src/stories/Pagination.stories.tsx",
+      "componentPath": "./src/components/Pagination.tsx",
+      "tags": ["dev", "test", "autodocs"]
+    },
+    "components-pagination--ten-pages-near-end": {
+      "type": "story",
+      "id": "components-pagination--ten-pages-near-end",
+      "name": "10ページ / 末尾付近（9ページ目）",
+      "title": "Components/Pagination",
+      "importPath": "./src/stories/Pagination.stories.tsx",
+      "componentPath": "./src/components/Pagination.tsx",
+      "tags": ["dev", "test", "autodocs"]
+    },
+    "components-pagination--fifteen-pages-middle": {
+      "type": "story",
+      "id": "components-pagination--fifteen-pages-middle",
+      "name": "15ページ / 中間（8ページ目）",
+      "title": "Components/Pagination",
+      "importPath": "./src/stories/Pagination.stories.tsx",
+      "componentPath": "./src/components/Pagination.tsx",
+      "tags": ["dev", "test", "autodocs"]
+    },
+    "components-pagination--interactive": {
+      "type": "story",
+      "id": "components-pagination--interactive",
+      "name": "インタラクティブデモ（10ページ）",
+      "title": "Components/Pagination",
+      "importPath": "./src/stories/Pagination.stories.tsx",
+      "componentPath": "./src/components/Pagination.tsx",
+      "tags": ["dev", "test", "autodocs"]
+    }
+  }
+}

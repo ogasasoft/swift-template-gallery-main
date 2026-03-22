@@ -1,10 +1,13 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import templatesData from "@/lib/templates.json";
 import TemplateCard from "./TemplateCard";
 import GalleryFilters from "./GalleryFilters";
 import PreviewModal from "./PreviewModal";
+import Pagination from "./Pagination";
 import { useToast } from "@/hooks/use-toast";
 import type { Template, FilterState } from "@/lib/types";
+
+const ITEMS_PER_PAGE = 9;
 
 const templates = templatesData as Template[];
 
@@ -27,6 +30,7 @@ export default function Gallery() {
     style: [],
     search: "",
   });
+  const [currentPage, setCurrentPage] = useState(1);
 
   const filteredTemplates = useMemo(() => {
     try {
@@ -61,6 +65,17 @@ export default function Gallery() {
       return templates;
     }
   }, [filters, toast]);
+
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [filters]);
+
+  const totalPages = Math.ceil(filteredTemplates.length / ITEMS_PER_PAGE);
+
+  const paginatedTemplates = useMemo(() => {
+    const start = (currentPage - 1) * ITEMS_PER_PAGE;
+    return filteredTemplates.slice(start, start + ITEMS_PER_PAGE);
+  }, [filteredTemplates, currentPage]);
 
   const handleOpenTemplate = (template: Template) => {
     if (!template.preview_path) {
@@ -121,17 +136,37 @@ export default function Gallery() {
             </p>
           </div>
         ) : (
-          filteredTemplates.map((template) => (
+          paginatedTemplates.map((template) => (
             <TemplateCard
               key={template.id}
               template={template}
               onClick={() => handleOpenTemplate(template)}
               onTagClick={handleTagClick}
               selectedTags={filters.tags}
+              onTagUpdate={(templateId, updatedTags) => {
+                const index = templates.findIndex((t) => t.id === templateId);
+                if (index !== -1) {
+                  templates[index].tags = updatedTags;
+                }
+                toast({
+                  title: "タグを更新しました",
+                  description: `「${template.title}」のタグが変更されました（ローカルのみ）`,
+                });
+              }}
             />
           ))
         )}
       </div>
+
+      {totalPages > 1 && (
+        <div className="mt-8">
+          <Pagination
+            currentPage={currentPage}
+            totalPages={totalPages}
+            onPageChange={setCurrentPage}
+          />
+        </div>
+      )}
     </section>
   );
 }

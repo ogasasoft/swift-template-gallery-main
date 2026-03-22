@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>HAPPY BEANS - Fun & Colorful Cafe</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --pink: #ff6b9d;
+      --yellow: #ffd93d;
+      --mint: #6bcb77;
+      --blue: #4d96ff;
+      --purple: #9b59b6;
+      --orange: #ff8c42;
+      --white: #ffffff;
+      --dark: #2d3436;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background-color: #fff9f0;
+      color: var(--dark);
+      overflow-x: hidden;
+    }
+
+    /* Header */
+    header {
+      background: var(--white);
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .logo {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2rem;
+      background: linear-gradient(135deg, var(--pink), var(--orange), var(--yellow));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    nav a {
+      color: var(--dark);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 1rem;
+      padding: 0.5rem 1rem;
+      border-radius: 25px;
+      transition: all 0.3s;
+    }
+
+    nav a:hover {
+      background: var(--yellow);
+      transform: scale(1.05);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 4rem 5%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 80vh;
+      background: linear-gradient(135deg, #fff9f0 0%, #ffe8f5 100%);
+      position: relative;
+    }
+
+    .hero-content {
+      flex: 1;
+      max-width: 550px;
+    }
+
+    .hero h1 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 3.5rem;
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 .highlight {
+      color: var(--pink);
+    }
+
+    .hero p {
+      font-size: 1.2rem;
+      color: #666;
+      margin-bottom: 2rem;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: linear-gradient(135deg, var(--pink), var(--orange));
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      box-shadow: 0 8px 25px rgba(255, 107, 157, 0.4);
+      transition: all 0.3s;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 35px rgba(255, 107, 157, 0.5);
+    }
+
+    .hero-image {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+    }
+
+    .hero-image img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 30px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+    }
+
+    /* Floating shapes */
+    .shapes {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .shape {
+      position: absolute;
+      border-radius: 50%;
+      animation: float 6s ease-in-out infinite;
+    }
+
+    .shape-1 { width: 80px; height: 80px; background: var(--yellow); top: 10%; left: 5%; animation-delay: 0s; }
+    .shape-2 { width: 60px; height: 60px; background: var(--mint); top: 60%; left: 10%; animation-delay: 1s; }
+    .shape-3 { width: 100px; height: 100px; background: var(--blue); opacity: 0.5; top: 20%; right: 5%; animation-delay: 2s; }
+    .shape-4 { width: 50px; height: 50px; background: var(--pink); bottom: 20%; right: 15%; animation-delay: 1.5s; }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(10deg); }
+    }
+
+    /* Menu Section */
+    .menu {
+      padding: 5rem 5%;
+      background: var(--white);
+    }
+
+    .menu h2 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 3rem;
+      color: var(--purple);
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .menu-card {
+      background: #fff9f0;
+      border-radius: 25px;
+      padding: 2rem;
+      text-align: center;
+      transition: all 0.3s;
+      border: 3px solid transparent;
+    }
+
+    .menu-card:hover {
+      transform: translateY(-10px);
+      border-color: var(--yellow);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+    }
+
+    .menu-card .emoji {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+    }
+
+    .menu-card h3 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+      color: var(--dark);
+    }
+
+    .menu-card .price {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--pink);
+      margin-bottom: 0.5rem;
+    }
+
+    .menu-card p {
+      color: #888;
+      font-size: 0.95rem;
+    }
+
+    /* Features */
+    .features {
+      padding: 5rem 5%;
+      background: linear-gradient(135deg, var(--mint), var(--blue));
+      color: white;
+    }
+
+    .features h2 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .feature {
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .feature .icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .feature h3 {
+      font-size: 1.3rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* Contact */
+    .contact {
+      padding: 5rem 5%;
+      text-align: center;
+      background: var(--white);
+    }
+
+    .contact h2 {
+      font-family: 'Fredoka One', cursive;
+      font-size: 2.5rem;
+      color: var(--orange);
+      margin-bottom: 1.5rem;
+    }
+
+    .contact-info {
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+    }
+
+    .contact-item {
+      background: #fff9f0;
+      padding: 1.5rem 2.5rem;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .contact-item .icon {
+      font-size: 2rem;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--dark);
+      color: white;
+      text-align: center;
+      padding: 2rem;
+    }
+
+    footer .logo {
+      margin-bottom: 1rem;
+    }
+
+    @media (max-width: 768px) {
+      .hero { flex-direction: column; text-align: center; }
+      .hero h1 { font-size: 2.5rem; }
+      .hero-content { max-width: 100%; margin-bottom: 2rem; }
+      .features-grid { grid-template-columns: 1fr; }
+      nav ul { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">HAPPY BEANS</div>
+    <nav>
+      <ul>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#features">About</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="shapes">
+      <div class="shape shape-1"></div>
+      <div class="shape shape-2"></div>
+      <div class="shape shape-3"></div>
+      <div class="shape shape-4"></div>
+    </div>
+    <div class="hero-content">
+      <h1>Life is too short for <span class="highlight">boring coffee!</span></h1>
+      <p>Colorful drinks, happy vibes, and the best beans in town! Come join our coffee party!</p>
+      <a href="#menu" class="btn">See Our Menu</a>
+    </div>
+    <div class="hero-image">
+      <img src="https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=600" alt="Colorful coffee drinks">
+    </div>
+  </section>
+
+  <section class="menu" id="menu">
+    <h2>Yummy Menu</h2>
+    <div class="menu-grid">
+      <div class="menu-card">
+        <div class="emoji">&#9749;</div>
+        <h3>Rainbow Latte</h3>
+        <p class="price">¥580</p>
+        <p>Colorful layers of deliciousness!</p>
+      </div>
+      <div class="menu-card">
+        <div class="emoji">&#127849;</div>
+        <h3>Unicorn Frappe</h3>
+        <p class="price">¥680</p>
+        <p>Magical pink & blue swirls</p>
+      </div>
+      <div class="menu-card">
+        <div class="emoji">&#127856;</div>
+        <h3>Matcha Paradise</h3>
+        <p class="price">¥550</p>
+        <p>Creamy green tea goodness</p>
+      </div>
+      <div class="menu-card">
+        <div class="emoji">&#127851;</div>
+        <h3>Choco Bomb</h3>
+        <p class="price">¥620</p>
+        <p>Triple chocolate explosion!</p>
+      </div>
+      <div class="menu-card">
+        <div class="emoji">&#127815;</div>
+        <h3>Berry Blast</h3>
+        <p class="price">¥600</p>
+        <p>Fresh berries & cream</p>
+      </div>
+      <div class="menu-card">
+        <div class="emoji">&#127846;</div>
+        <h3>Caramel Cloud</h3>
+        <p class="price">¥560</p>
+        <p>Fluffy & sweet perfection</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="features" id="features">
+    <h2>Why Choose Us?</h2>
+    <div class="features-grid">
+      <div class="feature">
+        <div class="icon">&#127793;</div>
+        <h3>Fresh Beans</h3>
+        <p>Roasted daily for maximum flavor</p>
+      </div>
+      <div class="feature">
+        <div class="icon">&#128149;</div>
+        <h3>Made with Love</h3>
+        <p>Every drink crafted with care</p>
+      </div>
+      <div class="feature">
+        <div class="icon">&#127881;</div>
+        <h3>Fun Atmosphere</h3>
+        <p>Instagram-worthy everything!</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <h2>Come Visit Us!</h2>
+    <p>We can't wait to see your smile!</p>
+    <div class="contact-info">
+      <div class="contact-item">
+        <span class="icon">&#128205;</span>
+        <div>
+          <strong>Location</strong>
+          <p>Tokyo, Shibuya 4-5-6</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <span class="icon">&#128336;</span>
+        <div>
+          <strong>Hours</strong>
+          <p>9:00 - 21:00 Daily</p>
+        </div>
+      </div>
+      <div class="contact-item">
+        <span class="icon">&#128222;</span>
+        <div>
+          <strong>Call Us</strong>
+          <p>03-9876-5432</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="logo">HAPPY BEANS</div>
+    <p>&copy; 2024 Happy Beans Cafe. Spread the joy!</p>
+  </footer>
+</body>
+</html>

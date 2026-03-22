@@ -10,6 +10,7 @@ A modern template gallery for developers to discover and preview reusable React 
 ![Jest](https://img.shields.io/badge/Jest-30.2.0-9948F5.svg)
 ![ESLint](https://img.shields.io/badge/ESLint-9.32.0-4B32C3.svg)
 ![Vite](https://img.shields.io/badge/Vite-5.4.19-646CFF.svg)
+![Tests](https://img.shields.io/badge/Tests-203%20passed%201%20skipped-brightgreen.svg)
 
 ## 🌟 Features
 
@@ -21,7 +22,8 @@ A modern template gallery for developers to discover and preview reusable React 
 - 📱 **Responsive**: Mobile-first design
 - 🌙 **Dark Mode**: Automatic system preference detection with manual toggle
 - ⭐ **Review System**: User ratings and reviews with sentiment analysis
-- 🔬 **Comprehensive Tests**: 162 tests covering all components and pages
+- 📄 **Pagination**: Navigate large template collections with intuitive page controls
+- 🔬 **Comprehensive Tests**: 203 tests covering all components and pages
 - ✨ **TypeScript**: Full type safety with 100% coverage
 
 ## 🛠️ Tech Stack
@@ -80,8 +82,9 @@ swift-template-gallery-main/
 │   │   ├── Header.tsx      # Navigation header with theme toggle
 │   │   ├── Footer.tsx      # Footer component
 │   │   ├── Hero.tsx        # Hero section
-│   │   ├── Gallery.tsx     # Template gallery
+│   │   ├── Gallery.tsx     # Template gallery with pagination
 │   │   ├── GalleryFilters.tsx  # Gallery filtering
+│   │   ├── Pagination.tsx  # Reusable pagination component
 │   │   ├── TemplateCard.tsx  # Individual template card
 │   │   ├── PreviewModal.tsx  # Template preview modal
 │   │   ├── NavLink.tsx     # Navigation link component
@@ -116,7 +119,7 @@ npm run format:check     # Check code formatting without changes
 ### Quality & Testing
 
 ```bash
-npm test                 # Run all tests (162 tests)
+npm test                 # Run all tests (203 tests, 1 skipped)
 npm run test:coverage    # Run tests with coverage report
 npm run test:watch       # Run tests in watch mode
 npm run test:ci          # CI mode for GitHub Actions (maxWorkers=2)
@@ -139,7 +142,7 @@ This project maintains enterprise-grade quality standards:
 
 - **Zero TypeScript Errors**: Strict type checking with 100% type coverage
 - **Zero ESLint Errors**: Enforced via Husky pre-commit hooks
-- **162 Tests**: Comprehensive test suite covering all components, pages, and utilities
+- **203 Tests**: Comprehensive test suite covering all components, pages, and utilities
 - **Coverage**: 100% test coverage for critical paths
 - **Code Formatting**: Consistent style via Prettier
 
@@ -150,8 +153,8 @@ This project maintains enterprise-grade quality standards:
 npm run test:coverage
 
 # Expected output:
-# - Test Suites: 17 passed
-# - Tests: 162 passed, 1 skipped
+# - Test Suites: 19 passed
+# - Tests: 203 passed, 1 skipped
 # - Coverage: 100% for critical paths
 ```
 
@@ -162,6 +165,40 @@ All commits run automated quality checks via Husky:
 1. ESLint fixes (if applicable)
 2. Prettier formatting
 3. TypeScript validation
+
+## 📄 Pagination
+
+The `Pagination` component provides accessible, reusable page navigation built on shadcn-ui primitives.
+
+### Props
+
+| Prop           | Type                     | Description                       |
+| -------------- | ------------------------ | --------------------------------- |
+| `currentPage`  | `number`                 | Currently active page (1-indexed) |
+| `totalPages`   | `number`                 | Total number of pages             |
+| `onPageChange` | `(page: number) => void` | Callback fired when page changes  |
+
+### Behavior
+
+- Renders `null` when `totalPages <= 1` (no pagination needed)
+- Shows ellipsis (`...`) for large page counts to keep the UI compact
+- Always displays the first and last page
+- Previous/Next buttons are disabled and visually faded at the boundaries
+- Page window shows ±2 pages around the current page
+
+### Usage
+
+```tsx
+import Pagination from "@/components/Pagination";
+
+<Pagination
+  currentPage={currentPage}
+  totalPages={Math.ceil(items.length / ITEMS_PER_PAGE)}
+  onPageChange={setCurrentPage}
+/>;
+```
+
+The Gallery component displays **9 templates per page** and automatically resets to page 1 whenever filters change.
 
 ## 🎯 Technology Stack
 

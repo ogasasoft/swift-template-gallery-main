@@ -15,6 +15,22 @@ Object.defineProperty(window, 'matchMedia', {
   })),
 });
 
+// Mock TextEncoder for Node.js environment
+if (typeof TextEncoder === 'undefined') {
+  global.TextEncoder = class TextEncoder {
+    constructor() {
+      this.encoding = 'utf-8';
+    }
+    encode(input?: Uint8Array | string): Uint8Array {
+      if (input instanceof Uint8Array) {
+        return input;
+      }
+      const encoder = new TextEncoder();
+      return encoder.encode(input || '');
+    }
+  };
+}
+
 // Silence the React Router warnings
 const originalWarn = console.warn;
 console.warn = (...args) => {

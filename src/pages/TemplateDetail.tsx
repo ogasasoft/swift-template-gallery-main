@@ -6,7 +6,15 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import PreviewModal from "@/components/PreviewModal";
 import templatesData from "@/lib/templates.json";
-import type { Template } from "@/lib/types";
+import {
+  groupTagsByCategory,
+  TAG_CATEGORY_CONFIG,
+  getTagColorClass,
+} from "@/lib/tagDefinitions";
+import { cn } from "@/lib/utils";
+import type { Template, TagCategory } from "@/lib/types";
+
+const TAG_CATEGORIES: TagCategory[] = ["industry", "tone", "style", "feature"];
 
 const templates = templatesData as Template[];
 
@@ -82,15 +90,39 @@ export default function TemplateDetail() {
 
           {/* Tags */}
           <div>
-            <p className="text-sm font-medium text-muted-foreground mb-2">
+            <p className="text-sm font-medium text-muted-foreground mb-3">
               タグ
             </p>
-            <div className="flex flex-wrap gap-2">
-              {template.tags.map((tag) => (
-                <Badge key={tag} variant="secondary">
-                  {tag}
-                </Badge>
-              ))}
+            <div className="space-y-2">
+              {(() => {
+                const grouped = groupTagsByCategory(template.tags);
+                return TAG_CATEGORIES.map((category) => {
+                  const categoryTags = grouped[category];
+                  if (categoryTags.length === 0) return null;
+                  const { label } = TAG_CATEGORY_CONFIG[category];
+                  return (
+                    <div key={category} className="flex items-center gap-2">
+                      <span className="text-xs text-muted-foreground w-16 shrink-0">
+                        {label}
+                      </span>
+                      <div className="flex flex-wrap gap-1.5">
+                        {categoryTags.map((tag) => (
+                          <Badge
+                            key={tag}
+                            variant="outline"
+                            className={cn(
+                              "border text-xs",
+                              getTagColorClass(tag),
+                            )}
+                          >
+                            {tag}
+                          </Badge>
+                        ))}
+                      </div>
+                    </div>
+                  );
+                });
+              })()}
             </div>
           </div>
 

@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Green Leaf Cafe - Natural & Organic</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Open+Sans:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --green-dark: #2d5a41;
+      --green: #4a7c59;
+      --green-light: #8fb996;
+      --cream: #f5f1e8;
+      --brown: #8b7355;
+      --white: #ffffff;
+      --text: #3a3a3a;
+    }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      background-color: var(--cream);
+      color: var(--text);
+      line-height: 1.7;
+    }
+
+    /* Header */
+    header {
+      background: var(--white);
+      padding: 1rem 5%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-bottom: 2px solid var(--green-light);
+    }
+
+    .logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 600;
+      color: var(--green-dark);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo-icon {
+      font-size: 2rem;
+    }
+
+    nav ul {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    nav a {
+      color: var(--green-dark);
+      text-decoration: none;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--green);
+    }
+
+    /* Hero */
+    .hero {
+      min-height: 85vh;
+      background: linear-gradient(rgba(45, 90, 65, 0.3), rgba(45, 90, 65, 0.5)),
+                  url('https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=1920') center/cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: var(--white);
+    }
+
+    .hero-content {
+      max-width: 700px;
+      padding: 2rem;
+    }
+
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 3.5rem;
+      font-weight: 400;
+      margin-bottom: 1rem;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+    }
+
+    .hero p {
+      font-size: 1.1rem;
+      font-weight: 300;
+      margin-bottom: 2rem;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      background: var(--green);
+      color: var(--white);
+      text-decoration: none;
+      border-radius: 30px;
+      font-size: 0.9rem;
+      letter-spacing: 1px;
+      transition: all 0.3s;
+    }
+
+    .btn:hover {
+      background: var(--green-dark);
+      transform: translateY(-2px);
+    }
+
+    /* About */
+    .about {
+      padding: 6rem 5%;
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+
+    .about-image {
+      position: relative;
+    }
+
+    .about-image img {
+      width: 100%;
+      height: 400px;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+
+    .about-image::before {
+      content: '';
+      position: absolute;
+      top: -15px;
+      left: -15px;
+      width: 100%;
+      height: 100%;
+      border: 3px solid var(--green-light);
+      border-radius: 10px;
+      z-index: -1;
+    }
+
+    .about-content h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      color: var(--green-dark);
+      margin-bottom: 1.5rem;
+    }
+
+    .about-content p {
+      color: #666;
+      font-weight: 300;
+      margin-bottom: 1rem;
+    }
+
+    /* Values */
+    .values {
+      background: var(--green-dark);
+      color: var(--white);
+      padding: 5rem 5%;
+    }
+
+    .values h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+      max-width: 1000px;
+      margin: 0 auto;
+    }
+
+    .value-item {
+      text-align: center;
+      padding: 2rem;
+    }
+
+    .value-icon {
+      font-size: 3rem;
+      margin-bottom: 1rem;
+    }
+
+    .value-item h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .value-item p {
+      font-size: 0.9rem;
+      font-weight: 300;
+      opacity: 0.9;
+    }
+
+    /* Menu */
+    .menu {
+      padding: 6rem 5%;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .menu h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      color: var(--green-dark);
+      text-align: center;
+      margin-bottom: 3rem;
+    }
+
+    .menu-category {
+      margin-bottom: 3rem;
+    }
+
+    .menu-category h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.5rem;
+      color: var(--green);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--green-light);
+    }
+
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 0.8rem 0;
+      border-bottom: 1px dashed #ddd;
+    }
+
+    .menu-item-info h4 {
+      font-weight: 500;
+      margin-bottom: 0.2rem;
+    }
+
+    .menu-item-info span {
+      font-size: 0.85rem;
+      color: #888;
+    }
+
+    .menu-item-price {
+      color: var(--green-dark);
+      font-weight: 500;
+    }
+
+    /* Contact */
+    .contact {
+      background: var(--white);
+      padding: 5rem 5%;
+      text-align: center;
+    }
+
+    .contact h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      color: var(--green-dark);
+      margin-bottom: 2rem;
+    }
+
+    .contact-info {
+      display: flex;
+      justify-content: center;
+      gap: 4rem;
+      flex-wrap: wrap;
+    }
+
+    .contact-item {
+      text-align: center;
+    }
+
+    .contact-item .icon {
+      font-size: 2rem;
+      color: var(--green);
+      margin-bottom: 0.5rem;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--green-dark);
+      color: var(--white);
+      text-align: center;
+      padding: 2rem;
+    }
+
+    footer .logo {
+      color: var(--white);
+      margin-bottom: 0.5rem;
+    }
+
+    footer p {
+      font-size: 0.85rem;
+      opacity: 0.8;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.5rem; }
+      .about { grid-template-columns: 1fr; }
+      .values-grid { grid-template-columns: 1fr; }
+      nav ul { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="logo">
+      <span class="logo-icon">&#127807;</span>
+      Green Leaf Cafe
+    </div>
+    <nav>
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Nature in Every Sip</h1>
+      <p>100% organic ingredients, locally sourced, and prepared with love for you and our planet.</p>
+      <a href="#menu" class="btn">View Our Menu</a>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="about-image">
+      <img src="https://images.unsplash.com/photo-1442512595331-e89e73853f31?w=600" alt="Organic coffee">
+    </div>
+    <div class="about-content">
+      <h2>Our Story</h2>
+      <p>
+        Founded in 2018, Green Leaf Cafe was born from a simple belief: that what we consume should nourish both our bodies and our environment.
+      </p>
+      <p>
+        We partner with local organic farms and fair-trade suppliers to bring you the freshest, most sustainable ingredients. Every cup of coffee, every bite of pastry tells a story of conscious choices and mindful living.
+      </p>
+    </div>
+  </section>
+
+  <section class="values">
+    <h2>Our Values</h2>
+    <div class="values-grid">
+      <div class="value-item">
+        <div class="value-icon">&#127793;</div>
+        <h3>100% Organic</h3>
+        <p>All ingredients certified organic and pesticide-free</p>
+      </div>
+      <div class="value-item">
+        <div class="value-icon">&#127758;</div>
+        <h3>Eco-Friendly</h3>
+        <p>Zero-waste initiative and biodegradable packaging</p>
+      </div>
+      <div class="value-item">
+        <div class="value-icon">&#129309;</div>
+        <h3>Fair Trade</h3>
+        <p>Supporting farmers with ethical sourcing practices</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="menu" id="menu">
+    <h2>Our Menu</h2>
+    <div class="menu-category">
+      <h3>Organic Coffee</h3>
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <h4>House Blend</h4>
+          <span>Single origin Ethiopian beans</span>
+        </div>
+        <span class="menu-item-price">¥480</span>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <h4>Oat Milk Latte</h4>
+          <span>With homemade oat milk</span>
+        </div>
+        <span class="menu-item-price">¥580</span>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <h4>Matcha Latte</h4>
+          <span>Ceremonial grade matcha</span>
+        </div>
+        <span class="menu-item-price">¥620</span>
+      </div>
+    </div>
+    <div class="menu-category">
+      <h3>Healthy Bites</h3>
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <h4>Avocado Toast</h4>
+          <span>Sourdough, microgreens, seeds</span>
+        </div>
+        <span class="menu-item-price">¥850</span>
+      </div>
+      <div class="menu-item">
+        <div class="menu-item-info">
+          <h4>Acai Bowl</h4>
+          <span>Fresh fruits and granola</span>
+        </div>
+        <span class="menu-item-price">¥780</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <h2>Visit Us</h2>
+    <div class="contact-info">
+      <div class="contact-item">
+        <div class="icon">&#128205;</div>
+        <p>Tokyo, Meguro-ku<br>Jiyugaoka 2-3-4</p>
+      </div>
+      <div class="contact-item">
+        <div class="icon">&#128336;</div>
+        <p>8:00 - 18:00<br>Closed Mondays</p>
+      </div>
+      <div class="contact-item">
+        <div class="icon">&#128222;</div>
+        <p>03-5555-1234</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="logo">
+      <span class="logo-icon">&#127807;</span>
+      Green Leaf Cafe
+    </div>
+    <p>&copy; 2024 Green Leaf Cafe. Nurturing nature, one cup at a time.</p>
+  </footer>
+</body>
+</html>

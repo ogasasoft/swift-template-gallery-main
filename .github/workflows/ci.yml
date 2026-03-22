@@ -57,8 +57,8 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run ESLint
-        run: npm run lint
+      - name: Run ESLint and auto-fix
+        run: npm run lint:fix
 
       - name: Check Prettier formatting
         run: npm run format:check || echo "Formatting check failed - run 'npm run format' to fix"

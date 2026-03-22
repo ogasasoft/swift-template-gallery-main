@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { Moon, Sun } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
@@ -35,6 +35,14 @@ export function ThemeToggle() {
     localStorage.setItem("theme", theme);
   }, [theme, mounted]);
 
+  // Prevent hydration mismatch by using the same conditional logic everywhere
+  const isDark = useMemo(() => {
+    if (!mounted) return false;
+    return theme === "system"
+      ? window.matchMedia("(prefers-color-scheme: dark)").matches
+      : theme === "dark";
+  }, [theme, mounted]);
+
   if (!mounted) {
     return (
       <Button variant="outline" size="icon" disabled>
@@ -42,11 +50,6 @@ export function ThemeToggle() {
       </Button>
     );
   }
-
-  const isDark =
-    theme === "system"
-      ? window.matchMedia("(prefers-color-scheme: dark)").matches
-      : theme === "dark";
 
   return (
     <Button

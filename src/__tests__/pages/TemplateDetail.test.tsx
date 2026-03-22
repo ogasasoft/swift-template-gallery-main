@@ -52,9 +52,10 @@ describe("TemplateDetail Page", () => {
 
   it("should display meta labels", () => {
     renderWithRoute("cafe-01");
-    expect(screen.getByText("業種")).toBeInTheDocument();
-    expect(screen.getByText("トーン")).toBeInTheDocument();
-    expect(screen.getByText("スタイル")).toBeInTheDocument();
+    // Use getAllByText because labels appear in both meta section and tags section
+    expect(screen.getAllByText("業種")).toHaveLength(2);
+    expect(screen.getAllByText("トーン")).toHaveLength(2);
+    expect(screen.getAllByText("スタイル")).toHaveLength(2);
   });
 
   it("should display all tags as badges", () => {
