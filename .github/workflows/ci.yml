@@ -60,14 +60,46 @@ jobs:
       - name: Run ESLint and auto-fix
         run: npm run lint:fix
 
+      - name: Check for remaining linting issues
+        run: npm run lint || echo "Linting issues detected after auto-fix. Please review the output."
+
       - name: Check Prettier formatting
         run: npm run format:check || echo "Formatting check failed - run 'npm run format' to fix"
+
+  quality:
+    name: Quality Checks
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: [lint]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run quality check script
+        run: npm run quality
+
+      - name: Upload quality check artifacts
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: quality-check-report
+          path: coverage/quality-check*.txt || echo "No quality check report"
 
   test:
     name: Run Tests
     runs-on: ubuntu-latest
     timeout-minutes: 10
-    needs: [lint, typecheck]
+    needs: [lint, typecheck, quality]
 
     steps:
       - name: Checkout code
@@ -129,7 +161,7 @@ jobs:
   security-scan:
     name: Security Audit
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 10
     needs: [test]
 
     steps:
@@ -145,11 +177,17 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run npm audit
-        run: npm audit --audit-level=moderate || echo "Security vulnerabilities found. Review manually."
+      - name: Run npm audit (strict mode)
+        run: npm audit --audit-level=moderate
 
-      - name: Run nsp audit (optional, requires nsp package)
-        run: nsp audit || echo "nsp not installed, skipping"
+      - name: Run npm audit --production (only production dependencies)
+        run: npm audit --audit-level=moderate --production
+
+      - name: Run Snyk security scan (optional)
+        uses: snyk/actions/node@master
+        continue-on-error: true
+        env:
+          SNYK_TOKEN: ${{ secrets.SNYK_TOKEN }}
 
   # Deploy job (uncomment and configure for deployment)
   # deploy:

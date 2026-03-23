@@ -1,0 +1,26 @@
+version: 2
+updates:
+  # Maintain dependencies for npm
+  - package-ecosystem: "npm"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+      time: "09:00"
+      timezone: "Asia/Tokyo"
+    open-pull-requests-limit: 10
+    groups:
+      dev-dependencies:
+        patterns:
+          - "*"
+          - "@types/*"
+      testing:
+        patterns:
+          - "@testing-library/*"
+          - "@jest/*"
+          - "*-test*"
+      linting:
+        patterns:
+          - "*eslint*"
+          - "*prettier*"
+          - "*stylelint*"
