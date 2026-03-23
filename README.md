@@ -366,8 +366,8 @@ npm run test:coverage
 Expected output:
 
 ```
-Test Suites: 17 passed, 17 total
-Tests:       162 passed, 1 skipped, 163 total
+Test Suites: 19 passed, 19 total
+Tests:       203 passed, 1 skipped, 204 total
 Coverage:    Critical paths: 100%
 ```
 
