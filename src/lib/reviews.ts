@@ -28,7 +28,7 @@ const currentUserId = "current-user";
 // テスト用関数
 export const generateReview = (
   overrides?: Partial<TemplateReview>,
-  index?: number,
+  index: number = 0,
 ): TemplateReview => ({
   id: `test-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
   templateId:

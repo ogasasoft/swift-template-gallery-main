@@ -114,6 +114,7 @@ npm run build            # Build for production
 npm run preview          # Preview production build locally
 npm run format           # Format code with Prettier
 npm run format:check     # Check code formatting without changes
+npm run update           # Update all dependencies to latest compatible versions
 ```
 
 ### Quality & Testing
@@ -159,6 +160,14 @@ open coverage/index.html
 # Windows
 start coverage/index.html
 ```
+
+### Dependency Management
+
+```bash
+npm run update           # Update all dependencies to latest compatible versions
+```
+
+This runs `npx npm-check-updates -u` to rewrite `package.json` with the latest semver-compatible versions, then `npm install` to apply the changes.
 
 ### Code Quality
 
@@ -230,7 +239,7 @@ import Pagination from "@/components/Pagination";
 />;
 ```
 
-The Gallery component displays **9 templates per page** and automatically resets to page 1 whenever filters change.
+The Gallery component displays **9 templates per page**. When filters change, it preserves the current page position and only moves to the last valid page if the current page is out of bounds.
 
 ## 🎯 Technology Stack
 

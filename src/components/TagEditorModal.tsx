@@ -26,7 +26,6 @@ interface TagEditorModalProps {
 }
 
 const MAX_TAGS = 10;
-const _TAG_PREFIX = "tag:";
 
 export default function TagEditorModal({
   template,

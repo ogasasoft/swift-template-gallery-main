@@ -66,11 +66,13 @@ export default function Gallery() {
     }
   }, [filters, toast]);
 
-  useEffect(() => {
-    setCurrentPage(1);
-  }, [filters]);
-
   const totalPages = Math.ceil(filteredTemplates.length / ITEMS_PER_PAGE);
+
+  useEffect(() => {
+    if (currentPage > totalPages && totalPages > 0) {
+      setCurrentPage(totalPages);
+    }
+  }, [totalPages, currentPage]);
 
   const paginatedTemplates = useMemo(() => {
     const start = (currentPage - 1) * ITEMS_PER_PAGE;

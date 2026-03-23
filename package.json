@@ -19,7 +19,8 @@
     "test:coverage": "jest --coverage",
     "test:ci": "jest --ci --coverage --maxWorkers=2",
     "storybook": "storybook dev -p 6006",
-    "build-storybook": "storybook build"
+    "build-storybook": "storybook build",
+    "update": "npx npm-check-updates -u && npm install"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
