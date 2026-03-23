@@ -329,7 +329,7 @@ swift-template-gallery/
 
 ### Test Structure
 
-The project has a comprehensive test suite with **162 tests** covering:
+The project has a comprehensive test suite with **203 tests** covering:
 
 - **Components**: All UI components (Header, Footer, Hero, Gallery, Pricing, Contact, ThemeToggle, RatingStars, ReviewList, RatingForm, PreviewModal, TemplateCard, GalleryFilters, NavLink)
 - **Pages**: Index page, NotFound page, TemplateDetail page
