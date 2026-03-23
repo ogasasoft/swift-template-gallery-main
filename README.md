@@ -128,6 +128,38 @@ npm run lint             # ESLint check (zero errors guaranteed)
 npm run lint:fix         # Fix linting issues automatically
 ```
 
+#### Coverage Report Execution
+
+To generate a coverage report:
+
+```bash
+# Run tests with coverage
+npm run test:coverage
+
+# Output location
+# - HTML report: coverage/index.html (open in browser)
+# - LCOV report: coverage/lcov.info
+# - Text report: coverage/output.txt
+```
+
+**Expected output:**
+
+```
+Test Suites: 19 passed
+Tests: 203 passed, 1 skipped
+Coverage: Critical paths 100%
+```
+
+**Viewing the HTML report:**
+
+```bash
+# Mac/Linux
+open coverage/index.html
+
+# Windows
+start coverage/index.html
+```
+
 ### Code Quality
 
 ```bash
