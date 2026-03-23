@@ -20,7 +20,8 @@
     "test:ci": "jest --ci --coverage --maxWorkers=2",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
-    "update": "npx npm-check-updates -u && npm install"
+    "update": "npx npm-check-updates -u && npm install",
+    "quality": "bash scripts/quality-check.sh"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
