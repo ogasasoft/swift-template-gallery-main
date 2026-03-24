@@ -128,7 +128,7 @@ describe("useIsMobile Hook", () => {
 
 		it("should handle very small screen widths", () => {
 			// Set window.innerWidth to a small value
-			(window as any).innerWidth = 375;
+			(window as unknown as { innerWidth: number }).innerWidth = 375;
 
 			const mql = mockMatchMedia(true);
 			mql.matches = true;
@@ -142,7 +142,7 @@ describe("useIsMobile Hook", () => {
 
 		it("should handle very large screen widths", () => {
 			// Set window.innerWidth to a large value
-			(window as any).innerWidth = 3840;
+			(window as unknown as { innerWidth: number }).innerWidth = 3840;
 
 			const mql = mockMatchMedia(false);
 			mql.matches = false;
