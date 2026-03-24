@@ -6,8 +6,11 @@ WORKDIR /app
 # Copy package files
 COPY package*.json ./
 
-# Install dependencies
-RUN npm ci
+# Install dependencies (skip storybook for production image)
+# Use npm install instead of npm ci to avoid lockfile issues with peer dependencies
+RUN npm install --ignore-scripts && \
+    npm install --omit=dev --ignore-scripts && \
+    npm cache clean --force
 
 # Copy source code
 COPY . .
