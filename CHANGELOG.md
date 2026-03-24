@@ -7,6 +7,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Changed
+
+- **Storybook v10 migration**: Removed v8-only packages (`@storybook/addon-essentials`, `@storybook/addon-interactions`, `@storybook/blocks`, `@storybook/test`) — their functionality is now built into Storybook v10 core
+- **Storybook v10 migration**: Replaced `@storybook/blocks` with `@storybook/addon-docs` (v10) for MDX stories; `Configure.mdx` now imports from `@storybook/addon-docs/blocks`
+- **Storybook v10 migration**: Story files (`*.stories.ts/tsx`) import test utilities from `storybook/test` instead of `@storybook/test`
+- **Tailwind CSS v4**: Updated `src/index.css` to use `@import "tailwindcss"` syntax (v4) with `@config` directive
+- **Tailwind CSS v4**: Added `@tailwindcss/vite` plugin to `vite.config.ts`; `postcss.config.js` now only uses `autoprefixer`
+- **Tailwind CSS v4**: Fixed `tailwind.config.ts` to use static import for `tailwindcss-animate` plugin instead of dynamic `import()`
+- All Storybook package versions are now consistently at `^10.3.3`; added `@tailwindcss/postcss` and `@testing-library/dom` as explicit dev dependencies
+
+### Breaking Changes
+
+- `.storybook/main.ts`: `@storybook/addon-essentials` and `@storybook/addon-interactions` removed from addons array (now built into Storybook v10)
+- `src/index.css`: Tailwind directives changed from v3 (`@tailwind base/components/utilities`) to v4 (`@import "tailwindcss"`)
+- `vite.config.ts`: Added `@tailwindcss/vite` plugin required for Tailwind v4 to function
+
 ## [1.0.0] - 2026-03-24
 
 ### Added

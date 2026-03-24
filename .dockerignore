@@ -1,0 +1,46 @@
+# Dependencies (reinstalled in Docker)
+node_modules
+.npm
+
+# Build output (rebuilt in Docker)
+dist
+storybook-static
+
+# Version control
+.git
+.gitignore
+.gitattributes
+
+# Editor / OS
+.DS_Store
+Thumbs.db
+.idea
+.vscode
+*.swp
+*.swo
+
+# Test artifacts
+coverage
+*.test.ts
+*.test.tsx
+*.spec.ts
+*.spec.tsx
+__tests__
+__mocks__
+
+# CI / tooling config (not needed at runtime)
+.github
+.husky
+scripts
+*.log
+npm-debug.log*
+
+# Docs
+*.md
+CHANGELOG.md
+LICENSE
+
+# Local env files
+.env
+.env.*
+!.env.example
