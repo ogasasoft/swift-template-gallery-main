@@ -1,50 +1,69 @@
-# Multi-stage build for production
+# syntax=docker/dockerfile:1
+# =============================================================================
+# Multi-stage build for Vite + React SPA
+# Final image: nginx:alpine (~40MB) — no Node.js runtime in production
+# =============================================================================
+
+# -----------------------------------------------------------------------------
+# Stage 1: deps — install all dependencies with BuildKit cache mount
+# -----------------------------------------------------------------------------
+FROM node:20-alpine AS deps
+
+WORKDIR /app
+
+# Copy only manifest files for optimal layer caching
+# (rebuild this layer only when package*.json changes)
+COPY package.json package-lock.json* ./
+
+# BuildKit cache mount keeps npm's download cache across builds
+# --ignore-scripts skips the `prepare` (husky) postinstall hook safely
+# --legacy-peer-deps handles peer dependency conflicts (Storybook)
+RUN --mount=type=cache,target=/root/.npm \
+    npm install --ignore-scripts --legacy-peer-deps
+
+# -----------------------------------------------------------------------------
+# Stage 2: builder — compile TypeScript + bundle with Vite
+# -----------------------------------------------------------------------------
 FROM node:20-alpine AS builder
 
 WORKDIR /app
 
-# Copy package files
-COPY package*.json ./
+# Reuse installed node_modules from deps stage (no re-download)
+COPY --from=deps /app/node_modules ./node_modules
 
-# Install dependencies (skip storybook for production image)
-# Use npm install instead of npm ci to avoid lockfile issues with peer dependencies
-RUN npm install --ignore-scripts && \
-    npm install --omit=dev --ignore-scripts && \
-    npm cache clean --force
-
-# Copy source code
+# Copy source (node_modules excluded via .dockerignore)
 COPY . .
 
-# Build for production
+# Production build — outputs to /app/dist
 RUN npm run build
 
-# Production stage
-FROM node:20-alpine AS runner
+# -----------------------------------------------------------------------------
+# Stage 3: runner — serve static assets with nginx (no Node.js runtime)
+# -----------------------------------------------------------------------------
+FROM nginx:1.27-alpine AS runner
 
-WORKDIR /app
+# Remove default nginx config
+RUN rm /etc/nginx/conf.d/default.conf
 
-# Create non-root user
-RUN addgroup --system --gid 1001 nodejs && \
-    adduser --system --uid 1001 nextjs
+# Copy custom nginx config (SPA routing + performance + security headers)
+COPY nginx.conf /etc/nginx/conf.d/default.conf
 
-# Copy package files
-COPY package*.json ./
+# Copy compiled static assets from builder
+COPY --from=builder /app/dist /usr/share/nginx/html
 
-# Install production dependencies only
-RUN npm ci --only=production && \
-    npm cache clean --force
+# Ensure nginx user owns the content and required runtime paths
+RUN chown -R nginx:nginx /usr/share/nginx/html \
+    && chown -R nginx:nginx /var/cache/nginx \
+    && chown -R nginx:nginx /var/log/nginx \
+    && touch /var/run/nginx.pid \
+    && chown nginx:nginx /var/run/nginx.pid
 
-# Copy built application from builder
-COPY --from=builder --chown=nextjs:nodejs /app/dist ./dist
+# Run as non-root
+USER nginx
 
-# Set correct permissions
-RUN chown -R nextjs:nodejs /app
+EXPOSE 80
 
-# Switch to non-root user
-USER nextjs
+HEALTHCHECK --interval=30s --timeout=5s --start-period=5s --retries=3 \
+    CMD wget -qO- http://localhost/health || exit 1
 
-# Expose port
-EXPOSE 5173
-
-# Start application
-CMD ["npm", "run", "preview"]
+CMD ["nginx", "-g", "daemon off;"]
