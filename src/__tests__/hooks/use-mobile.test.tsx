@@ -1,4 +1,4 @@
-import React from "react";
+import {} from "react";
 import { renderHook, act } from "@testing-library/react";
 import { useIsMobile } from "@/hooks/use-mobile";
 
@@ -9,7 +9,9 @@ const mockMatchMedia = (matches: boolean) => {
 		addEventListener: jest.fn(),
 		removeEventListener: jest.fn(),
 	};
-	(window as any).matchMedia = jest.fn().mockImplementation(() => mql);
+	(window as unknown as { matchMedia: jest.Mock }).matchMedia = jest
+		.fn()
+		.mockImplementation(() => mql);
 	return mql;
 };
 
@@ -50,7 +52,7 @@ describe("useIsMobile Hook", () => {
 			// Simulate resize to mobile
 			act(() => {
 				mql.matches = true;
-				mql.addEventListener.mock.calls[0][1]();
+				(mql.addEventListener as jest.Mock).mock.calls[0][1]();
 			});
 
 			// The change listener should update the state
@@ -66,7 +68,8 @@ describe("useIsMobile Hook", () => {
 			// Simulate resize to desktop
 			act(() => {
 				mql.matches = false;
-				mql.addEventListener.mock.calls[0][1]();
+				const listener = (mql.addEventListener as jest.Mock).mock.calls[0][1];
+				listener();
 			});
 
 			// The change listener should update the state
@@ -80,7 +83,9 @@ describe("useIsMobile Hook", () => {
 
 			renderHook(() => useIsMobile());
 
-			const mql = (window as any).matchMedia(true);
+			const mql = (window as unknown as { matchMedia: jest.Mock }).matchMedia(
+				true,
+			);
 			expect(mql.addEventListener).toHaveBeenCalledWith(
 				"change",
 				expect.any(Function),
@@ -92,7 +97,9 @@ describe("useIsMobile Hook", () => {
 
 			const { unmount } = renderHook(() => useIsMobile());
 
-			const mql = (window as any).matchMedia(true);
+			const mql = (window as unknown as { matchMedia: jest.Mock }).matchMedia(
+				true,
+			);
 			expect(mql.addEventListener).toHaveBeenCalledWith(
 				"change",
 				expect.any(Function),
