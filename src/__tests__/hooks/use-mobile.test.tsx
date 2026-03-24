@@ -48,8 +48,10 @@ describe("useIsMobile Hook", () => {
 			expect(result.current).toBe(false);
 
 			// Simulate resize to mobile
-			mql.matches = true;
-			mql.addEventListener.mock.calls[0][1]();
+			act(() => {
+				mql.matches = true;
+				mql.addEventListener.mock.calls[0][1]();
+			});
 
 			// The change listener should update the state
 			expect(result.current).toBe(true);
@@ -62,8 +64,10 @@ describe("useIsMobile Hook", () => {
 			expect(result.current).toBe(true);
 
 			// Simulate resize to desktop
-			mql.matches = false;
-			mql.addEventListener.mock.calls[0][1]();
+			act(() => {
+				mql.matches = false;
+				mql.addEventListener.mock.calls[0][1]();
+			});
 
 			// The change listener should update the state
 			expect(result.current).toBe(false);
