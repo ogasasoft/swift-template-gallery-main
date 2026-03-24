@@ -21,6 +21,7 @@ export default defineConfig((_mode) => ({
       include: ['src/**/*.{ts,tsx}'],
       exclude: ['src/**/*.{json,md}'],
       useEslintrc: false,
+      esbuild: {}
     }),
     tailwindcss()
   ],
