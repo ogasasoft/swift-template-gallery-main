@@ -1,5 +1,5 @@
 import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react-swc";
+import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
 import path from "node:path";
 
@@ -16,11 +16,7 @@ export default defineConfig((_mode) => ({
   },
 
   plugins: [
-    react({
-      include: ['src/**/*.{ts,tsx}'],
-      exclude: ['src/**/*.{json,md}'],
-      useEslintrc: false,
-    }),
+    react(),
     tailwindcss()
   ],
 
