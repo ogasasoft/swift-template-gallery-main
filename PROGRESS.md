@@ -13,6 +13,13 @@
 - [x] テスト実行確認（212 passed, 1 skipped）
 - [x] lint エラーなし確認
 - [x] git commit & push
+- [x] READMEバッジの更新確認（recharts, Jest, Tests）
+- [x] ブランチ作成（feature/update-readme-version）
+- [x] READMEのバージョン情報を実際のものに更新
+- [x] Build 成功確認
+- [x] テスト実行確認
+- [x] lint エラーなし確認
+- [x] git commit & push
 
 ## 改善内容
 
@@ -36,6 +43,25 @@
 - Lint: エラーなし ✅
 - Pre-commit checks: パス ✅
 
+### READMEバッジの更新
+
+**目的**:
+
+- READMEに記載されているバージョン情報を実際のバージョンに一致させる
+- ユーザーへの正確な情報提供
+
+**変更内容**:
+
+- rechartsバッジ: 2.15.4 → 3.8.1
+- Testsバッジ: 203 passed → 212 passed
+- Jestバッジ: 30.2.0 → 30.2.1
+
+**結果**:
+
+- READMEと実際のpackage.jsonのバージョン情報が一致 ✅
+- Build: 成功 ✅
+- Tests: 212 passed ✅
+
 ### ビルド結果
 
 ```bash
@@ -52,7 +78,7 @@ npm run build
 npm test
 # Result: Test Suites: 20 passed
 # Tests: 212 passed, 1 skipped
-# Time: 1.85 s
+# Time: 1.87 s
 ```
 
 ### 品質スコア
