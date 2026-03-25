@@ -10,7 +10,7 @@ A modern template gallery for developers to discover and preview reusable React 
 ![Jest](https://img.shields.io/badge/Jest-30.2.0-9948F5.svg)
 ![ESLint](https://img.shields.io/badge/ESLint-9.32.0-4B32C3.svg)
 ![Vite](https://img.shields.io/badge/Vite-5.4.19-646CFF.svg)
-![Tests](https://img.shields.io/badge/Tests-203%20passed%201%20skipped-brightgreen.svg)
+![Tests](https://img.shields.io/badge/Tests-212%20passed%201%20skipped-brightgreen.svg)
 
 ## 🌟 Features
 
@@ -50,7 +50,7 @@ A modern template gallery for developers to discover and preview reusable React 
 
 ### Testing
 
-- **Jest 30.2.0** - Test runner
+- **Jest 30.2.1** - Test runner
 - **React Testing Library 16.3.2** - Component testing
 - **Jest DOM 6.9.1** - DOM matchers
 - **TypeScript Jest 29.4.6** - TS support
@@ -65,7 +65,7 @@ A modern template gallery for developers to discover and preview reusable React 
 ### Additional
 
 - **date-fns 3.6.0** - Date utilities
-- **recharts 2.15.4** - Data visualization
+- **recharts 3.8.1** - Data visualization
 - **sonner 1.7.4** - Toast notifications
 - **clsx 2.1.1** - Conditional class names
 
@@ -252,9 +252,9 @@ The `Pagination` component provides accessible, reusable page navigation built o
 import Pagination from "@/components/Pagination";
 
 <Pagination
-  currentPage={currentPage}
-  totalPages={Math.ceil(items.length / ITEMS_PER_PAGE)}
-  onPageChange={setCurrentPage}
+	currentPage={currentPage}
+	totalPages={Math.ceil(items.length / ITEMS_PER_PAGE)}
+	onPageChange={setCurrentPage}
 />;
 ```
 
