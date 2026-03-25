@@ -2,14 +2,14 @@
 
 A modern template gallery for developers to discover and preview reusable React components with shadcn-ui design system.
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
+![Version](https://img.shields.io/badge/version-1.0.1-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Node](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)
-![React](https://img.shields.io/badge/React-18.3.1-61DAFB.svg)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.8.3-3178C6.svg)
-![Jest](https://img.shields.io/badge/Jest-30.2.0-9948F5.svg)
-![ESLint](https://img.shields.io/badge/ESLint-9.32.0-4B32C3.svg)
-![Vite](https://img.shields.io/badge/Vite-5.4.19-646CFF.svg)
+![React](https://img.shields.io/badge/React-19.2.4-61DAFB.svg)
+![TypeScript](https://img.shields.io/badge/TypeScript-6.0.2-3178C6.svg)
+![Jest](https://img.shields.io/badge/Jest-30.3.0-9948F5.svg)
+![ESLint](https://img.shields.io/badge/ESLint-10.1.0-4B32C3.svg)
+![Vite](https://img.shields.io/badge/Vite-8.0.2-646CFF.svg)
 ![Tests](https://img.shields.io/badge/Tests-212%20passed%201%20skipped-brightgreen.svg)
 
 ## 🌟 Features
@@ -23,17 +23,18 @@ A modern template gallery for developers to discover and preview reusable React 
 - 🌙 **Dark Mode**: Automatic system preference detection with manual toggle
 - ⭐ **Review System**: User ratings and reviews with sentiment analysis
 - 📄 **Pagination**: Navigate large template collections with intuitive page controls
-- 🔬 **Comprehensive Tests**: 203 tests covering all components and pages
+- 🔬 **Comprehensive Tests**: 212 tests covering all components and pages
 - ✨ **TypeScript**: Full type safety with 100% coverage
+- 🚀 **Vite 8**: Latest build tool with optimized performance
 
 ## 🛠️ Tech Stack
 
 ### Framework & Core
 
-- **React 18.3.1** - Latest React with concurrent features
-- **TypeScript 5.8.3** - Full type safety
-- **Vite 5.4.19** - Lightning-fast build tool
-- **React Router v6.30.1** - Client-side routing
+- **React 19.2.4** - Latest React with concurrent features
+- **TypeScript 6.0.2** - Full type safety
+- **Vite 8.0.2** - Lightning-fast build tool
+- **React Router v7.13.2** - Client-side routing
 
 ### Styling
 
