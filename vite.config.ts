@@ -17,11 +17,9 @@ export default defineConfig((_mode) => ({
 
   plugins: [
     react({
-      // Suppress esbuild deprecation warning
       include: ['src/**/*.{ts,tsx}'],
       exclude: ['src/**/*.{json,md}'],
       useEslintrc: false,
-      esbuild: {}
     }),
     tailwindcss()
   ],

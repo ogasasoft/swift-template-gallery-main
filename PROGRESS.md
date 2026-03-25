@@ -4,6 +4,7 @@
 
 ## 完了済み
 
+- [x] swift-template-gallery-main と agri-ai-agent-frontend-test の現状確認
 - [x] ESLint tsconfigRootDir 設定の修正
 - [x] TypeScript baseUrl deprecation 警告の修正
 - [x] PostCSS 設定の最適化（Tailwind CSS v4対応）
@@ -13,99 +14,50 @@
 - [x] テスト実行確認
 - [x] ビルド実行確認
 - [x] git commit & push (lucide-react update)
+- [x] esbuild deprecated オプションの削除
+- [x] ビルドの再確認（警告なし）
+- [x] テストの再確認
+- [x] git commit & push (vite-oxc-config)
 
 ## 改善内容
 
-### lucide-react のアップデート
+### vite.config.ts の esbuild deprecated オプション削除
 
 **目的**:
 
-- アーティファクトの更新と最新のアイコンセットの利用
+- Vite 8.0.2 で廃止予定の esbuild オプション警告を解消
+- Vite が内部で oxc を使用するため、明示的な esbuild 設定は不要
 
 **変更内容**:
 
-- `lucide-react` を 1.0.1 から 1.6.0 に更新
-- `--legacy-peer-deps` フラグを使用して依存関係の競合を解決
+- `react()` プラグインから `esbuild: {}` オプションを削除
+- Vite 8.0.2 は内部的に oxc（TypeScript コンパイラ）を使用
 
 **結果**:
 
+- ビルド: 成功、警告なし ✅
 - テスト: 212 passed, 1 skipped ✅
-- ビルド: 成功 ✅
-- アーティファクト: 2,121 行追加/削除
+- ビルド時間: 353ms（以前より高速）
 
 ### テスト結果
 
 ```bash
 npm test
-# Result: 20 test suites passed, 212 tests passed, 1 skipped
-# - TagEditorModal Component: 18 tests
-# - Gallery Component: 12 tests
-# - Pagination Component: 22 tests
-# - RatingForm Component: 7 tests, 1 skipped
-# - Index Page: 6 tests
-# - NavLink Component: 17 tests
-# - TemplateDetail Page: 9 tests
-# - PreviewModal Component: 12 tests
-# - GalleryFilters Component: 14 tests
-# - Contact Component: 7 tests
-# - ReviewList Component: 6 tests
-# - Header Component: 6 tests
-# - RatingStars Component: 10 tests
-# - NotFound Page: 6 tests
-# - theme-toggle Component: 6 tests
-# - Footer Component: 4 tests
-# - use-mobile Hook: 10 tests
-# - Pricing Component: 6 tests
-# - Hero Component: 4 tests
-# - reviews.ts: 9 tests
+# Result: 20/20 test suites passed
+# ✅ 212/213 tests passed (1 skipped - RatingForm with rating=0)
 ```
 
 ### ビルド結果
 
 ```bash
 npm run build
-# Result: ✅ Built in 392ms
-# - dist/index.html: 1.51 kB
-# - dist/assets/index-BVIaRflF.css: 98.92 kB
+# Result: ✅ Built in 353ms
+# - dist/index.html: 1.51 kB (gzip: 0.60 kB)
+# - dist/assets/index-BVIaRflF.css: 98.92 kB (gzip: 15.86 kB)
 # - dist/assets/index-CoJDOqmU.js: 467.60 kB (gzip: 144.65 kB)
 ```
 
-## 技術的な考察
-
-### lucide-react アップデートのポイント
-
-1. **アーティファクトサイズの改善**:
-   - 古いバージョン（1.0.1）では多くの未使用アイコンが含まれていた可能性
-   - 最新バージョン（1.6.0）ではバンドルサイズが最適化されている
-
-2. **依存関係の競合**:
-   - ESLint v10.1.0 と lucide-react v1.6.0 の peer dependency の不一致
-   - `--legacy-peer-deps` フラグで解決（実際の動作には影響なし）
-
-3. **アイコンの追加**:
-   - 最新バージョンでは新しいアイコンが追加されている可能性
-   - アーティファクトの差分から、ほぼ完全に置き換わっていることが確認
-
-## 検証結果
-
-### テスト
-
-```bash
-npm test
-# ✅ 20/20 test suites passed
-# ✅ 212/213 tests passed
-# ⏭️  1 test skipped (RatingForm with rating=0)
-```
-
-### ビルド
-
-```bash
-npm run build
-# ✅ Build succeeded
-# ✅ No warnings (except deprecation notice for esbuild)
-```
-
-### 質品質スコア
+### 品質スコア
 
 ```
 🔥 CRITICAL LEVEL (16 points)
@@ -124,4 +76,5 @@ npm run build
 
 ## 次にやること
 
-lucide-react のアップデートは完了しました。他のプロジェクトを確認します。
+swift-template-gallery-main は品質スコア 25/25 で完全な状態です。
+agri-ai-agent-frontend-test を確認します。
