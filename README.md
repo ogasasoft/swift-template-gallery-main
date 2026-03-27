@@ -9,7 +9,7 @@ A modern template gallery for developers to discover and preview reusable React 
 ![TypeScript](https://img.shields.io/badge/TypeScript-6.0.2-3178C6.svg)
 ![Jest](https://img.shields.io/badge/Jest-30.3.0-9948F5.svg)
 ![ESLint](https://img.shields.io/badge/ESLint-10.1.0-4B32C3.svg)
-![Vite](https://img.shields.io/badge/Vite-8.0.2-646CFF.svg)
+![Vite](https://img.shields.io/badge/Vite-8.0.3-646CFF.svg)
 ![Tests](https://img.shields.io/badge/Tests-212%20passed%201%20skipped-brightgreen.svg)
 
 ## 🌟 Features
