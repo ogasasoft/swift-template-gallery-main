@@ -1,347 +1,389 @@
-# Contributing to Swift Template Gallery
+# Development Workflow
 
-Thank you for your interest in contributing to this project!
-
-## Development Setup
+## Getting Started
 
 ### Prerequisites
 
-- Node.js 18+ installed via nvm
+- Node.js 18.0.0 or higher
 - npm or yarn package manager
-- Basic understanding of React and TypeScript
+- Basic understanding of React, TypeScript, and modern frontend development
 
 ### Installation
 
 ```bash
 # Clone the repository
-git clone <repository-url>
-cd swift-template-gallery-main
+git clone https://github.com/yourusername/swift-template-gallery.git
+cd swift-template-gallery
 
 # Install dependencies
 npm install
 
-# Run development server
+# Start development server
 npm run dev
-
-# Open http://localhost:5173
 ```
 
-## Project Structure
+### Available Scripts
 
-```
-swift-template-gallery-main/
-├── src/
-│   ├── __tests__/          # Test files
-│   ├── components/         # React components
-│   │   ├── ui/             # shadcn-ui components
-│   │   ├── Header.tsx      # Navigation header
-│   │   ├── Footer.tsx      # Footer component
-│   │   ├── Hero.tsx        # Hero section
-│   │   ├── Gallery.tsx     # Template gallery
-│   │   ├── GalleryFilters.tsx  # Filtering controls
-│   │   ├── Pagination.tsx  # Page navigation
-│   │   ├── TemplateCard.tsx  # Individual template cards
-│   │   ├── PreviewModal.tsx  # Template preview modal
-│   │   ├── NavLink.tsx     # Navigation links
-│   │   ├── Pricing.tsx     # Pricing section
-│   │   └── Contact.tsx     # Contact form
-│   ├── lib/               # Utility functions
-│   ├── pages/             # Next.js App Router pages
-│   └── providers/         # Context providers (theme-provider)
-├── public/                # Static assets
-├── .storybook/            # Storybook configuration
-├── dist/                  # Generated build files
-├── coverage/              # Test coverage reports
-├── jest.config.ts         # Jest configuration
-├── jest.setup.ts          # Jest setup (TypeScript)
-├── tsconfig.json          # TypeScript configuration
-├── tsconfig.jest.json     # TypeScript for Jest
-├── tailwind.config.ts     # Tailwind CSS v4 configuration
-├── vite.config.ts         # Vite build configuration
-└── package.json           # Dependencies and scripts
+```bash
+# Development
+npm run dev          # Start development server with hot reload
+npm run build        # Build for production
+npm run preview      # Preview production build locally
+
+# Code Quality
+npm run typecheck    # TypeScript type checking (0 errors guaranteed)
+npm run lint         # ESLint check (0 errors guaranteed)
+npm run lint:fix     # Auto-fix ESLint issues
+npm run format       # Format code with Prettier
+npm run format:check # Check code formatting without changes
+
+# Testing
+npm test             # Run all tests
+npm run test:watch   # Run tests in watch mode
+npm run test:coverage # Run tests with coverage report
+npm run test:ci      # CI mode for GitHub Actions
+
+# Quality Check
+npm run quality      # Run quality checklist and get score
+
+# Dependency Management
+npm run update       # Update all dependencies to latest compatible versions
+
+# Documentation
+npm run storybook    # Start Storybook for component exploration
+npm run build-storybook # Build Storybook for static hosting
 ```
 
-## Tech Stack
+## Branch Naming Conventions
 
-- **Framework**: React 19.2.4 with App Router
-- **Language**: TypeScript 6.0.2 (strict mode)
-- **Build Tool**: Vite 8.0.2
-- **Styling**: Tailwind CSS 3.4.17 + shadcn-ui
-- **Testing**: Jest 30.3.0 + React Testing Library
-- **Routing**: React Router v7.13.2
-- **State Management**: TanStack Query 5.83.0
-- **Forms**: React Hook Form 7.61.1 + Zod 3.25.76
-- **Charts**: Recharts 3.8.1
-- **Icons**: Lucide React 0.462.0
-- **Notifications**: Sonner 1.7.4
+Use the following prefixes for branches:
 
-## Testing
+- `feature/` - New features or enhancements
+- `fix/` - Bug fixes
+- `docs/` - Documentation updates
+- `style/` - Code style changes (formatting, renaming)
+- `refactor/` - Code refactoring
+- `test/` - Adding or updating tests
+- `chore/` - Maintenance tasks
 
-### Run Tests
+### Examples
+
+```bash
+git checkout -b feature/add-dark-mode-toggle
+git checkout -b fix/pagination-edge-cases
+git checkout -b docs/update-readme
+git checkout -b refactor/move-utils-to-lib
+```
+
+## Code Style Guidelines
+
+### TypeScript
+
+- **Strict Mode**: Always use strict mode (`tsconfig.json`)
+- **No `any` Types**: Avoid `any` when possible, use `unknown` or specific types instead
+- **Interface vs Type**: Use `interface` for object shapes, `type` for unions/aliases
+- **Type Safety**: All components should be fully typed with TypeScript
+- **Null Checks**: Use optional chaining (`?.`) and nullish coalescing (`??`) appropriately
+
+### React
+
+- **Functional Components**: All components must be functional
+- **Hooks**: Always use hooks at the top level of components
+- **Props Interface**: Define `Props` interface for all components
+- **No Magic Strings**: Use enums or constants for repeated values
+- **Memoization**: Use `useMemo` and `useCallback` for expensive operations
+
+### Naming Conventions
+
+- **Components**: PascalCase (e.g., `Pagination`, `Gallery`, `TemplateCard`)
+- **Functions/Variables**: camelCase (e.g., `currentPage`, `filterTemplates`)
+- **Constants**: UPPER_SNAKE_CASE (e.g., `ITEMS_PER_PAGE`, `MAX_ITEMS`)
+- **Types/Interfaces**: PascalCase (e.g., `Template`, `GalleryFilter`)
+- **Files**: Match component name with filename (e.g., `Pagination.tsx`)
+
+### File Structure
+
+```
+src/
+├── components/
+│   ├── ui/              # shadcn-ui components (don't modify)
+│   ├── Header.tsx       # Navigation header
+│   ├── Footer.tsx       # Footer component
+│   ├── Hero.tsx         # Hero section
+│   └── ...
+├── pages/
+│   ├── Index.tsx        # Home page
+│   └── NotFound.tsx     # 404 page
+├── lib/                 # Utility functions
+├── hooks/               # Custom React hooks
+├── providers/           # Context providers
+└── types/               # TypeScript type definitions
+```
+
+## Git Workflow
+
+### Commit Messages
+
+Follow the [Conventional Commits](https://www.conventionalcommits.org/) specification:
+
+```
+<type>(<scope>): <subject>
+
+<body>
+
+<footer>
+```
+
+**Commit Types:**
+
+- `feat`: New feature
+- `fix`: Bug fix
+- `docs`: Documentation only changes
+- `style`: Changes that do not affect code meaning (formatting, renaming)
+- `refactor`: Code refactoring (no functional changes)
+- `test`: Adding or updating tests
+- `chore`: Maintenance tasks
+
+### Commit Examples
+
+```bash
+git commit -m "feat(gallery): add category filtering"
+git commit -m "fix(pagination): handle edge case when page exceeds total"
+git commit -m "docs(readme): update installation instructions"
+git commit -m "style(components): apply Prettier formatting"
+git commit -m "refactor(utils): move common functions to lib"
+git commit -m "test(Header): add unit tests for mobile menu"
+git commit -m "chore(deps): update @types/react to 19.2.4"
+```
+
+### Pre-commit Hooks
+
+All commits automatically run quality checks via Husky:
+
+1. **ESLint** - Auto-fix linting issues
+2. **Prettier** - Format all files
+3. **TypeScript** - Validate type definitions
+
+If any check fails, the commit will be blocked.
+
+### Pull Request Workflow
+
+1. **Create Branch**: From `main`, create a feature branch
+
+   ```bash
+   git checkout -b feature/add-dark-mode-toggle
+   ```
+
+2. **Make Changes**: Implement your feature or fix
+
+3. **Commit**: Make descriptive commits following the conventional commit format
+
+4. **Push**: Push your branch to the remote
+
+   ```bash
+   git push origin feature/add-dark-mode-toggle
+   ```
+
+5. **Open PR**: Create a pull request on GitHub
+
+6. **Review Process**:
+   - Wait for at least one reviewer
+   - Address review comments
+   - Ensure all CI checks pass
+   - Get approval from reviewer
+   - Merge to `main`
+
+### Code Review Checklist
+
+When reviewing code, check for:
+
+- ✅ Follows code style guidelines
+- ✅ TypeScript type safety (no `any` types)
+- ✅ Proper error handling
+- ✅ Component accessibility (keyboard navigation, ARIA labels)
+- ✅ Responsive design (mobile-first approach)
+- ✅ Test coverage (tests added or updated)
+- ✅ Documentation (README, JSDoc comments)
+- ✅ Performance considerations (memoization, lazy loading)
+- ✅ Security (no hardcoded secrets, input validation)
+
+## Testing Guidelines
+
+### Test Structure
+
+- **Component Tests**: Test UI components in isolation
+- **Page Tests**: Test full pages with routing
+- **Utility Tests**: Test utility functions
+- **Hook Tests**: Test custom React hooks
+
+### Running Tests
 
 ```bash
 # Run all tests
 npm test
 
-# Run tests in watch mode
+# Run in watch mode (interactive)
 npm run test:watch
 
-# Run tests with coverage report
+# Run with coverage
 npm run test:coverage
 
-# Run tests in CI mode
-npm run test:ci
+# Run specific test file
+npm test -- --testPathPattern=Gallery.test.tsx
+
+# Run specific test
+npm test -- --testNamePattern="should render pagination"
 ```
 
-### Test Structure
+### Test Writing Best Practices
 
-Tests are organized by functionality:
+- **Descriptive Names**: Test names should describe what they test
+- **Arrange-Act-Assert**: Structure tests clearly
+- **Isolation**: Each test should be independent
+- **Snapshot Testing**: Use snapshots for UI consistency
+- **Edge Cases**: Test boundary conditions and error scenarios
 
-- `__tests__/components/` - Component tests
-- `__tests__/pages/` - Page tests
-- `__tests__/lib/` - Utility tests
+### Example Test
 
-Each component should have corresponding tests that verify:
+```typescript
+describe('Pagination', () => {
+  it('should render null when totalPages <= 1', () => {
+    const { container } = render(<Pagination currentPage={1} totalPages={1} onPageChange={() => {}} />)
+    expect(container.firstChild).toBeNull()
+  })
 
-- Correct rendering with various props
-- User interactions (clicks, hovers, form submissions)
-- Edge cases and boundary conditions
-- Accessibility (ARIA labels, keyboard navigation)
-
-## Code Style
-
-### TypeScript
-
-- Use strict mode (enabled by default)
-- Prefer explicit types over `any`
-- Use interfaces for object shapes
-- Prefer `const` and `let` over `var`
-- Type import aliases for path aliases (`@/`)
-
-### React
-
-- Functional components with hooks only
-- No class components
-- Use shadcn-ui component patterns
-- Prefer Tailwind CSS utility classes over custom CSS
-- Implement `useEffect` with cleanup functions
-
-### JavaScript
-
-- ES6+ features only
-- No deprecated features (e.g., `document.all`)
-- Prefer `const`/`let` over `var`
-
-### File Naming
-
-- Components: PascalCase (`TemplateCard.tsx`, `GalleryFilters.tsx`)
-- Utilities: camelCase (`reviews.ts`, `utils.ts`)
-- Tests: match component name with `.test.tsx` suffix (`TemplateCard.test.tsx`)
-
-### Formatting
-
-- Run Prettier before committing: `npm run format`
-- Check formatting: `npm run format:check`
-- Auto-fix formatting issues: `npm run lint:fix`
-
-## Commit Messages
-
-Follow [Conventional Commits](https://www.conventionalcommits.org/) format:
-
-```
-<type>(<scope>): <description>
-
-[optional body]
-
-[optional footer]
+  it('should call onPageChange when page changes', () => {
+    const onPageChange = jest.fn()
+    const { getByText } = render(
+      <Pagination currentPage={1} totalPages={5} onPageChange={onPageChange} />
+    )
+    fireEvent.click(getByText('2'))
+    expect(onPageChange).toHaveBeenCalledWith(2)
+  })
+})
 ```
 
-### Types
+## Accessibility
 
-- `feat`: New feature
-- `fix`: Bug fix
-- `docs`: Documentation changes
-- `style`: Code formatting changes (Prettier)
-- `refactor`: Code refactoring without feature change
-- `test`: Add or update tests
-- `chore`: Maintenance tasks (build, dependencies, CI)
+All components must follow WCAG 2.1 AA guidelines:
 
-### Examples
+- **Keyboard Navigation**: All interactive elements must be keyboard accessible
+- **ARIA Labels**: Use appropriate ARIA attributes for screen readers
+- **Color Contrast**: Ensure sufficient color contrast (4.5:1 for text)
+- **Focus Management**: Manage focus when opening/closing modals or dropdowns
+- **Semantic HTML**: Use proper HTML elements (nav, main, section, etc.)
 
-```
-feat(gallery): add tag filtering
-fix(pagination): correct page calculation
-docs(readme): update installation instructions
-refactor(utils): improve type safety
-test(component): add tests for PreviewModal
-chore(deps): update lucide-react to v0.462.0
-```
+## Performance
 
-## Branch Naming
+### Optimization Tips
 
-- `feature/<description>`: New feature
-- `fix/<description>`: Bug fix
-- `docs/<description>`: Documentation changes
-- `refactor/<description>`: Code refactoring
-- `test/<description>`: Test-related changes
-- `chore/<description>`: Maintenance tasks
+- **Lazy Loading**: Use `React.lazy` and `Suspense` for code splitting
+- **Memoization**: Use `useMemo` and `useCallback` to prevent unnecessary re-renders
+- **Image Optimization**: Use appropriate image formats and sizes
+- **Tree Shaking**: Ensure all imports are tree-shakable
 
-Examples:
-
-- `feature/add-dark-mode`
-- `fix/dashboard-pagination-bug`
-- `docs/update-api-reference`
-- `refactor/optimize-image-loading`
-
-## Pull Request Process
-
-1. Create a feature branch from `main`
-
-   ```bash
-   git checkout -b feature/your-feature-name
-   ```
-
-2. Make your changes and add tests
-
-3. Run quality checks before committing:
-
-   ```bash
-   npm run typecheck    # TypeScript check (must pass)
-   npm run lint         # ESLint check (must pass)
-   npm test             # Run tests (must pass)
-   ```
-
-4. Format your code:
-
-   ```bash
-   npm run format       # Format with Prettier
-   ```
-
-5. Commit with conventional commit message:
-
-   ```bash
-   git add .
-   git commit -m "feat(gallery): add new template category"
-   ```
-
-6. Push your branch:
-
-   ```bash
-   git push origin feature/your-feature-name
-   ```
-
-7. Open a Pull Request
-
-### Pull Request Checklist
-
-- [ ] Code follows project style guidelines
-- [ ] Tests pass locally (`npm test`)
-- [ ] New tests added for new features
-- [ ] Existing tests modified to support changes
-- [ ] No console.log statements (use console.error for errors)
-- [ ] No TODO/FIXME comments (fix them instead of leaving them)
-- [ ] Documentation updated (README, CONTRIBUTING, etc.)
-- [ ] Branch name follows convention
-- [ ] Commit message follows conventional commits
-
-## Pre-commit Hooks
-
-All commits automatically run:
-
-1. ESLint auto-fix (if applicable)
-2. Prettier formatting
-3. TypeScript validation
-
-This is configured via Husky and lint-staged.
-
-## Development Workflow
-
-1. **Start Development Server**:
-
-   ```bash
-   npm run dev
-   ```
-
-2. **Run Quality Checks**:
-
-   ```bash
-   npm run typecheck
-   npm run lint
-   npm test
-   ```
-
-3. **Make Changes**: Edit files in `src/` directory
-
-4. **Test Locally**:
-   - Run tests: `npm test`
-   - View coverage: `npm run test:coverage`
-   - Manual testing in browser
-
-5. **Commit Changes**: Follow conventional commit format
-
-6. **Push to Branch**: `git push origin <branch>`
-
-7. **Create PR**: Open pull request on GitHub
-
-8. **Code Review**: Address reviewer feedback
-
-9. **Merge**: Once approved and CI passes
-
-## Storybook
-
-This project includes Storybook for component development:
+### Performance Testing
 
 ```bash
-# Start Storybook
-npm run storybook
+# Build performance
+npm run build
 
-# Build Storybook static files
-npm run build-storybook
+# Preview production build
+npm run preview
+
+# Check bundle size
+npx vite-bundle-visualizer
 ```
 
-Component stories are located in `src/stories/` and should demonstrate:
+## Security
 
-- Component with various props
-- Default state
-- Edge cases
-- Accessibility (keyboard navigation, screen reader support)
+### Security Checklist
 
-## Documentation
+- ✅ No hardcoded secrets or API keys in source code
+- ✅ Use environment variables for sensitive data
+- ✅ Validate all user inputs
+- ✅ Escape HTML to prevent XSS attacks
+- ✅ Use CSP headers in production
+- ✅ Keep dependencies updated with security patches
 
-### Architecture
+### Environment Variables
 
-For a detailed overview of the project architecture, see [`ARCHITECTURE.md`](./ARCHITECTURE.md).
+Create a `.env.local` file for local development:
 
-### Getting Started
+```env
+# Example configuration
+VITE_API_URL=https://api.example.com
+VITE_APP_NAME=Swift Template Gallery
+```
 
-Quick start instructions are in [`README.md`](./README.md).
+**Important**: Never commit `.env.local` or `.env` files to version control.
 
-## Getting Help
+## Debugging
 
-- Check existing [issues](https://github.com/yourusername/swift-template-gallery/issues) for open questions
-- Review project documentation (README, ARCHITECTURE, CONTRIBUTING)
-- Ask questions in [GitHub Discussions](https://github.com/yourusername/swift-template-gallery/discussions)
+### Development Tools
+
+- **React DevTools**: Browser extension for inspecting React component hierarchy
+- **Vite DevTools**: Built-in development server with performance monitoring
+- **Console**: Use `console.log` for debugging (remove in production)
+
+### Common Issues
+
+#### TypeScript Errors
+
+```bash
+# Type checking
+npm run typecheck
+
+# Fix type errors
+npm run lint:fix
+```
+
+#### Build Errors
+
+```bash
+# Build for production
+npm run build
+
+# Check for errors
+npm run build 2>&1 | grep -i error
+```
+
+#### Test Failures
+
+```bash
+# Run tests
+npm test
+
+# Run with verbose output
+npm test -- --verbose
+
+# Watch mode
+npm run test:watch
+```
+
+## Continuous Integration
+
+### GitHub Actions
+
+The project uses GitHub Actions for CI/CD:
+
+- **Build**: Run build process
+- **Type Check**: Run TypeScript validation
+- **Lint**: Run ESLint
+- **Test**: Run test suite
+- **Security Scan**: Check for vulnerabilities
+
+All CI checks must pass before merging to `main`.
+
+## Questions or Issues?
+
+If you encounter any issues or have questions:
+
+1. Check the existing [README.md](./README.md) for documentation
+2. Review [ARCHITECTURE.md](./ARCHITECTURE.md) for system design
+3. Search [GitHub Issues](https://github.com/yourusername/swift-template-gallery/issues)
+4. Open a new issue with detailed information
 
 ## License
 
-This project is licensed under the MIT License. See [`LICENSE`](./LICENSE) for details.
-
-## Code of Conduct
-
-This project adheres to a friendly, inclusive code of conduct. Please be respectful and professional in all interactions.
-
-## Quality Standards
-
-This project maintains high code quality standards:
-
-- **Zero TypeScript Errors**: Strict mode enforced
-- **Zero ESLint Errors**: All linting rules applied
-- **High Test Coverage**: 100% for critical paths
-- **Code Formatting**: Consistent style via Prettier
-- **Modern Stack**: Latest stable versions (React 19, TypeScript 6, Vite 8)
-
-Contributors are expected to maintain these standards.
-
----
-
-Happy coding! 🚀
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
