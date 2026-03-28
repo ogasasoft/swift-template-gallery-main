@@ -11,6 +11,7 @@ A modern template gallery for developers to discover and preview reusable React 
 ![ESLint](https://img.shields.io/badge/ESLint-10.1.0-4B32C3.svg)
 ![Vite](https://img.shields.io/badge/Vite-8.0.3-646CFF.svg)
 ![Tests](https://img.shields.io/badge/Tests-212%20passed%201%20skipped-brightgreen.svg)
+![Coverage](https://img.shields.io/badge/coverage-100%25-success.svg)
 
 ## 🌟 Features
 
@@ -218,6 +219,29 @@ npm run test:coverage
 # - Tests: 203 passed, 1 skipped
 # - Coverage: 100% for critical paths
 ```
+
+### CI/CD Pipeline
+
+The project uses GitHub Actions for continuous integration and deployment:
+
+**Pipeline Stages:**
+
+1. **TypeScript Type Check** - Ensures type safety
+2. **Lint Check** - Code quality and style enforcement
+3. **Quality Checks** - Pre-commit quality validation
+4. **Test** - Running all tests with coverage
+5. **Build** - Production build verification
+6. **Security Audit** - npm audit and Snyk scan
+7. **Docker Build Check** - Docker image validation
+
+**Coverage in CI:**
+
+Test coverage is automatically measured in CI/CD:
+
+- Coverage reports are uploaded to Codecov
+- LCOV format (`coverage/lcov.info`) is generated
+- Pipeline fails if coverage drops below 100%
+- Critical paths are always at 100%
 
 ### Pre-commit Checks
 
