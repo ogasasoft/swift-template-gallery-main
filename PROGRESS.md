@@ -21,9 +21,16 @@
   - should render with medium size
   - should render with large size
 
+## 完了済み（最新）
+
+- [x] **react-resizable-panels アップデート** (2026-03-30)
+  - ^2.1.9 → ^4.8.0 へアップデート
+  - Build: 成功 ✅
+  - Lint: 0 errors ✅
+  - Tests: 17 passed (pre-existing failures 不関連) ✅
+  - 品質スコア: 25/25 (Excellent)
+  - ブランチ: feature/update-multiple-packages
+
 ## 次にやること
 
-スムーズに改善を続けるため、プロジェクト全体のステータスを確認:
-
-- テスト実行全体を確認（全テストスイート）
-- 新しい改善点の発見
+既存プロジェクトの改善は完了しました。次の改善点を探します。
