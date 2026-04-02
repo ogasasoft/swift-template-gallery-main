@@ -349,6 +349,12 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 For support, email support@example.com or open an issue in our GitHub repository.
 
+## 🕐 Recent Updates
+
+| Date       | Change                                                                                            |
+| ---------- | ------------------------------------------------------------------------------------------------- |
+| 2026-04-02 | TypeScript型エラー修正: `src/types/testing-library-dom.d.ts` のスタブ削除により229エラーを0に解消 |
+
 ## 📈 Roadmap
 
 - [x] Add dark mode support ✅

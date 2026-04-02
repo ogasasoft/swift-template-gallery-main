@@ -2,7 +2,7 @@ name: CI/CD Pipeline
 
 on:
   push:
-    branches: [ main, 'feature/*', 'update/*' ]
+    branches: [ main, 'feature/*', 'update/*', 'fix/*' ]
   pull_request:
     branches: [ main ]
   workflow_dispatch:
@@ -117,9 +117,6 @@ jobs:
       - name: Build project
         run: npm run build
 
-      - name: Preview production build
-        run: npm run preview
-
       - name: Upload build artifacts
         uses: actions/upload-artifact@v4
         with:
@@ -148,8 +145,8 @@ jobs:
       - name: Run npm audit
         run: npm audit --audit-level=moderate || echo "Security vulnerabilities found. Review manually."
 
-      - name: Run nsp audit (optional, requires nsp package)
-        run: nsp audit || echo "nsp not installed, skipping"
+      - name: Check for known vulnerabilities
+        run: npm audit --audit-level=high || echo "High severity vulnerabilities found. Review manually."
 
   # Deploy job (uncomment and configure for deployment)
   # deploy:
