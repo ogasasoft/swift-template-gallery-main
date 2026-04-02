@@ -1,0 +1,95 @@
+# Branch Protection Check
+# Ensures that all required status checks pass before allowing PR merges
+
+name: Branch Protection Check
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, labeled, unlabeled]
+    branches:
+      - main
+
+  workflow_dispatch:
+
+permissions:
+  checks: write
+  pull-requests: write
+
+jobs:
+  check-required-statuses:
+    name: Verify Required Checks
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Check PR status
+        id: status
+        run: |
+          echo "Checking required status checks..."
+          curl -X GET \
+            -H "Accept: application/vnd.github.v3+json" \
+            -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+            "https://api.github.com/repos/${{ github.repository }}/pulls/${{ github.event.pull_request.number }}/checks?check_name=Type%20Check&check_name=Lint%20Check&check_name=Run%20Tests&check_name=Build%20Check&check_name=Security%20Audit" \
+            | jq -r '.checks[] | select(.conclusion == "success") | .name' \
+            > /tmp/successful-checks.txt
+
+          echo "Checking required checks..."
+
+          # Required checks
+          required_checks=("Type Check" "Lint Check" "Run Tests" "Build Check" "Security Audit")
+          missing=()
+
+          for check in "${required_checks[@]}"; do
+            if ! grep -q "$check" /tmp/successful-checks.txt; then
+              missing+=("$check")
+            fi
+          done
+
+          if [ ${#missing[@]} -gt 0 ]; then
+            echo "Missing required checks:"
+            for check in "${missing[@]}"; do
+              echo "- $check"
+            done
+            echo "::error::Missing required status checks: ${missing[*]}"
+            echo "missing=true" >> $GITHUB_OUTPUT
+            exit 1
+          else
+            echo "All required checks passed ✓"
+            echo "missing=false" >> $GITHUB_OUTPUT
+          fi
+
+      - name: Comment if checks are missing
+        if: steps.status.outputs.missing == 'true'
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const checks = [
+              'Type Check',
+              'Lint Check',
+              'Run Tests',
+              'Build Check',
+              'Security Audit'
+            ];
+
+            const missingChecks = checks.filter(check => {
+              return !check.includes('Type Check') && !check.includes('Lint Check') && !check.includes('Run Tests') && !check.includes('Build Check') && !check.includes('Security Audit');
+            });
+
+            const checkList = checks.join('\n- ');
+
+            await getOctokit(${{ secrets.GITHUB_TOKEN }}).rest.issues.createComment({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: context.issue.number,
+              body: `## 🚫 Required Status Checks Not Met\n\nTo merge this pull request, all required checks must pass:\n\n- ${checkList}\n\nPlease ensure all checks have completed successfully before merging.`
+            });
+
+      - name: Add required labels if checks pass
+        if: steps.status.outputs.missing == 'false'
+        run: |
+          echo "All checks passed! Adding 'ready for review' label..."
+          # In a real scenario, you might want to add a label programmatically
+          # For now, we'll just log this
+          echo "Checks passed successfully"
