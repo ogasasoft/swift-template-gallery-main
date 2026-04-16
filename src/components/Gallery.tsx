@@ -14,6 +14,9 @@ const allIndustries = Array.from(
 ).sort();
 const allTones = Array.from(new Set(templates.map((t) => t.tone))).sort();
 const allStyles = Array.from(new Set(templates.map((t) => t.style))).sort();
+const allCategories = Array.from(
+  new Set(templates.map((t) => t.category).filter(Boolean)),
+).sort();
 
 export default function Gallery() {
   const { toast } = useToast();
@@ -25,6 +28,7 @@ export default function Gallery() {
     industry: [],
     tone: [],
     style: [],
+    category: [],
     search: "",
   });
 
@@ -41,6 +45,9 @@ export default function Gallery() {
           filters.tone.length === 0 || filters.tone.includes(template.tone);
         const matchesStyle =
           filters.style.length === 0 || filters.style.includes(template.style);
+        const matchesCategory =
+          filters.category.length === 0 ||
+          filters.category.includes(template.category || "");
         const matchesSearch = template.title
           .toLowerCase()
           .includes(filters.search.toLowerCase());
@@ -49,6 +56,7 @@ export default function Gallery() {
           matchesIndustry &&
           matchesTone &&
           matchesStyle &&
+          matchesCategory &&
           matchesSearch
         );
       });
@@ -106,6 +114,7 @@ export default function Gallery() {
         allIndustries={allIndustries}
         allTones={allTones}
         allStyles={allStyles}
+        allCategories={allCategories}
         totalTemplates={templates.length}
         filteredCount={filteredTemplates.length}
       />

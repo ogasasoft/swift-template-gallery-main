@@ -5,6 +5,7 @@ export interface Template {
   industry: string;
   tone: string;
   style: string;
+  category?: string;
   thumb: string;
   preview_path: string;
   rating?: number;
@@ -32,5 +33,6 @@ export interface FilterState {
   industry: string[];
   tone: string[];
   style: string[];
+  category: string[];
   search: string;
 }

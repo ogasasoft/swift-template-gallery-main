@@ -6,6 +6,7 @@
     "industry": "Cafe",
     "tone": "Simple",
     "style": "Minimal",
+    "category": "ui-components",
     "thumb": "https://images.unsplash.com/photo-1509042239860-f550ce710b93?w=400&h=300&fit=crop",
     "preview_path": "/templates/cafe-01/index.html"
   },
@@ -16,6 +17,7 @@
     "industry": "Cafe",
     "tone": "Luxury",
     "style": "Elegant",
+    "category": "ui-components",
     "thumb": "https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?w=400&h=300&fit=crop",
     "preview_path": "/templates/cafe-02/index.html"
   },
@@ -26,6 +28,7 @@
     "industry": "Cafe",
     "tone": "Pop",
     "style": "Colorful",
+    "category": "ui-components",
     "thumb": "https://images.unsplash.com/photo-1572442388796-11668a67e53d?w=400&h=300&fit=crop",
     "preview_path": "/templates/cafe-03/index.html"
   },
@@ -36,6 +39,7 @@
     "industry": "Cafe",
     "tone": "Natural",
     "style": "Organic",
+    "category": "ui-components",
     "thumb": "https://images.unsplash.com/photo-1554118811-1e0d58224f24?w=400&h=300&fit=crop",
     "preview_path": "/templates/cafe-04/index.html"
   },
@@ -46,6 +50,7 @@
     "industry": "Cafe",
     "tone": "Modern",
     "style": "Clean",
+    "category": "ui-components",
     "thumb": "https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?w=400&h=300&fit=crop",
     "preview_path": "/templates/cafe-05/index.html"
   },
@@ -56,6 +61,7 @@
     "industry": "Restaurant",
     "tone": "Sophisticated",
     "style": "Elegant",
+    "category": "forms",
     "thumb": "https://images.unsplash.com/photo-1414235077428-338989a2e8c0?w=400&h=300&fit=crop",
     "preview_path": "/templates/restaurant-01/index.html"
   },
@@ -66,6 +72,7 @@
     "industry": "Restaurant",
     "tone": "Casual",
     "style": "Warm",
+    "category": "forms",
     "thumb": "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&h=300&fit=crop",
     "preview_path": "/templates/restaurant-02/index.html"
   },
@@ -76,6 +83,7 @@
     "industry": "Fashion",
     "tone": "Luxury",
     "style": "Minimal",
+    "category": "data-viz",
     "thumb": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=400&h=300&fit=crop",
     "preview_path": "/templates/fashion-01/index.html"
   },
@@ -86,6 +94,7 @@
     "industry": "Fashion",
     "tone": "Pop",
     "style": "Colorful",
+    "category": "data-viz",
     "thumb": "https://images.unsplash.com/photo-1483985988355-763728e1935b?w=400&h=300&fit=crop",
     "preview_path": "/templates/fashion-02/index.html"
   },
@@ -96,6 +105,7 @@
     "industry": "Tech",
     "tone": "Modern",
     "style": "Clean",
+    "category": "layout",
     "thumb": "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=400&h=300&fit=crop",
     "preview_path": "/templates/tech-01/index.html"
   }

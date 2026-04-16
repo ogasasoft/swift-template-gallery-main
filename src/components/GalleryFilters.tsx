@@ -26,6 +26,7 @@ interface GalleryFiltersProps {
   allIndustries: string[];
   allTones: string[];
   allStyles: string[];
+  allCategories: string[];
   totalTemplates: number;
   filteredCount: number;
 }
@@ -37,6 +38,7 @@ export default function GalleryFilters({
   allIndustries,
   allTones,
   allStyles,
+  allCategories,
   totalTemplates,
   filteredCount,
 }: GalleryFiltersProps) {
@@ -46,11 +48,19 @@ export default function GalleryFilters({
     filters.tags.length +
     filters.industry.length +
     filters.tone.length +
-    filters.style.length;
+    filters.style.length +
+    filters.category.length;
   const hasActiveFilters = activeFilterCount > 0 || filters.search.length > 0;
 
   const handleClearAll = () => {
-    setFilters({ tags: [], industry: [], tone: [], style: [], search: "" });
+    setFilters({
+      tags: [],
+      industry: [],
+      tone: [],
+      style: [],
+      category: [],
+      search: "",
+    });
   };
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -74,6 +84,13 @@ export default function GalleryFilters({
 
   const handleRemoveStyle = (value: string) => {
     setFilters({ ...filters, style: filters.style.filter((v) => v !== value) });
+  };
+
+  const handleRemoveCategory = (category: string) => {
+    setFilters({
+      ...filters,
+      category: filters.category.filter((c) => c !== category),
+    });
   };
 
   return (
@@ -111,7 +128,7 @@ export default function GalleryFilters({
 
             <Accordion
               type="multiple"
-              defaultValue={["industry", "tone", "style", "tags"]}
+              defaultValue={["industry", "tone", "style", "tags", "category"]}
             >
               {/* Industry */}
               <AccordionItem value="industry">
@@ -256,6 +273,42 @@ export default function GalleryFilters({
                   </ToggleGroup>
                 </AccordionContent>
               </AccordionItem>
+
+              {/* Category */}
+              <AccordionItem value="category">
+                <AccordionTrigger className="text-sm font-medium">
+                  カテゴリ
+                  {filters.category.length > 0 && (
+                    <Badge
+                      variant="secondary"
+                      className="ml-2 h-5 px-1.5 text-xs"
+                    >
+                      {filters.category.length}
+                    </Badge>
+                  )}
+                </AccordionTrigger>
+                <AccordionContent>
+                  <ToggleGroup
+                    type="multiple"
+                    value={filters.category}
+                    onValueChange={(values) =>
+                      setFilters({ ...filters, category: values })
+                    }
+                    className="flex-wrap justify-start gap-2 pt-1"
+                  >
+                    {allCategories.map((category) => (
+                      <ToggleGroupItem
+                        key={category}
+                        value={category}
+                        size="sm"
+                        className="rounded-full px-3 py-1 text-xs h-auto data-[state=on]:bg-primary data-[state=on]:text-primary-foreground"
+                      >
+                        {category}
+                      </ToggleGroupItem>
+                    ))}
+                  </ToggleGroup>
+                </AccordionContent>
+              </AccordionItem>
             </Accordion>
 
             {activeFilterCount > 0 && (
@@ -291,7 +344,8 @@ export default function GalleryFilters({
       {(filters.industry.length > 0 ||
         filters.tone.length > 0 ||
         filters.style.length > 0 ||
-        filters.tags.length > 0) && (
+        filters.tags.length > 0 ||
+        filters.category.length > 0) && (
         <div className="flex flex-wrap gap-2 items-center">
           <span className="text-xs text-muted-foreground">選択中:</span>
           {filters.industry.map((v) => (
@@ -335,6 +389,17 @@ export default function GalleryFilters({
               onClick={() => handleRemoveTag(tag)}
             >
               {tag}
+              <X className="h-3 w-3 ml-1" />
+            </Badge>
+          ))}
+          {filters.category.map((category) => (
+            <Badge
+              key={`category-${category}`}
+              variant="secondary"
+              className="cursor-pointer hover:bg-destructive hover:text-destructive-foreground transition-colors text-xs"
+              onClick={() => handleRemoveCategory(category)}
+            >
+              カテゴリ: {category}
               <X className="h-3 w-3 ml-1" />
             </Badge>
           ))}

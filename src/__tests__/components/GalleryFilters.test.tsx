@@ -7,6 +7,7 @@ const defaultFilters: FilterState = {
   industry: [],
   tone: [],
   style: [],
+  category: [],
   search: "",
 };
 
@@ -17,6 +18,7 @@ const defaultProps = {
   allIndustries: ["Cafe", "Restaurant", "Fashion", "Tech"],
   allTones: ["Simple", "Luxury", "Pop", "Natural", "Modern"],
   allStyles: ["Minimal", "Elegant", "Colorful", "Organic", "Clean"],
+  allCategories: ["ui-components", "forms", "data-viz", "layout"],
   totalTemplates: 10,
   filteredCount: 10,
 };
@@ -95,6 +97,7 @@ describe("GalleryFilters Component", () => {
       industry: [],
       tone: [],
       style: [],
+      category: [],
       search: "",
     });
   });
@@ -127,6 +130,16 @@ describe("GalleryFilters Component", () => {
       />,
     );
     expect(screen.getByText("スタイル: Minimal")).toBeInTheDocument();
+  });
+
+  it("should show active filter chips for selected category", () => {
+    render(
+      <GalleryFilters
+        {...defaultProps}
+        filters={{ ...defaultFilters, category: ["ui-components"] }}
+      />,
+    );
+    expect(screen.getByText("カテゴリ: ui-components")).toBeInTheDocument();
   });
 
   it("should show active filter count badge on filter button", () => {
@@ -164,5 +177,33 @@ describe("GalleryFilters Component", () => {
       />,
     );
     expect(screen.getByText("選択中:")).toBeInTheDocument();
+  });
+
+  it("should show active filter chips for multiple categories", () => {
+    render(
+      <GalleryFilters
+        {...defaultProps}
+        filters={{ ...defaultFilters, category: ["ui-components", "forms"] }}
+      />,
+    );
+    expect(screen.getByText("カテゴリ: ui-components")).toBeInTheDocument();
+    expect(screen.getByText("カテゴリ: forms")).toBeInTheDocument();
+  });
+
+  it("should remove category filter chip when clicked", () => {
+    const setFilters = jest.fn();
+    render(
+      <GalleryFilters
+        {...defaultProps}
+        setFilters={setFilters}
+        filters={{ ...defaultFilters, category: ["ui-components", "forms"] }}
+      />,
+    );
+    // Click the first category chip
+    const categoryBadge = screen.getByText("カテゴリ: ui-components");
+    fireEvent.click(categoryBadge);
+    expect(setFilters).toHaveBeenCalledWith(
+      expect.objectContaining({ category: ["forms"] }),
+    );
   });
 });
