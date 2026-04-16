@@ -255,6 +255,7 @@ swift-template-gallery/
 - [Architecture](./ARCHITECTURE.md) - System design overview
 - [Contributing](./CONTRIBUTING.md) - How to contribute
 - [API Reference](./docs/api.md) - API documentation
+- [TypeScript Error Fix](./docs/type-errors-fix.md) - TypeScript error resolution (testing-library-dom.d.ts removal)
 
 ## 🧪 Testing
 
