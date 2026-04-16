@@ -36,6 +36,7 @@ The stub file contained incomplete/misconfigured type declarations that conflict
 
 ```bash
 rm src/types/testing-library-dom.d.ts
+
 ```
 
 ### Step 2: Verify Package Installation
@@ -96,6 +97,7 @@ This fix ensures:
 
 - ✅ Full type safety across all components and tests
 - ✅ Better IDE autocomplete and type hints
+
 - ✅ Fewer runtime errors
 - ✅ Easier onboarding for new developers
 - ✅ Future TypeScript updates remain compatible

@@ -5,6 +5,7 @@ Thank you for your interest in contributing to this project!
 ## Development Setup
 
 ### Prerequisites
+
 - Node.js 18+ installed via nvm
 - npm or yarn package manager
 
@@ -45,16 +46,19 @@ swift-template-gallery-main/
 ## Testing
 
 Run all tests:
+
 ```bash
 npm test
 ```
 
 Run tests with coverage:
+
 ```bash
 npm test -- --coverage
 ```
 
 Run tests in watch mode:
+
 ```bash
 npm test -- --watch
 ```
@@ -62,16 +66,19 @@ npm test -- --watch
 ## Code Style
 
 ### TypeScript
+
 - Use strict mode: `tsconfig.json` is already configured
 - Prefer explicit typing over any
 - Use interfaces for object shapes
 
 ### React
+
 - Functional components with hooks
 - Use `styled-components` or Tailwind CSS for styling
 - Follow shadcn-ui design patterns
 
 ### JavaScript
+
 - ES6+ features only
 - Use const/let instead of var
 
@@ -90,6 +97,7 @@ chore: maintenance tasks
 ```
 
 Example:
+
 ```
 feat: add dark mode toggle
 fix: correct shipping API response parsing
@@ -106,6 +114,7 @@ docs: update installation instructions
 - `chore/`: Maintenance tasks
 
 Example:
+
 ```
 feature/add-search-filter
 fix/dashboard-rendering-error
