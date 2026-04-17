@@ -412,8 +412,9 @@ To update dependencies:
 
 ## Links
 
-- [CI/CD Pipeline](.github/workflows/ci.yml)
-- [Build and Deploy Pipeline](.github/workflows/build-and-deploy.yml)
-- [Project README](README.md)
-- [Contributing Guide](CONTRIBUTING.md)
-- [Architecture Documentation](ARCHITECTURE.md)
+- [CI/CD Pipeline](.github/workflows/ci.yml) - Main continuous integration workflow
+- [Build and Deploy Pipeline](.github/workflows/build-and-deploy.yml) - Production deployment workflow
+- [Branch Protection Check](.github/workflows/branch-protection-check.yml) - PR merge quality gate
+- [Project README](README.md) - Project overview and documentation
+- [Contributing Guide](CONTRIBUTING.md) - Contribution guidelines
+- [Architecture Documentation](ARCHITECTURE.md) - System design details

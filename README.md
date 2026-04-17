@@ -254,6 +254,7 @@ swift-template-gallery/
 - [Getting Started](#-quick-start) - Initial setup guide
 - [Architecture](./ARCHITECTURE.md) - System design overview
 - [Contributing](./CONTRIBUTING.md) - How to contribute
+- [CI/CD Pipeline](./.github/CI_CD.md) - Continuous Integration/Deployment documentation
 - [API Reference](./docs/api.md) - API documentation
 - [TypeScript Error Fix](./docs/type-errors-fix.md) - TypeScript error resolution (testing-library-dom.d.ts removal)
 
