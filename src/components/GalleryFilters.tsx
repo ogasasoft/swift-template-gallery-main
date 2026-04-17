@@ -19,6 +19,58 @@ import {
 } from "@/components/ui/accordion";
 import type { FilterState } from "@/lib/types";
 
+const CATEGORY_COLORS: Record<
+  string,
+  {
+    dot: string;
+    activeBg: string;
+    activeText: string;
+    chipBg: string;
+    chipText: string;
+  }
+> = {
+  "ui-components": {
+    dot: "bg-indigo-500",
+    activeBg: "data-[state=on]:bg-indigo-500",
+    activeText: "data-[state=on]:text-white",
+    chipBg: "bg-indigo-100 dark:bg-indigo-900",
+    chipText: "text-indigo-700 dark:text-indigo-300",
+  },
+  forms: {
+    dot: "bg-pink-500",
+    activeBg: "data-[state=on]:bg-pink-500",
+    activeText: "data-[state=on]:text-white",
+    chipBg: "bg-pink-100 dark:bg-pink-900",
+    chipText: "text-pink-700 dark:text-pink-300",
+  },
+  "data-viz": {
+    dot: "bg-green-500",
+    activeBg: "data-[state=on]:bg-green-500",
+    activeText: "data-[state=on]:text-white",
+    chipBg: "bg-green-100 dark:bg-green-900",
+    chipText: "text-green-700 dark:text-green-300",
+  },
+  layout: {
+    dot: "bg-orange-500",
+    activeBg: "data-[state=on]:bg-orange-500",
+    activeText: "data-[state=on]:text-white",
+    chipBg: "bg-orange-100 dark:bg-orange-900",
+    chipText: "text-orange-700 dark:text-orange-300",
+  },
+};
+
+export function getCategoryColor(category: string) {
+  return (
+    CATEGORY_COLORS[category] ?? {
+      dot: "bg-gray-400",
+      activeBg: "data-[state=on]:bg-primary",
+      activeText: "data-[state=on]:text-primary-foreground",
+      chipBg: "",
+      chipText: "",
+    }
+  );
+}
+
 interface GalleryFiltersProps {
   filters: FilterState;
   setFilters: (filters: FilterState) => void;
@@ -296,16 +348,22 @@ export default function GalleryFilters({
                     }
                     className="flex-wrap justify-start gap-2 pt-1"
                   >
-                    {allCategories.map((category) => (
-                      <ToggleGroupItem
-                        key={category}
-                        value={category}
-                        size="sm"
-                        className="rounded-full px-3 py-1 text-xs h-auto data-[state=on]:bg-primary data-[state=on]:text-primary-foreground"
-                      >
-                        {category}
-                      </ToggleGroupItem>
-                    ))}
+                    {allCategories.map((category) => {
+                      const color = getCategoryColor(category);
+                      return (
+                        <ToggleGroupItem
+                          key={category}
+                          value={category}
+                          size="sm"
+                          className={`rounded-full px-3 py-1 text-xs h-auto gap-1.5 ${color.activeBg} ${color.activeText}`}
+                        >
+                          <span
+                            className={`inline-block h-2 w-2 rounded-full ${color.dot} shrink-0`}
+                          />
+                          {category}
+                        </ToggleGroupItem>
+                      );
+                    })}
                   </ToggleGroup>
                 </AccordionContent>
               </AccordionItem>
@@ -392,17 +450,23 @@ export default function GalleryFilters({
               <X className="h-3 w-3 ml-1" />
             </Badge>
           ))}
-          {filters.category.map((category) => (
-            <Badge
-              key={`category-${category}`}
-              variant="secondary"
-              className="cursor-pointer hover:bg-destructive hover:text-destructive-foreground transition-colors text-xs"
-              onClick={() => handleRemoveCategory(category)}
-            >
-              カテゴリ: {category}
-              <X className="h-3 w-3 ml-1" />
-            </Badge>
-          ))}
+          {filters.category.map((category) => {
+            const color = getCategoryColor(category);
+            return (
+              <Badge
+                key={`category-${category}`}
+                variant="secondary"
+                className={`cursor-pointer hover:bg-destructive hover:text-destructive-foreground transition-colors text-xs gap-1 ${color.chipBg} ${color.chipText}`}
+                onClick={() => handleRemoveCategory(category)}
+              >
+                <span
+                  className={`inline-block h-2 w-2 rounded-full ${color.dot} shrink-0`}
+                />
+                カテゴリ: {category}
+                <X className="h-3 w-3 ml-1" />
+              </Badge>
+            );
+          })}
         </div>
       )}
 
