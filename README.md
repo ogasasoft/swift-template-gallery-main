@@ -20,8 +20,9 @@ A modern template gallery for developers to discover and preview reusable React 
 - 📋 **Code Export**: Copy code directly to clipboard
 - 📱 **Responsive**: Mobile-first design
 - 🌙 **Dark Mode**: Automatic system preference detection with manual toggle
+- 🏷️ **Template Categories**: Filter templates by UI components, forms, data visualization, or layout
 - ⭐ **Review System**: User ratings and reviews with sentiment analysis
-- 🔬 **Comprehensive Tests**: 162 tests covering all components and pages
+- 🔬 **Comprehensive Tests**: 165 tests covering all components and pages
 - ✨ **TypeScript**: Full type safety with 100% coverage
 
 ## 🛠️ Tech Stack
@@ -139,7 +140,7 @@ This project maintains enterprise-grade quality standards:
 
 - **Zero TypeScript Errors**: Strict type checking with 100% type coverage (Resolved 229 errors by removing `src/types/testing-library-dom.d.ts` stub file)
 - **Zero ESLint Errors**: Enforced via Husky pre-commit hooks
-- **162 Tests**: Comprehensive test suite covering all components, pages, and utilities
+- **165 Tests**: Comprehensive test suite covering all components, pages, and utilities
 - **Coverage**: 100% test coverage for critical paths
 - **Code Formatting**: Consistent style via Prettier
 
@@ -353,9 +354,10 @@ For support, email support@example.com or open an issue in our GitHub repository
 
 ## 🕐 Recent Updates
 
-| Date       | Change                                                                                                           |
-| ---------- | ---------------------------------------------------------------------------------------------------------------- |
-| 2026-04-16 | React Testing Library型エラー修正: `src/types/testing-library-dom.d.ts` のスタブを削除し、229の型エラーを0に解消 |
+| Date       | Change                                                                                                                              |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------- |
+| 2026-04-18 | README更新: テンプレートカテゴリ機能実装完了（4つのカテゴリ: UIコンポーネント、フォーム、データビジュアライゼーション、レイアウト） |
+| 2026-04-16 | React Testing Library型エラー修正: `src/types/testing-library-dom.d.ts` のスタブを削除し、229の型エラーを0に解消                    |
 
 ## 📈 Roadmap
 
@@ -364,7 +366,7 @@ For support, email support@example.com or open an issue in our GitHub repository
 - [x] Review system with sentiment analysis ✅
 - [x] TypeScript strict mode ✅
 - [x] Code quality enforcement ✅
-- [ ] Template categorization with tags
+- [x] Template categorization with tags ✅
 - [ ] Template download functionality
 - [ ] RESTful API for templates
 - [ ] Template marketplace integration
