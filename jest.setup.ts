@@ -3,7 +3,7 @@ import "@testing-library/jest-dom";
 // TextEncoder polyfill for Node.js environments
 // Must be set in a beforeEach hook to work with jest-environment-jsdom
 global.TextEncoder =
-  (globalThis as any).TextEncoder ||
+  (globalThis as { TextEncoder?: typeof TextEncoder }).TextEncoder ||
   (() => {
     throw new Error("TextEncoder is not available");
   });

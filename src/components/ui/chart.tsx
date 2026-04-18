@@ -3,6 +3,16 @@ import * as RechartsPrimitive from "recharts";
 
 import { cn } from "@/lib/utils";
 
+type RechartsPayload = {
+  dataKey?: string | number;
+  name?: string | number;
+  value?: number | string | (number | string)[];
+  color?: string;
+  fill?: string;
+  payload?: Record<string, unknown>;
+  [key: string]: unknown;
+};
+
 // Format: { THEME_NAME: CSS_SELECTOR }
 const THEMES = { light: "", dark: ".dark" } as const;
 
@@ -108,18 +118,21 @@ const ChartTooltipContent = React.forwardRef<
     indicator?: "line" | "dot" | "dashed";
     nameKey?: string;
     labelKey?: string;
-    labelFormatter?: (label: any, payload: any[]) => React.ReactNode;
+    labelFormatter?: (
+      label: unknown,
+      payload: RechartsPayload[],
+    ) => React.ReactNode;
     labelClassName?: string;
     formatter?: (
-      value: any,
-      name: any,
-      item: any,
+      value: unknown,
+      name: unknown,
+      item: RechartsPayload,
       index: number,
-      payload: any,
+      payload: RechartsPayload,
     ) => React.ReactNode;
     // These are passed from Recharts Tooltip
     active?: boolean;
-    payload?: any[];
+    payload?: RechartsPayload[];
     label?: string;
     color?: string;
   }
@@ -201,7 +214,7 @@ const ChartTooltipContent = React.forwardRef<
             const key = `${nameKey || item.name || item.dataKey || "value"}`;
             const itemConfig = getPayloadConfigFromPayload(config, item, key);
             const indicatorColor =
-              color || (item as any).payload?.fill || item.color;
+              color || (item.payload?.fill as string | undefined) || item.color;
 
             return (
               <div
@@ -277,7 +290,7 @@ const ChartLegendContent = React.forwardRef<
     hideIcon?: boolean;
     nameKey?: string;
     // These are passed from Recharts Legend
-    payload?: any[];
+    payload?: RechartsPayload[];
     verticalAlign?: string;
   }
 >(
@@ -318,7 +331,7 @@ const ChartLegendContent = React.forwardRef<
                 <div
                   className="h-2 w-2 shrink-0 rounded-[2px]"
                   style={{
-                    backgroundColor: (item as any).color,
+                    backgroundColor: item.color,
                   }}
                 />
               )}
