@@ -11,6 +11,10 @@ A modern template gallery for developers to discover and preview reusable React 
 ![ESLint](https://img.shields.io/badge/ESLint-9.32.0-4B32C3.svg)
 ![Vite](https://img.shields.io/badge/Vite-5.4.19-646CFF.svg)
 
+**Quality Badge**:
+![Quality](https://img.shields.io/badge/quality-excellent-4caf50.svg)
+![Tests](https://img.shields.io/badge/tests-167%20passed-success.svg)
+
 ## 🌟 Features
 
 - 📦 **Template Gallery**: Browse and discover ready-to-use React templates
@@ -171,6 +175,7 @@ All commits run automated quality checks via Husky:
 - **Styling**: Tailwind CSS + shadcn-ui
 - **Testing**: Jest + React Testing Library
 - **Build**: Vite
+- **Quality**: Zero TypeScript errors, zero ESLint errors
 
 ## 🚀 Quick Start
 
