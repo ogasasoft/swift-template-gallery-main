@@ -25,6 +25,7 @@ A modern template gallery for developers to discover and preview reusable React 
 - 📄 **Pagination**: Navigate large template collections with intuitive page controls
 - 🔬 **Comprehensive Tests**: 203 tests covering all components and pages
 - ✨ **TypeScript**: Full type safety with 100% coverage
+- 🎨 **Storybook**: Interactive component development and documentation
 
 ## 🛠️ Tech Stack
 
@@ -47,6 +48,12 @@ A modern template gallery for developers to discover and preview reusable React 
 - **React Hook Form 7.61.1** - Efficient form handling
 - **Zod 3.25.76** - Runtime type validation
 - **TanStack Query 5.83.0** - Server state management
+
+### Storybook
+
+- **Storybook 8.6.18** - Interactive component documentation and testing
+- **@storybook/react** - React component stories
+- **@storybook/react-vite** - Vite integration for Storybook
 
 ### Testing
 
@@ -115,6 +122,9 @@ npm run preview          # Preview production build locally
 npm run format           # Format code with Prettier
 npm run format:check     # Check code formatting without changes
 npm run update           # Update all dependencies to latest compatible versions
+npm run storybook        # Start Storybook in development mode (http://localhost:6006)
+npm run build-storybook  # Build Storybook for production
+npm run test-storybook   # Run tests within Storybook
 ```
 
 ### Quality & Testing
@@ -252,9 +262,9 @@ The `Pagination` component provides accessible, reusable page navigation built o
 import Pagination from "@/components/Pagination";
 
 <Pagination
-  currentPage={currentPage}
-  totalPages={Math.ceil(items.length / ITEMS_PER_PAGE)}
-  onPageChange={setCurrentPage}
+	currentPage={currentPage}
+	totalPages={Math.ceil(items.length / ITEMS_PER_PAGE)}
+	onPageChange={setCurrentPage}
 />;
 ```
 
@@ -325,6 +335,12 @@ npm run preview
 
 # Format code with Prettier
 npm run format
+
+# Start Storybook
+npm run storybook
+
+# Build Storybook for production
+npm run build-storybook
 ```
 
 ## 📚 Documentation
@@ -384,6 +400,27 @@ Coverage:    Critical paths: 100%
 
 Contributions are welcome! Please read our [Contributing Guide](./CONTRIBUTING.md) for details on our code of conduct and the process for submitting pull requests.
 
+### Component Development
+
+We use **Storybook** for component development and documentation:
+
+1. **Start Storybook**:
+
+   ```bash
+   npm run storybook
+   ```
+
+2. **Create a Component Story**:
+   See `STORYBOOK.md` for detailed guide on creating component stories.
+
+3. **Test Components**:
+   Interact with components in Storybook's preview environment.
+
+4. **Build for Production**:
+   ```bash
+   npm run build-storybook
+   ```
+
 ### Development Workflow
 
 1. Fork the repository
@@ -418,6 +455,13 @@ eslint . --fix
 # 2. Prettier format
 prettier --write "**/*.{ts,tsx,js,jsx,css,md}"
 ```
+
+## 📚 Documentation
+
+- [Getting Started](#-quick-start) - Initial setup guide
+- [Architecture](./ARCHITECTURE.md) - System design overview
+- [Storybook](./STORYBOOK.md) - Component development guide
+- [Contributing](./CONTRIBUTING.md) - How to contribute
 
 ## 📄 License
 

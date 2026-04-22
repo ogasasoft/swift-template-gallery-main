@@ -7,6 +7,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **Storybook Integration**: Added Storybook 8.6.18 for component development and documentation
+- **Storybook Documentation**: Created `STORYBOOK.md` with comprehensive usage guide
+
+### Changed
+
+- Updated dependency configuration to include Storybook packages
+
 ## [1.0.0] - 2026-03-24
 
 ### Added
