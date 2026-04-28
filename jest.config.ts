@@ -4,7 +4,13 @@ const config: Config = {
   preset: "ts-jest",
   testEnvironment: "jsdom",
   roots: ["<rootDir>/src"],
-  testMatch: ["**/__tests__/**/*.test.ts?(x)", "**/?(*.)+(spec|test).ts?(x)"],
+  testMatch: [
+    "**/__tests__/**/*.test.ts?(x)",
+    "**/?(*.)+(spec|test).ts?(x)"
+  ],
+  testPathIgnorePatterns: [
+    "/stories/"
+  ],
   collectCoverageFrom: ["src/**/*.{ts,tsx}", "!src/**/*.d.ts", "!src/main.tsx"],
   setupFilesAfterEnv: ["<rootDir>/jest.setup.ts"],
   transform: {

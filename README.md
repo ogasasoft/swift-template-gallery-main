@@ -349,6 +349,7 @@ npm run build-storybook
 - [Architecture](./ARCHITECTURE.md) - System design overview
 - [Contributing](./CONTRIBUTING.md) - How to contribute
 - [API Reference](./docs/api.md) - API documentation
+- [Storybook](./STORYBOOK.md) - Component development guide
 
 ## 🧪 Testing
 

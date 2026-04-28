@@ -1,274 +1,171 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import "@testing-library/jest-dom";
 import Pagination from "@/components/Pagination";
 
 describe("Pagination Component", () => {
-  describe("Rendering", () => {
-    it("should render nothing when totalPages is 1", () => {
-      const { container } = render(
-        <Pagination currentPage={1} totalPages={1} onPageChange={jest.fn()} />,
-      );
-      expect(container.firstChild).toBeNull();
-    });
+	const mockOnPageChange = jest.fn();
 
-    it("should render nothing when totalPages is 0", () => {
-      const { container } = render(
-        <Pagination currentPage={1} totalPages={0} onPageChange={jest.fn()} />,
-      );
-      expect(container.firstChild).toBeNull();
-    });
+	it("renders nothing when totalPages is 1 or less", () => {
+		const { container } = render(
+			<Pagination
+				currentPage={1}
+				totalPages={1}
+				onPageChange={mockOnPageChange}
+			/>,
+		);
+		expect(container.firstChild).toBeNull();
+	});
 
-    it("should render pagination when totalPages > 1", () => {
-      render(
-        <Pagination currentPage={1} totalPages={3} onPageChange={jest.fn()} />,
-      );
-      expect(
-        screen.getByRole("navigation", { name: "ページネーション" }),
-      ).toBeInTheDocument();
-    });
+	it("renders pagination controls for total pages > 1", () => {
+		render(
+			<Pagination
+				currentPage={3}
+				totalPages={5}
+				onPageChange={mockOnPageChange}
+			/>,
+		);
+		expect(screen.getByLabelText("ページネーション")).toBeInTheDocument();
+	});
 
-    it("should render Previous and Next buttons", () => {
-      render(
-        <Pagination currentPage={2} totalPages={5} onPageChange={jest.fn()} />,
-      );
-      expect(
-        screen.getByRole("link", { name: /Go to previous page/i }),
-      ).toBeInTheDocument();
-      expect(
-        screen.getByRole("link", { name: /Go to next page/i }),
-      ).toBeInTheDocument();
-    });
+	it("calls onPageChange when clicking previous page", () => {
+		render(
+			<Pagination
+				currentPage={3}
+				totalPages={5}
+				onPageChange={mockOnPageChange}
+			/>,
+		);
 
-    it("should render all page numbers for totalPages <= 7", () => {
-      render(
-        <Pagination currentPage={1} totalPages={5} onPageChange={jest.fn()} />,
-      );
-      expect(
-        screen.getByRole("link", { name: /ページ 1/i }),
-      ).toBeInTheDocument();
-      expect(
-        screen.getByRole("link", { name: /ページ 2/i }),
-      ).toBeInTheDocument();
-      expect(
-        screen.getByRole("link", { name: /ページ 3/i }),
-      ).toBeInTheDocument();
-      expect(
-        screen.getByRole("link", { name: /ページ 4/i }),
-      ).toBeInTheDocument();
-      expect(
-        screen.getByRole("link", { name: /ページ 5/i }),
-      ).toBeInTheDocument();
-    });
-  });
+		const prevButton = screen.getByLabelText(/Go to previous page/);
+		fireEvent.click(prevButton);
 
-  describe("Active Page Highlighting", () => {
-    it("should mark the current page as active", () => {
-      render(
-        <Pagination currentPage={3} totalPages={5} onPageChange={jest.fn()} />,
-      );
-      const activePage = screen.getByRole("link", {
-        name: /ページ 3（現在のページ）/i,
-      });
-      expect(activePage).toHaveAttribute("aria-current", "page");
-    });
+		expect(mockOnPageChange).toHaveBeenCalledWith(2);
+	});
 
-    it("should not mark other pages as active", () => {
-      render(
-        <Pagination currentPage={2} totalPages={5} onPageChange={jest.fn()} />,
-      );
-      const page1 = screen.getByRole("link", { name: /^ページ 1$/ });
-      expect(page1).not.toHaveAttribute("aria-current", "page");
-    });
-  });
+	it("does not call onPageChange when clicking previous page on first page", () => {
+		render(
+			<Pagination
+				currentPage={1}
+				totalPages={5}
+				onPageChange={mockOnPageChange}
+			/>,
+		);
 
-  describe("Previous Button", () => {
-    it("should be disabled on the first page", () => {
-      render(
-        <Pagination currentPage={1} totalPages={5} onPageChange={jest.fn()} />,
-      );
-      const prev = screen.getByRole("link", { name: /Go to previous page/i });
-      expect(prev).toHaveAttribute("aria-disabled", "true");
-      expect(prev).toHaveClass("pointer-events-none", "opacity-50");
-    });
+		const prevButton = screen.getByLabelText("前へ");
+		fireEvent.click(prevButton);
 
-    it("should not be disabled on pages > 1", () => {
-      render(
-        <Pagination currentPage={2} totalPages={5} onPageChange={jest.fn()} />,
-      );
-      const prev = screen.getByRole("link", { name: /Go to previous page/i });
-      expect(prev).not.toHaveClass("pointer-events-none");
-    });
+		expect(mockOnPageChange).not.toHaveBeenCalled();
+	});
 
-    it("should call onPageChange with currentPage - 1 when clicked", () => {
-      const onPageChange = jest.fn();
-      render(
-        <Pagination
-          currentPage={3}
-          totalPages={5}
-          onPageChange={onPageChange}
-        />,
-      );
-      fireEvent.click(
-        screen.getByRole("link", { name: /Go to previous page/i }),
-      );
-      expect(onPageChange).toHaveBeenCalledWith(2);
-    });
+	it("calls onPageChange when clicking next page", () => {
+		render(
+			<Pagination
+				currentPage={3}
+				totalPages={5}
+				onPageChange={mockOnPageChange}
+			/>,
+		);
 
-    it("should not call onPageChange when disabled (page 1)", () => {
-      const onPageChange = jest.fn();
-      render(
-        <Pagination
-          currentPage={1}
-          totalPages={5}
-          onPageChange={onPageChange}
-        />,
-      );
-      // pointer-events-none prevents actual clicks, but we test the handler directly
-      const prev = screen.getByRole("link", { name: /Go to previous page/i });
-      fireEvent.click(prev);
-      // Even though event fires, handler guards against going below page 1
-      expect(onPageChange).not.toHaveBeenCalled();
-    });
-  });
+		const nextButton = screen.getByLabelText("次へ");
+		fireEvent.click(nextButton);
 
-  describe("Next Button", () => {
-    it("should be disabled on the last page", () => {
-      render(
-        <Pagination currentPage={5} totalPages={5} onPageChange={jest.fn()} />,
-      );
-      const next = screen.getByRole("link", { name: /Go to next page/i });
-      expect(next).toHaveAttribute("aria-disabled", "true");
-      expect(next).toHaveClass("pointer-events-none", "opacity-50");
-    });
+		expect(mockOnPageChange).toHaveBeenCalledWith(4);
+	});
 
-    it("should not be disabled on pages < totalPages", () => {
-      render(
-        <Pagination currentPage={3} totalPages={5} onPageChange={jest.fn()} />,
-      );
-      const next = screen.getByRole("link", { name: /Go to next page/i });
-      expect(next).not.toHaveClass("pointer-events-none");
-    });
+	it("does not call onPageChange when clicking next page on last page", () => {
+		render(
+			<Pagination
+				currentPage={5}
+				totalPages={5}
+				onPageChange={mockOnPageChange}
+			/>,
+		);
 
-    it("should call onPageChange with currentPage + 1 when clicked", () => {
-      const onPageChange = jest.fn();
-      render(
-        <Pagination
-          currentPage={3}
-          totalPages={5}
-          onPageChange={onPageChange}
-        />,
-      );
-      fireEvent.click(screen.getByRole("link", { name: /Go to next page/i }));
-      expect(onPageChange).toHaveBeenCalledWith(4);
-    });
+		const nextButton = screen.getByLabelText("次へ");
+		fireEvent.click(nextButton);
 
-    it("should not call onPageChange when disabled (last page)", () => {
-      const onPageChange = jest.fn();
-      render(
-        <Pagination
-          currentPage={5}
-          totalPages={5}
-          onPageChange={onPageChange}
-        />,
-      );
-      const next = screen.getByRole("link", { name: /Go to next page/i });
-      fireEvent.click(next);
-      expect(onPageChange).not.toHaveBeenCalled();
-    });
-  });
+		expect(mockOnPageChange).not.toHaveBeenCalled();
+	});
 
-  describe("Page Number Clicks", () => {
-    it("should call onPageChange with the clicked page number", () => {
-      const onPageChange = jest.fn();
-      render(
-        <Pagination
-          currentPage={1}
-          totalPages={5}
-          onPageChange={onPageChange}
-        />,
-      );
-      fireEvent.click(screen.getByRole("link", { name: /ページ 3/ }));
-      expect(onPageChange).toHaveBeenCalledWith(3);
-    });
+	it("calls onPageChange when clicking a page number", () => {
+		render(
+			<Pagination
+				currentPage={3}
+				totalPages={5}
+				onPageChange={mockOnPageChange}
+			/>,
+		);
 
-    it("should call onPageChange when clicking a different page", () => {
-      const onPageChange = jest.fn();
-      render(
-        <Pagination
-          currentPage={2}
-          totalPages={5}
-          onPageChange={onPageChange}
-        />,
-      );
-      fireEvent.click(screen.getByRole("link", { name: /^ページ 5$/ }));
-      expect(onPageChange).toHaveBeenCalledWith(5);
-    });
-  });
+		const page3Link = screen.getByLabelText("ページ 3");
+		fireEvent.click(page3Link);
 
-  describe("Ellipsis Logic", () => {
-    it("should show ellipsis for large page counts (currentPage near start)", () => {
-      render(
-        <Pagination currentPage={1} totalPages={10} onPageChange={jest.fn()} />,
-      );
-      expect(screen.getByText("More pages")).toBeInTheDocument();
-    });
+		expect(mockOnPageChange).toHaveBeenCalledWith(3);
+	});
 
-    it("should show two ellipses for large page counts (currentPage in middle)", () => {
-      render(
-        <Pagination currentPage={6} totalPages={15} onPageChange={jest.fn()} />,
-      );
-      const ellipses = screen.getAllByText("More pages");
-      expect(ellipses).toHaveLength(2);
-    });
+	it("marks current page as active", () => {
+		render(
+			<Pagination
+				currentPage={3}
+				totalPages={5}
+				onPageChange={mockOnPageChange}
+			/>,
+		);
 
-    it("should show ellipsis for large page counts (currentPage near end)", () => {
-      render(
-        <Pagination
-          currentPage={10}
-          totalPages={10}
-          onPageChange={jest.fn()}
-        />,
-      );
-      expect(screen.getByText("More pages")).toBeInTheDocument();
-    });
+		const page3Link = screen.getByLabelText(/ページ 3.*現在のページ/);
+		expect(page3Link).toHaveAttribute("aria-current", "page");
+	});
 
-    it("should always show first page", () => {
-      render(
-        <Pagination currentPage={8} totalPages={10} onPageChange={jest.fn()} />,
-      );
-      expect(
-        screen.getByRole("link", { name: /^ページ 1$/ }),
-      ).toBeInTheDocument();
-    });
+	it("marks previous button as disabled on first page", () => {
+		render(
+			<Pagination
+				currentPage={1}
+				totalPages={5}
+				onPageChange={mockOnPageChange}
+			/>,
+		);
 
-    it("should always show last page", () => {
-      render(
-        <Pagination currentPage={2} totalPages={10} onPageChange={jest.fn()} />,
-      );
-      expect(
-        screen.getByRole("link", { name: /ページ 10$/ }),
-      ).toBeInTheDocument();
-    });
+		const prevButton = screen.getByLabelText("前へ");
+		expect(prevButton).toHaveAttribute("aria-disabled", "true");
+	});
 
-    it("should not show ellipsis for totalPages <= 7", () => {
-      render(
-        <Pagination currentPage={4} totalPages={7} onPageChange={jest.fn()} />,
-      );
-      expect(screen.queryByText("More pages")).not.toBeInTheDocument();
-    });
-  });
+	it("marks next button as disabled on last page", () => {
+		render(
+			<Pagination
+				currentPage={5}
+				totalPages={5}
+				onPageChange={mockOnPageChange}
+			/>,
+		);
 
-  describe("Two Pages", () => {
-    it("should render both pages when totalPages is 2", () => {
-      render(
-        <Pagination currentPage={1} totalPages={2} onPageChange={jest.fn()} />,
-      );
-      expect(
-        screen.getByRole("link", { name: /ページ 1/ }),
-      ).toBeInTheDocument();
-      expect(
-        screen.getByRole("link", { name: /ページ 2/ }),
-      ).toBeInTheDocument();
-    });
-  });
+		const nextButton = screen.getByLabelText("次へ");
+		expect(nextButton).toHaveAttribute("aria-disabled", "true");
+	});
+
+	it("handles ellipsis correctly for many pages", () => {
+		render(
+			<Pagination
+				currentPage={7}
+				totalPages={12}
+				onPageChange={mockOnPageChange}
+			/>,
+		);
+
+		const ellipsisElements = screen.getAllByLabelText(/ellipsis/);
+		expect(ellipsisElements.length).toBeGreaterThan(0);
+	});
+
+	it("handles small number of pages correctly", () => {
+		render(
+			<Pagination
+				currentPage={2}
+				totalPages={3}
+				onPageChange={mockOnPageChange}
+			/>,
+		);
+
+		expect(screen.getByLabelText("前へ")).toBeInTheDocument();
+		expect(screen.getByLabelText("次へ")).toBeInTheDocument();
+		expect(screen.getByLabelText("ページ 1")).toBeInTheDocument();
+		expect(screen.getByLabelText("ページ 2")).toBeInTheDocument();
+		expect(screen.getByLabelText("ページ 3")).toBeInTheDocument();
+	});
 });

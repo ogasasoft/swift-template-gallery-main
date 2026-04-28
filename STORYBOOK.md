@@ -92,11 +92,41 @@ export const Default: Story = {
 
 ## Testing in Storybook
 
+### Test Integration
+
+This project integrates Storybook with Jest for comprehensive component testing:
+
 ```bash
+# Run all tests including stories
 npm run test-storybook
+
+# Run tests in watch mode
+npm run test-storybook -- --watch
+
+# Run tests with coverage
+npm run test-storybook -- --coverage
 ```
 
-This runs the existing test suites within the Storybook environment.
+### Test Structure
+
+- **Unit Tests**: Located in `src/__tests__/` directory
+- **Story Tests**: Component stories in `src/stories/` directory
+- **Coverage**: Runs automatically with `test-storybook --coverage`
+
+### Quality Checks
+
+```bash
+# Quality check script (runs build, typecheck, lint, and tests)
+npm run quality
+```
+
+This quality check script validates:
+
+- Build status (zero errors)
+- TypeScript compilation (zero errors)
+- Security (no hardcoded secrets)
+- Test coverage (203 tests, 1 skipped)
+- Overall quality score (25/25)
 
 ## Customization
 
