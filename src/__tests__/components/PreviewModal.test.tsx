@@ -65,9 +65,10 @@ describe("PreviewModal Component", () => {
 		});
 
 		it("should not render when template is undefined", () => {
+			const template = undefined;
 			render(
 				<PreviewModal
-					template={undefined as Template | null}
+					template={template as unknown as Template | null}
 					onClose={mockOnClose}
 				/>,
 			);

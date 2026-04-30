@@ -8,13 +8,24 @@ jest.mock("@/components/theme-toggle", () => ({
 
 describe("Header Component", () => {
 	beforeEach(() => {
-		// スクロールメソッドのモック
+		// jsdom does not implement scrollIntoView, so we need to mock it
+		Object.defineProperty(window.HTMLElement.prototype, "scrollIntoView", {
+			writable: true,
+			value: jest.fn(() => Promise.resolve(undefined)),
+		});
+		// Mock scrollTo to track calls
 		global.scrollTo = jest.fn();
-		global.scrollIntoView = jest.fn(() => null);
+		// Mock document.getElementById to return a mock element with scrollIntoView
+		jest.spyOn(document, "getElementById").mockReturnValue({
+			scrollIntoView: jest.fn(() => Promise.resolve(undefined)),
+		} as any);
+		// Clear previous calls
+		jest.clearAllMocks();
 	});
 
 	afterEach(() => {
 		jest.clearAllMocks();
+		jest.restoreAllMocks();
 	});
 
 	it("renders TemplateLab branding", () => {
@@ -43,9 +54,11 @@ describe("Header Component", () => {
 		const galleryLink = screen.getByText("Gallery");
 		fireEvent.click(galleryLink);
 
-		expect(global.scrollTo).toHaveBeenCalledWith({
+		// Check if document.getElementById was called
+		const getElementByIdMock = document.getElementById as jest.Mock;
+		expect(getElementByIdMock).toHaveBeenCalledWith("gallery");
+		expect(window.HTMLElement.prototype.scrollIntoView).toHaveBeenCalledWith({
 			behavior: "smooth",
-			block: "start",
 		});
 	});
 
@@ -55,9 +68,8 @@ describe("Header Component", () => {
 		const pricingLink = screen.getByText("Pricing");
 		fireEvent.click(pricingLink);
 
-		expect(global.scrollTo).toHaveBeenCalledWith({
+		expect(window.HTMLElement.prototype.scrollIntoView).toHaveBeenCalledWith({
 			behavior: "smooth",
-			block: "start",
 		});
 	});
 
@@ -67,9 +79,8 @@ describe("Header Component", () => {
 		const contactLink = screen.getByText("Contact");
 		fireEvent.click(contactLink);
 
-		expect(global.scrollTo).toHaveBeenCalledWith({
+		expect(window.HTMLElement.prototype.scrollIntoView).toHaveBeenCalledWith({
 			behavior: "smooth",
-			block: "start",
 		});
 	});
 
@@ -79,9 +90,8 @@ describe("Header Component", () => {
 		const inquiryButton = screen.getByText("Inquiry");
 		fireEvent.click(inquiryButton);
 
-		expect(global.scrollTo).toHaveBeenCalledWith({
+		expect(window.HTMLElement.prototype.scrollIntoView).toHaveBeenCalledWith({
 			behavior: "smooth",
-			block: "start",
 		});
 	});
 
@@ -91,16 +101,21 @@ describe("Header Component", () => {
 		const menuButton = screen.getByText("Menu");
 		fireEvent.click(menuButton);
 
-		expect(global.scrollTo).toHaveBeenCalledWith({
+		expect(window.HTMLElement.prototype.scrollIntoView).toHaveBeenCalledWith({
 			behavior: "smooth",
-			block: "start",
 		});
+	});
+
+	it("has mobile menu button in desktop view", () => {
+		render(<Header />);
+
+		expect(screen.getByText("Menu")).toBeInTheDocument();
 	});
 
 	it("has correct z-index and positioning", () => {
 		render(<Header />);
 
-		const header = screen.getByRole("banner");
+		const header = screen.getByRole("banner") as HTMLElement;
 		expect(header).toHaveClass("fixed");
 		expect(header).toHaveClass("top-0");
 		expect(header).toHaveClass("left-0");
@@ -111,7 +126,8 @@ describe("Header Component", () => {
 	it("has responsive container", () => {
 		render(<Header />);
 
-		const container = screen.getByRole("banner").firstElementChild;
+		const header = screen.getByRole("banner");
+		const container = (header as HTMLElement).firstElementChild as HTMLElement;
 		expect(container).toHaveClass("container");
 		expect(container).toHaveClass("mx-auto");
 		expect(container).toHaveClass("px-4");

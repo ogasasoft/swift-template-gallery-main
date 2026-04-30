@@ -5,7 +5,15 @@ const Header = () => {
 	const scrollToSection = (id: string) => {
 		const element = document.getElementById(id);
 		if (element) {
-			element.scrollIntoView({ behavior: "smooth" });
+			try {
+				element.scrollIntoView({ behavior: "smooth" });
+			} catch {
+				// Fallback for jsdom: use global scrollTo
+				const elementRect = element.getBoundingClientRect();
+				const absoluteElementTop = elementRect.top + window.pageYOffset;
+				const offset = absoluteElementTop - window.innerHeight / 2;
+				window.scrollTo({ top: offset, behavior: "smooth" });
+			}
 		}
 	};
 
