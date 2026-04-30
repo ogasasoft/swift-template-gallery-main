@@ -10,6 +10,7 @@ describe("Header Component", () => {
 	beforeEach(() => {
 		// スクロールメソッドのモック
 		global.scrollTo = jest.fn();
+		global.scrollIntoView = jest.fn(() => null);
 	});
 
 	afterEach(() => {

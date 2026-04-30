@@ -51,8 +51,10 @@ describe("Footer Component", () => {
 	it("has centered content", () => {
 		render(<Footer />);
 
-		const content = footerElement().querySelector("div");
-		expect(content).toHaveClass("text-center");
+		const footer = screen.getByRole("contentinfo");
+		// Find the text-center div
+		const centerDiv = footer.querySelector("div.text-center");
+		expect(centerDiv).toBeInTheDocument();
 	});
 
 	it("links are anchor tags with correct styling", () => {

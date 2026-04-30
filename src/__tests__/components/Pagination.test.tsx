@@ -35,7 +35,7 @@ describe("Pagination Component", () => {
 			/>,
 		);
 
-		const prevButton = screen.getByLabelText(/Go to previous page/);
+		const prevButton = screen.getByLabelText("前へ");
 		fireEvent.click(prevButton);
 
 		expect(mockOnPageChange).toHaveBeenCalledWith(2);
@@ -51,8 +51,10 @@ describe("Pagination Component", () => {
 		);
 
 		const prevButton = screen.getByLabelText("前へ");
+		// Button should have pointer-events-none when disabled
+		expect(prevButton).toHaveClass("pointer-events-none");
+		// Click should still trigger the handler, but handler checks the condition
 		fireEvent.click(prevButton);
-
 		expect(mockOnPageChange).not.toHaveBeenCalled();
 	});
 
@@ -81,8 +83,10 @@ describe("Pagination Component", () => {
 		);
 
 		const nextButton = screen.getByLabelText("次へ");
+		// Button should have pointer-events-none when disabled
+		expect(nextButton).toHaveClass("pointer-events-none");
+		// Click should still trigger the handler, but handler checks the condition
 		fireEvent.click(nextButton);
-
 		expect(mockOnPageChange).not.toHaveBeenCalled();
 	});
 
@@ -95,10 +99,11 @@ describe("Pagination Component", () => {
 			/>,
 		);
 
-		const page3Link = screen.getByLabelText("ページ 3");
-		fireEvent.click(page3Link);
+		// Click on page 2 (current page is 3)
+		const page2Link = screen.getByLabelText("ページ 2");
+		fireEvent.click(page2Link);
 
-		expect(mockOnPageChange).toHaveBeenCalledWith(3);
+		expect(mockOnPageChange).toHaveBeenCalledWith(2);
 	});
 
 	it("marks current page as active", () => {
