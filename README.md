@@ -12,6 +12,132 @@ A modern template gallery for developers to discover and preview reusable React 
 ![Vite](https://img.shields.io/badge/Vite-5.4.19-646CFF.svg)
 ![Tests](https://img.shields.io/badge/Tests-203%20passed%201%20skipped-brightgreen.svg)
 
+## 🔧 Application Setup
+
+### Environment Configuration
+
+This project doesn't require external environment variables, but you can customize the following in `src/lib/config.ts`:
+
+```typescript
+// src/lib/config.ts
+
+export const config = {
+	// API configuration (if you add backend services)
+	apiBaseUrl: import.meta.env.VITE_API_BASE_URL || "/api",
+
+	// Pagination settings
+	itemsPerPage: 9,
+
+	// Review settings
+	maxReviewsPerCard: 3,
+	minReviewRating: 1,
+
+	// Feature flags
+	enableDarkMode: true,
+	enableReviews: true,
+	enableSearch: true,
+};
+```
+
+### Build Configuration
+
+The project uses Vite for fast builds with tree shaking enabled by default:
+
+```typescript
+// vite.config.ts
+
+export default defineConfig({
+	build: {
+		target: "esnext",
+		minify: "terser",
+		sourcemap: true,
+		rollupOptions: {
+			output: {
+				manualChunks: {
+					"react-vendor": ["react", "react-dom", "react-router-dom"],
+					"ui-vendor": [
+						"@radix-ui/react-dialog",
+						"@radix-ui/react-dropdown-menu",
+					],
+				},
+			},
+		},
+	},
+});
+```
+
+### Storybook Configuration
+
+Storybook is configured for interactive component development:
+
+```typescript
+// .storybook/preview.ts
+
+export const parameters = {
+	actions: { argTypesRegex: "^on[A-Z].*" },
+	controls: {
+		matchers: {
+			color: /(background|color)$/i,
+			date: /Date$/,
+		},
+	},
+	layout: "fullscreen",
+	docs: {
+		autodocs: "tag",
+	},
+};
+```
+
+### CI/CD Configuration (GitHub Actions)
+
+Example GitHub Actions workflow for automated testing:
+
+```yaml
+# .github/workflows/test.yml
+
+name: Tests
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main, develop]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [18.x, 20.x]
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run linter
+        run: npm run lint
+
+      - name: Run type checking
+        run: npm run typecheck
+
+      - name: Run tests with coverage
+        run: npm run test:ci
+
+      - name: Upload coverage reports
+        uses: codecov/codecov-action@v4
+        with:
+          files: ./coverage/lcov.info
+```
+
 ## 🌟 Features
 
 - 📦 **Template Gallery**: Browse and discover ready-to-use React templates
@@ -270,6 +396,320 @@ import Pagination from "@/components/Pagination";
 
 The Gallery component displays **9 templates per page**. When filters change, it preserves the current page position and only moves to the last valid page if the current page is out of bounds.
 
+## ⚡ Performance Optimization
+
+### Tree Shaking
+
+Vite automatically performs tree shaking to remove unused code. The following optimizations are built-in:
+
+```javascript
+// vite.config.ts
+export default defineConfig({
+	build: {
+		rollupOptions: {
+			output: {
+				manualChunks: {
+					// Separate vendor chunks for better caching
+					"react-vendor": ["react", "react-dom", "react-router-dom"],
+					"ui-vendor": [
+						"@radix-ui/react-dialog",
+						"@radix-ui/react-dropdown-menu",
+					],
+					"forms-vendor": ["react-hook-form", "zod"],
+				},
+			},
+		},
+	},
+});
+```
+
+### Lazy Loading
+
+Components are loaded on-demand to improve initial load times:
+
+```tsx
+// Lazy load heavy components
+const Gallery = lazy(() => import("@/components/Gallery"));
+const PreviewModal = lazy(() => import("@/components/PreviewModal"));
+
+// In your component
+<Suspense fallback={<LoadingSpinner />}>
+	<Gallery />
+</Suspense>;
+```
+
+### Code Splitting
+
+The router automatically splits routes into separate chunks:
+
+```tsx
+// src/App.tsx
+<BrowserRouter>
+	<Routes>
+		<Route path="/" element={<Layout />}>
+			<Route
+				index
+				element={
+					<Suspense fallback={<Loader />}>
+						<Gallery />
+					</Suspense>
+				}
+			/>
+			<Route
+				path="about"
+				element={
+					<Suspense fallback={<Loader />}>
+						<About />
+					</Suspense>
+				}
+			/>
+			<Route
+				path="contact"
+				element={
+					<Suspense fallback={<Loader />}>
+						<Contact />
+					</Suspense>
+				}
+			/>
+		</Route>
+	</Routes>
+</BrowserRouter>
+```
+
+### Image Optimization
+
+Use the `srcset` attribute for responsive images:
+
+```tsx
+<img
+	srcSet="/images/gallery-small.jpg 400w, /images/gallery-medium.jpg 800w, /images/gallery-large.jpg 1200w"
+	sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+	alt="Template preview"
+/>
+```
+
+### Debouncing Search
+
+Implement debouncing for search input to reduce API calls:
+
+```tsx
+import { useEffect, useState } from "react";
+
+const useDebounce = (value: string, delay: number) => {
+	const [debouncedValue, setDebouncedValue] = useState(value);
+
+	useEffect(() => {
+		const handler = setTimeout(() => setDebouncedValue(value), delay);
+		return () => clearTimeout(handler);
+	}, [value, delay]);
+
+	return debouncedValue;
+};
+```
+
+## ♿ Accessibility
+
+This project follows WCAG 2.1 AA guidelines and includes:
+
+### WAI-ARIA Support
+
+All interactive elements have proper ARIA labels and roles:
+
+```tsx
+<button
+  aria-label="Toggle dark mode"
+  aria-pressed={isDarkMode}
+  onClick={toggleTheme}
+>
+  <MoonIcon />
+</button>
+
+<nav aria-label="Main navigation">
+  <ul role="list">
+    <li><NavLink to="/">Home</NavLink></li>
+  </ul>
+</nav>
+```
+
+### Keyboard Navigation
+
+- All buttons are focusable
+- Use Tab key to navigate between elements
+- Enter/Space to activate buttons
+- Escape to close modals
+
+### Color Contrast
+
+- Text contrast ratio of 4.5:1 or higher (WCAG AA)
+- Focus indicators are clearly visible
+- Both light and dark modes maintain accessibility standards
+
+### Semantic HTML
+
+Use semantic elements for better screen reader support:
+
+```tsx
+<header role="banner">
+  <nav role="navigation" aria-label="Main">
+    <ul role="list">
+      <li><a href="/">Home</a></li>
+    </ul>
+  </nav>
+</header>
+
+<main role="main">
+  <section aria-labelledby="gallery-heading">
+    <h2 id="gallery-heading">Template Gallery</h2>
+  </section>
+</main>
+
+<footer role="contentinfo">
+  <p>© 2026 Swift Template Gallery</p>
+</footer>
+```
+
+## 📖 Component Usage Examples
+
+### Header Component
+
+```tsx
+import Header from "@/components/Header";
+
+function App() {
+	return (
+		<Header
+			logo={<Logo />}
+			navLinks={[
+				{ label: "Gallery", href: "/" },
+				{ label: "About", href: "/about" },
+				{ label: "Contact", href: "/contact" },
+			]}
+		/>
+	);
+}
+```
+
+### Gallery Component
+
+```tsx
+import Gallery from "@/components/Gallery";
+
+function HomePage() {
+	const [templates, setTemplates] = useState([]);
+	const [currentPage, setCurrentPage] = useState(1);
+	const filters = { search: "", category: "all" };
+
+	return (
+		<Gallery
+			templates={templates}
+			filters={filters}
+			currentPage={currentPage}
+			onPageChange={setCurrentPage}
+		/>
+	);
+}
+```
+
+### GalleryFilters Component
+
+```tsx
+import GalleryFilters from "@/components/GalleryFilters";
+
+function Gallery() {
+	const [filters, setFilters] = useState({
+		search: "",
+		category: "all",
+		sortBy: "popular",
+	});
+
+	return (
+		<GalleryFilters
+			filters={filters}
+			onChange={setFilters}
+			categories={["all", "dashboard", "landing", "ecommerce"]}
+		/>
+	);
+}
+```
+
+### Pagination Component
+
+```tsx
+import Pagination from "@/components/Pagination";
+
+function Gallery() {
+	const [currentPage, setCurrentPage] = useState(1);
+	const totalPages = Math.ceil(templates.length / ITEMS_PER_PAGE);
+
+	return (
+		<Pagination
+			currentPage={currentPage}
+			totalPages={totalPages}
+			onPageChange={setCurrentPage}
+		/>
+	);
+}
+```
+
+### TemplateCard Component
+
+```tsx
+import TemplateCard from "@/components/TemplateCard";
+
+function Gallery() {
+	const templates = [
+		{
+			id: 1,
+			title: "Modern Dashboard",
+			description: "A responsive dashboard template",
+			category: "dashboard",
+			rating: 4.8,
+			reviews: 124,
+			image: "/templates/dashboard.png",
+		},
+	];
+
+	return (
+		<div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+			{templates.map((template) => (
+				<TemplateCard key={template.id} template={template} />
+			))}
+		</div>
+	);
+}
+```
+
+### PreviewModal Component
+
+```tsx
+import PreviewModal from "@/components/PreviewModal";
+
+function TemplateCard({ template }) {
+	const [isPreviewOpen, setIsPreviewOpen] = useState(false);
+
+	return (
+		<>
+			<button onClick={() => setIsPreviewOpen(true)}>Preview Template</button>
+			<PreviewModal
+				isOpen={isPreviewOpen}
+				onClose={() => setIsPreviewOpen(false)}
+				template={template}
+			/>
+		</>
+	);
+}
+```
+
+### ThemeToggle Component
+
+```tsx
+import ThemeToggle from "@/components/ThemeToggle";
+
+function Header() {
+	return <ThemeToggle aria-label="Toggle dark mode" />;
+}
+```
+
 ## 🎯 Technology Stack
 
 - **Framework**: React 18 + React Router v6
@@ -342,6 +782,235 @@ npm run storybook
 # Build Storybook for production
 npm run build-storybook
 ```
+
+## 🐛 Troubleshooting
+
+### Common Issues
+
+#### Build fails with Vite
+
+**Problem**: `npm run build` fails with Vite-related errors.
+
+**Solution**:
+
+```bash
+# Clear cache and reinstall
+rm -rf node_modules .vite
+npm install
+npm run build
+```
+
+#### Tests fail in CI
+
+**Problem**: Tests pass locally but fail in CI.
+
+**Solution**:
+
+```bash
+# Run tests in CI mode
+npm run test:ci
+
+# This sets maxWorkers=2 for GitHub Actions compatibility
+```
+
+#### TypeScript errors after updating dependencies
+
+**Problem**: New dependency versions cause TypeScript errors.
+
+**Solution**:
+
+```bash
+# Update dependencies
+npm run update
+
+# Check for type errors
+npm run typecheck
+```
+
+#### Storybook doesn't start
+
+**Problem**: `npm run storybook` fails to start.
+
+**Solution**:
+
+```bash
+# Clear Storybook cache
+rm -rf .storybook-static node_modules/.cache
+
+# Restart Storybook
+npm run storybook
+```
+
+### Debugging Tips
+
+#### Enable verbose logging
+
+```bash
+# Vite debug mode
+VITE_DEBUG=true npm run dev
+
+# Jest debug mode
+npm test -- --debug
+```
+
+#### Check for console errors
+
+```bash
+# In development, open browser console (F12)
+# In production, check browser DevTools
+
+# Generate coverage report to find untested code
+npm run test:coverage
+```
+
+#### Verify environment variables
+
+```bash
+# Check if .env files exist
+ls -la .env* | grep -v node_modules
+
+# Test environment loading
+node -e "console.log(import.meta.env.VITE_...)"
+```
+
+#### Test specific components
+
+```bash
+# Test only one component
+npm test -- --testPathPattern=Header.test.tsx
+
+# Test all components
+npm test -- --testPathPattern=__tests__/components/
+```
+
+### Log Analysis
+
+#### Vite build logs
+
+```bash
+# Build with sourcemaps for debugging
+npm run build
+
+# Check Vite server logs for errors
+npm run dev
+```
+
+#### Jest test logs
+
+```bash
+# Run tests with verbose output
+npm test -- --verbose
+
+# Run tests with watch mode
+npm run test:watch
+```
+
+#### ESLint logs
+
+```bash
+# Run ESLint with autofix
+npm run lint:fix
+
+# Check specific file
+npx eslint src/components/Header.tsx
+```
+
+## 🤝 Support & Community
+
+### Getting Help
+
+#### Documentation
+
+- [Getting Started Guide](#-quick-start) - Initial setup and development
+- [Component Guide](#-component-usage-examples) - How to use components
+- [Storybook](./STORYBOOK.md) - Interactive component documentation
+- [Contributing Guide](./CONTRIBUTING.md) - How to contribute to the project
+
+#### Issue Reporting
+
+When reporting issues, please include:
+
+1. **Environment details**:
+   - Node.js version: `node -v`
+   - npm version: `npm -v`
+   - OS and browser version
+
+2. **Reproduction steps**:
+   - Exact commands to run
+   - Expected behavior
+   - Actual behavior
+
+3. **Error logs**:
+   - Full error stack trace
+   - Console output
+   - Test results
+
+4. **Screenshots** (if applicable):
+   - Before/after screenshots
+   - Visual bug reproduction
+
+**Example issue template**:
+
+```markdown
+## Bug Report
+
+**Component**: Header
+**Environment**: Node.js 20.11.0, npm 10.2.4, Chrome 120.0
+**Steps to reproduce**:
+
+1. Open the app
+2. Click on dark mode toggle
+3. ...
+   **Expected behavior**: Theme should toggle to dark mode
+   **Actual behavior**: Theme doesn't change
+   **Error logs**:
+```
+
+Error: Failed to toggle theme
+at Header.tsx:45:12
+
+```
+
+```
+
+#### Questions & Discussions
+
+For general questions or feature requests, please:
+
+1. Check existing issues and documentation
+2. Start a discussion on [GitHub Discussions](https://github.com/yourusername/swift-template-gallery/discussions)
+3. Tag your question appropriately: `question`, `feature-request`, or `help`
+
+### Contributing
+
+We welcome contributions from the community! Please see our [Contributing Guide](./CONTRIBUTING.md) for:
+
+- Code of conduct
+- Contribution guidelines
+- Pull request process
+- Testing requirements
+
+### Community Resources
+
+- **GitHub**: [Report bugs or request features](https://github.com/yourusername/swift-template-gallery/issues)
+- **Discussions**: [Ask questions or share ideas](https://github.com/yourusername/swift-template-gallery/discussions)
+- **Discord**: Join our community server for real-time chat
+
+### Code of Conduct
+
+By participating in this project, you agree to:
+
+- Be respectful and inclusive
+- Provide constructive feedback
+- Follow open source best practices
+- Respect project maintainers' decisions
+
+### Acknowledgments
+
+- Built with [shadcn/ui](https://ui.shadcn.com/)
+- Powered by [React](https://react.dev/)
+- Tested with [Jest](https://jestjs.io/)
+- Documented with [Storybook](https://storybook.js.org/)
 
 ## 📚 Documentation
 
