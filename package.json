@@ -22,7 +22,9 @@
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
     "update": "npx npm-check-updates -u && npm install",
-    "quality": "bash scripts/quality-check.sh"
+    "quality": "bash scripts/quality-check.sh",
+    "performance": "bash scripts/performance-check.sh",
+    "all-checks": "npm run quality && npm run performance"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.10.0",
