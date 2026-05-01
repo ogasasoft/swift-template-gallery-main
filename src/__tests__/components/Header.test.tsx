@@ -64,8 +64,9 @@ describe("Header Component", () => {
 		// Check if document.getElementById was called
 		const getElementByIdMock = document.getElementById as jest.Mock;
 		expect(getElementByIdMock).toHaveBeenCalledWith("gallery");
-		// scrollIntoView should be called (even if wrapped in try-catch)
-		expect(window.HTMLElement.prototype.scrollIntoView).toHaveBeenCalled();
+		// Since element doesn't exist in test DOM, neither scrollIntoView nor scrollTo should be called
+		expect(window.HTMLElement.prototype.scrollIntoView).not.toHaveBeenCalled();
+		expect(window.scrollTo).not.toHaveBeenCalled();
 	});
 
 	it("calls scrollToSection when Pricing link is clicked", () => {
@@ -74,7 +75,9 @@ describe("Header Component", () => {
 		const pricingLink = screen.getByText("Pricing");
 		fireEvent.click(pricingLink);
 
-		expect(window.HTMLElement.prototype.scrollIntoView).toHaveBeenCalled();
+		// Since element doesn't exist in test DOM, neither scrollIntoView nor scrollTo should be called
+		expect(window.HTMLElement.prototype.scrollIntoView).not.toHaveBeenCalled();
+		expect(window.scrollTo).not.toHaveBeenCalled();
 	});
 
 	it("calls scrollToSection when Contact link is clicked", () => {
@@ -83,7 +86,9 @@ describe("Header Component", () => {
 		const contactLink = screen.getByText("Contact");
 		fireEvent.click(contactLink);
 
-		expect(window.HTMLElement.prototype.scrollIntoView).toHaveBeenCalled();
+		// Since element doesn't exist in test DOM, neither scrollIntoView nor scrollTo should be called
+		expect(window.HTMLElement.prototype.scrollIntoView).not.toHaveBeenCalled();
+		expect(window.scrollTo).not.toHaveBeenCalled();
 	});
 
 	it("calls scrollToSection when Inquiry button is clicked", () => {
@@ -92,7 +97,9 @@ describe("Header Component", () => {
 		const inquiryButton = screen.getByText("Inquiry");
 		fireEvent.click(inquiryButton);
 
-		expect(window.HTMLElement.prototype.scrollIntoView).toHaveBeenCalled();
+		// Since element doesn't exist in test DOM, neither scrollIntoView nor scrollTo should be called
+		expect(window.HTMLElement.prototype.scrollIntoView).not.toHaveBeenCalled();
+		expect(window.scrollTo).not.toHaveBeenCalled();
 	});
 
 	it("calls scrollToSection when mobile menu button is clicked", () => {
@@ -101,7 +108,9 @@ describe("Header Component", () => {
 		const menuButton = screen.getByText("Menu");
 		fireEvent.click(menuButton);
 
-		expect(window.HTMLElement.prototype.scrollIntoView).toHaveBeenCalled();
+		// Since element doesn't exist in test DOM, neither scrollIntoView nor scrollTo should be called
+		expect(window.HTMLElement.prototype.scrollIntoView).not.toHaveBeenCalled();
+		expect(window.scrollTo).not.toHaveBeenCalled();
 	});
 
 	it("has mobile menu button in desktop view", () => {
