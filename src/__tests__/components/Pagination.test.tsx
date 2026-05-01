@@ -6,9 +6,10 @@ describe("Pagination Component", () => {
 
 	// Mock document.getElementById for tests that call scrollToSection
 	beforeEach(() => {
+		const mockScrollIntoView = jest.fn(() => Promise.resolve(undefined));
 		jest.spyOn(document, "getElementById").mockReturnValue({
-			scrollIntoView: jest.fn(() => Promise.resolve(undefined)),
-		} as any);
+			scrollIntoView: mockScrollIntoView,
+		});
 	});
 
 	it("renders nothing when totalPages is 1 or less", () => {

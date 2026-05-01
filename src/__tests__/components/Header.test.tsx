@@ -25,7 +25,9 @@ describe("Header Component", () => {
 				height: 100,
 			})),
 		};
-		jest.spyOn(document, "getElementById").mockReturnValue(mockElement as any);
+		jest
+			.spyOn(document, "getElementById")
+			.mockReturnValue(mockElement as HTMLElement | null);
 		// Clear previous calls
 		jest.clearAllMocks();
 	});
