@@ -1,4 +1,5 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
+import { useSearchParams } from "react-router-dom";
 import templatesData from "@/lib/templates.json";
 import TemplateCard from "./TemplateCard";
 import GalleryFilters from "./GalleryFilters";
@@ -15,18 +16,30 @@ const allIndustries = Array.from(
 const allTones = Array.from(new Set(templates.map((t) => t.tone))).sort();
 const allStyles = Array.from(new Set(templates.map((t) => t.style))).sort();
 
-export default function Gallery() {
+interface GalleryProps {
+  initialTags?: string[];
+}
+
+export default function Gallery({ initialTags = [] }: GalleryProps) {
   const { toast } = useToast();
+  const [_searchParams, setSearchParams] = useSearchParams();
   const [selectedTemplate, setSelectedTemplate] = useState<Template | null>(
     null,
   );
   const [filters, setFilters] = useState<FilterState>({
-    tags: [],
+    tags: initialTags,
     industry: [],
     tone: [],
     style: [],
     search: "",
   });
+
+  // クエリパラメータに基づいてタグを復元
+  useEffect(() => {
+    if (initialTags.length > 0) {
+      setFilters((prev) => ({ ...prev, tags: initialTags }));
+    }
+  }, [initialTags]);
 
   const filteredTemplates = useMemo(() => {
     try {
@@ -71,16 +84,44 @@ export default function Gallery() {
       });
       return;
     }
+
+    // URL を更新してテンプレート詳細ページへ遷移
+    const params = new URLSearchParams({
+      template: template.id,
+    });
+    setSearchParams(params);
+
     setSelectedTemplate(template);
   };
 
-  const handleTagClick = (tag: string) => {
-    setFilters((prev) => ({
-      ...prev,
-      tags: prev.tags.includes(tag)
-        ? prev.tags.filter((t) => t !== tag)
-        : [...prev.tags, tag],
-    }));
+  const handleTagClick = (tag: string, isChecked: boolean) => {
+    const newTags = isChecked
+      ? filters.tags.filter((t) => t !== tag)
+      : [...filters.tags, tag];
+
+    setFilters((prev) => {
+      // URL を更新
+      const params = new URLSearchParams();
+      if (newTags.length > 0) {
+        params.set("tags", newTags.join(","));
+      }
+      setSearchParams(params);
+
+      return { ...prev, tags: newTags };
+    });
+
+    // トースト通知
+    if (isChecked) {
+      toast({
+        title: "タグを解除しました",
+        description: `"${tag}" タグのフィルターが解除されました`,
+      });
+    } else {
+      toast({
+        title: "タグを追加しました",
+        description: `"${tag}" タグのフィルターが適用されました`,
+      });
+    }
   };
 
   return (

@@ -238,9 +238,9 @@ export default function GalleryFilters({
                   <ToggleGroup
                     type="multiple"
                     value={filters.tags}
-                    onValueChange={(values) =>
-                      setFilters({ ...filters, tags: values })
-                    }
+                    onValueChange={(values) => {
+                      setFilters({ ...filters, tags: values });
+                    }}
                     className="flex-wrap justify-start gap-2 pt-1"
                   >
                     {allTags.map((tag) => (

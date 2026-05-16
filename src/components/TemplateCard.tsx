@@ -9,7 +9,7 @@ import type { Template } from "@/lib/types";
 interface TemplateCardProps {
   template: Template;
   onClick: () => void;
-  onTagClick?: (tag: string) => void;
+  onTagClick?: (tag: string, isSelected: boolean) => void;
   selectedTags?: string[];
 }
 
@@ -81,7 +81,7 @@ export default function TemplateCard({
               className="text-xs cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors"
               onClick={(e) => {
                 e.stopPropagation();
-                onTagClick?.(tag);
+                onTagClick?.(tag, selectedTags.includes(tag));
               }}
             >
               {tag}
