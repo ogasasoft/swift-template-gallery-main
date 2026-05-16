@@ -8,34 +8,19 @@
 - [x] ESLintエラー・警告の修正完了（0 errors, 0 warnings in src/）
   - 詳細: 以前のセッションで全て修正済み。coverage filesの警告のみ残る（無視）
 - [x] RatingStars テストの修正（全12テストパス）
-  - should render with rating
-  - should render with zero rating
-  - should render without count
-  - should render with count
-  - should show filled stars for rating >= star
-  - should show half star for rating 4.5
-  - should not allow rating changes when interactive is false
-  - should allow rating changes when interactive is true
-  - should call onRatingChange when a star is clicked
-  - should render with small size
-  - should render with medium size
-  - should render with large size
 - [x] テンプレートタグ機能の実装確認（既に実装済み）
-  - types.tsにtagsフィールドあり
-  - templates.jsonにタグデータあり
-  - GalleryFilters.tsxにタグフィルタリング機能あり
-  - Gallery.tsxにタグクリック機能あり
-  - TemplateCard.tsxにタグ表示機能あり
 - [x] テンプレートダウンロード機能の実装
-  - ブランチ作成: `feature/template-download`
-  - ダウンロードボタンにローディング状態を追加
-  - Toast通知機能の統合
-  - handleDownload関数の実装（エラーハンドリング付き）
 - [x] コード品質チェック
   - TypeScript型チェッククリア
   - ESLint警告修正（未使用変数の削除）
   - 全テストパス（162 passed, 1 skipped）
   - ビルド成功
+- [x] テスト失敗の修正
+  - Gallery.tsxのuseEffect import追加
+  - Index.tsxのsearchParams変数名修正
+  - テストファイルのReact import修正
+  - 修正前: 18 failed, 144 passed, 163 total
+  - 修正後: 162 passed, 1 skipped, 163 total
 
 ## 実装詳細
 
