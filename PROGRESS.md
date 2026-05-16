@@ -1,29 +1,34 @@
 # 進捗記録 - swift-template-gallery-main
 
-## 状態: ✅ 完了
+## 状態: 作業中
+
+## タスク: 依存関係のアップデート
 
 ## 完了済み
 
-- [x] プロジェクト確認と改善点特定（ESLintエラー・警告あり）
-- [x] ESLintエラー・警告の修正完了（0 errors, 0 warnings in src/）
-  - 詳細: 以前のセッションで全て修正済み。coverage filesの警告のみ残る（無視）
-- [x] RatingStars テストの修正（全12テストパス）
-  - should render with rating
-  - should render with zero rating
-  - should render without count
-  - should render with count
-  - should show filled stars for rating >= star
-  - should show half star for rating 4.5
-  - should not allow rating changes when interactive is false
-  - should allow rating changes when interactive is true
-  - should call onRatingChange when a star is clicked
-  - should render with small size
-  - should render with medium size
-  - should render with large size
+- [x] 依存関係の確認 (npm outdated)
+- [x] ブランチ作成 (feature/update-dependencies-1747425200)
+- [x] TypeScript 5.9.3 → 6.0.3 へアップデート
+- [x] @types/node 22.19.17 → 25.8.0 へアップデート
+- [x] @types/react 18.3.28 → 19.2.14 へアップデート
+- [x] @types/react-dom 18.3.7 → 19.2.3 へアップデート
+- [x] @eslint/js 9.39.4 → 10.0.1 へアップデート
+- [x] eslint 9.39.4 → 10.4.0 へアップデート
+- [x] react 18.3.1 → 19.2.6 へアップデート
+- [x] react-dom 18.3.1 → 19.2.6 へアップデート
+- [x] @vitejs/plugin-react-swc 3.11.0 → 4.3.1 へアップデート
+- [x] vite 5.4.21 → 8.0.13 へアップデート
+- [x] @tanstack/react-query 5.90.19 → 5.100.10 へアップデート
+- [x] @hookform/resolvers 3.10.0 → 5.2.2 へアップデート
+
+## 未完了
+
+- [ ] npm install で依存関係のインストール完了確認
+- [ ] テスト実行と修正
+- [ ] ドキュメント更新
+- [ ] Commit
+- [ ] Push
 
 ## 次にやること
 
-スムーズに改善を続けるため、プロジェクト全体のステータスを確認:
-
-- テスト実行全体を確認（全テストスイート）
-- 新しい改善点の発見
+npm install を実行し、テストが全て通ることを確認してから commit & push する。
