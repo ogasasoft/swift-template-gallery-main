@@ -1,13 +1,14 @@
 {
   "extends": "./tsconfig.app.json",
   "compilerOptions": {
-    "moduleResolution": "node",
+    "moduleResolution": "node10",
     "module": "CommonJS",
     "allowImportingTsExtensions": false,
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "types": ["jest", "@testing-library/jest-dom"],
     "jsx": "react-jsx",
+    "ignoreDeprecations": "6.0",
     "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"]
