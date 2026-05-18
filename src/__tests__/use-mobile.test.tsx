@@ -1,9 +1,7 @@
 import { renderHook } from "@testing-library/react";
-import useIsMobile from "../hooks/use-mobile";
 
-// Mock window.matchMedia
-const mockMatchMedia = jest.fn();
-global.matchMedia = mockMatchMedia;
+// Direct import to avoid module resolution issues
+import * as useMobileModule from "../hooks/use-mobile";
 
 describe("useIsMobile Hook", () => {
   beforeEach(() => {
@@ -11,12 +9,12 @@ describe("useIsMobile Hook", () => {
   });
 
   it("should be defined as a hook function", () => {
-    expect(typeof useIsMobile).toBe("function");
+    expect(typeof useMobileModule.useIsMobile).toBe("function");
   });
 
   it("should accept calls without errors", () => {
     expect(() => {
-      renderHook(() => useIsMobile());
+      renderHook(() => useMobileModule.useIsMobile());
     }).not.toThrow();
   });
 });
