@@ -29,26 +29,26 @@ A modern template gallery for developers to discover and preview reusable React 
 ### Framework & Core
 
 - **React 18.3.1** - Latest React with concurrent features
-- **TypeScript 5.8.3** - Full type safety
-- **Vite 5.4.19** - Lightning-fast build tool
-- **React Router v6.30.1** - Client-side routing
+- **TypeScript 5.9.3** - Full type safety
+- **Vite 5.4.21** - Lightning-fast build tool
+- **React Router v6.30.3** - Client-side routing
 
 ### Styling
 
-- **Tailwind CSS 3.4.17** - Utility-first CSS framework
+- **Tailwind CSS 3.4.19** - Utility-first CSS framework
 - **shadcn-ui** - Modern component library
-- **Lucide React 0.462.0** - Beautiful icons
+- **Lucide React 1.16.0** - Beautiful icons
 - **Tailwind CSS Animate** - Built-in animations
 
 ### State & Forms
 
-- **React Hook Form 7.61.1** - Efficient form handling
-- **Zod 3.25.76** - Runtime type validation
-- **TanStack Query 5.83.0** - Server state management
+- **React Hook Form 7.76.0** - Efficient form handling
+- **Zod 4.4.3** - Runtime type validation
+- **TanStack Query 5.100.11** - Server state management
 
 ### Testing
 
-- **Jest 30.2.0** - Test runner
+- **Jest 30.4.2** - Test runner
 - **React Testing Library 16.3.2** - Component testing
 - **Jest DOM 6.9.1** - DOM matchers
 - **TypeScript Jest 29.4.6** - TS support
