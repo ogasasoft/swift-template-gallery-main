@@ -1,5 +1,4 @@
-import { render, screen, waitFor } from "@testing-library/react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { render, screen } from "@testing-library/react";
 import App from "../App";
 
 // Mock ThemeProvider to avoid testing next-themes internals

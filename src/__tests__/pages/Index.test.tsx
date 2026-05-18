@@ -1,6 +1,5 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
-import { useSearchParams } from "react-router-dom";
 import Index from "@/pages/Index";
 
 jest.mock("@/components/Gallery", () => () => (

@@ -4,7 +4,7 @@ import { ThemeProvider } from "../providers/theme-provider";
 
 // Mock NextThemesProvider
 jest.mock("next-themes", () => ({
-  ThemeProvider: jest.fn(({ children, ...props }: any) => (
+  ThemeProvider: jest.fn(({ children, ...props }: Record<string, unknown>) => (
     <div data-testid="next-themes-provider" data-props={JSON.stringify(props)}>
       {children}
     </div>
