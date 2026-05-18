@@ -4,11 +4,18 @@ import { ThemeProvider } from "../providers/theme-provider";
 
 // Mock NextThemesProvider
 jest.mock("next-themes", () => ({
-  ThemeProvider: jest.fn(({ children, ...props }: Record<string, unknown>) => (
-    <div data-testid="next-themes-provider" data-props={JSON.stringify(props)}>
-      {children}
-    </div>
-  )),
+  ThemeProvider: jest.fn(({ children, ...props }: Record<string, unknown>) => {
+    // Handle both single element and array of children
+    const childrenArray = React.Children.toArray(children);
+    return (
+      <div
+        data-testid="next-themes-provider"
+        data-props={JSON.stringify(props)}
+      >
+        {childrenArray}
+      </div>
+    );
+  }),
 }));
 
 describe("ThemeProvider", () => {
@@ -55,16 +62,16 @@ describe("ThemeProvider", () => {
   });
 
   it("should render multiple children correctly", () => {
-    const children = [
-      <div key="1" data-testid="child-1">
-        Child 1
-      </div>,
-      <div key="2" data-testid="child-2">
-        Child 2
-      </div>,
-    ];
-
-    render(<ThemeProvider>{children}</ThemeProvider>);
+    render(
+      <ThemeProvider>
+        <div key="1" data-testid="child-1">
+          Child 1
+        </div>
+        <div key="2" data-testid="child-2">
+          Child 2
+        </div>
+      </ThemeProvider>,
+    );
 
     expect(screen.getByTestId("child-1")).toBeInTheDocument();
     expect(screen.getByTestId("child-2")).toBeInTheDocument();
