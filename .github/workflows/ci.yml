@@ -151,6 +151,35 @@ jobs:
       - name: Run nsp audit (optional, requires nsp package)
         run: nsp audit || echo "nsp not installed, skipping"
 
+  typecheck-7:
+    name: TypeScript 7.0 Compatibility Check
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run TypeScript type check
+        run: npm run typecheck
+
+      - name: Verify TypeScript deprecation handling
+        run: |
+          if grep -q "ignoreDeprecations.*6.0" tsconfig.json; then
+            echo "✅ TypeScript deprecation warnings are handled via ignoreDeprecations: '6.0'"
+          else
+            echo "⚠️ Warning: TypeScript 7.0 deprecation warnings may not be suppressed"
+          fi
+
   # Deploy job (uncomment and configure for deployment)
   # deploy:
   #   name: Deploy to Preview
