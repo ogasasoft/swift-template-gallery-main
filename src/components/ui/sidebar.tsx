@@ -3,6 +3,7 @@ import { Slot } from "@radix-ui/react-slot";
 import { VariantProps, cva } from "class-variance-authority";
 /* eslint-disable react-refresh/only-export-components */
 import { PanelLeft } from "lucide-react";
+import { useCallback } from "react";
 
 import { useIsMobile } from "@/hooks/use-mobile";
 import { cn } from "@/lib/utils";
@@ -657,10 +658,18 @@ const SidebarMenuSkeleton = React.forwardRef<
     showIcon?: boolean;
   }
 >(({ className, showIcon = false, ...props }, ref) => {
-  // Random width between 50 to 90%.
-  const width = React.useMemo(() => {
-    return `${Math.floor(Math.random() * 40) + 50}%`;
+  const [randomWidth, setRandomWidth] = React.useState("70%");
+
+  const updateRandomWidth = useCallback(() => {
+    const width = `${Math.floor(Math.random() * 40) + 50}%`;
+    setRandomWidth(width);
   }, []);
+
+  React.useEffect(() => {
+    updateRandomWidth(); // eslint-disable-line react-hooks/set-state-in-effect
+  }, [updateRandomWidth]);
+
+  const width = randomWidth;
 
   return (
     <div

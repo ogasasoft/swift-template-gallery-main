@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/set-state-in-effect */
+
 "use client";
 
 import { useState, useEffect } from "react";
@@ -10,11 +12,19 @@ export function ThemeToggle() {
 
   useEffect(() => {
     setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
+
     const savedTheme = localStorage.getItem("theme") as "dark" | "light" | null;
     if (savedTheme) {
       setTheme(savedTheme);
     }
-  }, []);
+    // Save the initial theme on first mount
+    localStorage.setItem("theme", theme);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [mounted]);
 
   useEffect(() => {
     if (!mounted) return;
@@ -33,7 +43,8 @@ export function ThemeToggle() {
     }
 
     localStorage.setItem("theme", theme);
-  }, [theme, mounted]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [theme]);
 
   if (!mounted) {
     return (
