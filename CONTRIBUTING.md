@@ -5,6 +5,7 @@ Thank you for your interest in contributing to this project!
 ## Development Setup
 
 ### Prerequisites
+
 - Node.js 18+ installed via nvm
 - npm or yarn package manager
 
@@ -39,39 +40,99 @@ swift-template-gallery-main/
 ├── jest.config.ts         # Jest configuration
 ├── tsconfig.json          # TypeScript configuration
 ├── tailwind.config.js     # Tailwind CSS configuration
+├── eslint.config.js       # ESLint configuration
 └── package.json           # Dependencies and scripts
 ```
 
-## Testing
+## Quality & Testing
+
+### Pre-commit Checks (Run Before Committing)
+
+```bash
+# TypeScript type checking
+npm run typecheck
+
+# ESLint check
+npm run lint
+
+# Run tests
+npm test
+
+# Format code with Prettier
+npm run format
+```
+
+### Testing
 
 Run all tests:
+
 ```bash
 npm test
 ```
 
 Run tests with coverage:
+
 ```bash
 npm test -- --coverage
 ```
 
 Run tests in watch mode:
+
 ```bash
 npm test -- --watch
+```
+
+Run tests in CI mode (maxWorkers=2):
+
+```bash
+npm run test:ci
+```
+
+### Code Quality
+
+```bash
+# ESLint check
+npm run lint
+
+# ESLint auto-fix
+npm run lint:fix
+
+# Format code with Prettier
+npm run format
+
+# Check formatting compliance
+npm run format:check
+
+# TypeScript type check
+npm run typecheck
+```
+
+### Build
+
+```bash
+# Build for production
+npm run build
+
+# Preview production build locally
+npm run preview
 ```
 
 ## Code Style
 
 ### TypeScript
-- Use strict mode: `tsconfig.json` is already configured
+
+- Use strict mode: `tsconfig.json` is already configured with `ignoreDeprecations: "6.0"` for TypeScript 7.0 compatibility
 - Prefer explicit typing over any
 - Use interfaces for object shapes
 
 ### React
+
 - Functional components with hooks
-- Use `styled-components` or Tailwind CSS for styling
+- Use Tailwind CSS for styling
 - Follow shadcn-ui design patterns
 
 ### JavaScript
+
 - ES6+ features only
 - Use const/let instead of var
 
@@ -90,6 +151,7 @@ chore: maintenance tasks
 ```
 
 Example:
+
 ```
 feat: add dark mode toggle
 fix: correct shipping API response parsing
@@ -106,6 +168,7 @@ docs: update installation instructions
 - `chore/`: Maintenance tasks
 
 Example:
+
 ```
 feature/add-search-filter
 fix/dashboard-rendering-error
