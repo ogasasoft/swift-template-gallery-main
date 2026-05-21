@@ -4,7 +4,7 @@ A modern template gallery for developers to discover and preview reusable React 
 
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
-![Node](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)
+![Node](https://img.shields.io/badge/node-%3E%3D18.3.28-brightgreen.svg)
 ![React](https://img.shields.io/badge/React-18.3.1-61DAFB.svg)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.9.3-3178C6.svg)
 ![Jest](https://img.shields.io/badge/Jest-30.4.2-9948F5.svg)
@@ -29,7 +29,7 @@ A modern template gallery for developers to discover and preview reusable React 
 ### Framework & Core
 
 - **React 18.3.1** - Latest React with concurrent features
-- **TypeScript 5.9.3** - Full type safety
+- **TypeScript 6.0.3** - Full type safety
 - **Vite 5.4.21** - Lightning-fast build tool
 - **React Router v6.30.3** - Client-side routing
 
@@ -48,7 +48,7 @@ A modern template gallery for developers to discover and preview reusable React 
 
 ### Testing
 
-- **Jest 30.4.2** - Test runner
+- **Jest 30.2.0** - Test runner
 - **React Testing Library 16.3.2** - Component testing
 - **Jest DOM 6.9.1** - DOM matchers
 - **TypeScript Jest 29.4.6** - TS support
