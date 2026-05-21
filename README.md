@@ -30,7 +30,7 @@ A modern template gallery for developers to discover and preview reusable React 
 
 - **React 18.3.1** - Latest React with concurrent features
 - **TypeScript 6.0.3** - Full type safety
-- **Vite 5.4.21** - Lightning-fast build tool
+- **Vite 8.0.13** - Lightning-fast build tool
 - **React Router v6.30.3** - Client-side routing
 
 ### Styling
