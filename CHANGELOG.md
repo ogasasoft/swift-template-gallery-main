@@ -70,6 +70,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - Updated Node.js requirement from 18 to 20
 - Enhanced CI workflow for better reliability
+- Added template tags categorization system (feature add-changelog)
 
 ---
 
