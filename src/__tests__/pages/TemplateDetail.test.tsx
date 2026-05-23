@@ -61,7 +61,7 @@ describe("TemplateDetail Page", () => {
     renderWithRoute("cafe-01");
     expect(screen.getAllByText("Cafe").length).toBeGreaterThan(0);
     expect(screen.getAllByText("Simple").length).toBeGreaterThan(0);
-    expect(screen.getByText("Light")).toBeInTheDocument();
+    expect(screen.getAllByText("Light").length).toBeGreaterThan(0);
   });
 
   it("should show preview button", () => {

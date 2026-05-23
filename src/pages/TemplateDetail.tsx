@@ -1,20 +1,30 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { ArrowLeft, Eye } from "lucide-react";
+import { ArrowLeft, Eye, X, Plus } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import PreviewModal from "@/components/PreviewModal";
 import templatesData from "@/lib/templates.json";
 import type { Template } from "@/lib/types";
 
-const templates = templatesData as Template[];
-
 export default function TemplateDetail() {
   const { id } = useParams<{ id: string }>();
   const [showPreview, setShowPreview] = useState(false);
+  const [newTag, setNewTag] = useState("");
+  const [templates, setTemplates] = useState<Template[]>([]);
+  const [template, setTemplate] = useState<Template | null>(null);
 
-  const template = templates.find((t) => t.id === id);
+  // Load templates on mount
+  useEffect(() => {
+    const loadedTemplates = templatesData as Template[];
+    setTemplates(loadedTemplates);
+
+    const foundTemplate = loadedTemplates.find((t) => t.id === id);
+    setTemplate(foundTemplate || null);
+  }, [id]);
 
   if (!template) {
     return (
@@ -31,6 +41,52 @@ export default function TemplateDetail() {
       </div>
     );
   }
+
+  const allTags = Array.from(
+    new Set(templates.flatMap((t) => t.tags)),
+  ).sort();
+
+  const handleTagToggle = (tag: string) => {
+    const updatedTemplates = templates.map((t) =>
+      t.id === template.id
+        ? {
+            ...t,
+            tags: t.tags.includes(tag)
+              ? t.tags.filter((t) => t !== tag)
+              : [...t.tags, tag],
+          }
+        : t
+    );
+    setTemplates(updatedTemplates);
+  };
+
+  const handleTagAdd = (tag: string) => {
+    const trimmedTag = tag.trim();
+    if (trimmedTag && !template.tags.includes(trimmedTag)) {
+      const updatedTemplates = templates.map((t) =>
+        t.id === template.id
+          ? { ...t, tags: [...t.tags, trimmedTag] }
+          : t
+      );
+      setTemplates(updatedTemplates);
+    }
+    setNewTag("");
+  };
+
+  const handleTagRemove = (tag: string) => {
+    const updatedTemplates = templates.map((t) =>
+      t.id === template.id
+        ? { ...t, tags: t.tags.filter((t) => t !== tag) }
+        : t
+    );
+    setTemplates(updatedTemplates);
+  };
+
+  const handleTagKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      handleTagAdd(newTag);
+    }
+  };
 
   const metaItems = [
     { label: "業種", value: template.industry },
@@ -85,13 +141,46 @@ export default function TemplateDetail() {
             <p className="text-sm font-medium text-muted-foreground mb-2">
               タグ
             </p>
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-2 mb-3">
               {template.tags.map((tag) => (
-                <Badge key={tag} variant="secondary">
+                <Badge
+                  key={tag}
+                  variant="secondary"
+                  className="text-sm cursor-pointer hover:bg-destructive hover:text-destructive-foreground transition-colors"
+                  onClick={() => handleTagRemove(tag)}
+                >
+                  {tag}
+                  <X className="h-3 w-3 ml-1" />
+                </Badge>
+              ))}
+            </div>
+            <div className="flex gap-2">
+              <Input
+                placeholder="Add new tag..."
+                value={newTag}
+                onChange={(e) => setNewTag(e.target.value)}
+                onKeyDown={handleTagKeyDown}
+                className="flex-1"
+              />
+              <Button size="sm" onClick={() => handleTagAdd(newTag)}>
+                <Plus className="h-4 w-4" />
+              </Button>
+            </div>
+            <div className="flex flex-wrap gap-2 mt-3">
+              {allTags.map((tag) => (
+                <Badge
+                  key={tag}
+                  variant={template.tags.includes(tag) ? "default" : "secondary"}
+                  className="text-sm cursor-pointer transition-colors"
+                  onClick={() => handleTagToggle(tag)}
+                >
                   {tag}
                 </Badge>
               ))}
             </div>
+            <p className="text-xs text-muted-foreground mt-2">
+              Click to toggle tag inclusion
+            </p>
           </div>
 
           <Button onClick={() => setShowPreview(true)} className="gap-2">

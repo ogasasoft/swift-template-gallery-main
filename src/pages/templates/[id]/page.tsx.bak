@@ -1,0 +1,181 @@
+import { notFound } from "next/navigation";
+import templatesData from "@/lib/templates.json";
+import TemplateCard from "@/components/TemplateCard";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Textarea } from "@/components/ui/textarea";
+import { Badge } from "@/components/ui/badge";
+import { X, Plus } from "lucide-react";
+import type { Template } from "@/lib/types";
+
+interface TemplateDetailPageProps {
+  params: {
+    id: string;
+  };
+}
+
+export default function TemplateDetailPage({ params }: TemplateDetailPageProps) {
+  const template = templatesData.find((t) => t.id === params.id);
+
+  if (!template) {
+    notFound();
+  }
+
+  const allTags = Array.from(
+    new Set(templatesData.flatMap((t) => t.tags)),
+  ).sort();
+
+  const handleTagToggle = (tag: string) => {
+    if (template.tags.includes(tag)) {
+      template.tags = template.tags.filter((t) => t !== tag);
+    } else {
+      template.tags.push(tag);
+    }
+    // Note: This doesn't persist to templates.json
+    // In a real app, this would use a database or API
+  };
+
+  const handleTagAdd = (tag: string) => {
+    if (!template.tags.includes(tag)) {
+      template.tags.push(tag);
+    }
+  };
+
+  const handleTagRemove = (tag: string) => {
+    template.tags = template.tags.filter((t) => t !== tag);
+  };
+
+  return (
+    <div className="container mx-auto px-4 py-8">
+      <div className="mb-6">
+        <Link
+          href="/"
+          className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors"
+        >
+          ← ギャラリーに戻る
+        </Link>
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {/* Left: Preview */}
+        <div className="lg:col-span-2">
+          <div className="bg-muted rounded-lg overflow-hidden">
+            <iframe
+              src={template.preview_path}
+              title={`${template.title} preview`}
+              className="w-full h-[600px] border-0"
+            />
+          </div>
+        </div>
+
+        {/* Right: Details */}
+        <div className="space-y-6">
+          <div>
+            <h1 className="text-3xl font-bold mb-2">{template.title}</h1>
+            <p className="text-muted-foreground">{template.description}</p>
+          </div>
+
+          <div className="space-y-4">
+            <div>
+              <Label>Tags</Label>
+              <div className="flex flex-wrap gap-2 mt-2">
+                {template.tags.map((tag) => (
+                  <Badge
+                    key={tag}
+                    variant="secondary"
+                    className="text-sm cursor-pointer hover:bg-destructive hover:text-destructive-foreground transition-colors"
+                    onClick={() => handleTagRemove(tag)}
+                  >
+                    {tag}
+                    {/* Only show X icon for tags that are not in industry/tone/style */}
+                    {!(tag === template.industry || tag === template.tone || tag === template.style) && (
+                      <X className="h-3 w-3 ml-1" />
+                    )}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+
+            {/* Only show industry/tone/style badges if they're not already in tags */}
+            {template.industry && !template.tags.includes(template.industry) && (
+              <div>
+                <Label>Industry</Label>
+                <Badge variant="outline" className="mt-1">
+                  {template.industry}
+                </Badge>
+              </div>
+            )}
+
+            {template.tone && !template.tags.includes(template.tone) && (
+              <div>
+                <Label>Tone</Label>
+                <Badge variant="outline" className="mt-1">
+                  {template.tone}
+                </Badge>
+              </div>
+            )}
+
+            {template.style && !template.tags.includes(template.style) && (
+              <div>
+                <Label>Style</Label>
+                <Badge variant="outline" className="mt-1">
+                  {template.style}
+                </Badge>
+              </div>
+            )}
+          </div>
+
+          <div className="space-y-3 pt-4 border-t">
+            <Link href={`/templates/${template.id}`}>
+              <Button className="w-full">
+                <Eye className="h-4 w-4 mr-2" />
+                プレビュー
+              </Button>
+            </Link>
+            <button className="w-full flex items-center justify-center gap-2 rounded-md bg-muted px-3 py-1.5 text-sm font-medium hover:bg-muted/80 transition-colors">
+              <Download className="h-4 w-4" />
+              ダウンロード
+            </button>
+          </div>
+
+          {/* Tag Management */}
+          <div className="space-y-3 pt-4 border-t">
+            <Label>Manage Tags</Label>
+            <div className="flex gap-2">
+              <Input
+                placeholder="Add new tag..."
+                onKeyDown={(e) => {
+                  if (e.key === "Enter") {
+                    handleTagAdd(e.currentTarget.value.trim());
+                    e.currentTarget.value = "";
+                  }
+                }}
+              />
+              <Button size="sm">
+                <Plus className="h-4 w-4" />
+              </Button>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {allTags.map((tag) => (
+                <Badge
+                  key={tag}
+                  variant={
+                    template.tags.includes(tag) ? "default" : "secondary"
+                  }
+                  className="text-sm cursor-pointer transition-colors"
+                  onClick={() => handleTagToggle(tag)}
+                >
+                  {tag}
+                </Badge>
+              ))}
+            </div>
+            <p className="text-xs text-muted-foreground">
+              Click to toggle tag inclusion
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

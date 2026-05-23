@@ -96,7 +96,7 @@ const Carousel = React.forwardRef<
       setApi(api);
     }, [api, setApi]);
 
-    const onSelectRef = React.useRef<(api: CarouselApi) => void>();
+    const onSelectRef = React.useRef<(api: CarouselApi) => void>(() => {});
 
     const onSelect = useCallback(
       (api: CarouselApi) => {
