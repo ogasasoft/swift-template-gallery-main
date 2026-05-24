@@ -666,7 +666,7 @@ const SidebarMenuSkeleton = React.forwardRef<
   }, []);
 
   React.useEffect(() => {
-    updateRandomWidth(); // eslint-disable-line react-hooks/set-state-in-effect
+    updateRandomWidth();  
   }, [updateRandomWidth]);
 
   const width = randomWidth;

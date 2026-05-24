@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
-import { ArrowLeft, Eye, X, Plus } from "lucide-react";
+import { ArrowLeft, X, Plus } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 import PreviewModal from "@/components/PreviewModal";
 import templatesData from "@/lib/templates.json";
@@ -14,16 +13,18 @@ export default function TemplateDetail() {
   const { id } = useParams<{ id: string }>();
   const [showPreview, setShowPreview] = useState(false);
   const [newTag, setNewTag] = useState("");
-  const [templates, setTemplates] = useState<Template[]>([]);
+  const [templates] = useState<Template[]>(() => {
+    return templatesData as Template[];
+  });
   const [template, setTemplate] = useState<Template | null>(null);
 
-  // Load templates on mount
+  // Load template on mount
   useEffect(() => {
     const loadedTemplates = templatesData as Template[];
-    setTemplates(loadedTemplates);
-
     const foundTemplate = loadedTemplates.find((t) => t.id === id);
-    setTemplate(foundTemplate || null);
+    if (foundTemplate) {
+      setTemplate(foundTemplate);
+    }
   }, [id]);
 
   if (!template) {

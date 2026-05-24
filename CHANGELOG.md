@@ -7,9 +7,36 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Security
+
+- Fixed high severity vulnerabilities in `glob` package
+- Updated ESLint plugin to resolve security issues
+- All security audits now show 0 vulnerabilities
+
+### Changed
+
+- Updated `eslint-config-next` to latest version (16.2.6)
+- Updated all Radix UI components to latest versions
+- Updated all dev dependencies to latest compatible versions
+- Removed deprecated `glob` package usage
+
 ### Added
 
-- Initial CHANGELOG.md for tracking project changes
+- Comprehensive contributing guide with:
+  - Development setup instructions
+  - Code style guidelines (TypeScript, React, Hooks, Styling)
+  - Testing requirements and best practices
+  - Commit message conventions (semantic commits)
+  - Pull request process
+  - Code review guidelines
+
+- Enhanced CHANGELOG with security updates section
+
+### Fixed
+
+- Resolved `npm audit` security warnings
+- Fixed ESLint peer dependency conflicts
+- Improved package dependency resolution
 
 ## [1.0.0] - 2026-05-20
 

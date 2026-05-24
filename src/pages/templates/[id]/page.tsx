@@ -1,14 +1,11 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import templatesData from "@/lib/templates.json";
-import TemplateCard from "@/components/TemplateCard";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { Badge } from "@/components/ui/badge";
 import { X, Plus, Eye, Download } from "lucide-react";
-import type { Template } from "@/lib/types";
 
 interface TemplateDetailPageProps {
   params: {
