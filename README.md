@@ -228,6 +228,47 @@ npm run preview
 
 # Format code with Prettier
 npm run format
+
+## 🐳 Docker
+
+### Using Docker Compose (Development)
+
+Quick setup with Docker Compose:
+
+```bash
+# Build and start in development mode
+docker-compose up --build
+
+# Run tests inside container
+docker-compose exec app npm test
+
+# Stop services
+docker-compose down
+```
+
+### Using Docker CLI
+
+```bash
+# Build image
+docker build -t swift-template-gallery:latest .
+
+# Run container
+docker run -p 3000:3000 swift-template-gallery:latest
+
+# Run with environment variables
+docker run -p 3000:3000 \
+  -e NODE_ENV=production \
+  swift-template-gallery:latest
+```
+
+### Docker Documentation
+
+For detailed information, see [DOCKER.md](DOCKER.md) which covers:
+- Multi-stage build configuration
+- Security best practices
+- Production deployment
+- Troubleshooting
+- Performance optimization
 ```
 
 ### Project Structure Overview
