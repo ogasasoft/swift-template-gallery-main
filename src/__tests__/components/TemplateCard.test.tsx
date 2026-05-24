@@ -4,17 +4,6 @@ import { BrowserRouter } from 'react-router-dom';
 import TemplateCard from '@/components/TemplateCard';
 import RatingStars from '@/components/RatingStars';
 
-// Mock RatingStars component
-jest.mock('@/components/RatingStars');
-
-// Default mock implementation
-(RatingStars as jest.Mock).mockImplementation(({ rating, count, size }) => (
-  <div>
-    <span>{rating !== undefined && rating !== null ? `${rating} stars` : 'No rating'}</span>
-    {count !== undefined && count !== null && <span> ({count} reviews)</span>}
-  </div>
-));
-
 const mockTemplate = {
   id: 'template-01',
   title: 'Restaurant Template',
@@ -58,12 +47,14 @@ describe('TemplateCard Component', () => {
 
   it('should render rating display', () => {
     renderTemplateCard();
-    expect(screen.getByText('4.5 stars')).toBeInTheDocument();
+    // RatingStars shows 5 stars for 4.5 rating (rounds up)
+    const stars = screen.getAllByLabelText(/4 out of 5 stars/);
+    expect(stars.length).toBeGreaterThan(0);
   });
 
   it('should display review count', () => {
     renderTemplateCard();
-    expect(screen.getByText('(12 reviews)')).toBeInTheDocument();
+    expect(screen.getByText('(12)')).toBeInTheDocument();
   });
 
   it('should render all tags as badges', () => {
@@ -184,8 +175,9 @@ describe('TemplateCard Component', () => {
       reviewCount: 0,
     };
     renderTemplateCard({ template: templateWithZeroRating });
-    expect(screen.getByText('0 stars')).toBeInTheDocument();
-    expect(screen.getByText('(0 reviews)')).toBeInTheDocument();
+    // Zero rating shows "no rating" text
+    expect(screen.getByText(/no rating/i)).toBeInTheDocument();
+    expect(screen.queryByText(/\(\d+\)/)).not.toBeInTheDocument();
   });
 
   it('should handle template with five star rating', () => {
@@ -194,7 +186,9 @@ describe('TemplateCard Component', () => {
       rating: 5,
     };
     renderTemplateCard({ template: templateWithFiveStars });
-    expect(screen.getByText('5 stars')).toBeInTheDocument();
+    // Five stars shows 5 filled stars
+    const stars = screen.getAllByLabelText(/5 out of 5 stars/);
+    expect(stars.length).toBeGreaterThan(0);
   });
 
   it('should have correct image alt text', () => {

@@ -27,6 +27,8 @@ export default function RatingStars({
     lg: "h-5",
   };
 
+  const hasRating = rating !== undefined && rating !== null && rating > 0;
+
   return (
     <div className="flex items-center gap-1">
       <div className={`flex ${containerSizeClasses[size]}`}>
@@ -39,18 +41,25 @@ export default function RatingStars({
             className={`${sizeClasses[size]} text-yellow-400 transition-colors`}
             aria-label={`${star} out of 5 stars`}
           >
-            {rating >= star ? (
-              <Star fill="currentColor" className="fill-yellow-400" />
-            ) : rating >= star - 0.5 ? (
-              <StarHalf fill="currentColor" className="fill-yellow-400" />
+            {hasRating ? (
+              rating >= star ? (
+                <Star fill="currentColor" className="fill-yellow-400" />
+              ) : rating >= star - 0.5 ? (
+                <StarHalf fill="currentColor" className="fill-yellow-400" />
+              ) : (
+                <Star />
+              )
             ) : (
               <Star />
             )}
           </button>
         ))}
       </div>
-      {count > 0 && (
+      {hasRating && count > 0 && (
         <span className="text-sm text-muted-foreground ml-1">({count})</span>
+      )}
+      {!hasRating && count === 0 && (
+        <span className="text-sm text-muted-foreground ml-1">no rating</span>
       )}
     </div>
   );
