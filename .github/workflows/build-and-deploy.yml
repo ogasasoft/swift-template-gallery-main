@@ -3,10 +3,36 @@ name: Build and Deploy
 on:
   push:
     branches: [ main ]
+    tags:
+      - 'v*.*.*'
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+env:
+  NODE_VERSION: '20'
 
 jobs:
-  build:
+  security-scan:
+    name: Security Scan
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Run npm audit
+        run: npm audit --audit-level=moderate || true
+
+      - name: Run npm outdated
+        run: npm outdated || true
+
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    needs: security-scan
 
     steps:
       - name: Checkout code
@@ -15,7 +41,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20.x'
+          node-version: ${{ env.NODE_VERSION }}
           cache: 'npm'
           registry-url: 'https://registry.npmjs.org'
 
@@ -36,36 +62,49 @@ jobs:
 
       - name: Build Docker image
         run: |
-          echo "FROM node:20-alpine as builder"
-          echo "WORKDIR /app"
-          echo "COPY package*.json ./"
-          echo "RUN npm ci --only=production"
-          echo "COPY . ."
-          echo "RUN npm run build"
-          echo "FROM node:20-alpine as runner"
-          echo "WORKDIR /app"
-          echo "COPY --from=builder /app/dist ./dist"
-          echo "COPY --from=builder /app/node_modules ./node_modules"
-          echo "COPY --from=builder /app/package.json ./package.json"
-          echo "EXPOSE 5173"
-          echo "CMD [\"npm\", \"run\", \"preview\"]" > Dockerfile
-          docker build -t swift-template-gallery:latest .
+          echo "Building Docker image..."
+          docker build -t swift-template-gallery:${{ github.sha }} \
+                       -t swift-template-gallery:latest \
+                       -t swift-template-gallery:${{ github.ref_name }} \
+                       .
 
-      - name: Save Docker image
+      - name: Build and push image to ECR
+        if: github.event_name == 'push' && github.ref == 'refs/heads/main'
         run: |
-          docker save swift-template-gallery:latest | gzip > swift-template-gallery.tar.gz
+          # Login to ECR
+          aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | \
+            docker login --username AWS --password-stdin ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
+
+          # Tag and push image
+          docker tag swift-template-gallery:${{ github.sha }} \
+                       ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/swift-template-gallery:${{ github.sha }}
+          docker tag swift-template-gallery:latest \
+                       ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/swift-template-gallery:latest
+          docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/swift-template-gallery:${{ github.sha }}
+          docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/swift-template-gallery:latest
+
+      - name: Save Docker image artifact
+        if: github.event_name != 'push' || github.ref != 'refs/heads/main'
+        run: |
+          docker save swift-template-gallery:${{ github.sha }} | gzip > swift-template-gallery-${{ github.sha }}.tar.gz
 
       - name: Upload artifact
+        if: github.event_name != 'push' || github.ref != 'refs/heads/main'
         uses: actions/upload-artifact@v4
         with:
-          name: docker-image
-          path: swift-template-gallery.tar.gz
-          retention-days: 7
+          name: docker-image-${{ github.sha }}
+          path: swift-template-gallery-${{ github.sha }}.tar.gz
+          retention-days: 30
 
   deploy:
-    needs: build
+    name: Deploy
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    environment:
+      name: production
+      url: ${{ steps.deploy.outputs.url }}
 
     steps:
       - name: Checkout code
@@ -74,10 +113,11 @@ jobs:
       - name: Download artifact
         uses: actions/download-artifact@v4
         with:
-          name: docker-image
+          name: docker-image-${{ github.sha }}
+          path: .
 
       - name: Load Docker image
-        run: docker load < swift-template-gallery.tar.gz
+        run: docker load < swift-template-gallery-${{ github.sha }}.tar.gz
 
       - name: Configure AWS credentials
         uses: aws-actions/configure-aws-credentials@v4
@@ -88,14 +128,62 @@ jobs:
 
       - name: Login to Amazon ECR
         id: login-ecr
-        uses: aws-actions/amazon-ecr-login@v2
+        run: aws ecr get-login-password --region ${{ secrets.AWS_REGION }} | \
+              docker login --username AWS --password-stdin ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com
 
-      - name: Build and push image to Amazon ECR
+      - name: Deploy to ECS
+        id: deploy
         run: |
-          IMAGE_TAG=$(echo ${{ github.sha }} | head -c 7)
-          docker tag swift-template-gallery:latest ${{ steps.login-ecr.outputs.registry }}/swift-template-gallery:$IMAGE_TAG
-          docker push ${{ steps.login-ecr.outputs.registry }}/swift-template-gallery:$IMAGE_TAG
+          echo "Deploying to ECS cluster: ${{ secrets.ECS_CLUSTER }}"
+          echo "Service: ${{ secrets.ECS_SERVICE }}"
 
-      - name: Update ECS service
+          # Update ECS service with new deployment
+          aws ecs update-service \
+            --cluster ${{ secrets.ECS_CLUSTER }} \
+            --service ${{ secrets.ECS_SERVICE }} \
+            --force-new-deployment \
+            --region ${{ secrets.AWS_REGION }}
+
+          # Get task definition
+          TASK_DEFINITION=$(aws ecs describe-task-definition \
+            --task-definition ${{ secrets.ECS_TASK_DEFINITION }} \
+            --region ${{ secrets.AWS_REGION }} \
+            --query 'taskDefinition.taskDefinitionArn' \
+            --output text)
+
+          echo "url=https://${{ secrets.ECS_SERVICE }}.${{ secrets.ECS_CLUSTER }}.ecs.${
+            secrets.AWS_REGION }}.amazonaws.com" >> $GITHUB_OUTPUT
+
+      - name: Wait for deployment
         run: |
-          aws ecs update-service --cluster ${{ secrets.ECS_CLUSTER }} --service ${{ secrets.ECS_SERVICE }} --force-new-deployment
+          echo "Waiting for ECS deployment to complete..."
+          aws ecs wait services-stable \
+            --cluster ${{ secrets.ECS_CLUSTER }} \
+            --service ${{ secrets.ECS_SERVICE }} \
+            --region ${{ secrets.AWS_REGION }}
+
+      - name: Check deployment status
+        run: |
+          SERVICE_STATUS=$(aws ecs describe-services \
+            --cluster ${{ secrets.ECS_CLUSTER }} \
+            --service ${{ secrets.ECS_SERVICE }} \
+            --region ${{ secrets.AWS_REGION }} \
+            --query 'services[0].deployments[0].status' \
+            --output text)
+
+          echo "Deployment status: $SERVICE_STATUS"
+
+          if [ "$SERVICE_STATUS" != "PRIMARY" ]; then
+            echo "Warning: Service is not in PRIMARY state"
+            exit 1
+          fi
+
+      - name: Notify deployment
+        if: always()
+        run: |
+          if [ ${{ job.status }} == 'success' ]; then
+            echo "✅ Deployment successful"
+          else
+            echo "❌ Deployment failed"
+            exit 1
+          fi
