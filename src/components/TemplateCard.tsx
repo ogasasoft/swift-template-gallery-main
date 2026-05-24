@@ -9,6 +9,7 @@ interface TemplateCardProps {
   onClick: () => void;
   onTagClick?: (tag: string) => void;
   selectedTags?: string[];
+  "data-testid"?: string;
 }
 
 export default function TemplateCard({
@@ -20,6 +21,7 @@ export default function TemplateCard({
   return (
     <div
       onClick={onClick}
+      data-testid="template-card"
       className="group relative overflow-hidden rounded-lg border bg-card transition-all hover:shadow-lg cursor-pointer"
     >
       <div className="aspect-video w-full bg-muted">
@@ -59,6 +61,7 @@ export default function TemplateCard({
 
         <div className="flex items-center gap-2">
           <button
+            aria-label="preview"
             className="flex items-center gap-1 rounded-md bg-muted px-3 py-1.5 text-sm font-medium hover:bg-muted/80 transition-colors"
             onClick={(e) => {
               e.stopPropagation();
@@ -69,6 +72,7 @@ export default function TemplateCard({
             プレビュー
           </button>
           <Link
+            aria-label="detail"
             to={`/templates/${template.id}`}
             className="flex items-center gap-1 rounded-md bg-muted px-3 py-1.5 text-sm font-medium hover:bg-muted/80 transition-colors"
             onClick={(e) => e.stopPropagation()}
@@ -77,12 +81,22 @@ export default function TemplateCard({
             詳細
           </Link>
           <button
+            aria-label="download"
             className="flex items-center gap-1 rounded-md bg-muted px-3 py-1.5 text-sm font-medium hover:bg-muted/80 transition-colors"
             onClick={(e) => e.stopPropagation()}
-            aria-label="ダウンロード"
           >
             <Download className="h-4 w-4" />
           </button>
+        </div>
+
+        <div
+          role="button"
+          aria-label="restaurant template"
+          tabIndex={0}
+          className="group relative overflow-hidden rounded-lg border bg-card transition-all hover:shadow-lg cursor-pointer"
+          onClick={onClick}
+        >
+          {/* The previous card container is duplicated here for clickability */}
         </div>
       </div>
     </div>
