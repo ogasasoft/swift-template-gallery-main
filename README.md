@@ -269,6 +269,66 @@ For detailed information, see [DOCKER.md](DOCKER.md) which covers:
 - Production deployment
 - Troubleshooting
 - Performance optimization
+
+## 🚀 Deployment
+
+This project is deployed to **AWS ECS** with automated CI/CD.
+
+### Overview
+
+- **CI/CD Pipeline**: GitHub Actions with automated builds and deployments
+- **Container Registry**: AWS ECR (Elastic Container Registry)
+- **Container Service**: AWS ECS (Elastic Container Service)
+- **Deployment**: Automatic on push to `main` branch
+
+### Required Secrets
+
+Configure these secrets in your GitHub repository:
+- `AWS_ACCOUNT_ID`
+- `AWS_ACCESS_KEY_ID`
+- `AWS_SECRET_ACCESS_KEY`
+- `AWS_REGION`
+- `ECS_CLUSTER`
+- `ECS_SERVICE`
+- `ECS_TASK_DEFINITION`
+
+### Quick Deploy
+
+```bash
+# 1. Build and test locally
+npm test
+npm run build
+docker build -t swift-template-gallery:latest .
+
+# 2. Push to main branch
+git add .
+git commit -m "feat: new feature"
+git push origin main
+
+# 3. Monitor deployment on GitHub Actions
+# CI/CD will automatically deploy to ECS
+```
+
+### Deployment Documentation
+
+For comprehensive deployment guides:
+- [DEPLOYMENT.md](DEPLOYMENT.md) - Step-by-step deployment guide
+- [CICD_SUMMARY.md](.github/workflows/CICD_SUMMARY.md) - CI/CD pipeline overview
+
+### Verify Deployment
+
+Use the verification script after deployment:
+
+```bash
+# Make script executable
+chmod +x scripts/verify-deployment.sh
+
+# Run verification (with default cluster/service)
+./scripts/verify-deployment.sh
+
+# Or specify custom values
+./scripts/verify-deployment.sh --cluster my-cluster --service my-service
+```
 ```
 
 ### Project Structure Overview
