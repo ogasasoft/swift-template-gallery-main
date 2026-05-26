@@ -12,6 +12,10 @@ const mockTemplate = {
   tags: ['restaurant', 'menu', 'reservation'],
   rating: 4.5,
   reviewCount: 12,
+  industry: 'Restaurant',
+  tone: 'Professional',
+  style: 'Modern',
+  preview_path: '/templates/template-01/index.html',
 };
 
 const mockOnClick = jest.fn();
@@ -35,7 +39,7 @@ describe('TemplateCard Component', () => {
 
   it('should render the template title', () => {
     renderTemplateCard();
-    expect(screen.getByText('Restaurant Template')).toBeInTheDocument();
+    expect(screen.getByText('Restaurant Template')!).toBeInTheDocument();
   });
 
   it('should render the template thumbnail', () => {
@@ -54,7 +58,7 @@ describe('TemplateCard Component', () => {
 
   it('should display review count', () => {
     renderTemplateCard();
-    expect(screen.getByText('(12)')).toBeInTheDocument();
+    expect(screen.getByText('(12)')!).toBeInTheDocument();
   });
 
   it('should render all tags as badges', () => {

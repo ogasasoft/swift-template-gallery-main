@@ -58,7 +58,7 @@ export default function TemplateDetail() {
           }
         : t
     );
-    setTemplates(updatedTemplates);
+    setTemplate(updatedTemplates.find((t) => t.id === template.id) || template);
   };
 
   const handleTagAdd = (tag: string) => {
@@ -69,7 +69,7 @@ export default function TemplateDetail() {
           ? { ...t, tags: [...t.tags, trimmedTag] }
           : t
       );
-      setTemplates(updatedTemplates);
+      setTemplate(updatedTemplates.find((t) => t.id === template.id) || template);
     }
     setNewTag("");
   };
@@ -80,7 +80,7 @@ export default function TemplateDetail() {
         ? { ...t, tags: t.tags.filter((t) => t !== tag) }
         : t
     );
-    setTemplates(updatedTemplates);
+    setTemplate(updatedTemplates.find((t) => t.id === template.id) || template);
   };
 
   const handleTagKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {

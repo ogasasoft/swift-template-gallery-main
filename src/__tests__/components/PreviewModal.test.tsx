@@ -64,8 +64,8 @@ describe("PreviewModal Component", () => {
       expect(screen.queryByTestId("dialog")).not.toBeInTheDocument();
     });
 
-    it("should not render when template is undefined", () => {
-      render(<PreviewModal template={undefined} onClose={mockOnClose} />);
+    it("should not render when template is null", () => {
+      render(<PreviewModal template={null} onClose={mockOnClose} />);
 
       expect(screen.queryByTestId("dialog")).not.toBeInTheDocument();
     });
@@ -117,7 +117,7 @@ describe("PreviewModal Component", () => {
     it("should render DialogContent with correct classes", () => {
       render(<PreviewModal template={mockTemplate} onClose={mockOnClose} />);
 
-      const dialogContent = screen.getByTestId("dialog-content");
+      const dialogContent = screen.getByTestId("dialog-content")!;
       expect(dialogContent).toHaveClass("max-w-6xl");
       expect(dialogContent).toHaveClass("h-[90vh]");
       expect(dialogContent).toHaveClass("flex");

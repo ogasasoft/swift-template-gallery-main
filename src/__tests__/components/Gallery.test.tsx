@@ -99,8 +99,8 @@ describe("Gallery Component", () => {
     renderWithRouter(<Gallery />);
     // Click "Minimal" tag — only Test Template has it
     const minimalBadges = screen.getAllByText("Minimal");
-    fireEvent.click(minimalBadges[0]);
-    expect(screen.getByText("Test Template")).toBeInTheDocument();
+    fireEvent.click(minimalBadges[0] as Element);
+    expect(screen.getByText("Test Template")!).toBeInTheDocument();
     expect(screen.queryByText("Luxury Template")).not.toBeInTheDocument();
     expect(screen.queryByText("Restaurant Template")).not.toBeInTheDocument();
   });
@@ -109,21 +109,21 @@ describe("Gallery Component", () => {
     renderWithRouter(<Gallery />);
     const minimalBadges = screen.getAllByText("Minimal");
     // Select
-    fireEvent.click(minimalBadges[0]);
+    fireEvent.click(minimalBadges[0]!);
     expect(screen.queryByText("Luxury Template")).not.toBeInTheDocument();
     // Deselect
-    fireEvent.click(minimalBadges[0]);
-    expect(screen.getByText("Luxury Template")).toBeInTheDocument();
-    expect(screen.getByText("Restaurant Template")).toBeInTheDocument();
+    fireEvent.click(minimalBadges[0]!);
+    expect(screen.getByText("Luxury Template")!).toBeInTheDocument();
+    expect(screen.getByText("Restaurant Template")!).toBeInTheDocument();
   });
 
   it("should filter by shared tag (OR covers multiple templates)", () => {
     renderWithRouter(<Gallery />);
     // "Cafe" tag is on Test Template and Luxury Template but not Restaurant Template
     const cafeBadges = screen.getAllByText("Cafe");
-    fireEvent.click(cafeBadges[0]);
-    expect(screen.getByText("Test Template")).toBeInTheDocument();
-    expect(screen.getByText("Luxury Template")).toBeInTheDocument();
+    fireEvent.click(cafeBadges[0]!);
+    expect(screen.getByText("Test Template")!).toBeInTheDocument();
+    expect(screen.getByText("Luxury Template")!).toBeInTheDocument();
     expect(screen.queryByText("Restaurant Template")).not.toBeInTheDocument();
   });
 

@@ -32,20 +32,21 @@ describe("RatingForm Component", () => {
 
   it("should show rating stars", () => {
     render(<RatingForm templateId="test-template" />);
-    expect(screen.getAllByRole("button", { name: /stars/i })).toHaveLength(5);
+    const stars = screen.getAllByRole("button", { name: /stars/i });
+    expect(stars).toHaveLength(5);
   });
 
   it("should disable submit button when rating is 0", () => {
     render(<RatingForm templateId="test-template" />);
-    const submitButton = screen.getByRole("button", { name: /評価を送信/i });
+    const submitButton = screen.getByRole("button", { name: /評価を送信/i })!;
     expect(submitButton).toBeDisabled();
   });
 
   it("should enable submit button when rating is provided", () => {
     render(<RatingForm templateId="test-template" />);
-    const submitButton = screen.getByRole("button", { name: /評価を送信/i });
+    const submitButton = screen.getByRole("button", { name: /評価を送信/i })!;
     const stars = screen.getAllByRole("button", { name: /stars/i });
-    fireEvent.click(stars[3]); // Click 4 stars
+    fireEvent.click(stars[3]!); // Click 4 stars
     expect(submitButton).not.toBeDisabled();
   });
 
@@ -59,7 +60,7 @@ describe("RatingForm Component", () => {
 
     // Import after mock is set up
     render(<RatingForm templateId="test-template" />);
-    const submitButton = screen.getByRole("button", { name: /評価を送信/i });
+    const submitButton = screen.getByRole("button", { name: /評価を送信/i })!;
     fireEvent.click(submitButton);
 
     await waitFor(() => {
@@ -75,17 +76,15 @@ describe("RatingForm Component", () => {
 
     render(<RatingForm templateId="test-template" />);
     const stars = screen.getAllByRole("button", { name: /out of 5 stars/i });
-    fireEvent.click(stars[4]); // Click 5 stars
-    fireEvent.change(
-      screen.getByPlaceholderText(
-        /このテンプレートについてご意見をお聞かせください.../i,
-      ),
-      {
-        target: { value: "Excellent template!" },
-      },
-    );
+    fireEvent.click(stars[4]!); // Click 5 stars
+    const textarea = screen.getByPlaceholderText(
+      /このテンプレートについてご意見をお聞かせください.../i,
+    )!;
+    fireEvent.change(textarea, {
+      target: { value: "Excellent template!" },
+    });
 
-    const submitButton = screen.getByRole("button", { name: /評価を送信/i });
+    const submitButton = screen.getByRole("button", { name: /評価を送信/i })!;
     fireEvent.click(submitButton);
 
     // Fast-forward time to simulate 1 second delay
@@ -94,7 +93,7 @@ describe("RatingForm Component", () => {
     await waitFor(() => {
       expect(
         screen.getByText(/このテンプレートの評価を送信しました/i),
-      ).toBeInTheDocument();
+      )!.toBeInTheDocument();
     });
   });
 
@@ -106,17 +105,15 @@ describe("RatingForm Component", () => {
 
     render(<RatingForm templateId="test-template" />);
     const stars = screen.getAllByRole("button", { name: /out of 5 stars/i });
-    fireEvent.click(stars[3]); // Click 4 stars
-    fireEvent.change(
-      screen.getByPlaceholderText(
-        /このテンプレートについてご意見をお聞かせください.../i,
-      ),
-      {
-        target: { value: "Great!" },
-      },
-    );
+    fireEvent.click(stars[3]!); // Click 4 stars
+    const textarea = screen.getByPlaceholderText(
+      /このテンプレートについてご意見をお聞かせください.../i,
+    )!;
+    fireEvent.change(textarea, {
+      target: { value: "Great!" },
+    });
 
-    const submitButton = screen.getByRole("button", { name: /評価を送信/i });
+    const submitButton = screen.getByRole("button", { name: /評価を送信/i })!;
     fireEvent.click(submitButton);
 
     // Fast-forward time to simulate 1 second delay
@@ -125,7 +122,7 @@ describe("RatingForm Component", () => {
     await waitFor(() => {
       expect(
         screen.getByText(/このテンプレートの評価を送信しました/i),
-      ).toBeInTheDocument();
+      )!.toBeInTheDocument();
     });
   });
 
@@ -137,14 +134,14 @@ describe("RatingForm Component", () => {
 
     render(<RatingForm templateId="test-template" />);
     const stars = screen.getAllByRole("button", { name: /stars/i });
-    fireEvent.click(stars[3]); // Click 4 stars
+    fireEvent.click(stars[3]!); // Click 4 stars
 
-    const submitButton = screen.getByRole("button", { name: /評価を送信/i });
+    const submitButton = screen.getByRole("button", { name: /評価を送信/i })!;
     fireEvent.click(submitButton);
 
     const textarea = screen.getByPlaceholderText(
       /このテンプレートについてご意見をお聞かせください.../i,
-    );
+    )!;
     expect(textarea).toBeDisabled();
     expect(submitButton).toBeDisabled();
   });
@@ -163,17 +160,15 @@ describe("RatingForm Component", () => {
       />,
     );
     const stars = screen.getAllByRole("button", { name: /stars/i });
-    fireEvent.click(stars[3]); // Click 4 stars
-    fireEvent.change(
-      screen.getByPlaceholderText(
-        /このテンプレートについてご意見をお聞かせください.../i,
-      ),
-      {
-        target: { value: "Good!" },
-      },
-    );
+    fireEvent.click(stars[3]!); // Click 4 stars
+    const textarea = screen.getByPlaceholderText(
+      /このテンプレートについてご意見をお聞かせください.../i,
+    )!;
+    fireEvent.change(textarea, {
+      target: { value: "Good!" },
+    });
 
-    const submitButton = screen.getByRole("button", { name: /評価を送信/i });
+    const submitButton = screen.getByRole("button", { name: /評価を送信/i })!;
     fireEvent.click(submitButton);
 
     // Fast-forward time to simulate 1 second delay

@@ -77,10 +77,9 @@ describe("RatingStars Component", () => {
         />,
       );
 
+      const stars = screen.getAllByRole("button", { name: /^4 out of 5 stars$/i });
       await act(async () => {
-        fireEvent.click(
-          screen.getAllByRole("button", { name: /^4 out of 5 stars$/i })[0],
-        );
+        fireEvent.click(stars[0]!);
       });
 
       expect(onRatingChange).toHaveBeenCalledWith(4);

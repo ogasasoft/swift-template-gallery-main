@@ -1,5 +1,4 @@
-import { notFound } from "next/navigation";
-import Link from "next/link";
+import { Link } from "react-router-dom";
 import templatesData from "@/lib/templates.json";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -17,7 +16,7 @@ export default function TemplateDetailPage({ params }: TemplateDetailPageProps) 
   const template = templatesData.find((t) => t.id === params.id);
 
   if (!template) {
-    notFound();
+    return null;
   }
 
   const allTags = Array.from(
@@ -48,7 +47,7 @@ export default function TemplateDetailPage({ params }: TemplateDetailPageProps) 
     <div className="container mx-auto px-4 py-8">
       <div className="mb-6">
         <Link
-          href="/"
+          to="/"
           className="inline-flex items-center text-sm text-muted-foreground hover:text-foreground transition-colors"
         >
           ← ギャラリーに戻る
@@ -72,7 +71,7 @@ export default function TemplateDetailPage({ params }: TemplateDetailPageProps) 
           <div>
             <h1 className="text-3xl font-bold mb-2">{template.title}</h1>
             <p className="text-muted-foreground">
-              {template.description || "No description available"}
+              No description available
             </p>
           </div>
 
@@ -127,7 +126,7 @@ export default function TemplateDetailPage({ params }: TemplateDetailPageProps) 
           </div>
 
           <div className="space-y-3 pt-4 border-t">
-            <Link href={`/templates/${template.id}`}>
+            <Link to={`/templates/${template.id}`}>
               <Button className="w-full">
                 <Eye className="h-4 w-4 mr-2" />
                 プレビュー
