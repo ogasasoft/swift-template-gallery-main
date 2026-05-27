@@ -17,6 +17,8 @@ export default function TemplateCard({
   onTagClick,
   selectedTags = [],
 }: TemplateCardProps) {
+  const isTagSelected = (tag: string) => selectedTags.includes(tag);
+
   return (
     <div
       onClick={onClick}
@@ -41,16 +43,21 @@ export default function TemplateCard({
           />
         </div>
 
-        <div className="flex flex-wrap gap-1 mb-3">
+        <div className="mb-3 flex flex-wrap gap-1.5">
           {template.tags.map((tag) => (
             <Badge
               key={tag}
-              variant={selectedTags.includes(tag) ? "default" : "secondary"}
-              className="text-xs cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors"
+              variant={isTagSelected(tag) ? "default" : "secondary"}
+              className="text-xs cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors select-none"
               onClick={(e) => {
                 e.stopPropagation();
                 onTagClick?.(tag);
               }}
+              title={
+                isTagSelected(tag)
+                  ? "クリックしてタグを解除"
+                  : "クリックしてフィルター"
+              }
             >
               {tag}
             </Badge>
