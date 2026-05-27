@@ -110,8 +110,7 @@ const Carousel = React.forwardRef<
       }
 
       // Defer onSelect call to next tick to avoid cascading renders
-      const onSelect = (currentApi: any) => {
-        // eslint-disable-line @typescript-eslint/no-explicit-any
+      const onSelect = (currentApi: unknown) => {
         onSelectRef.current = currentApi;
       };
 
