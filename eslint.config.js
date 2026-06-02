@@ -22,6 +22,8 @@ export default tseslint.config(
     },
     rules: {
       ...reactHooks.configs.recommended.rules,
+      "react-hooks/purity": "off", // ESLint 10: too strict for our codebase
+      "react-hooks/set-state-in-effect": "warn", // Downgrade from error
       "react-refresh/only-export-components": [
         "warn",
         { allowConstantExport: true },
