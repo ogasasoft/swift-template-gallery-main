@@ -16,6 +16,14 @@ const config: Config = {
   },
   testTimeout: 10000,
   verbose: true,
+  transform: {
+    "^.+\\.(ts|tsx)$": "ts-jest",
+  },
+  moduleFileExtensions: ["ts", "tsx", "js", "jsx", "json", "node"],
+  moduleNameMapper: {
+    "^@/(.*)$": "<rootDir>/src/$1",
+  },
+  testTimeout: 10000,
   globals: {
     "ts-jest": {
       tsconfig: "<rootDir>/tsconfig.jest.json",
