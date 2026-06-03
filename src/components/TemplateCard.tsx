@@ -11,11 +11,13 @@ interface TemplateCardProps {
   selectedTags?: string[];
 }
 
+const EMPTY_TAGS: string[] = [];
+
 export default function TemplateCard({
   template,
   onClick,
   onTagClick,
-  selectedTags = [],
+  selectedTags = EMPTY_TAGS,
 }: TemplateCardProps) {
   return (
     <div

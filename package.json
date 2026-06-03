@@ -9,6 +9,8 @@
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
+    "lint:oxlint": "oxlint .",
+    "lint:oxlint:fix": "oxlint . --fix",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,css,md}\"",
     "typecheck": "tsc --noEmit",
     "format:check": "prettier --check \"**/*.{js,jsx,ts,tsx,json,css,md}\"",
@@ -90,6 +92,7 @@
     "jest": "30.2.0",
     "jest-environment-jsdom": "30.2.0",
     "lint-staged": "^15.5.2",
+    "oxlint": "^1.68.0",
     "postcss": "^8.5.6",
     "prettier": "^3.8.1",
     "tailwindcss": "^3.4.17",
@@ -105,7 +108,7 @@
   },
   "lint-staged": {
     "*.{ts,tsx,js,jsx}": [
-      "eslint --fix",
+      "oxlint --fix",
       "prettier --write"
     ],
     "*.{json,md,css,scss}": [
