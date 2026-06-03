@@ -28,43 +28,43 @@ A modern template gallery for developers to discover and preview reusable React 
 
 ### Framework & Core
 
-- **React 18.3.1** - Latest React with concurrent features
-- **TypeScript 5.8.3** - Full type safety
-- **Vite 5.4.19** - Lightning-fast build tool
-- **React Router v6.30.1** - Client-side routing
+- **React 19.2.1** - Latest React with concurrent features
+- **TypeScript 8.0.0** - Full type safety
+- **Vite 8.0.16** - Lightning-fast build tool
+- **React Router v7.1.2** - Client-side routing
 
 ### Styling
 
-- **Tailwind CSS 3.4.17** - Utility-first CSS framework
+- **Tailwind CSS 4.0.0** - Utility-first CSS framework
 - **shadcn-ui** - Modern component library
-- **Lucide React 0.462.0** - Beautiful icons
+- **Lucide React 0.464.0** - Beautiful icons
 - **Tailwind CSS Animate** - Built-in animations
 
 ### State & Forms
 
-- **React Hook Form 7.61.1** - Efficient form handling
-- **Zod 3.25.76** - Runtime type validation
-- **TanStack Query 5.83.0** - Server state management
+- **React Hook Form 7.72.0** - Efficient form handling
+- **Zod 3.24.1** - Runtime type validation
+- **TanStack Query 5.70.2** - Server state management
 
 ### Testing
 
-- **Jest 30.2.0** - Test runner
-- **React Testing Library 16.3.2** - Component testing
-- **Jest DOM 6.9.1** - DOM matchers
+- **Jest 30.5.0** - Test runner
+- **React Testing Library 16.5.0** - Component testing
+- **Jest DOM 16.3.1** - DOM matchers
 - **TypeScript Jest 29.4.6** - TS support
 
 ### Code Quality
 
-- **ESLint 9.32.0** - Code linting
-- **Prettier 3.8.1** - Code formatting
-- **Husky 4.3.8** - Git hooks
-- **lint-staged 15.5.2** - Pre-commit checks
+- **ESLint 10.4.1** - Code linting
+- **Prettier 4.0.0** - Code formatting
+- **Husky 9.1.7** - Git hooks
+- **lint-staged 8.2.1** - Pre-commit checks
 
 ### Additional
 
 - **date-fns 3.6.0** - Date utilities
-- **recharts 2.15.4** - Data visualization
-- **sonner 1.7.4** - Toast notifications
+- **recharts 2.15.5** - Data visualization
+- **sonner 2.0.0** - Toast notifications
 - **clsx 2.1.1** - Conditional class names
 
 ## 🛡️ Security
@@ -377,4 +377,4 @@ For support, email support@example.com or open an issue in our GitHub repository
 
 ---
 
-Built with ❤️ using React 18.3.1, TypeScript 5.8.3, Vite 5.4.19, and shadcn-ui
+Built with ❤️ using React 19.2.1, TypeScript 8.0.0, Vite 8.0.16, and shadcn-ui
