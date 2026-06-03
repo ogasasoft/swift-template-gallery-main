@@ -5,11 +5,11 @@ A modern template gallery for developers to discover and preview reusable React 
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Node](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)
-![React](https://img.shields.io/badge/React-18.3.1-61DAFB.svg)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.8.3-3178C6.svg)
-![Jest](https://img.shields.io/badge/Jest-30.2.0-9948F5.svg)
-![ESLint](https://img.shields.io/badge/ESLint-9.32.0-4B32C3.svg)
-![Vite](https://img.shields.io/badge/Vite-5.4.19-646CFF.svg)
+![React](https://img.shields.io/badge/React-19.2.7-61DAFB.svg)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.9.3-3178C6.svg)
+![Jest](https://img.shields.io/badge/Jest-30.4.2-9948F5.svg)
+![ESLint](https://img.shields.io/badge/ESLint-9.39.4-4B32C3.svg)
+![Vite](https://img.shields.io/badge/Vite-5.4.21-646CFF.svg)
 
 ## 🌟 Features
 
@@ -22,49 +22,49 @@ A modern template gallery for developers to discover and preview reusable React 
 - 🌙 **Dark Mode**: Automatic system preference detection with manual toggle
 - ⭐ **Review System**: User ratings and reviews with sentiment analysis
 - 🔬 **Comprehensive Tests**: 162 tests covering all components and pages (199 passed, 1 skipped)
-- ✨ **TypeScript**: Full type safety with 100% coverage
+- ✨ **TypeScript**: Full type safety with strict mode enabled
 
 ## 🛠️ Tech Stack
 
 ### Framework & Core
 
-- **React 19.2.1** - Latest React with concurrent features
-- **TypeScript 8.0.0** - Full type safety
-- **Vite 8.0.16** - Lightning-fast build tool
-- **React Router v7.1.2** - Client-side routing
+- **React 19.2.7** - Latest React with concurrent features
+- **TypeScript 5.9.3** - Full type safety
+- **Vite 5.4.21** - Lightning-fast build tool
+- **React Router v7.16.0** - Client-side routing
 
 ### Styling
 
-- **Tailwind CSS 4.0.0** - Utility-first CSS framework
+- **Tailwind CSS 3.4.19** - Utility-first CSS framework
 - **shadcn-ui** - Modern component library
-- **Lucide React 0.464.0** - Beautiful icons
+- **Lucide React 0.462.0** - Beautiful icons
 - **Tailwind CSS Animate** - Built-in animations
 
 ### State & Forms
 
-- **React Hook Form 7.72.0** - Efficient form handling
-- **Zod 3.24.1** - Runtime type validation
-- **TanStack Query 5.70.2** - Server state management
+- **React Hook Form 7.77.0** - Efficient form handling
+- **Zod 3.25.76** - Runtime type validation
+- **TanStack Query 5.101.0** - Server state management
 
 ### Testing
 
-- **Jest 30.5.0** - Test runner
-- **React Testing Library 16.5.0** - Component testing
-- **Jest DOM 16.3.1** - DOM matchers
-- **TypeScript Jest 29.4.6** - TS support
+- **Jest 30.4.2** - Test runner
+- **React Testing Library 16.3.2** - Component testing
+- **Jest DOM 6.9.1** - DOM matchers
+- **TypeScript Jest 29.4.11** - TS support
 
 ### Code Quality
 
-- **ESLint 10.4.1** - Code linting
-- **Prettier 4.0.0** - Code formatting
+- **ESLint 9.39.4** - Code linting
+- **Prettier 3.8.3** - Code formatting
 - **Husky 9.1.7** - Git hooks
-- **lint-staged 8.2.1** - Pre-commit checks
+- **lint-staged 15.5.2** - Pre-commit checks
 
 ### Additional
 
 - **date-fns 3.6.0** - Date utilities
-- **recharts 2.15.5** - Data visualization
-- **sonner 2.0.0** - Toast notifications
+- **recharts 2.15.4** - Data visualization
+- **sonner 1.7.4** - Toast notifications
 - **clsx 2.1.1** - Conditional class names
 
 ## 🛡️ Security
@@ -178,7 +178,7 @@ All commits run automated quality checks via Husky:
 
 ## 🎯 Technology Stack
 
-- **Framework**: React 18 + React Router v6
+- **Framework**: React 19 + React Router v7
 - **Language**: TypeScript 5
 - **Styling**: Tailwind CSS + shadcn-ui
 - **Testing**: Jest + React Testing Library
@@ -377,4 +377,4 @@ For support, email support@example.com or open an issue in our GitHub repository
 
 ---
 
-Built with ❤️ using React 19.2.1, TypeScript 8.0.0, Vite 8.0.16, and shadcn-ui
+Built with ❤️ using React 19.2.7, TypeScript 5.9.3, Vite 5.4.21, and shadcn-ui
