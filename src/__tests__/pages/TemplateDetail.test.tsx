@@ -1,5 +1,4 @@
 import { render, screen, fireEvent } from "@testing-library/react";
-import * as rtl from "@testing-library/react";
 import { MemoryRouter, Route, Routes } from "react-router-dom";
 import TemplateDetail from "@/pages/TemplateDetail";
 
