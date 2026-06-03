@@ -7,8 +7,8 @@ A modern template gallery for developers to discover and preview reusable React 
 ![Node](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)
 ![React](https://img.shields.io/badge/React-18.3.1-61DAFB.svg)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.8.3-3178C6.svg)
-![Jest](https://img.shields.io/badge/Jest-30.2.0-9948F5.svg)
-![ESLint](https://img.shields.io/badge/ESLint-9.32.0-4B32C3.svg)
+![Jest](https://img.shields.io/badge/Jest-30.4.2-9948F5.svg)
+![ESLint](https://img.shields.io/badge/ESLint-9.39.4-4B32C3.svg)
 ![Vite](https://img.shields.io/badge/Vite-5.4.19-646CFF.svg)
 
 ## 🌟 Features
@@ -48,14 +48,14 @@ A modern template gallery for developers to discover and preview reusable React 
 
 ### Testing
 
-- **Jest 30.2.0** - Test runner
+- **Jest 30.4.2** - Test runner
 - **React Testing Library 16.3.2** - Component testing
 - **Jest DOM 6.9.1** - DOM matchers
-- **TypeScript Jest 29.4.6** - TS support
+- **TypeScript Jest 30.0.0** - TS support
 
 ### Code Quality
 
-- **ESLint 9.32.0** - Code linting
+- **ESLint 9.39.4** - Code linting
 - **Prettier 3.8.1** - Code formatting
 - **Husky 9.1.7** - Git hooks
 - **lint-staged 17.0.7** - Pre-commit checks
