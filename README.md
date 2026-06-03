@@ -2,14 +2,14 @@
 
 A modern template gallery for developers to discover and preview reusable React components with shadcn-ui design system.
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
+![Version](https://img.shields.io/badge/version-0.0.0-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Node](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)
 ![React](https://img.shields.io/badge/React-18.3.1-61DAFB.svg)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.9.3-3178C6.svg)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.8.3-3178C6.svg)
 ![Jest](https://img.shields.io/badge/Jest-30.4.2-9948F5.svg)
-![ESLint](https://img.shields.io/badge/ESLint-10.4.0-4B32C3.svg)
-![Vite](https://img.shields.io/badge/Vite-5.4.21-646CFF.svg)
+![ESLint](https://img.shields.io/badge/ESLint-9.32.0-4B32C3.svg)
+![Vite](https://img.shields.io/badge/Vite-5.4.19-646CFF.svg)
 
 ## 🌟 Features
 
@@ -42,9 +42,9 @@ A modern template gallery for developers to discover and preview reusable React 
 
 ### State & Forms
 
-- **React Hook Form 7.61.1** - Efficient form handling
+- **React Hook Form 7.77.0** - Efficient form handling
 - **Zod 3.25.76** - Runtime type validation
-- **TanStack Query 5.83.0** - Server state management
+- **TanStack Query 5.101.0** - Server state management
 
 ### Testing
 
@@ -55,7 +55,7 @@ A modern template gallery for developers to discover and preview reusable React 
 
 ### Code Quality
 
-- **ESLint 9.39.4** - Code linting
+- **ESLint 9.32.0** - Code linting
 - **Prettier 3.8.1** - Code formatting
 - **Husky 4.3.8** - Git hooks
 - **lint-staged 15.5.2** - Pre-commit checks
