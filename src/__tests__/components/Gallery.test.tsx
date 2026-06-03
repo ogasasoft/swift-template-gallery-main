@@ -1,5 +1,6 @@
 import { render, screen, fireEvent } from "@testing-library/react";
 import Gallery from "@/components/Gallery";
+import * as rtl from "@testing-library/react";
 import { BrowserRouter } from "react-router-dom";
 
 jest.mock("@/lib/templates.json", () => [
