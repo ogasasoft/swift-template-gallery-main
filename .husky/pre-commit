@@ -1,4 +1,10 @@
-#!/usr/bin/env sh
-. "$(dirname -- "$0")/_/husky.sh"
+#!/bin/sh
 
+# Pre-commit hook: lint-staged + security audit
+# Husky v9 format (no shebang needed for husky.sh)
+
+# Run lint-staged for code quality checks
 npx lint-staged
+
+# Run npm audit (informational, not blocking)
+npm audit --audit-level=high 2>/dev/null || echo "⚠️  Run 'npm audit' for details"
