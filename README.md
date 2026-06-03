@@ -21,14 +21,14 @@ A modern template gallery for developers to discover and preview reusable React 
 - 📱 **Responsive**: Mobile-first design
 - 🌙 **Dark Mode**: Automatic system preference detection with manual toggle
 - ⭐ **Review System**: User ratings and reviews with sentiment analysis
-- 🔬 **Comprehensive Tests**: 162 tests covering all components and pages (199 passed, 1 skipped)
+- 🔬 **Comprehensive Tests**: 162 tests covering all components and pages (1 skipped)
 - ✨ **TypeScript**: Full type safety with 100% coverage
 
 ## 🛠️ Tech Stack
 
 ### Framework & Core
 
-- **React 18.3.1** - Latest React with concurrent features
+- **React 18.3.1** - React with concurrent features
 - **TypeScript 5.8.3** - Full type safety
 - **Vite 5.4.19** - Lightning-fast build tool
 - **React Router v6.30.1** - Client-side routing
@@ -57,8 +57,8 @@ A modern template gallery for developers to discover and preview reusable React 
 
 - **ESLint 9.32.0** - Code linting
 - **Prettier 3.8.1** - Code formatting
-- **Husky 4.3.8** - Git hooks
-- **lint-staged 15.5.2** - Pre-commit checks
+- **Husky 9.1.7** - Git hooks
+- **lint-staged 17.0.7** - Pre-commit checks
 
 ### Additional
 
