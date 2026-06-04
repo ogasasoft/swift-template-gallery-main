@@ -6,10 +6,10 @@ A modern template gallery for developers to discover and preview reusable React 
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Node](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)
 ![React](https://img.shields.io/badge/React-18.3.1-61DAFB.svg)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.9.3-3178C6.svg)
-![Jest](https://img.shields.io/badge/Jest-30.4.2-9948F5.svg)
-![ESLint](https://img.shields.io/badge/ESLint-10.4.0-4B32C3.svg)
-![Vite](https://img.shields.io/badge/Vite-5.4.21-646CFF.svg)
+![TypeScript](https://img.shields.io/badge/TypeScript-5.8.3-3178C6.svg)
+![Jest](https://img.shields.io/badge/Jest-30.2.0-9948F5.svg)
+![ESLint](https://img.shields.io/badge/ESLint-9.32.0-4B32C3.svg)
+![Vite](https://img.shields.io/badge/Vite-5.4.19-646CFF.svg)
 
 ## 🌟 Features
 
@@ -21,7 +21,7 @@ A modern template gallery for developers to discover and preview reusable React 
 - 📱 **Responsive**: Mobile-first design
 - 🌙 **Dark Mode**: Automatic system preference detection with manual toggle
 - ⭐ **Review System**: User ratings and reviews with sentiment analysis
-- 🔬 **Comprehensive Tests**: 162 tests covering all components and pages (199 passed, 1 skipped)
+- 🔬 **Comprehensive Tests**: 162 tests covering all components and pages (162 passed, 1 skipped)
 - ✨ **TypeScript**: Full type safety with 100% coverage
 
 ## 🛠️ Tech Stack
