@@ -162,4 +162,43 @@ describe("reviews.ts", () => {
       expect(sentiment).toBeTruthy();
     });
   });
+
+  describe("analyzeReviewSentiment default logic", () => {
+    it("should return neutral when no keywords match (empty or no sentiment words)", () => {
+      const empty = "";
+      const noSentiment =
+        "This is just a normal sentence without any sentiment words.";
+
+      expect(analyzeReviewSentiment(empty)).toBe("neutral");
+      expect(analyzeReviewSentiment(noSentiment)).toBe("neutral");
+    });
+
+    it("should return neutral when ties with only negative keywords", () => {
+      const negativeOnly = "Terrible and bad.";
+
+      const sentiment = analyzeReviewSentiment(negativeOnly);
+      expect(sentiment).toBe("negative");
+    });
+
+    it("should return positive when ties with positive keywords", () => {
+      const positiveOnly = "Great and good.";
+
+      const sentiment = analyzeReviewSentiment(positiveOnly);
+      expect(sentiment).toBe("positive");
+    });
+
+    it("should return neutral when ties with zero matches", () => {
+      const noMatches = "This sentence contains no sentiment keywords at all.";
+
+      const sentiment = analyzeReviewSentiment(noMatches);
+      expect(sentiment).toBe("neutral");
+    });
+
+    it("should prioritize positive over negative when both present but equal count", () => {
+      const balanced = "Great and bad.";
+
+      const sentiment = analyzeReviewSentiment(balanced);
+      expect(sentiment).toBe("positive");
+    });
+  });
 });
