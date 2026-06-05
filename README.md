@@ -2,7 +2,7 @@
 
 A modern template gallery for developers to discover and preview reusable React components with shadcn-ui design system.
 
-![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
+![Version](https://img.shields.io/badge/version-0.0.0-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Node](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)
 ![React](https://img.shields.io/badge/React-18.3.1-61DAFB.svg)

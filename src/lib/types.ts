@@ -1,15 +1,24 @@
+export interface TemplateFile {
+  path: string;
+  content: string;
+}
+
 export interface Template {
   id: string;
   title: string;
+  name: string;
+  description: string;
+  category: string;
+  features: string[];
   tags: string[];
   industry: string;
   tone: string;
   style: string;
   thumb: string;
   preview_path: string;
+  files?: TemplateFile[];
   rating?: number;
   reviewCount?: number;
-  description?: string;
 }
 
 export interface TemplateReview {
