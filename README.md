@@ -255,6 +255,7 @@ swift-template-gallery/
 - [Architecture](./ARCHITECTURE.md) - System design overview
 - [Contributing](./CONTRIBUTING.md) - How to contribute
 - [API Reference](./docs/api.md) - API documentation
+- [Changelog](./CHANGELOG.md) - Version history and changes
 
 ## 🧪 Testing
 
