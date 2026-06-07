@@ -54,7 +54,7 @@ describe("PreviewModal Component", () => {
       render(<PreviewModal template={mockTemplate} onClose={mockOnClose} />);
 
       expect(screen.getByTestId("dialog-title")).toHaveTextContent(
-        "Test Template Preview",
+        "Test Template",
       );
     });
 
@@ -82,7 +82,7 @@ describe("PreviewModal Component", () => {
       render(<PreviewModal template={customTemplate} onClose={mockOnClose} />);
 
       expect(screen.getByTestId("dialog-title")).toHaveTextContent(
-        "Custom Template Preview",
+        "Custom Template",
       );
     });
 
@@ -205,7 +205,7 @@ describe("PreviewModal Component", () => {
       );
 
       expect(screen.getByTestId("dialog-title")).toHaveTextContent(
-        'Template with <special> "characters" Preview',
+        'Template with <special> "characters"',
       );
     });
 
@@ -221,7 +221,7 @@ describe("PreviewModal Component", () => {
       );
 
       expect(screen.getByTestId("dialog-title")).toHaveTextContent(
-        `${"A".repeat(200)} Preview`,
+        "A".repeat(200),
       );
     });
 

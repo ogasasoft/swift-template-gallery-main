@@ -1,4 +1,4 @@
-import { Eye, Download, Info } from "lucide-react";
+import { Eye, Download, Info, FileCode } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import RatingStars from "./RatingStars";
@@ -9,6 +9,7 @@ interface TemplateCardProps {
   onClick: () => void;
   onTagClick?: (tag: string) => void;
   selectedTags?: string[];
+  onDownload?: (template: Template) => void;
 }
 
 export default function TemplateCard({
@@ -16,7 +17,15 @@ export default function TemplateCard({
   onClick,
   onTagClick,
   selectedTags = [],
+  onDownload,
 }: TemplateCardProps) {
+  const handleDownload = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.stopPropagation();
+    if (onDownload) {
+      onDownload(template);
+    }
+  };
+
   return (
     <div
       onClick={onClick}
@@ -78,8 +87,9 @@ export default function TemplateCard({
           </Link>
           <button
             className="flex items-center gap-1 rounded-md bg-muted px-3 py-1.5 text-sm font-medium hover:bg-muted/80 transition-colors"
-            onClick={(e) => e.stopPropagation()}
-            aria-label="ダウンロード"
+            onClick={handleDownload}
+            aria-label={`テンプレート「${template.title}」をダウンロード`}
+            title={`${template.title}をダウンロード`}
           >
             <Download className="h-4 w-4" />
           </button>

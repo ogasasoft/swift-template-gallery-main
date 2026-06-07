@@ -1,22 +1,14 @@
 import { useState, useMemo } from "react";
-import templatesData from "@/lib/templates.json";
 import TemplateCard from "./TemplateCard";
 import GalleryFilters from "./GalleryFilters";
 import PreviewModal from "./PreviewModal";
 import { useToast } from "@/hooks/use-toast";
+import { useTemplates } from "@/lib/TemplatesProvider";
 import type { Template, FilterState } from "@/lib/types";
-
-const templates = templatesData as Template[];
-
-const allTags = Array.from(new Set(templates.flatMap((t) => t.tags))).sort();
-const allIndustries = Array.from(
-  new Set(templates.map((t) => t.industry)),
-).sort();
-const allTones = Array.from(new Set(templates.map((t) => t.tone))).sort();
-const allStyles = Array.from(new Set(templates.map((t) => t.style))).sort();
 
 export default function Gallery() {
   const { toast } = useToast();
+  const { getTemplateById, downloadTemplate, templates } = useTemplates();
   const [selectedTemplate, setSelectedTemplate] = useState<Template | null>(
     null,
   );
@@ -28,42 +20,9 @@ export default function Gallery() {
     search: "",
   });
 
-  const filteredTemplates = useMemo(() => {
-    try {
-      return templates.filter((template) => {
-        const matchesTags =
-          filters.tags.length === 0 ||
-          filters.tags.some((tag) => template.tags.includes(tag));
-        const matchesIndustry =
-          filters.industry.length === 0 ||
-          filters.industry.includes(template.industry);
-        const matchesTone =
-          filters.tone.length === 0 || filters.tone.includes(template.tone);
-        const matchesStyle =
-          filters.style.length === 0 || filters.style.includes(template.style);
-        const matchesSearch = template.title
-          .toLowerCase()
-          .includes(filters.search.toLowerCase());
-        return (
-          matchesTags &&
-          matchesIndustry &&
-          matchesTone &&
-          matchesStyle &&
-          matchesSearch
-        );
-      });
-    } catch {
-      toast({
-        title: "フィルタリングエラー",
-        description: "テンプレートの絞り込み中にエラーが発生しました。",
-        variant: "destructive",
-      });
-      return templates;
-    }
-  }, [filters, toast]);
-
   const handleOpenTemplate = (template: Template) => {
-    if (!template.preview_path) {
+    const foundTemplate = getTemplateById(template.id);
+    if (!foundTemplate || !foundTemplate.preview_path) {
       toast({
         title: "プレビューを開けません",
         description: `「${template.title}」のプレビューパスが見つかりません。`,
@@ -71,7 +30,7 @@ export default function Gallery() {
       });
       return;
     }
-    setSelectedTemplate(template);
+    setSelectedTemplate(foundTemplate);
   };
 
   const handleTagClick = (tag: string) => {
@@ -82,6 +41,77 @@ export default function Gallery() {
         : [...prev.tags, tag],
     }));
   };
+
+  const handleDownload = (template: Template) => {
+    try {
+      downloadTemplate(template);
+      toast({
+        title: "ダウンロード開始",
+        description: `「${template.title}」のダウンロードを開始しました。`,
+      });
+    } catch (error) {
+      toast({
+        title: "ダウンロードエラー",
+        description: `「${template.title}」のダウンロードに失敗しました。`,
+        variant: "destructive",
+      });
+    }
+  };
+
+  const filteredTemplates = useMemo(() => {
+    return templates.filter((template) => {
+      // Filter by search text
+      const matchesSearch =
+        filters.search === "" ||
+        template.title.toLowerCase().includes(filters.search.toLowerCase());
+
+      // Filter by tags (OR logic - template matches if ANY filter tag matches)
+      const matchesTags =
+        filters.tags.length === 0 ||
+        filters.tags.some((tag) => template.tags.includes(tag));
+
+      // Filter by industry
+      const matchesIndustry =
+        filters.industry.length === 0 ||
+        filters.industry.includes(template.industry);
+
+      // Filter by tone
+      const matchesTone =
+        filters.tone.length === 0 || filters.tone.includes(template.tone);
+
+      // Filter by style
+      const matchesStyle =
+        filters.style.length === 0 || filters.style.includes(template.style);
+
+      return (
+        matchesSearch &&
+        matchesTags &&
+        matchesIndustry &&
+        matchesTone &&
+        matchesStyle
+      );
+    });
+  }, [templates, filters]);
+
+  const allTags = useMemo(
+    () => Array.from(new Set(templates.flatMap((t) => t.tags))).sort(),
+    [templates],
+  );
+
+  const allIndustries = useMemo(
+    () => Array.from(new Set(templates.map((t) => t.industry))).sort(),
+    [templates],
+  );
+
+  const allTones = useMemo(
+    () => Array.from(new Set(templates.map((t) => t.tone))).sort(),
+    [templates],
+  );
+
+  const allStyles = useMemo(
+    () => Array.from(new Set(templates.map((t) => t.style))).sort(),
+    [templates],
+  );
 
   return (
     <section className="container mx-auto px-4 py-12">
@@ -128,6 +158,7 @@ export default function Gallery() {
               onClick={() => handleOpenTemplate(template)}
               onTagClick={handleTagClick}
               selectedTags={filters.tags}
+              onDownload={handleDownload}
             />
           ))
         )}
@@ -135,3 +166,17 @@ export default function Gallery() {
     </section>
   );
 }
+
+const templates = Array.from(
+  import("@/lib/templates.json").then((mod) => mod.default as Template[]),
+);
+
+const allTags = Array.from(new Set(templates.flatMap((t) => t.tags))).sort();
+
+const allIndustries = Array.from(
+  new Set(templates.map((t) => t.industry)),
+).sort();
+
+const allTones = Array.from(new Set(templates.map((t) => t.tone))).sort();
+
+const allStyles = Array.from(new Set(templates.map((t) => t.style))).sort();
