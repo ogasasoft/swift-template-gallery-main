@@ -66,15 +66,6 @@ const Carousel = React.forwardRef<
     const [canScrollPrev, setCanScrollPrev] = React.useState(false);
     const [canScrollNext, setCanScrollNext] = React.useState(false);
 
-    const onSelect = React.useCallback((api: CarouselApi) => {
-      if (!api) {
-        return;
-      }
-
-      setCanScrollPrev(api.canScrollPrev());
-      setCanScrollNext(api.canScrollNext());
-    }, []);
-
     const scrollPrev = React.useCallback(() => {
       api?.scrollPrev();
     }, [api]);
@@ -109,14 +100,18 @@ const Carousel = React.forwardRef<
         return;
       }
 
-      const onSelect = (_emblaApi: any): void => {
-        // Carousel selection handler
+      const handleScrollChange = (_emblaApi: CarouselApi): void => {
+        // Track scroll state
       };
 
-      api.on("select", onSelect);
+      // Set initial scroll state
+      setCanScrollPrev(api.canScrollPrev());
+      setCanScrollNext(api.canScrollNext());
+
+      api.on("select", handleScrollChange);
 
       return () => {
-        api.off("select", onSelect);
+        api.off("select", handleScrollChange);
       };
     }, [api]);
 
