@@ -12,7 +12,7 @@ export function useIsMobile() {
     };
     // Set initial value synchronously - this is intentional for immediate feedback
     // The media query will be accurate after mount
-    setIsMobile(window.innerWidth < MOBILE_BREAKPOINT); // eslint-disable-line react-hooks/set-state-in-effect
+    setIsMobile(window.innerWidth < MOBILE_BREAKPOINT);
     mql.addEventListener("change", onChange);
     return () => mql.removeEventListener("change", onChange);
   }, []);

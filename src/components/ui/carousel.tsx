@@ -109,20 +109,16 @@ const Carousel = React.forwardRef<
         return;
       }
 
-      // Defer onSelect call to next tick to avoid cascading renders
-      const onSelect = (currentApi: unknown) => {
-        onSelectRef.current = currentApi;
+      const onSelect = (_emblaApi: any): void => {
+        // Carousel selection handler
       };
 
-      const onSelectRef = { current: api };
-      onSelectRef.current();
-      api.on("reInit", onSelect);
       api.on("select", onSelect);
 
       return () => {
-        api?.off("select", onSelect);
+        api.off("select", onSelect);
       };
-    }, [api, onSelect]);
+    }, [api]);
 
     return (
       <CarouselContext.Provider
