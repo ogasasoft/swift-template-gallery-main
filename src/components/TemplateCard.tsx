@@ -1,4 +1,4 @@
-import { Eye, Download, Info, FileCode } from "lucide-react";
+import { Eye, Download, Info } from "lucide-react";
 import { Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import RatingStars from "./RatingStars";

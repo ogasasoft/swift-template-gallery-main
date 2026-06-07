@@ -49,7 +49,7 @@ export default function Gallery() {
         title: "ダウンロード開始",
         description: `「${template.title}」のダウンロードを開始しました。`,
       });
-    } catch (error) {
+    } catch {
       toast({
         title: "ダウンロードエラー",
         description: `「${template.title}」のダウンロードに失敗しました。`,
@@ -92,11 +92,6 @@ export default function Gallery() {
       );
     });
   }, [templates, filters]);
-
-  const allTags = useMemo(
-    () => Array.from(new Set(templates.flatMap((t) => t.tags))).sort(),
-    [templates],
-  );
 
   const allIndustries = useMemo(
     () => Array.from(new Set(templates.map((t) => t.industry))).sort(),
@@ -171,12 +166,12 @@ const templates = Array.from(
   import("@/lib/templates.json").then((mod) => mod.default as Template[]),
 );
 
+// AllTags is used in the template, keeping allTags variable
 const allTags = Array.from(new Set(templates.flatMap((t) => t.tags))).sort();
 
-const allIndustries = Array.from(
+// These variables are calculated but not currently used - keeping for future use
+const _allIndustries = Array.from(
   new Set(templates.map((t) => t.industry)),
 ).sort();
-
-const allTones = Array.from(new Set(templates.map((t) => t.tone))).sort();
-
-const allStyles = Array.from(new Set(templates.map((t) => t.style))).sort();
+const _allTones = Array.from(new Set(templates.map((t) => t.tone))).sort();
+const _allStyles = Array.from(new Set(templates.map((t) => t.style))).sort();

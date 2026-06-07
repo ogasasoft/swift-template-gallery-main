@@ -28,7 +28,7 @@ const PreviewModal = ({ template, onClose }: PreviewModalProps) => {
         title: "ダウンロード開始",
         description: `「${template.title}」のダウンロードを開始しました。`,
       });
-    } catch (error) {
+    } catch {
       toast({
         title: "ダウンロードエラー",
         description: `「${template.title}」のダウンロードに失敗しました。`,

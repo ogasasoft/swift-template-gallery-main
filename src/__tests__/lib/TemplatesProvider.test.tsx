@@ -1,4 +1,4 @@
-import { render, screen, renderHook } from "@testing-library/react";
+import { renderHook } from "@testing-library/react";
 import { TemplatesProvider, useTemplates } from "@/lib/TemplatesProvider";
 
 // Mock templates.json to return our mock data
