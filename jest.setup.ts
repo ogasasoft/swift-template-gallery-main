@@ -1,5 +1,12 @@
 import '@testing-library/jest-dom';
 
+// TextEncoder polyfill for react-router-dom
+if (typeof TextEncoder === 'undefined') {
+  // @ts-expect-error - Node.js util module is not available in browser environment
+  const { TextEncoder: TextEncoderImpl } = require('util');
+  (global as NodeJS.Global).TextEncoder = TextEncoderImpl;
+}
+
 // Mock window.matchMedia using jest.fn
 Object.defineProperty(window, 'matchMedia', {
   writable: true,

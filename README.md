@@ -21,7 +21,7 @@ A modern template gallery for developers to discover and preview reusable React 
 - 📱 **Responsive**: Mobile-first design
 - 🌙 **Dark Mode**: Automatic system preference detection with manual toggle
 - ⭐ **Review System**: User ratings and reviews with sentiment analysis
-- 🔬 **Comprehensive Tests**: 162 tests covering all components and pages (199 passed, 1 skipped)
+- 🔬 **Comprehensive Tests**: 162 tests covering all components and pages (162 passed, 1 skipped)
 - ✨ **TypeScript**: Full type safety with 100% coverage
 
 ## 🛠️ Tech Stack

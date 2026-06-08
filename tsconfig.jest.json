@@ -1,17 +1,13 @@
 {
   "extends": "./tsconfig.app.json",
   "compilerOptions": {
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "module": "CommonJS",
     "allowImportingTsExtensions": false,
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "types": ["jest", "@testing-library/jest-dom"],
-    "jsx": "react-jsx",
-    "baseUrl": ".",
-    "paths": {
-      "@/*": ["./src/*"]
-    }
+    "jsx": "react-jsx"
   },
   "include": ["jest.setup.ts", "src/**/*.ts", "src/**/*.tsx"],
   "exclude": ["src/main.tsx"]
