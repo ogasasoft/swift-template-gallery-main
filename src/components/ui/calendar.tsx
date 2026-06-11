@@ -4,7 +4,31 @@ import { DayPicker } from "react-day-picker";
 
 import { cn, buttonVariants } from "@/lib/utils";
 
-export type CalendarProps = React.ComponentProps<typeof DayPicker>;
+export type CalendarProps = React.ComponentProps<typeof DayPicker> & {
+  classNames?: {
+    months?: string;
+    month?: string;
+    caption?: string;
+    caption_label?: string;
+    nav?: string;
+    nav_button?: string;
+    nav_button_previous?: string;
+    nav_button_next?: string;
+    table?: string;
+    head_row?: string;
+    head_cell?: string;
+    row?: string;
+    cell?: string;
+    day?: string;
+    day_range_end?: string;
+    day_selected?: string;
+    day_today?: string;
+    day_outside?: string;
+    day_disabled?: string;
+    day_range_middle?: string;
+    day_hidden?: string;
+  };
+};
 
 function Calendar({
   className,
@@ -49,10 +73,6 @@ function Calendar({
           "aria-selected:bg-accent aria-selected:text-accent-foreground",
         day_hidden: "invisible",
         ...classNames,
-      }}
-      components={{
-        IconLeft: ({ ..._props }) => <ChevronLeft className="h-4 w-4" />,
-        IconRight: ({ ..._props }) => <ChevronRight className="h-4 w-4" />,
       }}
       {...props}
     />

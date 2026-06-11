@@ -14,7 +14,7 @@ on:
         default: false
 
 env:
-  NODE_VERSION: '18'
+  NODE_VERSION: '20'
 
 jobs:
   typecheck:
@@ -94,6 +94,48 @@ jobs:
           name: codecov-umbrella
           fail_ci_if_error: false
           verbose: true
+        continue-on-error: true
+
+  coverage-report:
+    name: Coverage Report
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    needs: [test]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+          cache: 'npm'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run tests with coverage
+        run: npm run test:coverage
+
+      - name: Download coverage reports
+        if: always()
+        uses: codecov/codecov-action@v4
+        with:
+          files: ./coverage/lcov.info
+          flags: unittests
+          name: codecov-umbrella
+          fail_ci_if_error: false
+          verbose: true
+        continue-on-error: true
+
+      - name: Upload coverage summary
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: coverage-report
+          path: coverage/
+          retention-days: 7
 
   build:
     name: Build Check
@@ -145,11 +187,14 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Run npm audit
-        run: npm audit --audit-level=moderate || echo "Security vulnerabilities found. Review manually."
+      - name: Run npm audit with high severity
+        run: npm audit --audit-level=high || echo "High severity vulnerabilities found. Review manually."
 
-      - name: Run nsp audit (optional, requires nsp package)
-        run: nsp audit || echo "nsp not installed, skipping"
+      - name: Run npm audit with moderate severity
+        run: npm audit --audit-level=moderate || echo "Moderate severity vulnerabilities found. Review manually."
+
+      - name: Run npm audit with low severity
+        run: npm audit --audit-level=low || echo "Low severity vulnerabilities found. Review manually."
 
   # Deploy job (uncomment and configure for deployment)
   # deploy:
