@@ -1,5 +1,4 @@
 import * as React from "react";
-import { _ChevronLeft, _ChevronRight } from "lucide-react";
 import { DayPicker } from "react-day-picker";
 
 import { cn, buttonVariants } from "@/lib/utils";

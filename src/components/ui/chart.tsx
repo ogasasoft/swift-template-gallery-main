@@ -132,16 +132,17 @@ const ChartTooltipContent = React.forwardRef<
     const { config } = useChart();
 
     const tooltipLabel = React.useMemo(() => {
+      const dataArray = Array.isArray(payload) ? payload : [];
       if (
         hideLabel ||
-        !payload ||
-        !Array.isArray(payload) ||
-        payload.length === 0
+        !dataArray ||
+        !Array.isArray(dataArray) ||
+        dataArray.length === 0
       ) {
         return null;
       }
 
-      const [item] = payload;
+      const [item] = dataArray;
       const key = `${labelKey || item.dataKey || item.name || "value"}`;
       const itemConfig = getPayloadConfigFromPayload(config, item, key);
       const value =
