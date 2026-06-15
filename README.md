@@ -5,10 +5,10 @@ A modern template gallery for developers to discover and preview reusable React 
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Node](https://img.shields.io/badge/node-%3E%3D20.0.0-brightgreen.svg)
-![React](https://img.shields.io/badge/React-19.2.7-61DAFB.svg)
-![TypeScript](https://img.shields.io/badge/TypeScript-6.0.3-3178C6.svg)
+![React](https://img.shields.io/badge/React-19.0.0-61DAFB.svg)
+![TypeScript](https://img.shields.io/badge/TypeScript-6.0.0-3178C6.svg)
 ![Jest](https://img.shields.io/badge/Jest-30.4.2-9948F5.svg)
-![ESLint](https://img.shields.io/badge/ESLint-10.4.1-4B32C3.svg)
+![ESLint](https://img.shields.io/badge/ESLint-10.5.0-4B32C3.svg)
 ![Vite](https://img.shields.io/badge/Vite-8.0.16-646CFF.svg)
 
 ## 🌟 Features
@@ -28,43 +28,43 @@ A modern template gallery for developers to discover and preview reusable React 
 
 ### Framework & Core
 
-- **React 19.2.7** - Latest React with concurrent features
-- **TypeScript 6.0.3** - Full type safety
+- **React 19.0.0** - Latest React with concurrent features
+- **TypeScript 6.0.0** - Full type safety
 - **Vite 8.0.16** - Lightning-fast build tool
-- **React Router v7.17.0** - Client-side routing
+- **React Router v7.1.3** - Client-side routing
 
 ### Styling
 
-- **Tailwind CSS 4.3.0** - Utility-first CSS framework
+- **Tailwind CSS 3.4.17** - Utility-first CSS framework
 - **shadcn-ui** - Modern component library
-- **Lucide React 1.17.0** - Beautiful icons
+- **Lucide React 0.401.0** - Beautiful icons
 - **Tailwind CSS Animate** - Built-in animations
 
 ### State & Forms
 
-- **React Hook Form 7.61.1** - Efficient form handling
-- **Zod 3.25.76** - Runtime type validation
-- **TanStack Query 5.83.0** - Server state management
+- **React Hook Form 7.54.2** - Efficient form handling
+- **Zod 3.24.1** - Runtime type validation
+- **TanStack Query 5.74.3** - Server state management
 
 ### Testing
 
 - **Jest 30.4.2** - Test runner
 - **React Testing Library 16.3.2** - Component testing
 - **Jest DOM 6.9.1** - DOM matchers
-- **TypeScript Jest 30.4.6** - TS support
+- **TypeScript Jest 29.4.11** - TS support
 
 ### Code Quality
 
-- **ESLint 10.4.1** - Code linting
+- **ESLint 10.5.0** - Code linting
 - **Prettier 3.8.4** - Code formatting
 - **Husky 9.1.7** - Git hooks
 - **lint-staged 17.0.7** - Pre-commit checks
 
 ### Additional
 
-- **date-fns 3.6.0** - Date utilities
-- **recharts 2.15.4** - Data visualization
-- **sonner 1.7.4** - Toast notifications
+- **date-fns 4.1.0** - Date utilities
+- **recharts 2.15.0** - Data visualization
+- **sonner 1.7.3** - Toast notifications
 - **clsx 2.1.1** - Conditional class names
 
 ## 📁 Project Structure
