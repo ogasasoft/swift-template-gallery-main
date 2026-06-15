@@ -1,11 +1,17 @@
 import "@testing-library/jest-dom";
-import { TextEncoder, TextDecoder } from "util";
-import "text-encoding";
+import * as util from "util";
 
-// TextEncoder polyfill for react-router-dom
+// TextEncoder/TextDecoder polyfill (Jest environment)
 if (typeof TextEncoder === "undefined") {
-  (global as NodeJS.Global).TextEncoder = TextEncoder as any;
-  (global as NodeJS.Global).TextDecoder = TextDecoder as any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  (global as any).TextEncoder = util.TextEncoder as any;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  (global as any).TextDecoder = util.TextDecoder as any;
+}
+
+// text-encoding polyfill for react-router-dom
+if (typeof TextDecoder === "undefined") {
+  (global as any).TextDecoder = util.TextDecoder;
 }
 
 // Mock window.matchMedia using jest.fn

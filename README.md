@@ -4,7 +4,7 @@ A modern template gallery for developers to discover and preview reusable React 
 
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
-![Node](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)
+![Node](https://img.shields.io/badge/node-%3E%3D20.0.0-brightgreen.svg)
 ![React](https://img.shields.io/badge/React-19.2.7-61DAFB.svg)
 ![TypeScript](https://img.shields.io/badge/TypeScript-6.0.3-3178C6.svg)
 ![Jest](https://img.shields.io/badge/Jest-30.4.2-9948F5.svg)
@@ -175,7 +175,7 @@ All commits run automated quality checks via Husky:
 
 ### Prerequisites
 
-- **Node.js** 18.0.0 or higher
+- **Node.js** 20.0.0 or higher
 - **npm** or **yarn** package manager
 
 ### Installation
