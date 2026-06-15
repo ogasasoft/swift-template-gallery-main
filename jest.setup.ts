@@ -1,5 +1,6 @@
 import "@testing-library/jest-dom";
 import { TextEncoder, TextDecoder } from "util";
+import "text-encoding";
 
 // TextEncoder polyfill for react-router-dom
 if (typeof TextEncoder === "undefined") {
