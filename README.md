@@ -5,11 +5,11 @@ A modern template gallery for developers to discover and preview reusable React 
 ![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)
 ![License](https://img.shields.io/badge/license-MIT-green.svg)
 ![Node](https://img.shields.io/badge/node-%3E%3D18.0.0-brightgreen.svg)
-![React](https://img.shields.io/badge/React-18.3.1-61DAFB.svg)
-![TypeScript](https://img.shields.io/badge/TypeScript-5.9.3-3178C6.svg)
+![React](https://img.shields.io/badge/React-19.2.7-61DAFB.svg)
+![TypeScript](https://img.shields.io/badge/TypeScript-6.0.3-3178C6.svg)
 ![Jest](https://img.shields.io/badge/Jest-30.4.2-9948F5.svg)
-![ESLint](https://img.shields.io/badge/ESLint-10.4.0-4B32C3.svg)
-![Vite](https://img.shields.io/badge/Vite-5.4.21-646CFF.svg)
+![ESLint](https://img.shields.io/badge/ESLint-10.4.1-4B32C3.svg)
+![Vite](https://img.shields.io/badge/Vite-8.0.16-646CFF.svg)
 
 ## 🌟 Features
 
@@ -28,16 +28,16 @@ A modern template gallery for developers to discover and preview reusable React 
 
 ### Framework & Core
 
-- **React 18.3.1** - Latest React with concurrent features
-- **TypeScript 5.8.3** - Full type safety
-- **Vite 5.4.19** - Lightning-fast build tool
-- **React Router v6.30.1** - Client-side routing
+- **React 19.2.7** - Latest React with concurrent features
+- **TypeScript 6.0.3** - Full type safety
+- **Vite 8.0.16** - Lightning-fast build tool
+- **React Router v7.17.0** - Client-side routing
 
 ### Styling
 
-- **Tailwind CSS 3.4.17** - Utility-first CSS framework
+- **Tailwind CSS 4.3.0** - Utility-first CSS framework
 - **shadcn-ui** - Modern component library
-- **Lucide React 0.462.0** - Beautiful icons
+- **Lucide React 1.17.0** - Beautiful icons
 - **Tailwind CSS Animate** - Built-in animations
 
 ### State & Forms
@@ -48,17 +48,17 @@ A modern template gallery for developers to discover and preview reusable React 
 
 ### Testing
 
-- **Jest 30.2.0** - Test runner
+- **Jest 30.4.2** - Test runner
 - **React Testing Library 16.3.2** - Component testing
 - **Jest DOM 6.9.1** - DOM matchers
-- **TypeScript Jest 29.4.6** - TS support
+- **TypeScript Jest 30.4.6** - TS support
 
 ### Code Quality
 
-- **ESLint 9.32.0** - Code linting
-- **Prettier 3.8.1** - Code formatting
-- **Husky 4.3.8** - Git hooks
-- **lint-staged 15.5.2** - Pre-commit checks
+- **ESLint 10.4.1** - Code linting
+- **Prettier 3.8.4** - Code formatting
+- **Husky 9.1.7** - Git hooks
+- **lint-staged 17.0.7** - Pre-commit checks
 
 ### Additional
 
@@ -165,7 +165,7 @@ All commits run automated quality checks via Husky:
 
 ## 🎯 Technology Stack
 
-- **Framework**: React 18 + React Router v6
+- **Framework**: React 19 + React Router v7
 - **Language**: TypeScript 5
 - **Styling**: Tailwind CSS + shadcn-ui
 - **Testing**: Jest + React Testing Library

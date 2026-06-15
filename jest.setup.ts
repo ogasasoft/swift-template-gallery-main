@@ -1,16 +1,16 @@
-import '@testing-library/jest-dom';
+import "@testing-library/jest-dom";
+import { TextEncoder, TextDecoder } from "util";
 
 // TextEncoder polyfill for react-router-dom
-if (typeof TextEncoder === 'undefined') {
-  // @ts-expect-error - Node.js util module is not available in browser environment
-  const { TextEncoder: TextEncoderImpl } = require('util');
-  (global as NodeJS.Global).TextEncoder = TextEncoderImpl;
+if (typeof TextEncoder === "undefined") {
+  (global as NodeJS.Global).TextEncoder = TextEncoder as any;
+  (global as NodeJS.Global).TextDecoder = TextDecoder as any;
 }
 
 // Mock window.matchMedia using jest.fn
-Object.defineProperty(window, 'matchMedia', {
+Object.defineProperty(window, "matchMedia", {
   writable: true,
-  value: jest.fn().mockImplementation(query => ({
+  value: jest.fn().mockImplementation((query) => ({
     matches: false,
     media: query,
     onchange: null,
@@ -26,8 +26,8 @@ Object.defineProperty(window, 'matchMedia', {
 const originalWarn = console.warn;
 console.warn = (...args) => {
   if (
-    typeof args[0] === 'string' &&
-    args[0].includes('React Router Future Flag Warning')
+    typeof args[0] === "string" &&
+    args[0].includes("React Router Future Flag Warning")
   ) {
     return;
   }

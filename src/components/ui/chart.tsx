@@ -271,7 +271,7 @@ const ChartLegendContent = React.forwardRef<
       value?: string | number;
       dataKey?: string;
       color?: string;
-      payload?: any;
+      payload?: Record<string, unknown> | null;
       fill?: string;
     }>;
     verticalAlign?: "top" | "bottom" | "middle";
@@ -296,7 +296,7 @@ const ChartLegendContent = React.forwardRef<
           className,
         )}
       >
-        {payload.map((item: any) => {
+        {payload.map((item: Record<string, unknown>) => {
           const key = `${nameKey || item.dataKey || "value"}`;
           const itemConfig = getPayloadConfigFromPayload(config, item, key);
 
