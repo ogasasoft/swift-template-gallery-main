@@ -31,10 +31,9 @@ const Contact = () => {
     return () => window.removeEventListener("template-selected", handler);
   }, []);
 
-
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!formData.name || !formData.email) {
       toast.error("Please fill in required fields");
       return;
@@ -61,14 +60,19 @@ const Contact = () => {
         </p>
 
         <div className="max-w-2xl mx-auto">
-          <div className="bg-card rounded-xl p-8 mb-8" style={{ boxShadow: "var(--card-shadow)" }}>
+          <div
+            className="bg-card rounded-xl p-8 mb-8"
+            style={{ boxShadow: "var(--card-shadow)" }}
+          >
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <Label htmlFor="name">Name *</Label>
                 <Input
                   id="name"
                   value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, name: e.target.value })
+                  }
                   required
                   className="mt-2"
                 />
@@ -80,7 +84,9 @@ const Contact = () => {
                   id="email"
                   type="email"
                   value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, email: e.target.value })
+                  }
                   required
                   className="mt-2"
                 />
@@ -92,7 +98,9 @@ const Contact = () => {
                   id="phone"
                   type="tel"
                   value={formData.phone}
-                  onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, phone: e.target.value })
+                  }
                   className="mt-2"
                 />
               </div>
@@ -102,7 +110,9 @@ const Contact = () => {
                 <Input
                   id="template-id"
                   value={formData.templateId}
-                  onChange={(e) => setFormData({ ...formData, templateId: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, templateId: e.target.value })
+                  }
                   placeholder="e.g., cafe-01"
                   className="mt-2"
                 />
@@ -113,7 +123,9 @@ const Contact = () => {
                 <Textarea
                   id="message"
                   value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, message: e.target.value })
+                  }
                   placeholder="Note about image/text replacement or any questions..."
                   rows={5}
                   className="mt-2"
@@ -127,22 +139,35 @@ const Contact = () => {
           </div>
 
           <div className="text-center">
-            <p className="text-sm text-muted-foreground mb-4">Or contact us directly:</p>
+            <p className="text-sm text-muted-foreground mb-4">
+              Or contact us directly:
+            </p>
             <div className="flex justify-center gap-4">
               <Button variant="outline" size="sm" asChild>
-                <a href="mailto:info@templatelab.com" className="flex items-center gap-2">
+                <a
+                  href="mailto:info@templatelab.com"
+                  className="flex items-center gap-2"
+                >
                   <Mail className="w-4 h-4" />
                   Email
                 </a>
               </Button>
               <Button variant="outline" size="sm" asChild>
-                <a href="tel:+81-3-1234-5678" className="flex items-center gap-2">
+                <a
+                  href="tel:+81-3-1234-5678"
+                  className="flex items-center gap-2"
+                >
                   <Phone className="w-4 h-4" />
                   Phone
                 </a>
               </Button>
               <Button variant="outline" size="sm" asChild>
-                <a href="https://line.me" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2">
+                <a
+                  href="https://line.me"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-2"
+                >
                   <MessageCircle className="w-4 h-4" />
                   LINE
                 </a>

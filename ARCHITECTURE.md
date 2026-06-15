@@ -37,35 +37,42 @@ swift-template-gallery-main/
 ## Technology Stack
 
 ### Frontend Framework
+
 - **Next.js 14**: App Router architecture
 - **React 18**: Component library
 - **TypeScript**: Type safety
 
 ### Styling
+
 - **Tailwind CSS**: Utility-first CSS framework
 - **shadcn-ui**: Reusable UI components built on Radix UI
 
 ### Testing
+
 - **Jest**: Unit testing framework
 - **React Testing Library**: Component testing
 
 ### Build Tools
+
 - **Vite**: Build tool and dev server
 
 ## Core Features
 
 ### Template Gallery
+
 - Display reusable React templates
 - Filter templates by category
 - Preview template code
 - Export templates as files
 
 ### Search & Filter
+
 - Text search functionality
 - Category filtering
 - Sort by popularity/name
 
 ### Developer Tools
+
 - Copy template code
 - Preview in browser
 - Generate template files
@@ -73,12 +80,16 @@ swift-template-gallery-main/
 ## Component Architecture
 
 ### Library Components
+
 Located in `src/components/ui/`, these are shadcn-ui components:
+
 - Button, Input, Card, Dialog, Dropdown Menu
 - Tabs, Select, Switch, etc.
 
 ### Feature Components
+
 Feature-specific components in `src/components/`:
+
 - `Gallery`: Main gallery layout
 - `TemplateCard`: Individual template display
 - `GalleryFilters`: Filter controls
@@ -101,18 +112,22 @@ Response → State Update → UI Update
 ## State Management
 
 ### React State
+
 For component-level state:
+
 ```typescript
 const [isOpen, setIsOpen] = useState(false);
 ```
 
 ### Libraries (if needed)
+
 - Currently using React state directly
 - Consider Zustand for complex global state
 
 ## Routing
 
 Next.js App Router structure:
+
 - `(home)/` - Root layout with navigation
 - `/templates` - Template browsing
 - `/gallery` - Enhanced gallery view
@@ -121,16 +136,19 @@ Next.js App Router structure:
 ## Testing Strategy
 
 ### Unit Tests
+
 - Test utility functions in `lib/`
 - Test business logic in isolation
 - Mock external dependencies
 
 ### Component Tests
+
 - Test render behavior
 - Test user interactions
 - Test accessibility
 
 ### Integration Tests
+
 - Test API routes
 - Test data flow between components
 
@@ -143,6 +161,7 @@ Next.js App Router structure:
 ## Deployment
 
 The project is designed for deployment on Vercel:
+
 - Automatic builds from git
 - Preview deployments for PRs
 - Global CDN for static assets
@@ -167,6 +186,7 @@ The project is designed for deployment on Vercel:
 ## Extensibility
 
 The architecture is designed for easy extension:
+
 - Modular component structure
 - Clear separation of concerns
 - Type-safe interfaces
