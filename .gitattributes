@@ -1,0 +1,33 @@
+# Auto detect text files and normalize line endings
+* text=auto eol=lf
+
+# Special handling for markdown
+*.md text=auto eol=lf
+
+# Text files
+*.json text=auto eol=lf
+*.yml text=auto eol=lf
+*.yaml text=auto eol=lf
+*.xml text=auto eol=lf
+*.ts text=auto eol=lf
+*.tsx text=auto eol=lf
+*.js text=auto eol=lf
+*.jsx text=auto eol=lf
+*.css text=auto eol=lf
+*.html text=auto eol=lf
+*.md text=auto eol=lf
+
+# Binary files
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.svg binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary
+*.bin binary
+*.pdf binary
+EOF
