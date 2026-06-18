@@ -96,6 +96,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 - No known security vulnerabilities
 
+### Updated Dependencies
+
+- react: 19.0.0 → 19.2.7
+- react-dom: 19.0.0 → 19.2.7
+- typescript: 6.0.0 → 5.7.3
+- @types/react: 19.2.0 → 19.2.3
+- @types/react-dom: 19.2.0 → 19.2.0
+- @types/node: 20.19.43 → 25.9.3
+- @typescript-eslint/parser: 8.61.0 → 8.61.1
+- @typescript-eslint/eslint-plugin: 8.61.0 → 8.61.1
+- eslint: 10.5.0 → 10.5.0
+- react-resizable-panels: 2.1.9 → 4.11.2
+
 ## [0.0.1] - 2024-06-15
 
 ### Added
