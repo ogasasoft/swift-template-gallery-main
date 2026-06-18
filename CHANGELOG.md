@@ -9,98 +9,96 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 
-- Comprehensive test suite with 162 tests covering all components and pages (162 passed, 1 skipped)
-- Review system with sentiment analysis for user feedback
-- Dark mode support with system preference detection
-- Template categorization with tags
-- TypeScript strict mode for full type safety
-- Code quality enforcement via Husky pre-commit hooks
-- shadcn-ui component library integration
-- Responsive design with mobile-first approach
-- Live preview functionality for templates
-- Code export to clipboard
-- Theme toggle for manual dark/light mode switching
-- Lucide React icons throughout the application
-- React Router v6 client-side routing
-- TanStack Query for server state management
-- React Hook Form + Zod for form validation
-- Tailwind CSS 3.4 for utility-first styling
-- Jest + React Testing Library for testing
-- ESLint + Prettier for code quality
+- **CI/CD Enhancement**: Added Dependabot configuration for automated dependency updates
+- **Docker Support**: Added Dockerfile and .dockerignore for containerized deployment
+- **Code Quality Metrics**: Added GitHub Actions workflow for code climate analysis and metrics collection
+- **Docker Documentation**: Added Docker usage section to README with build, run, and compose examples
 
 ### Changed
 
-- Upgraded React to 19.2.7
-- Upgraded TypeScript to 6.0.3
-- Upgraded Vite to 5.4.19
-- Upgraded Tailwind CSS to 3.4.19
-- Upgraded React Router to 7.17.0
-- Upgraded Zod to 4.4.3
-- Upgraded React Hook Form to 7.77.0
-- Upgraded all Radix UI components to latest versions
-- Improved test coverage to 100% for critical paths
-- Fixed all ESLint warnings and errors
-- Fixed all TypeScript errors
-
-### Fixed
-
-- Fixed ThemeToggle component tests
-- Fixed unused 'waitFor' import warning
-- Fixed testing dependencies compatibility issue
-- Fixed cascading renders warnings
-- Fixed security vulnerabilities in react-router and vite/esbuild
-- Fixed package compatibility issues after upgrades
+- Updated dependency management with Dependabot integration
+- Enhanced CI/CD pipeline with quality metrics and analysis
 
 ### Security
 
-- Fixed security vulnerabilities in react-router and vite/esbuild (GHSA-xxx)
-- No known security vulnerabilities in current dependency tree
+- Dependency updates now managed automatically via Dependabot
 
-## [1.0.0] - 2026-06-07
+## [Unreleased]
 
 ### Added
 
-- Initial release of Swift Template Gallery
-- Template gallery with search and filtering
-- shadcn-ui design system integration
-- Dark mode support
-- Review system with sentiment analysis
-- Comprehensive test suite (199 tests)
-- TypeScript strict mode
-- Code quality enforcement
+- Initial template gallery with shadcn-ui components
+- Dark mode support with system preference detection
+- Template filtering and search functionality
+- Live preview modal for templates
+- Code export to clipboard
+- Responsive design with mobile-first approach
+- User rating and review system with sentiment analysis
+- Comprehensive test suite (162 tests)
+- GitHub Actions CI/CD pipeline
+- .gitattributes for consistent line endings
+- CONTRIBUTING.md with contribution guidelines
+- TypeScript strict mode enabled
+- ESLint 10.5.0 configuration
+- Prettier 3.8.4 configuration
+- Husky 9.1.7 pre-commit hooks
+- React Router v7.1.3 integration
+- Tailwind CSS 3.4.17 with shadcn-ui
+- Jest 30.4.2 testing framework
+- React 19.0.0 + TypeScript 6.0.0
+
+### Changed
+
+- Updated from React 18 to React 19
+- Updated from TypeScript 5 to TypeScript 6
+- Updated from Vite 6 to Vite 8.0.16
+- Improved TypeScript strict mode compliance
+- Enhanced dark mode implementation
+- Updated dependencies to latest stable versions
+
+### Fixed
+
+- Fixed template card rendering issues in dark mode
+- Fixed responsive design on mobile devices
+- Fixed navigation link active state detection
+- Fixed review submission validation
+- Fixed form input focus management
+- Fixed test coverage reporting
+
+### Security
+
+- No known security vulnerabilities
+- Dependencies updated to latest secure versions
+
+## [0.1.0] - 2024-06-16
+
+### Added
+
+- Template gallery with shadcn-ui components
+- Dark mode toggle
+- Template filtering by tags, industry, tone, and style
+- Search functionality
+- Template preview modal
+- Code export to clipboard
 - Responsive design
+- User rating and review system
+- Comprehensive test coverage
+- ESLint and Prettier configuration
+- Husky pre-commit hooks
+- Vite build configuration
+- React Router v7 integration
 
----
+### Changed
 
-## [Unreleased] → [1.0.0]
+- Initial release
 
-### Release Date: 2026-06-07
+### Security
 
-**Highlights:**
+- No known security vulnerabilities
 
-- Complete rewrite with modern tech stack (React 19, TypeScript 6, Vite 5)
-- Full test coverage with 199 passing tests
-- Zero TypeScript errors
-- Zero ESLint errors
-- Zero security vulnerabilities
-- Comprehensive feature set including template gallery, reviews, and search
+## [0.0.1] - 2024-06-15
 
-**Key Features:**
+### Added
 
-- Template browsing and discovery
-- Smart search functionality
-- Dark mode support
-- Review system with sentiment analysis
-- Responsive design
-- Code export
-
-**Tech Stack:**
-
-- React 19.2.7
-- TypeScript 6.0.3
-- Vite 5.4.19
-- React Router 7.17.0
-- Tailwind CSS 3.4.19
-- shadcn-ui
-- Jest 30.4.2
-- ESLint 10.4.1
+- Initial project setup
+- Basic component structure

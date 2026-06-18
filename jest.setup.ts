@@ -1,23 +1,22 @@
-import "@testing-library/jest-dom";
-import * as util from "util";
+import '@testing-library/jest-dom';
+import * as util from 'util';
 
-// TextEncoder/TextDecoder polyfill (Jest environment)
-if (typeof TextEncoder === "undefined") {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  (global as any).TextEncoder = util.TextEncoder as any;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  (global as any).TextDecoder = util.TextDecoder as any;
+// Type definition for polyfilled globals
+interface GlobalWindow extends Window {
+  TextEncoder: typeof util.TextEncoder;
+  TextDecoder: typeof util.TextDecoder;
 }
 
-// text-encoding polyfill for react-router-dom
-if (typeof TextDecoder === "undefined") {
-  (global as any).TextDecoder = util.TextDecoder;
+// TextEncoder/TextDecoder polyfill (Jest environment)
+if (typeof (global as unknown as GlobalWindow).TextEncoder === 'undefined') {
+  (global as unknown as GlobalWindow).TextEncoder = util.TextEncoder;
+  (global as unknown as GlobalWindow).TextDecoder = util.TextDecoder;
 }
 
 // Mock window.matchMedia using jest.fn
-Object.defineProperty(window, "matchMedia", {
+Object.defineProperty(window, 'matchMedia', {
   writable: true,
-  value: jest.fn().mockImplementation((query) => ({
+  value: jest.fn().mockImplementation(query => ({
     matches: false,
     media: query,
     onchange: null,
@@ -32,10 +31,7 @@ Object.defineProperty(window, "matchMedia", {
 // Silence the React Router warnings
 const originalWarn = console.warn;
 console.warn = (...args) => {
-  if (
-    typeof args[0] === "string" &&
-    args[0].includes("React Router Future Flag Warning")
-  ) {
+  if (typeof args[0] === 'string' && args[0].includes('React Router Future Flag Warning')) {
     return;
   }
   originalWarn(...args);
