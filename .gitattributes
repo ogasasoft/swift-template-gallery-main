@@ -1,33 +1,44 @@
-# Auto detect text files and normalize line endings
+# Set default behavior, in case users don't have core.autocrlf set.
 * text=auto eol=lf
 
-# Special handling for markdown
-*.md text=auto eol=lf
+# Source code files
+*.ts text eol=lf
+*.tsx text eol=lf
+*.js text eol=lf
+*.jsx text eol=lf
+*.json text eol=lf
+*.md text eol=lf
 
-# Text files
-*.json text=auto eol=lf
-*.yml text=auto eol=lf
-*.yaml text=auto eol=lf
-*.xml text=auto eol=lf
-*.ts text=auto eol=lf
-*.tsx text=auto eol=lf
-*.js text=auto eol=lf
-*.jsx text=auto eol=lf
-*.css text=auto eol=lf
-*.html text=auto eol=lf
-*.md text=auto eol=lf
+# Configuration files
+*.config.js text eol=lf
+*.config.ts text eol=lf
+*.json text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
 
-# Binary files
+# Documentation
+*.md text eol=lf
+docs/** text eol=lf
+
+# Stylesheets
+*.css text eol=lf
+*.scss text eol=lf
+*.less text eol=lf
+*.tailwind text eol=lf
+
+# Templates
+*.html text eol=lf
+*.xml text eol=lf
+*.svg text eol=lf
+
+# Precompiled assets
 *.png binary
 *.jpg binary
 *.jpeg binary
 *.gif binary
-*.svg binary
+*.webp binary
 *.ico binary
 *.woff binary
 *.woff2 binary
 *.ttf binary
 *.eot binary
-*.bin binary
-*.pdf binary
-EOF

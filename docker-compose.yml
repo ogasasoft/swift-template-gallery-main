@@ -1,21 +1,17 @@
-version: "3.8"
+version: '3.8'
 
 services:
   app:
     build:
       context: .
       dockerfile: Dockerfile
+    container_name: swift-gallery
+    restart: unless-stopped
     ports:
-      - "5173:5173"
+      - "3000:3000"
     environment:
       - NODE_ENV=production
-      - PORT=5173
+      - PORT=3000
     volumes:
-      - .:/app
-    restart: unless-stopped
-    networks:
-      - app-network
-
-networks:
-  app-network:
-    driver: bridge
+      - ./:/app
+    command: npm run dev
