@@ -21,6 +21,14 @@
   - Accessibility tests (ARIA labels, keyboard nav, semantic HTML)
   - Error Handling tests (404, invalid routes)
 - [x] Playwright E2E tests implemented and tested
+- [x] **Playwright artifacts removed** (Cypress migration complete - 2026-06-20)
+  - Removed cypress.config.ts, cypress.ignore, cypress/e2e/
+  - Removed playwright-report directory
+  - Removed test-results directory
+  - Updated package.json (Cypress 15.17.0, Playwright removed)
+  - Updated jest.config.ts
+  - Updated README with Cypress references
+  - Updated CHANGELOG
 
 ## High Priority (Next)
 
