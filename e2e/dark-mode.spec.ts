@@ -3,11 +3,18 @@ import { test, expect } from '@playwright/test';
 test.describe('Dark Mode', () => {
   test.beforeEach(async ({ page }) => {
     await page.goto('/');
+    // Wait for Header to load
+    await page.waitForSelector('header', { timeout: 10000 });
+
+    // Wait for theme toggle button to be enabled
+    const toggle = page.getByRole('button', { name: /theme/i });
+    await toggle.waitFor({ state: 'enabled', timeout: 10000 });
   });
 
   test('should have theme toggle button', async ({ page }) => {
-    const toggle = page.locator('[data-testid="theme-toggle"]');
+    const toggle = page.getByRole('button', { name: /theme/i });
     await expect(toggle).toBeVisible();
+    await toggle.waitFor({ state: 'enabled', timeout: 10000 });
   });
 
   test('should toggle dark mode on click', async ({ page }) => {
