@@ -34,7 +34,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Code export to clipboard
 - Responsive design with mobile-first approach
 - User rating and review system with sentiment analysis
-- Comprehensive test suite (162 tests)
+- Comprehensive test suite (160 tests)
 - GitHub Actions CI/CD pipeline
 - .gitattributes for consistent line endings
 - CONTRIBUTING.md with contribution guidelines
