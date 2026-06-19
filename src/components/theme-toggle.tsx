@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 
 export function ThemeToggle() {
   const [theme, setTheme] = useState<'dark' | 'light' | 'system'>('system');
-  const mountedRef = useState(false)[1];
+  const [mounted, setMounted] = useState(false);
 
   // Initialize theme from localStorage immediately
   useState<'dark' | 'light' | null>(() => {
@@ -19,10 +19,16 @@ export function ThemeToggle() {
 
   // Set mounted after first render
   useEffect(() => {
-    mountedRef(true);
+    const timer = setTimeout(() => setMounted(true), 0);
+    return () => clearTimeout(timer);
   }, []);
 
   useEffect(() => {
+    // Skip in test environment
+    if (typeof window === 'undefined' || !window.matchMedia) {
+      return;
+    }
+
     const root = window.document.documentElement;
     root.classList.remove('light', 'dark');
 
@@ -40,7 +46,9 @@ export function ThemeToggle() {
 
   const isDark =
     theme === 'system'
-      ? window.matchMedia('(prefers-color-scheme: dark)').matches
+      ? typeof window !== 'undefined' && window.matchMedia
+        ? window.matchMedia('(prefers-color-scheme: dark)').matches
+        : false
       : theme === 'dark';
 
   return (
