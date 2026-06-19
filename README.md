@@ -280,7 +280,7 @@ All commits run automated quality checks via Husky:
 1. **Clone the repository**
 
 ```bash
-git clone https://github.com/yourusername/swift-template-gallery.git
+git clone https://github.com/ogasasasasoft/swift-template-gallery.git
 cd swift-template-gallery
 ```
 
@@ -463,10 +463,10 @@ The pipeline automatically builds and pushes Docker images:
 
 ```bash
 # Pull latest image
-docker pull yourusername/swift-template-gallery:latest
+docker pull ogasasasasoft/swift-template-gallery:latest
 
 # Run container
-docker run -p 3000:3000 yourusername/swift-template-gallery:latest
+docker run -p 3000:3000 ogasasasasoft/swift-template-gallery:latest
 ```
 
 Image tags include:
