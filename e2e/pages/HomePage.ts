@@ -8,7 +8,7 @@ export class HomePage {
 
   constructor(page: Page) {
     this.page = page;
-    this.themeToggle = page.locator('button[data-testid="theme-toggle"]');
+    this.themeToggle = page.locator('button[aria-label*="theme"]');
     this.heroSection = page.locator('section[data-testid="hero"]');
     this.gallerySection = page.locator('section[data-testid="gallery"]');
   }

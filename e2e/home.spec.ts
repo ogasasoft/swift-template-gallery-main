@@ -18,7 +18,7 @@ test.describe('Home Page', () => {
   });
 
   test('should have dark mode toggle', async ({ page }) => {
-    const themeToggle = page.locator('[data-testid="theme-toggle"]');
+    const themeToggle = page.getByRole('button', { name: /theme/i });
     await expect(themeToggle).toBeVisible();
     await expect(themeToggle).toHaveAttribute('aria-label', /toggle.*theme/i);
   });

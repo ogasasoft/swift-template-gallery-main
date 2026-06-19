@@ -44,10 +44,8 @@ test('diagnose theme toggle element', async ({ page }) => {
 
   // Try to find theme toggle using multiple strategies
   const toggle1 = page.getByRole('button', { name: /theme/i });
-  const toggle2 = page.locator('[data-testid="theme-toggle"]');
 
   console.log(`\nBy role: ${await toggle1.count()} elements`);
-  console.log(`By data-testid: ${await toggle2.count()} elements`);
 
   await expect(page.locator('header')).toBeVisible();
 });

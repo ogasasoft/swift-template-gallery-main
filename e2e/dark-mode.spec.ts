@@ -6,19 +6,20 @@ test.describe('Dark Mode', () => {
     // Wait for Header to load
     await page.waitForSelector('header', { timeout: 10000 });
 
-    // Wait for theme toggle button to be enabled
+    // Wait for theme toggle button to be visible
     const toggle = page.getByRole('button', { name: /theme/i });
-    await toggle.waitFor({ state: 'enabled', timeout: 10000 });
+    await toggle.waitFor({ state: 'visible', timeout: 10000 });
   });
 
   test('should have theme toggle button', async ({ page }) => {
     const toggle = page.getByRole('button', { name: /theme/i });
     await expect(toggle).toBeVisible();
-    await toggle.waitFor({ state: 'enabled', timeout: 10000 });
+    await expect(toggle).not.toBeDisabled();
   });
 
   test('should toggle dark mode on click', async ({ page }) => {
-    const toggle = page.locator('[data-testid="theme-toggle"]');
+    // Use aria-label selector since data-testid is not available
+    const toggle = page.getByRole('button', { name: /theme/i });
 
     // Check initial state (should be light by default)
     await expect(toggle).toHaveAttribute('aria-label', /toggle.*theme/i);
@@ -46,7 +47,8 @@ test.describe('Dark Mode', () => {
   });
 
   test('should persist theme preference', async ({ page }) => {
-    const toggle = page.locator('[data-testid="theme-toggle"]');
+    // Use aria-label selector since data-testid is not available
+    const toggle = page.getByRole('button', { name: /theme/i });
 
     // Toggle to dark mode
     await toggle.click();
@@ -66,15 +68,16 @@ test.describe('Dark Mode', () => {
   });
 
   test('should have correct ARIA attributes', async ({ page }) => {
-    const toggle = page.locator('[data-testid="theme-toggle"]');
+    // Use aria-label selector since data-testid is not available
+    const toggle = page.getByRole('button', { name: /theme/i });
 
     await expect(toggle).toHaveAttribute('aria-label');
-    await expect(toggle).toHaveAttribute('role', 'button');
     await expect(toggle).toHaveAttribute('aria-pressed', /false|true/);
   });
 
   test('should toggle icon when dark mode changes', async ({ page }) => {
-    const toggle = page.locator('[data-testid="theme-toggle"]');
+    // Use aria-label selector since data-testid is not available
+    const toggle = page.getByRole('button', { name: /theme/i });
 
     // Check initial state
     const initialIcon = toggle.locator('svg');
