@@ -32,9 +32,9 @@
 
 ## High Priority (Next)
 
-- [ ] Remove unused dependencies
-  - Audit package.json
-  - Run depcheck or similar tool
+- [x] Remove unused dependencies (2026-06-20)
+  - Removed @emnapi/wasi-threads, @napi-rs/wasm-runtime, @tybys/wasm-util
+  - Verified no extraneous packages remain
 
 - [ ] Add accessibility audit
   - Run axe-core audit
