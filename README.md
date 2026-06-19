@@ -592,6 +592,7 @@ swift-template-gallery/
 - [Contributing](./CONTRIBUTING.md) - How to contribute
 - [Security Policy](./SECURITY.md) - Security best practices and reporting
 - [Changelog](./CHANGELOG.md) - Version history and changes
+- [Releases](https://github.com/ogasasasasoft/swift-template-gallery/releases) - Official releases and download links
 
 ## 🧪 Testing
 
