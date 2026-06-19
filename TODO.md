@@ -9,6 +9,8 @@
 - [x] Prettier formatting
 - [x] 162 tests passing
 - [x] Quality score: 25/25 (Excellent)
+- [x] Dark mode E2E tests (dark-mode.spec.ts - 9/9 passed)
+- [x] Theme toggle selectors fixed (data-testid → aria-label)
 
 ## High Priority (Next)
 

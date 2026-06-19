@@ -148,7 +148,7 @@ test.describe('Template Gallery E2E Tests', () => {
     expect(templateCount).toBeGreaterThan(0);
   });
 
-  test('should load gallery in less than 3 seconds', async ({ page }) => {
+  test('should load gallery in less than 3 seconds', async ({ page: _page }) => {
     const startTime = Date.now();
 
     await galleryPage.navigate();
