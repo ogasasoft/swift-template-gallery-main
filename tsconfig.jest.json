@@ -6,7 +6,7 @@
     "allowImportingTsExtensions": false,
     "resolveJsonModule": true,
     "esModuleInterop": true,
-    "types": ["jest", "@testing-library/jest-dom"],
+    "types": ["jest", "@testing-library/jest-dom", "jsdom"],
     "jsx": "react-jsx"
   },
   "include": ["jest.setup.ts", "src/**/*.ts", "src/**/*.tsx"],

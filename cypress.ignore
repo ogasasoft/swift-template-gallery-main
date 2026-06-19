@@ -1,7 +1,0 @@
-# E2E Tests
-test-results/
-playwright-report/
-playwright/.cache/
-
-# Cypress configuration
-cypress.config.js
