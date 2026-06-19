@@ -837,7 +837,7 @@ For support, email support@example.com or open an issue in our GitHub repository
 ## 📧 Contact
 
 - **Email**: support@example.com
-- **GitHub**: [yourusername/swift-template-gallery](https://github.com/yourusername/swift-template-gallery)
+- **GitHub**: [ogasasasoft/swift-template-gallery](https://github.com/ogasasasoft/swift-template-gallery)
 - **Discord**: [Join our Discord](https://discord.gg/example)
 
 ---
