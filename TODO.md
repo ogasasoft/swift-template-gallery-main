@@ -11,14 +11,18 @@
 - [x] Quality score: 25/25 (Excellent)
 - [x] Dark mode E2E tests (dark-mode.spec.ts - 9/9 passed)
 - [x] Theme toggle selectors fixed (data-testid → aria-label)
+- [x] **Cypress E2E tests added** (2026-06-19)
+  - 50+ test cases covering all user flows
+  - Basic Flow tests (gallery load, search, filters)
+  - Theme Toggle tests (toggle, persistence, system preference)
+  - Component Preview tests (navigation, preview, copy code)
+  - Navigation tests (all routes)
+  - Responsive Design tests (mobile, tablet, desktop)
+  - Accessibility tests (ARIA labels, keyboard nav, semantic HTML)
+  - Error Handling tests (404, invalid routes)
+- [x] Playwright E2E tests implemented and tested
 
 ## High Priority (Next)
-
-- [ ] Add E2E tests with Playwright or Cypress
-  - Test full user flows
-  - Template viewing, previewing, copying code
-  - Dark mode toggle
-  - Navigation
 
 - [ ] Remove unused dependencies
   - Audit package.json
@@ -31,7 +35,6 @@
 
 ## Medium Priority
 
-- [ ] Add test for dark mode toggle functionality
 - [ ] Improve mobile experience testing
 - [ ] Add performance monitoring (Web Vitals)
 
