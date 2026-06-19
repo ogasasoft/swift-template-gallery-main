@@ -24,12 +24,10 @@
     "test:watch": "jest --watch",
     "test:unit": "jest --testPathPattern='__tests__/'",
     "test:integration": "jest --testPathPattern='__tests__/pages/'",
-    "test:e2e": "playwright test",
-    "test:e2e:headed": "playwright test --headed",
-    "test:e2e:ui": "playwright test --ui",
-    "test:e2e:debug": "playwright test --debug",
-    "test:e2e:report": "playwright show-report",
-    "test:e2e:install": "playwright install chromium",
+    "test:e2e": "cypress run",
+    "test:e2e:headed": "cypress run --headed",
+    "test:e2e:open": "cypress open",
+    "test:e2e:install": "cypress install chromium",
     "typecheck": "tsc --noEmit"
   },
   "husky": {
@@ -100,7 +98,6 @@
   "devDependencies": {
     "@axe-core/react": "^4.11.3",
     "@eslint/js": "^10.0.1",
-    "@playwright/test": "^1.61.0",
     "@tailwindcss/typography": "^0.5.20",
     "@testing-library/dom": "^10.4.1",
     "@testing-library/jest-dom": "6.9.1",
@@ -114,6 +111,7 @@
     "@typescript-eslint/parser": "^8.61.1",
     "@vitejs/plugin-react-swc": "^4.3.1",
     "autoprefixer": "^10.4.19",
+    "cypress": "^15.17.0",
     "esbuild": "0.28.1",
     "eslint": "^10.5.0",
     "eslint-plugin-react-hooks": "^7.1.1",
