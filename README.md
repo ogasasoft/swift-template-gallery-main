@@ -1,4 +1,4 @@
-# Swift Template Gallery
+# Swift Template Gallery v1.0.0
 
 A modern template gallery for developers to discover and preview reusable React components with shadcn-ui design system.
 
