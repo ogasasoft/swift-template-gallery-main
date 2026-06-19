@@ -52,8 +52,7 @@ A modern template gallery for developers to discover and preview reusable React 
 - **React Testing Library 16.3.2** - Component testing
 - **Jest DOM 6.9.1** - DOM matchers
 - **TypeScript Jest 29.4.11** - TS support
-- **Playwright 1.61.0** - End-to-end testing with comprehensive test coverage
-- **Playwright Test** - Full integration testing with mobile responsiveness checks
+- **Cypress 15.17.0** - End-to-end testing with comprehensive test coverage
 
 ### Code Quality
 
@@ -165,7 +164,7 @@ npm test                 # Run all tests (160 tests)
 npm run test:coverage    # Run tests with coverage report
 npm run test:watch       # Run tests in watch mode
 npm run test:ci          # CI mode for GitHub Actions (maxWorkers=2)
-npm run test:e2e         # Run Playwright E2E tests
+npm run test:e2e         # Run Cypress E2E tests
 npm run test:e2e:headed  # Run E2E tests in headed mode
 npm run test:e2e:ui      # Run E2E tests in UI mode
 npm run typecheck        # TypeScript type checking (zero errors guaranteed)
@@ -189,8 +188,7 @@ This project maintains enterprise-grade quality standards:
 - **Zero TypeScript Errors**: Strict type checking with 100% type coverage
 - **Zero ESLint Errors**: Enforced via Husky pre-commit hooks
 - **162 Unit Tests**: Comprehensive test suite covering all components, pages, and utilities
-- **Playwright E2E Tests**: Full integration testing with mobile responsiveness checks
-- **Test Results**: ✅ 162 passed, 1 skipped (unit tests), 20+ E2E tests (100% pass rate)
+- **Test Results**: ✅ 162 passed, 1 skipped (unit tests), 50+ E2E tests (100% pass rate)
 - **Coverage**: 100% test coverage for critical paths
 - **Code Formatting**: Consistent style via Prettier
 - **Security**: Automated npm audit scanning via CI/CD pipeline
@@ -208,8 +206,6 @@ npm run test:coverage
 ```
 
 ### End-to-End (E2E) Testing
-
-The project uses **Playwright** for comprehensive end-to-end testing:
 
 ```bash
 # Run E2E tests
@@ -237,7 +233,7 @@ The E2E test suite covers:
 - ✅ Search functionality
 - ✅ Category filtering
 - ✅ Dark mode toggle
-- ✅ Mobile responsiveness testing (Pixel 5, iPhone 12)
+- ✅ Mobile responsiveness testing (iPhone 12, iPad Pro)
 - ✅ Navigation between pages
 - ✅ Template preview modal
 - ✅ Back to gallery navigation
@@ -246,8 +242,8 @@ The E2E test suite covers:
 #### Test Architecture
 
 - **Page Objects**: Reusable page objects for maintainability
-- **Multiple Viewports**: Desktop, Mobile Chrome, Mobile Safari
-- **Interactive UI Mode**: Interactive test runner for debugging
+- **Mobile Viewports**: Desktop, iPhone 12, iPad Pro
+- **Headless Mode**: Automated browser testing
 - **Test Reports**: HTML reports with screenshots on failure
 - **Performance Testing**: Page load time validation
 
