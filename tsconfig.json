@@ -22,6 +22,6 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true
   },
-  "include": ["src", "cypress", "e2e", "tailwind.config.ts", "vite.config.ts"],
+  "include": ["src", "cypress", "cypress.config.ts", "e2e", "tailwind.config.ts", "vite.config.ts"],
   "exclude": ["node_modules", "dist"]
 }
