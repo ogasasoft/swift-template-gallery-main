@@ -21,9 +21,13 @@ A modern template gallery for developers to discover and preview reusable React 
 - 📋 **Code Export**: Copy code directly to clipboard
 - 📱 **Responsive**: Mobile-first design
 - 🌙 **Dark Mode**: Automatic system preference detection with manual toggle
+- ✅ **Dark Mode**: Verified accessibility (cypress-axe, WCAG 2.1 AA)
 - ⭐ **Review System**: User ratings and reviews with sentiment analysis
 - 🔬 **Comprehensive Tests**: 162 unit tests (162 passed, 1 skipped) + 50+ E2E tests (100% pass rate)
+- 🔍 **Accessibility**: WCAG 2.1 AA compliance, keyboard navigation, ARIA labels
 - ✨ **TypeScript**: Full type safety with 100% coverage
+- 📦 **Package Management**: Clean dependencies (no extraneous packages)
+- 🔒 **Security**: npm audit checks, dependency scanning
 
 ## 🛠️ Tech Stack
 
