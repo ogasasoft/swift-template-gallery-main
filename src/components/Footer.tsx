@@ -1,4 +1,8 @@
+import { useIsMobile } from '@/hooks/use-mobile';
+
 const Footer = () => {
+  const isMobile = useIsMobile();
+
   return (
     <footer className="bg-card border-t border-border py-12">
       <div className="container mx-auto px-4">
@@ -6,7 +10,11 @@ const Footer = () => {
           <p className="text-sm text-muted-foreground mb-4">
             © 2024 TemplateLab. All templates are commercial-use ready.
           </p>
-          <div className="flex justify-center gap-6 text-sm">
+          <div
+            className={`flex justify-center gap-6 text-sm ${
+              isMobile ? 'flex-col gap-3' : 'flex-row'
+            }`}
+          >
             <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
               Terms of Service
             </a>
