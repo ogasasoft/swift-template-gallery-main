@@ -4,6 +4,7 @@ import TemplateCard from './TemplateCard';
 import GalleryFilters from './GalleryFilters';
 import PreviewModal from './PreviewModal';
 import { useToast } from '@/hooks/use-toast';
+import { useIsMobile } from '@/hooks/use-mobile';
 import type { Template, FilterState } from '@/lib/types';
 
 const templates = templatesData as Template[];
@@ -15,6 +16,7 @@ const allStyles = Array.from(new Set(templates.map(t => t.style))).sort();
 
 export default function Gallery() {
   const { toast } = useToast();
+  const isMobile = useIsMobile();
   const [selectedTemplate, setSelectedTemplate] = useState<Template | null>(null);
   const [filters, setFilters] = useState<FilterState>({
     tags: [],
@@ -65,6 +67,8 @@ export default function Gallery() {
     }));
   };
 
+  const gridCols = isMobile ? 1 : 'md:grid-cols-2';
+
   return (
     <section className="container mx-auto px-4 py-12">
       <div className="text-center mb-8">
@@ -87,7 +91,7 @@ export default function Gallery() {
         filteredCount={filteredTemplates.length}
       />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+      <div className={`grid ${gridCols} gap-6 mt-8`}>
         {filteredTemplates.length === 0 ? (
           <div className="col-span-full text-center py-16">
             <p className="text-muted-foreground text-lg mb-2">
