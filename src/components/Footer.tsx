@@ -7,16 +7,10 @@ const Footer = () => {
             © 2024 TemplateLab. All templates are commercial-use ready.
           </p>
           <div className="flex justify-center gap-6 text-sm">
-            <a
-              href="#"
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
+            <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
               Terms of Service
             </a>
-            <a
-              href="#"
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
+            <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
               Privacy Policy
             </a>
           </div>

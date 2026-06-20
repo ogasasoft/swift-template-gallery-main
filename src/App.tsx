@@ -1,21 +1,18 @@
-import { Toaster } from "@/components/ui/toaster";
-import { Toaster as Sonner } from "@/components/ui/sonner";
-import { TooltipProvider } from "@/components/ui/tooltip";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import Index from "./pages/Index";
-import NotFound from "./pages/NotFound";
-import TemplateDetail from "./pages/TemplateDetail";
-import { ThemeProvider } from "./providers/theme-provider";
+import { Toaster } from '@/components/ui/toaster';
+import { Toaster as Sonner } from '@/components/ui/sonner';
+import { TooltipProvider } from '@/components/ui/tooltip';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Index from './pages/Index';
+import NotFound from './pages/NotFound';
+import TemplateDetail from './pages/TemplateDetail';
+import { ThemeProvider } from './providers/theme-provider';
+import PerformanceBanner from './components/PerformanceBanner';
 
 const queryClient = new QueryClient();
 
 const App = () => (
-  <ThemeProvider
-    defaultTheme="system"
-    enableSystem
-    storageKey="template-lab-theme"
-  >
+  <ThemeProvider defaultTheme="system" enableSystem storageKey="template-lab-theme">
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <Toaster />
@@ -28,6 +25,7 @@ const App = () => (
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
+        <PerformanceBanner />
       </TooltipProvider>
     </QueryClientProvider>
   </ThemeProvider>

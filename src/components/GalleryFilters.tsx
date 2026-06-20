@@ -1,23 +1,17 @@
-import { useState } from "react";
-import { X, Search, SlidersHorizontal } from "lucide-react";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
-import { ToggleGroup, ToggleGroupItem } from "@/components/ui/toggle-group";
-import {
-  Sheet,
-  SheetContent,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
+import { useState } from 'react';
+import { X, Search, SlidersHorizontal } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { Button } from '@/components/ui/button';
+import { Badge } from '@/components/ui/badge';
+import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
+import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
-} from "@/components/ui/accordion";
-import type { FilterState } from "@/lib/types";
+} from '@/components/ui/accordion';
+import type { FilterState } from '@/lib/types';
 
 interface GalleryFiltersProps {
   filters: FilterState;
@@ -43,14 +37,11 @@ export default function GalleryFilters({
   const [sheetOpen, setSheetOpen] = useState(false);
 
   const activeFilterCount =
-    filters.tags.length +
-    filters.industry.length +
-    filters.tone.length +
-    filters.style.length;
+    filters.tags.length + filters.industry.length + filters.tone.length + filters.style.length;
   const hasActiveFilters = activeFilterCount > 0 || filters.search.length > 0;
 
   const handleClearAll = () => {
-    setFilters({ tags: [], industry: [], tone: [], style: [], search: "" });
+    setFilters({ tags: [], industry: [], tone: [], style: [], search: '' });
   };
 
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -58,22 +49,22 @@ export default function GalleryFilters({
   };
 
   const handleRemoveTag = (tag: string) => {
-    setFilters({ ...filters, tags: filters.tags.filter((t) => t !== tag) });
+    setFilters({ ...filters, tags: filters.tags.filter(t => t !== tag) });
   };
 
   const handleRemoveIndustry = (value: string) => {
     setFilters({
       ...filters,
-      industry: filters.industry.filter((v) => v !== value),
+      industry: filters.industry.filter(v => v !== value),
     });
   };
 
   const handleRemoveTone = (value: string) => {
-    setFilters({ ...filters, tone: filters.tone.filter((v) => v !== value) });
+    setFilters({ ...filters, tone: filters.tone.filter(v => v !== value) });
   };
 
   const handleRemoveStyle = (value: string) => {
-    setFilters({ ...filters, style: filters.style.filter((v) => v !== value) });
+    setFilters({ ...filters, style: filters.style.filter(v => v !== value) });
   };
 
   return (
@@ -109,19 +100,13 @@ export default function GalleryFilters({
               <SheetTitle>フィルター設定</SheetTitle>
             </SheetHeader>
 
-            <Accordion
-              type="multiple"
-              defaultValue={["industry", "tone", "style", "tags"]}
-            >
+            <Accordion type="multiple" defaultValue={['industry', 'tone', 'style', 'tags']}>
               {/* Industry */}
               <AccordionItem value="industry">
                 <AccordionTrigger className="text-sm font-medium">
                   業種
                   {filters.industry.length > 0 && (
-                    <Badge
-                      variant="secondary"
-                      className="ml-2 h-5 px-1.5 text-xs"
-                    >
+                    <Badge variant="secondary" className="ml-2 h-5 px-1.5 text-xs">
                       {filters.industry.length}
                     </Badge>
                   )}
@@ -130,12 +115,10 @@ export default function GalleryFilters({
                   <ToggleGroup
                     type="multiple"
                     value={filters.industry}
-                    onValueChange={(values) =>
-                      setFilters({ ...filters, industry: values })
-                    }
+                    onValueChange={values => setFilters({ ...filters, industry: values })}
                     className="flex-wrap justify-start gap-2 pt-1"
                   >
-                    {allIndustries.map((v) => (
+                    {allIndustries.map(v => (
                       <ToggleGroupItem
                         key={v}
                         value={v}
@@ -154,10 +137,7 @@ export default function GalleryFilters({
                 <AccordionTrigger className="text-sm font-medium">
                   トーン
                   {filters.tone.length > 0 && (
-                    <Badge
-                      variant="secondary"
-                      className="ml-2 h-5 px-1.5 text-xs"
-                    >
+                    <Badge variant="secondary" className="ml-2 h-5 px-1.5 text-xs">
                       {filters.tone.length}
                     </Badge>
                   )}
@@ -166,12 +146,10 @@ export default function GalleryFilters({
                   <ToggleGroup
                     type="multiple"
                     value={filters.tone}
-                    onValueChange={(values) =>
-                      setFilters({ ...filters, tone: values })
-                    }
+                    onValueChange={values => setFilters({ ...filters, tone: values })}
                     className="flex-wrap justify-start gap-2 pt-1"
                   >
-                    {allTones.map((v) => (
+                    {allTones.map(v => (
                       <ToggleGroupItem
                         key={v}
                         value={v}
@@ -190,10 +168,7 @@ export default function GalleryFilters({
                 <AccordionTrigger className="text-sm font-medium">
                   スタイル
                   {filters.style.length > 0 && (
-                    <Badge
-                      variant="secondary"
-                      className="ml-2 h-5 px-1.5 text-xs"
-                    >
+                    <Badge variant="secondary" className="ml-2 h-5 px-1.5 text-xs">
                       {filters.style.length}
                     </Badge>
                   )}
@@ -202,12 +177,10 @@ export default function GalleryFilters({
                   <ToggleGroup
                     type="multiple"
                     value={filters.style}
-                    onValueChange={(values) =>
-                      setFilters({ ...filters, style: values })
-                    }
+                    onValueChange={values => setFilters({ ...filters, style: values })}
                     className="flex-wrap justify-start gap-2 pt-1"
                   >
-                    {allStyles.map((v) => (
+                    {allStyles.map(v => (
                       <ToggleGroupItem
                         key={v}
                         value={v}
@@ -226,10 +199,7 @@ export default function GalleryFilters({
                 <AccordionTrigger className="text-sm font-medium">
                   タグ
                   {filters.tags.length > 0 && (
-                    <Badge
-                      variant="secondary"
-                      className="ml-2 h-5 px-1.5 text-xs"
-                    >
+                    <Badge variant="secondary" className="ml-2 h-5 px-1.5 text-xs">
                       {filters.tags.length}
                     </Badge>
                   )}
@@ -238,12 +208,10 @@ export default function GalleryFilters({
                   <ToggleGroup
                     type="multiple"
                     value={filters.tags}
-                    onValueChange={(values) =>
-                      setFilters({ ...filters, tags: values })
-                    }
+                    onValueChange={values => setFilters({ ...filters, tags: values })}
                     className="flex-wrap justify-start gap-2 pt-1"
                   >
-                    {allTags.map((tag) => (
+                    {allTags.map(tag => (
                       <ToggleGroupItem
                         key={tag}
                         value={tag}
@@ -260,12 +228,7 @@ export default function GalleryFilters({
 
             {activeFilterCount > 0 && (
               <div className="mt-4 pt-4 border-t">
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={handleClearAll}
-                  className="w-full gap-2"
-                >
+                <Button variant="ghost" size="sm" onClick={handleClearAll} className="w-full gap-2">
                   <X className="h-4 w-4" />
                   すべてクリア
                 </Button>
@@ -275,12 +238,7 @@ export default function GalleryFilters({
         </Sheet>
 
         {hasActiveFilters && (
-          <Button
-            variant="ghost"
-            size="sm"
-            onClick={handleClearAll}
-            className="shrink-0"
-          >
+          <Button variant="ghost" size="sm" onClick={handleClearAll} className="shrink-0">
             <X className="h-4 w-4 mr-1" />
             クリア
           </Button>
@@ -294,7 +252,7 @@ export default function GalleryFilters({
         filters.tags.length > 0) && (
         <div className="flex flex-wrap gap-2 items-center">
           <span className="text-xs text-muted-foreground">選択中:</span>
-          {filters.industry.map((v) => (
+          {filters.industry.map(v => (
             <Badge
               key={`industry-${v}`}
               variant="secondary"
@@ -305,7 +263,7 @@ export default function GalleryFilters({
               <X className="h-3 w-3 ml-1" />
             </Badge>
           ))}
-          {filters.tone.map((v) => (
+          {filters.tone.map(v => (
             <Badge
               key={`tone-${v}`}
               variant="secondary"
@@ -316,7 +274,7 @@ export default function GalleryFilters({
               <X className="h-3 w-3 ml-1" />
             </Badge>
           ))}
-          {filters.style.map((v) => (
+          {filters.style.map(v => (
             <Badge
               key={`style-${v}`}
               variant="secondary"
@@ -327,7 +285,7 @@ export default function GalleryFilters({
               <X className="h-3 w-3 ml-1" />
             </Badge>
           ))}
-          {filters.tags.map((tag) => (
+          {filters.tags.map(tag => (
             <Badge
               key={`tag-${tag}`}
               variant="secondary"
@@ -346,7 +304,7 @@ export default function GalleryFilters({
         {hasActiveFilters ? (
           <>
             <span className="font-medium text-foreground">{filteredCount}</span>
-            {" / "}
+            {' / '}
             {totalTemplates} 件のテンプレートを表示
           </>
         ) : (

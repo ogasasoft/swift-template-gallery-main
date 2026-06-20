@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { Send } from "lucide-react"; // Star is handled by RatingStars component
-import { Button } from "@/components/ui/button";
-import { Textarea } from "@/components/ui/textarea"; // Star is not directly used
-import { useToast } from "@/components/ui/use-toast";
-import RatingStars from "./RatingStars";
+import { useState } from 'react';
+import { Send } from 'lucide-react'; // Star is handled by RatingStars component
+import { Button } from '@/components/ui/button';
+import { Textarea } from '@/components/ui/textarea'; // Star is not directly used
+import { useToast } from '@/components/ui/use-toast';
+import RatingStars from './RatingStars';
 interface RatingFormProps {
   templateId: string;
   onReviewSubmitted?: () => void;
@@ -12,16 +12,16 @@ interface RatingFormProps {
 export default function RatingForm({ onReviewSubmitted }: RatingFormProps) {
   const { toast } = useToast();
   const [rating, setRating] = useState<number>(0);
-  const [comment, setComment] = useState("");
+  const [comment, setComment] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [hasReviewed, setHasReviewed] = useState(false);
 
   const handleSubmit = async () => {
     if (rating === 0) {
       toast({
-        title: "評価を入力してください",
-        description: "1つ以上の星を選択してください。",
-        variant: "destructive",
+        title: '評価を入力してください',
+        description: '1つ以上の星を選択してください。',
+        variant: 'destructive',
       });
       return;
     }
@@ -33,23 +33,23 @@ export default function RatingForm({ onReviewSubmitted }: RatingFormProps) {
       // const response = await reviewsApi.addReview(templateId, { rating, comment });
 
       // テスト用シミュレーション
-      await new Promise((resolve) => setTimeout(resolve, 1000));
+      await new Promise(resolve => setTimeout(resolve, 1000));
 
       setHasReviewed(true);
       toast({
-        title: "評価を送信しました",
-        description: "ありがとうございます！",
+        title: '評価を送信しました',
+        description: 'ありがとうございます！',
       });
 
       setRating(0);
-      setComment("");
+      setComment('');
       onReviewSubmitted?.();
     } catch (error) {
-      console.error("Submission error:", error);
+      console.error('Submission error:', error);
       toast({
-        title: "エラーが発生しました",
-        description: "送信に失敗しました。もう一度お試しください。",
-        variant: "destructive",
+        title: 'エラーが発生しました',
+        description: '送信に失敗しました。もう一度お試しください。',
+        variant: 'destructive',
       });
     } finally {
       setSubmitting(false);
@@ -59,9 +59,7 @@ export default function RatingForm({ onReviewSubmitted }: RatingFormProps) {
   if (hasReviewed) {
     return (
       <div className="rounded-lg border bg-muted/50 p-4 text-center">
-        <p className="text-sm text-muted-foreground">
-          このテンプレートの評価を送信しました
-        </p>
+        <p className="text-sm text-muted-foreground">このテンプレートの評価を送信しました</p>
       </div>
     );
   }
@@ -70,36 +68,24 @@ export default function RatingForm({ onReviewSubmitted }: RatingFormProps) {
     <div className="space-y-4">
       <div>
         <h4 className="mb-2 text-sm font-semibold">このテンプレートの評価</h4>
-        <RatingStars
-          rating={rating}
-          interactive
-          onRatingChange={setRating}
-          size="md"
-        />
+        <RatingStars rating={rating} interactive onRatingChange={setRating} size="md" />
       </div>
 
       <div>
-        <label
-          htmlFor="review-comment"
-          className="mb-2 block text-sm font-medium"
-        >
+        <label htmlFor="review-comment" className="mb-2 block text-sm font-medium">
           コメント（任意）
         </label>
         <Textarea
           id="review-comment"
           value={comment}
-          onChange={(e) => setComment(e.target.value)}
+          onChange={e => setComment(e.target.value)}
           placeholder="このテンプレートについてご意見をお聞かせください..."
           rows={4}
           disabled={submitting}
         />
       </div>
 
-      <Button
-        onClick={handleSubmit}
-        disabled={rating === 0 || submitting}
-        className="w-full"
-      >
+      <Button onClick={handleSubmit} disabled={rating === 0 || submitting} className="w-full">
         {submitting ? (
           <>
             送信中...

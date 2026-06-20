@@ -10,6 +10,7 @@ A modern template gallery for developers to discover and preview reusable React 
 ![Jest](https://img.shields.io/badge/Jest-30.4.2-9948F5.svg)
 ![ESLint](https://img.shields.io/badge/ESLint-10.5.0-4B32C3.svg)
 ![Vite](https://img.shields.io/badge/Vite-8.0.16-646CFF.svg)
+![Cypress](https://img.shields.io/badge/Cypress-15.17.0-17202C.svg)
 
 ## 🌟 Features
 
@@ -21,7 +22,7 @@ A modern template gallery for developers to discover and preview reusable React 
 - 📱 **Responsive**: Mobile-first design
 - 🌙 **Dark Mode**: Automatic system preference detection with manual toggle
 - ⭐ **Review System**: User ratings and reviews with sentiment analysis
-- 🔬 **Comprehensive Tests**: 160 tests covering all components and pages (160 passed, 1 skipped)
+- 🔬 **Comprehensive Tests**: 162 unit tests (162 passed, 1 skipped) + 50+ E2E tests (100% pass rate)
 - ✨ **TypeScript**: Full type safety with 100% coverage
 
 ## 🛠️ Tech Stack
@@ -52,7 +53,8 @@ A modern template gallery for developers to discover and preview reusable React 
 - **React Testing Library 16.3.2** - Component testing
 - **Jest DOM 6.9.1** - DOM matchers
 - **TypeScript Jest 29.4.11** - TS support
-- **Cypress 15.17.0** - End-to-end testing with comprehensive test coverage
+- **Cypress 15.17.0** - End-to-end testing with comprehensive test coverage (50+ tests, 100% pass rate)
+- **cypress-axe** - Accessibility audit (WCAG 2.1 AA)
 
 ### Code Quality
 
@@ -67,6 +69,63 @@ A modern template gallery for developers to discover and preview reusable React 
 - **recharts 2.15.0** - Data visualization
 - **sonner 1.7.3** - Toast notifications
 - **clsx 2.1.1** - Conditional class names
+
+## 📊 Performance Monitoring
+
+### Web Vitals Integration
+
+This project includes Core Web Vitals monitoring using the `web-vitals` library to track essential performance metrics:
+
+- **LCP** (Largest Contentful Paint): Page load performance
+- **FID** (First Input Delay): Interaction responsiveness
+- **CLS** (Cumulative Layout Shift): Visual stability
+- **FCP** (First Contentful Paint): Content loading
+- **TTFB** (Time to First Byte): Server response time
+
+### Performance Dashboard
+
+A performance banner is available in development mode to view real-time metrics:
+
+```bash
+# Enable performance monitoring
+localStorage.setItem('enableDevMode', 'true');
+
+# Refresh the page to see the performance banner
+```
+
+### Performance Metrics
+
+| Metric | Good    | Needs Improvement | Poor    |
+| ------ | ------- | ----------------- | ------- |
+| LCP    | < 2.5s  | 2.5s - 4s         | > 4s    |
+| FID    | < 100ms | 100ms - 300ms     | > 300ms |
+| CLS    | < 0.1   | 0.1 - 0.25        | > 0.25  |
+| FCP    | < 1.8s  | 1.8s - 3s         | > 3s    |
+| TTFB   | < 800ms | 800ms - 1.8s      | > 1.8s  |
+
+### Performance Optimization
+
+The application is optimized for:
+
+- **Fast Load Times**: Target < 3s LCP
+- **Responsive Interactions**: Target < 100ms FID
+- **Visual Stability**: Target < 0.1 CLS
+- **Caching**: Leverage browser caching for static assets
+- **Code Splitting**: Dynamic imports for lazy loading
+- **Image Optimization**: Modern image formats with responsive sizes
+
+### Development Tools
+
+```bash
+# Enable performance monitoring
+npm run perf:monitor  # In development mode
+
+# Run performance benchmark
+npm run perf:benchmark
+
+# Check for performance regressions
+npm run perf:check
+```
 
 ## 🏗️ Architecture
 
@@ -160,7 +219,7 @@ npm run format:check     # Check code formatting without changes
 ### Quality & Testing
 
 ```bash
-npm test                 # Run all tests (160 tests)
+npm test                 # Run all tests (162 tests)
 npm run test:coverage    # Run tests with coverage report
 npm run test:watch       # Run tests in watch mode
 npm run test:ci          # CI mode for GitHub Actions (maxWorkers=2)
@@ -538,7 +597,7 @@ The GitHub Actions CI/CD pipeline includes:
 
 1. **TypeScript Type Check**: Validates type safety
 2. **Linting**: Checks code quality with ESLint
-3. **Testing**: Runs comprehensive test suite (160 tests)
+3. **Testing**: Runs comprehensive test suite (162 tests)
 4. **Coverage Report**: Generates coverage reports (100% critical paths)
 5. **Security Scan**: Runs npm audit for vulnerabilities
 6. **Build Check**: Builds production bundle
@@ -594,7 +653,7 @@ swift-template-gallery/
 
 ### Test Structure
 
-The project has a comprehensive test suite with **160 tests** covering:
+The project has a comprehensive test suite with **162 tests** covering:
 
 - **Components**: All UI components (Header, Footer, Hero, Gallery, Pricing, Contact, ThemeToggle, RatingStars, ReviewList, RatingForm, PreviewModal, TemplateCard, GalleryFilters, NavLink)
 - **Pages**: Index page, NotFound page, TemplateDetail page

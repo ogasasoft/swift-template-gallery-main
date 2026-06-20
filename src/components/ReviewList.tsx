@@ -1,5 +1,5 @@
-import { Card } from "@/components/ui/card";
-import RatingStars from "./RatingStars";
+import { Card } from '@/components/ui/card';
+import RatingStars from './RatingStars';
 
 interface ReviewItemProps {
   userName: string;
@@ -9,10 +9,10 @@ interface ReviewItemProps {
 }
 
 function ReviewItem({ userName, rating, comment, createdAt }: ReviewItemProps) {
-  const date = new Date(createdAt).toLocaleDateString("ja-JP", {
-    year: "numeric",
-    month: "short",
-    day: "numeric",
+  const date = new Date(createdAt).toLocaleDateString('ja-JP', {
+    year: 'numeric',
+    month: 'short',
+    day: 'numeric',
   });
 
   return (
@@ -45,9 +45,7 @@ export default function ReviewList({ reviews }: ReviewListProps) {
   if (reviews.length === 0) {
     return (
       <div className="rounded-lg border bg-muted/50 p-4 text-center">
-        <p className="text-sm text-muted-foreground">
-          まだレビューがありません
-        </p>
+        <p className="text-sm text-muted-foreground">まだレビューがありません</p>
       </div>
     );
   }
@@ -56,7 +54,7 @@ export default function ReviewList({ reviews }: ReviewListProps) {
     <div className="space-y-4">
       <h3 className="text-lg font-semibold">レビュー ({reviews.length})</h3>
       <div className="space-y-3">
-        {reviews.map((review) => (
+        {reviews.map(review => (
           <ReviewItem
             key={review.id}
             userName={review.userName}

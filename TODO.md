@@ -29,6 +29,12 @@
   - Updated jest.config.ts
   - Updated README with Cypress references
   - Updated CHANGELOG
+- [x] **README test statistics updated** (2026-06-20)
+  - Updated Jest test count from 160 to 162 (162 passed, 1 skipped)
+  - Added Cypress badge to technology stack
+  - Enhanced Testing section with cypress-axe accessibility details
+  - Fixed test count inconsistencies across README.md sections
+  - Updated CHANGELOG.md with documentation changes
 
 ## High Priority (Next)
 

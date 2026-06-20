@@ -1,8 +1,8 @@
-import { Eye, Download, Info } from "lucide-react";
-import { Link } from "react-router-dom";
-import { Badge } from "@/components/ui/badge";
-import RatingStars from "./RatingStars";
-import type { Template } from "@/lib/types";
+import { Eye, Download, Info } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { Badge } from '@/components/ui/badge';
+import RatingStars from './RatingStars';
+import type { Template } from '@/lib/types';
 
 interface TemplateCardProps {
   template: Template;
@@ -25,39 +25,27 @@ export default function TemplateCard({
       className="group relative overflow-hidden rounded-lg border bg-card transition-all hover:shadow-lg cursor-pointer"
     >
       <div className="aspect-video w-full bg-muted">
-        <img
-          src={template.thumb}
-          alt={template.title}
-          className="h-full w-full object-cover"
-        />
+        <img src={template.thumb} alt={template.title} className="h-full w-full object-cover" />
       </div>
 
       <div className="p-4">
         <h3 className="mb-2 text-lg font-semibold">{template.title}</h3>
 
         <div className="mb-3 flex items-center gap-2">
-          <RatingStars
-            rating={template.rating || 0}
-            count={template.reviewCount || 0}
-            size="sm"
-          />
+          <RatingStars rating={template.rating || 0} count={template.reviewCount || 0} size="sm" />
         </div>
 
         <div className="mb-3 flex flex-wrap gap-1.5">
-          {template.tags.map((tag) => (
+          {template.tags.map(tag => (
             <Badge
               key={tag}
-              variant={isTagSelected(tag) ? "default" : "secondary"}
+              variant={isTagSelected(tag) ? 'default' : 'secondary'}
               className="text-xs cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors select-none"
-              onClick={(e) => {
+              onClick={e => {
                 e.stopPropagation();
                 onTagClick?.(tag);
               }}
-              title={
-                isTagSelected(tag)
-                  ? "クリックしてタグを解除"
-                  : "クリックしてフィルター"
-              }
+              title={isTagSelected(tag) ? 'クリックしてタグを解除' : 'クリックしてフィルター'}
             >
               {tag}
             </Badge>
@@ -67,7 +55,7 @@ export default function TemplateCard({
         <div className="flex items-center gap-2">
           <button
             className="flex items-center gap-1 rounded-md bg-muted px-3 py-1.5 text-sm font-medium hover:bg-muted/80 transition-colors"
-            onClick={(e) => {
+            onClick={e => {
               e.stopPropagation();
               onClick();
             }}
@@ -78,14 +66,14 @@ export default function TemplateCard({
           <Link
             to={`/templates/${template.id}`}
             className="flex items-center gap-1 rounded-md bg-muted px-3 py-1.5 text-sm font-medium hover:bg-muted/80 transition-colors"
-            onClick={(e) => e.stopPropagation()}
+            onClick={e => e.stopPropagation()}
           >
             <Info className="h-4 w-4" />
             詳細
           </Link>
           <button
             className="flex items-center gap-1 rounded-md bg-muted px-3 py-1.5 text-sm font-medium hover:bg-muted/80 transition-colors"
-            onClick={(e) => e.stopPropagation()}
+            onClick={e => e.stopPropagation()}
             aria-label="ダウンロード"
           >
             <Download className="h-4 w-4" />
