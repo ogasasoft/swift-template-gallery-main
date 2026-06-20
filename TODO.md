@@ -57,8 +57,15 @@
 
 ## Medium Priority
 
-- [ ] Improve mobile experience testing
-- [ ] Add performance monitoring (Web Vitals)
+- [x] Improve mobile experience testing (2026-06-21)
+  - Enhanced Hero responsive design
+  - Improved Gallery grid layout
+  - Fixed Footer mobile layout
+- [x] Add performance monitoring (Web Vitals) (Already implemented)
+  - usePerformanceMetrics hook
+  - Core Web Vitals tracking (LCP, CLS, INP, FCP, TTFB)
+  - Performance recommendations
+  - Performance banner in development mode
 
 ## Low Priority
 
