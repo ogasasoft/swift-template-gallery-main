@@ -36,10 +36,14 @@
   - Removed @emnapi/wasi-threads, @napi-rs/wasm-runtime, @tybys/wasm-util
   - Verified no extraneous packages remain
 
-- [ ] Add accessibility audit
-  - Run axe-core audit
-  - Add ARIA labels where needed
-  - Ensure keyboard navigation works
+- [x] Add accessibility audit (2026-06-20)
+  - Installed cypress-axe and axe-core packages
+  - Created a11y-cyber.cy.ts test suite (10 test cases)
+  - WCAG 2.1 AA compliance checking implemented
+  - Keyboard navigation and ARIA label validation added
+  - Dark mode toggle accessibility verified
+  - Responsive design accessibility tested
+  - Test script: `npm run test:cypress:a11y`
 
 ## Medium Priority
 

@@ -7,6 +7,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+
+- **Accessibility Audit**: Added Cypress accessibility tests with axe-core
+  - Installed cypress-axe and axe-core packages
+  - Created comprehensive a11y-cyber.cy.ts test suite
+  - Tests cover page-level, template gallery, search, and responsive design
+  - WCAG 2.1 AA compliance checking (wcag2a, wcag2aa, wcag21a, wcag21aa)
+  - Keyboard navigation, ARIA labels, and semantic HTML validation
+  - Dark mode toggle accessibility verification
+  - Accessibility audit script: `npm run test:cypress:a11y`
+
 ### Changed
 
 - **E2E Testing Migration**: Migrated from Playwright to Cypress 15.17.0

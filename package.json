@@ -24,6 +24,10 @@
     "test:watch": "jest --watch",
     "test:unit": "jest --testPathPattern='__tests__/'",
     "test:integration": "jest --testPathPattern='__tests__/pages/'",
+    "test:cypress": "cypress run --spec 'cypress/e2e/*.cy.ts'",
+    "test:cypress:a11y": "cypress run --spec 'cypress/e2e/a11y-cyber.cy.ts'",
+    "test:cypress:open": "cypress open",
+    "test:cypress:open:a11y": "cypress open --spec 'cypress/e2e/a11y-cyber.cy.ts'",
     "typecheck": "tsc --noEmit"
   },
   "husky": {
@@ -103,6 +107,8 @@
     "@typescript-eslint/eslint-plugin": "^8.61.1",
     "@typescript-eslint/parser": "^8.61.1",
     "@vitejs/plugin-react-swc": "^4.3.1",
+    "axe-core": "^4.12.1",
+    "cypress-axe": "^1.7.0",
     "esbuild": "0.28.1",
     "eslint": "^10.5.0",
     "eslint-plugin-react-hooks": "^7.1.1",
