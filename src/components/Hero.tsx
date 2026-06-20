@@ -1,6 +1,8 @@
 import { Button } from '@/components/ui/button';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const Hero = () => {
+  const isMobile = useIsMobile();
   const scrollToGallery = () => {
     const gallery = document.getElementById('gallery');
     if (gallery) {
@@ -10,18 +12,30 @@ const Hero = () => {
 
   return (
     <section
-      className="min-h-screen flex items-center justify-center pt-16"
+      className="min-h-screen flex items-center justify-center pt-16 pb-12"
       style={{ background: 'var(--hero-gradient)' }}
     >
       <div className="container mx-auto px-4 text-center">
-        <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6">
+        <h1
+          className={`font-bold text-foreground mb-6 ${
+            isMobile ? 'text-4xl' : 'text-5xl md:text-6xl'
+          }`}
+        >
           See it. Choose it. Get it fast.
         </h1>
-        <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto">
+        <p
+          className={`text-muted-foreground mb-12 max-w-3xl mx-auto ${
+            isMobile ? 'text-base md:text-lg' : 'text-xl md:text-2xl'
+          }`}
+        >
           Pick a design from our gallery and receive your customized site with your own text and
           images.
         </p>
-        <Button size="lg" onClick={scrollToGallery} className="text-lg px-8 py-6">
+        <Button
+          size={isMobile ? 'default' : 'lg'}
+          onClick={scrollToGallery}
+          className="text-lg px-8 py-6"
+        >
           View Gallery
         </Button>
       </div>
