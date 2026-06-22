@@ -50,6 +50,9 @@ module.exports = {
     '@typescript-eslint/no-floating-promises': 'error',
     '@typescript-eslint/prefer-nullish-coalescing': 'warn',
 
+    // Storybook
+    'no-unused-vars': 'off',
+
     // React
     'react/prop-types': 'off',
     'react/react-in-jsx-scope': 'off',
@@ -96,6 +99,7 @@ module.exports = {
     'sort-vars': 'warn',
     'space-before-blocks': 'error',
   },
+  ignorePatterns: ['dist', 'build', 'node_modules', '**/*.config.ts', '**/*.config.js', '**/*.config.mjs', '.storybook/**'],
   settings: {
     react: {
       version: 'detect',
