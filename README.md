@@ -7,10 +7,8 @@ A modern template gallery for developers to discover and preview reusable React 
 ![Node](https://img.shields.io/badge/node-%3E%3D20.0.0-brightgreen.svg)
 ![React](https://img.shields.io/badge/React-19.0.0-61DAFB.svg)
 ![TypeScript](https://img.shields.io/badge/TypeScript-6.0.0-3178C6.svg)
-![Jest](https://img.shields.io/badge/Jest-30.4.2-9948F5.svg)
 ![ESLint](https://img.shields.io/badge/ESLint-10.5.0-4B32C3.svg)
 ![Vite](https://img.shields.io/badge/Vite-8.0.16-646CFF.svg)
-![Cypress](https://img.shields.io/badge/Cypress-15.17.0-17202C.svg)
 
 ## 🌟 Features
 
@@ -21,9 +19,9 @@ A modern template gallery for developers to discover and preview reusable React 
 - 📋 **Code Export**: Copy code directly to clipboard
 - 📱 **Responsive**: Mobile-first design
 - 🌙 **Dark Mode**: Automatic system preference detection with manual toggle
-- ✅ **Dark Mode**: Verified accessibility (cypress-axe, WCAG 2.1 AA)
+- ✅ **Dark Mode**: Verified accessibility (WCAG 2.1 AA)
 - ⭐ **Review System**: User ratings and reviews with sentiment analysis
-- 🔬 **Comprehensive Tests**: 162 unit tests (162 passed, 1 skipped) + 50+ E2E tests (100% pass rate)
+- 🔬 **Unit Tests**: 162 tests (162 passed, 1 skipped)
 - 🔍 **Accessibility**: WCAG 2.1 AA compliance, keyboard navigation, ARIA labels
 - ✨ **TypeScript**: Full type safety with 100% coverage
 - 📦 **Package Management**: Clean dependencies (no extraneous packages)
@@ -57,8 +55,6 @@ A modern template gallery for developers to discover and preview reusable React 
 - **React Testing Library 16.3.2** - Component testing
 - **Jest DOM 6.9.1** - DOM matchers
 - **TypeScript Jest 29.4.11** - TS support
-- **Cypress 15.17.0** - End-to-end testing with comprehensive test coverage (50+ tests, 100% pass rate)
-- **cypress-axe** - Accessibility audit (WCAG 2.1 AA)
 
 ### Code Quality
 
